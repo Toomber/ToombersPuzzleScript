@@ -1,0 +1,216 @@
+title Pulley Python
+author Toomber
+homepage www.puzzlescript.net
+
+========
+OBJECTS
+========
+
+Background
+LIGHTGREEN GREEN
+11111
+01111
+11101
+11111
+10111
+
+
+Wall
+BROWN DARKBROWN
+00010
+11111
+01000
+11111
+00010
+
+HeadUp
+Blue
+..0..
+.000.
+00000
+.....
+.....
+
+HeadDown
+Blue
+.....
+.....
+00000
+.000.
+..0..
+
+HeadRight
+Blue
+..0..
+..00.
+..000
+..00.
+..0..
+
+HeadLeft
+Blue
+..0..
+.00..
+000..
+.00..
+..0..
+
+LRibbonUp
+Red
+0....
+0....
+0....
+0....
+0....
+
+
+LRibbonDown
+Red
+....0
+....0
+....0
+....0
+....0
+
+LRibbonRight
+Red
+00000
+.....
+.....
+.....
+.....
+
+
+LRibbonLeft
+Red
+.....
+.....
+.....
+.....
+00000
+
+RRibbonDown
+Red
+0....
+0....
+0....
+0....
+0....
+
+
+RRibbonUp
+Red
+....0
+....0
+....0
+....0
+....0
+
+RRibbonLeft
+Red
+00000
+.....
+.....
+.....
+.....
+
+
+RRibbonRight
+Red
+.....
+.....
+.....
+.....
+00000
+
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+H = HeadUp
+
+Head = HeadUp or HeadDown or HeadRight or HeadLeft
+Player = Head
+
+RRibbon = RRibbonUp or RRibbonDown or RRibbonRight or RRibbonLeft
+LRibbon = LRibbonUp or LRibbonDown or LRibbonRight or LRibbonLeft
+Ribbon = RRibbon or LRibbon
+
+Snake = Head
+
+=======
+SOUNDS
+=======
+
+================
+COLLISIONLAYERS
+================
+
+
+Background
+
+
+RRibbonUp
+RRibbonDown
+RRibbonRight
+RRibbonLeft
+LRibbonUp
+LRibbonDown
+LRibbonRight
+LRibbonLeft
+Head, Wall,
+
+======
+RULES
+======
+
+[> Head | Ribbon] -> cancel 
+[> Head | Wall] -> cancel
+
+[up HeadUp no Ribbon] -> [LRibbonUp RRibbonUp up HeadUp] 
+[right HeadUp no Ribbon] -> [LRibbonUp LRibbonRight right HeadRight] 
+[left HeadUp no Ribbon] -> [RRibbonUp RRibbonLeft left HeadLeft] 
+
+[down HeadDown no Ribbon] -> [LRibbonDown RRibbonDown down HeadDown] 
+[right HeadDown no Ribbon] -> [RRibbonDown RRibbonRight right HeadRight] 
+[left HeadDown no Ribbon] -> [LRibbonDown LRibbonLeft left HeadLeft] 
+
+[right HeadRight no Ribbon] -> [LRibbonRight RRibbonRight right HeadRight] 
+[up HeadRight no Ribbon] -> [RRibbonUp RRibbonRight up HeadUp] 
+[down HeadRight no Ribbon] -> [LRibbonDown LRibbonRight down HeadDown] 
+
+[left HeadLeft no Ribbon] -> [LRibbonLeft RRibbonLeft left HeadLeft] 
+[up HeadLeft no Ribbon] -> [LRibbonLeft LRibbonUp up HeadUp] 
+[down HeadLeft no Ribbon] -> [RRibbonDown RRibbonLeft down HeadDown] 
+
+(
+[ | down Head] -> [down HeadDown] 
+[ | right Head] -> [right HeadRight] 
+[ | left Head] -> [left HeadLeft] )
+
+
+([moving Snake | stationary Snake] -> [moving Snake | < Snake] )
+
+==============
+WINCONDITIONS
+==============
+
+
+=======
+LEVELS
+=======
+
+
+.........
+.........
+.........
+.........
+.........
+.........
+.........
+.........
+.........
+.........
