@@ -25,8 +25,11 @@ BROWN DARKBROWN
 11111
 00010
 
+StickyBlock
+Yellow
+
 HeadUp
-Blue Red White
+Blue Red Red
 ..0..
 .000.
 00000
@@ -34,7 +37,7 @@ Blue Red White
 1...2
 
 HeadDown
-Blue Red White
+Blue Red Red
 2...1
 00000
 00000
@@ -42,7 +45,7 @@ Blue Red White
 ..0..
 
 HeadRight
-Blue Red White
+Blue Red Red
 100..
 .000.
 .0000
@@ -50,12 +53,44 @@ Blue Red White
 200..
 
 HeadLeft
-Blue Red White
+Blue Red Red
 ..002
 .000.
 0000.
 .000.
 ..001
+
+HeadLooseUp
+Blue Red White
+..0..
+.000.
+00000
+00000
+.....
+
+HeadLooseDown
+Blue Red White
+.....
+00000
+00000
+.000.
+..0..
+
+HeadLooseRight
+Blue Red White
+.00..
+.000.
+.0000
+.000.
+.00..
+
+HeadLooseLeft
+Blue Red White
+..00.
+.000.
+0000.
+.000.
+..00.
 
 
 HeadWentUp
@@ -94,7 +129,7 @@ transparent
 LRibbonUp
 Red
 00000
-.....
+00000
 .....
 .....
 .....
@@ -105,63 +140,63 @@ Red
 .....
 .....
 .....
-.....
+00000
 00000
 
 
 LRibbonRight
 Red
-....0
-....0
-....0
-....0
-....0
+...00
+...00
+...00
+...00
+...00
 
 
 LRibbonLeft
 Red
-0....
-0....
-0....
-0....
-0....
+00...
+00...
+00...
+00...
+00...
 
 
 
 RRibbonUp
-White
+Red
 00000
-.....
+00000
 .....
 .....
 .....
 
 
 RRibbonDown
-White
-.....
+Red
 .....
 .....
 .....
 00000
+00000
 
 
 RRibbonRight
-White
-....0
-....0
-....0
-....0
-....0
+Red
+...00
+...00
+...00
+...00
+...00
 
 
 RRibbonLeft
-White
-0....
-0....
-0....
-0....
-0....
+Red
+00...
+00...
+00...
+00...
+00...
 
 TailEndLeft
 transparent
@@ -179,6 +214,9 @@ transparent
 .....
 .....
 
+HeadLooseTemp
+transparent
+
 LeftTemp1
 transparent
 
@@ -191,6 +229,14 @@ transparent
 RightTemp2 
 transparent
 
+LeftStuck
+transparent
+
+RightStuck
+transparent
+
+
+
 =======
 LEGEND
 =======
@@ -198,12 +244,14 @@ LEGEND
 . = Background
 # = Wall
 H = HeadUp
-
+S = StickyBlock
 Head = HeadUp or HeadDown or HeadRight or HeadLeft
-Player = Head
+HeadLoose = HeadLooseUp or HeadLooseDown or HeadLooseRight or HeadLooseLeft
+Player = Head or HeadLoose
+
+Stuck = LeftStuck or RightStuck
 
 HeadWent = HeadWentUp or HeadWentDown or HeadWentRight or HeadWentLeft
-
 U = HeadWentUp
 D = HeadWentDown
 R = HeadWentRight
@@ -218,6 +266,9 @@ Ribbon = RRibbon or LRibbon
 
 Snake = Head or HeadWent
 
+DeletionTemp = LeftTemp1 or LeftTemp2 or RightTemp1 or RightTemp2
+
+
 =======
 SOUNDS
 =======
@@ -228,7 +279,9 @@ COLLISIONLAYERS
 
 
 Background
-
+HeadLooseTemp
+LeftStuck
+RightStuck
 LeftTemp1
 LeftTemp2
 RightTemp1
@@ -242,7 +295,7 @@ LRibbonUp
 LRibbonDown
 LRibbonRight
 LRibbonLeft
-Head, Wall,
+Head, HeadLoose, Wall, StickyBlock
 
 
 TailEndLeft
@@ -252,12 +305,14 @@ TailEndRight
 RULES
 ======
 
-[Head HeadWent] -> [Head]
-
-[> Head | Ribbon] -> cancel 
-[> Head | Wall] -> cancel
+[> Player | HeadWent] -> [ > Player | ]
 
 
+[> Player | Ribbon] -> cancel 
+[> Player | Wall] -> cancel
+[> Player | StickyBlock] -> cancel
+
+(lay down string and record how much of each side created)
 [up HeadUp no Ribbon] -> [LRibbonLeft RRibbonRight HeadWentUp LeftTemp1 RightTemp1 up HeadUp] 
 [right HeadUp no Ribbon] -> [LRibbonLeft LRibbonUp HeadWentRight LeftTemp2 right HeadRight] 
 [left HeadUp no Ribbon] -> [RRibbonRight RRibbonUp HeadWentLeft RightTemp2 left HeadLeft] 
@@ -275,7 +330,43 @@ RULES
 [down HeadLeft no Ribbon] -> [RRibbonLeft RRibbonUp HeadWentDown RightTemp2 down HeadDown] 
 
 
+
+
+(Rotate Loose Head)
+[up HeadLoose] -> [up HeadLooseUp]
+[down HeadLoose] -> [down HeadLooseDown]
+[right HeadLoose] -> [right HeadLooseRight]
+[left HeadLoose] -> [left HeadLooseLeft]
+
+
+
+(record if ribbon stuck on sticky blocks)
+up [ LRibbonUp | StickyBlock ] -> [ LRibbonUp | StickyBlock LeftStuck]
+down [ LRibbonDown | StickyBlock ] -> [ LRibbonDown | StickyBlock LeftStuck]
+right [ LRibbonRight | StickyBlock ] -> [ LRibbonRight | StickyBlock LeftStuck]
+left [ LRibbonLeft | StickyBlock ] -> [ LRibbonLeft | StickyBlock LeftStuck]
+
+up [ RRibbonUp | StickyBlock ] -> [ RRibbonUp | StickyBlock RightStuck]
+down [ RRibbonDown | StickyBlock ] -> [ RRibbonDown | StickyBlock RightStuck]
+right [ RRibbonRight | StickyBlock ] -> [ RRibbonRight | StickyBlock RightStuck]
+left [ RRibbonLeft | StickyBlock ] -> [ RRibbonLeft | StickyBlock RightStuck]
+
+
+[LeftStuck][RightStuck] -> cancel
+
+(switch temp objects to other side if that side is stuck)
+[LeftStuck][LeftTemp1 RightTemp1] -> [LeftStuck][[RightTemp2]
+[LeftStuck][LeftTemp2] -> [LeftStuck][[RightTemp2]
+
+[RightStuck][LeftTemp1 RightTemp1] -> [RightStuck][[LeftTemp2]
+[RightStuck][RightTemp2] -> [RightStuck][[LeftTemp2]
+
+
+
+
+(loop through all tail end configurations and delete strings if there are temp objects)
 startloop
+
 
 [LeftTemp1][TailEndLeft HeadWentUp LRibbonDown] -> [][TailEndLeft HeadWentUp]
 [LeftTemp1][TailEndLeft HeadWentUp LRibbonLeft] -> [][TailEndLeft HeadWentUp]
@@ -332,7 +423,7 @@ startloop
 [RightTemp2][TailEndRight HeadWentLeft RRibbonUp] -> [RightTemp1][TailEndRight HeadWentLeft]
 
 
-
+(move the end of tail markers up if there are no string pieces in the square)
 up [HeadWentUp TailEndLeft no LRibbon | ] -> [HeadWentUp | TailEndLeft]
 down [HeadWentDown TailEndLeft no LRibbon | ] -> [HeadWentDown | TailEndLeft]
 right [HeadWentRight TailEndLeft no LRibbon | ] -> [HeadWentRight | TailEndLeft]
@@ -341,15 +432,16 @@ left [HeadWentLeft TailEndLeft no LRibbon | ] -> [HeadWentLeft | TailEndLeft]
 up [HeadWentUp TailEndRight no RRibbon | ] -> [HeadWentUp | TailEndRight]
 down [HeadWentDown TailEndRight no RRibbon | ] -> [HeadWentDown | TailEndRight]
 right [HeadWentRight TailEndRight no RRibbon | ] -> [HeadWentRight | TailEndRight]
-left [HeadWentLeft TailEndRight no RRibbon | ] -> [HeadWentLeft | TailEndRight]
-
+left [HeadWentLeft TailEndRight no RRibbon | ] -> [HeadWentLeft | TailEndRight] 
 
 endloop
 
-(
-[ | down Head] -> [down HeadDown] 
-[ | right Head] -> [right HeadRight] 
-[ | left Head] -> [left HeadLeft] )
+[Head] -> [Head HeadLooseTemp]
+[HeadLooseTemp][ LRibbon ][ RRibbon] -> [][ LRibbon ][ RRibbon ]
+[HeadLooseTemp moving HeadUp] -> [moving HeadLooseUp]
+[HeadLooseTemp moving HeadDown] -> [moving HeadLooseDown]
+[HeadLooseTemp moving HeadLeft] -> [moving HeadLooseLeft]
+[HeadLooseTemp moving HeadRight] -> [moving HeadLooseRight]
 
 ==============
 WINCONDITIONS
@@ -361,16 +453,18 @@ LEVELS
 =======
 
 
-############
-#..........#
-#..........#
-#..........#
-#.........h#
-#...#.....k#
-#.........k#
-#.........k#
-#.........k#
-#.........x#
-#..........#
-#..........#
-############
+###############
+#.............#
+#.............#
+#............h#
+#..s.........k#
+#............k#
+#..s.........k#
+#......s.....k#
+#............k#
+#...s........k#
+#............k#
+#............x#
+#.............#
+#.....sss.....#
+###############
