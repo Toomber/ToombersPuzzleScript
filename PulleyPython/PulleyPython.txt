@@ -223,11 +223,17 @@ transparent
 LeftTemp2
 transparent
 
-RightTemp1 
+LeftDeleteEndPiece
 transparent
 
+RightTemp1 
+black
+
 RightTemp2 
-transparent
+black
+
+RightDeleteEndPiece
+black
 
 LeftStuck
 transparent
@@ -284,8 +290,10 @@ LeftStuck
 RightStuck
 LeftTemp1
 LeftTemp2
+LeftDeleteEndPiece
 RightTemp1
 RightTemp2
+RightDeleteEndPiece
 HeadWent
 RRibbonUp
 RRibbonDown
@@ -367,60 +375,38 @@ left [ RRibbonLeft | StickyBlock ] -> [ RRibbonLeft | StickyBlock RightStuck]
 (loop through all tail end configurations and delete strings if there are temp objects)
 startloop
 
+[LeftTemp2] -> [LeftTemp2 LeftDeleteEndPiece]
+[RightTemp2] -> [RightTemp2 RightDeleteEndPiece]
 
-[LeftTemp1][TailEndLeft HeadWentUp LRibbonDown] -> [][TailEndLeft HeadWentUp]
-[LeftTemp1][TailEndLeft HeadWentUp LRibbonLeft] -> [][TailEndLeft HeadWentUp]
-
-[LeftTemp1][TailEndLeft HeadWentDown LRibbonUp] -> [][TailEndLeft HeadWentDown]
-[LeftTemp1][TailEndLeft HeadWentDown LRibbonRight] -> [][TailEndLeft HeadWentDown]
-
-[LeftTemp1][TailEndLeft HeadWentRight LRibbonLeft] -> [][TailEndLeft HeadWentRight]
-[LeftTemp1][TailEndLeft HeadWentRight LRibbonUp] -> [][TailEndLeft HeadWentRight]
-
-[LeftTemp1][TailEndLeft HeadWentLeft LRibbonRight] -> [][TailEndLeft HeadWentLeft]
-[LeftTemp1][TailEndLeft HeadWentLeft LRibbonDown] -> [][TailEndLeft HeadWentLeft]
+[LeftTemp1] -> [LeftDeleteEndPiece]
+[RightTemp1] -> [RightDeleteEndPiece]
 
 
+[LeftDeleteEndPiece][TailEndLeft HeadWentUp LRibbonDown] -> [][TailEndLeft HeadWentUp]
+[LeftDeleteEndPiece][TailEndLeft HeadWentUp LRibbonLeft] -> [][TailEndLeft HeadWentUp]
 
-[LeftTemp2][TailEndLeft HeadWentUp LRibbonDown] -> [LeftTemp1][TailEndLeft HeadWentUp]
-[LeftTemp2][TailEndLeft HeadWentUp LRibbonLeft] -> [LeftTemp1][TailEndLeft HeadWentUp]
+[LeftDeleteEndPiece][TailEndLeft HeadWentDown LRibbonUp] -> [][TailEndLeft HeadWentDown]
+[LeftDeleteEndPiece][TailEndLeft HeadWentDown LRibbonRight] -> [][TailEndLeft HeadWentDown]
 
-[LeftTemp2][TailEndLeft HeadWentDown LRibbonUp] -> [LeftTemp1][TailEndLeft HeadWentDown]
-[LeftTemp2][TailEndLeft HeadWentDown LRibbonRight] -> [LeftTemp1][TailEndLeft HeadWentDown]
+[LeftDeleteEndPiece][TailEndLeft HeadWentRight LRibbonLeft] -> [][TailEndLeft HeadWentRight]
+[LeftDeleteEndPiece][TailEndLeft HeadWentRight LRibbonUp] -> [][TailEndLeft HeadWentRight]
 
-[LeftTemp2][TailEndLeft HeadWentRight LRibbonLeft] -> [LeftTemp1][TailEndLeft HeadWentRight]
-[LeftTemp2][TailEndLeft HeadWentRight LRibbonUp] -> [LeftTemp1][TailEndLeft HeadWentRight]
-
-[LeftTemp2][TailEndLeft HeadWentLeft LRibbonRight] -> [LeftTemp1][TailEndLeft HeadWentLeft]
-[LeftTemp2][TailEndLeft HeadWentLeft LRibbonDown] -> [LeftTemp1][TailEndLeft HeadWentLeft]
+[LeftDeleteEndPiece][TailEndLeft HeadWentLeft LRibbonRight] -> [][TailEndLeft HeadWentLeft]
+[LeftDeleteEndPiece][TailEndLeft HeadWentLeft LRibbonDown] -> [][TailEndLeft HeadWentLeft]
 
 
 
-[RightTemp1][TailEndRight HeadWentUp RRibbonDown] -> [][TailEndRight HeadWentUp]
-[RightTemp1][TailEndRight HeadWentUp RRibbonRight] -> [][TailEndRight HeadWentUp]
+[RightDeleteEndPiece][TailEndRight HeadWentUp RRibbonDown] -> [][TailEndRight HeadWentUp]
+[RightDeleteEndPiece][TailEndRight HeadWentUp RRibbonRight] -> [][TailEndRight HeadWentUp]
 
-[RightTemp1][TailEndRight HeadWentDown RRibbonUp] -> [][TailEndRight HeadWentDown]
-[RightTemp1][TailEndRight HeadWentDown RRibbonLeft] -> [][TailEndRight HeadWentDown]
+[RightDeleteEndPiece][TailEndRight HeadWentDown RRibbonUp] -> [][TailEndRight HeadWentDown]
+[RightDeleteEndPiece][TailEndRight HeadWentDown RRibbonLeft] -> [][TailEndRight HeadWentDown]
 
-[RightTemp1][TailEndRight HeadWentRight RRibbonLeft] -> [][TailEndRight HeadWentRight]
-[RightTemp1][TailEndRight HeadWentRight RRibbonDown] -> [][TailEndRight HeadWentRight]
+[RightDeleteEndPiece][TailEndRight HeadWentRight RRibbonLeft] -> [][TailEndRight HeadWentRight]
+[RightDeleteEndPiece][TailEndRight HeadWentRight RRibbonDown] -> [][TailEndRight HeadWentRight]
 
-[RightTemp1][TailEndRight HeadWentLeft RRibbonRight] -> [][TailEndRight HeadWentLeft]
-[RightTemp1][TailEndRight HeadWentLeft RRibbonUp] -> [][TailEndRight HeadWentLeft]
-
-
-
-[RightTemp2][TailEndRight HeadWentUp RRibbonDown] -> [RightTemp1][TailEndRight HeadWentUp]
-[RightTemp2][TailEndRight HeadWentUp RRibbonRight] -> [RightTemp1][TailEndRight HeadWentUp]
-
-[RightTemp2][TailEndRight HeadWentDown RRibbonUp] -> [RightTemp1][TailEndRight HeadWentDown]
-[RightTemp2][TailEndRight HeadWentDown RRibbonLeft] -> [RightTemp1][TailEndRight HeadWentDown]
-
-[RightTemp2][TailEndRight HeadWentRight RRibbonLeft] -> [RightTemp1][TailEndRight HeadWentRight]
-[RightTemp2][TailEndRight HeadWentRight RRibbonDown] -> [RightTemp1][TailEndRight HeadWentRight]
-
-[RightTemp2][TailEndRight HeadWentLeft RRibbonRight] -> [RightTemp1][TailEndRight HeadWentLeft]
-[RightTemp2][TailEndRight HeadWentLeft RRibbonUp] -> [RightTemp1][TailEndRight HeadWentLeft]
+[RightDeleteEndPiece][TailEndRight HeadWentLeft RRibbonRight] -> [][TailEndRight HeadWentLeft]
+[RightDeleteEndPiece][TailEndRight HeadWentLeft RRibbonUp] -> [][TailEndRight HeadWentLeft]
 
 
 (move the end of tail markers up if there are no string pieces in the square)
@@ -434,10 +420,27 @@ down [HeadWentDown TailEndRight no RRibbon | ] -> [HeadWentDown | TailEndRight]
 right [HeadWentRight TailEndRight no RRibbon | ] -> [HeadWentRight | TailEndRight]
 left [HeadWentLeft TailEndRight no RRibbon | ] -> [HeadWentLeft | TailEndRight] 
 
+[LeftTemp2] -> [LeftTemp1]
+[RightTemp2] -> [RightTemp1]
+
 endloop
 
+(clean up extra pieces made when stuck and turning to create 2 pieces when 
+there's only one to delete from other side)
+
+[LeftDeleteEndPiece][Head HeadWentUp RRibbonRight] -> [][Head HeadWentUp]
+[LeftDeleteEndPiece][Head HeadWentDown RRibbonLeft] -> [][Head HeadWentDown]
+[LeftDeleteEndPiece][Head HeadWentRight RRibbonDown] -> [][Head HeadWentRight]
+[LeftDeleteEndPiece][Head HeadWentLeft RRibbonUp] -> [][Head HeadWentLeft]
+
+[RightDeleteEndPiece][Head HeadWentUp LRibbonLeft] -> [][Head HeadWentUp]
+[RightDeleteEndPiece][Head HeadWentDown LRibbonRight] -> [][Head HeadWentDown]
+[RightDeleteEndPiece][Head HeadWentRight LRibbonUp] -> [][Head HeadWentRight]
+[RightDeleteEndPiece][Head HeadWentLeft LRibbonDown] -> [][Head HeadWentLeft]
+
+(Disconnect Head)
 [Head] -> [Head HeadLooseTemp]
-[HeadLooseTemp][ LRibbon ][ RRibbon] -> [][ LRibbon ][ RRibbon ]
+[HeadLooseTemp][ LRibbon ][ RRibbon] -> [][ LRibbon ][ RRibbon ] (check if both types of ribbon still exist)
 [HeadLooseTemp moving HeadUp] -> [moving HeadLooseUp]
 [HeadLooseTemp moving HeadDown] -> [moving HeadLooseDown]
 [HeadLooseTemp moving HeadLeft] -> [moving HeadLooseLeft]
