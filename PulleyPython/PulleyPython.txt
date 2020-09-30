@@ -339,7 +339,9 @@ TailEndRight
 RULES
 ======
 
-[ > HeadLoose | StickyBlock] -> [ > HeadLoose | ] (temporary) 
+([ > HeadLoose | StickyBlock] -> [ > HeadLoose | ] (temporary) )
+[ > Player | StickyBlock] -> [ > Player | ]
+
 
 
 [> Head | HeadWent] -> [ > Head | ]
