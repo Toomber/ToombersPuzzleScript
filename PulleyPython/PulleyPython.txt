@@ -94,7 +94,7 @@ Blue Red White
 
 
 HeadWentUp
-transparent
+yellow
 ..0..
 .000.
 00000
@@ -102,7 +102,7 @@ transparent
 .....
 
 HeadWentDown
-transparent
+yellow
 .....
 .....
 00000
@@ -110,7 +110,7 @@ transparent
 ..0..
 
 HeadWentRight
-transparent
+yellow
 ..0..
 ..00.
 ..000
@@ -118,7 +118,7 @@ transparent
 ..0..
 
 HeadWentLeft
-transparent
+yellow
 ..0..
 .00..
 000..
@@ -127,7 +127,7 @@ transparent
 
 
 LRibbonUp
-Red
+Grey
 00000
 00000
 .....
@@ -136,7 +136,7 @@ Red
 
 
 LRibbonDown
-Red
+Grey
 .....
 .....
 .....
@@ -145,7 +145,7 @@ Red
 
 
 LRibbonRight
-Red
+Grey
 ...00
 ...00
 ...00
@@ -154,7 +154,7 @@ Red
 
 
 LRibbonLeft
-Red
+Grey
 00...
 00...
 00...
@@ -199,7 +199,7 @@ Red
 00...
 
 TailEndLeft
-transparent
+white
 00...
 .....
 .....
@@ -207,7 +207,7 @@ transparent
 .....
 
 TailEndRight
-transparent
+purple
 .....
 .....
 00...
@@ -227,13 +227,13 @@ LeftDeleteEndPiece
 transparent
 
 RightTemp1 
-black
+transparent
 
 RightTemp2 
-black
+transparent
 
 RightDeleteEndPiece
-black
+transparent
 
 LeftStuck
 transparent
@@ -241,6 +241,17 @@ transparent
 RightStuck
 transparent
 
+IncisionPoint
+black
+
+TempSwitchParity
+orange
+
+TempAlreadyReversedHeadWent
+pink
+
+TempReverseHeadWent
+transparent
 
 
 =======
@@ -263,6 +274,8 @@ D = HeadWentDown
 R = HeadWentRight
 L = HeadWentLeft
 
+TailEnd = TailEndLeft or TailEndRight
+
 K = LRibbonLeft and RRibbonRight and HeadWentUp
 X = LRibbonLeft and RRibbonRight and TailEndLeft and TailEndRight and HeadWentUp
 
@@ -270,9 +283,16 @@ RRibbon = RRibbonUp or RRibbonDown or RRibbonRight or RRibbonLeft
 LRibbon = LRibbonUp or LRibbonDown or LRibbonRight or LRibbonLeft
 Ribbon = RRibbon or LRibbon
 
+notUpRibbon = LRibbonDown or RRibbonDown or LRibbonLeft or RRibbonLeft or LRibbonRight or RRibbonRight
+notDownRibbon = LRibbonUp or RRibbonUp or LRibbonLeft or RRibbonLeft or LRibbonRight or RRibbonRight 
+notRightRibbon = LRibbonUp or RRibbonUp or LRibbonDown or RRibbonDown or LRibbonLeft or RRibbonLeft 
+notLeftRibbon = LRibbonUp or RRibbonUp or LRibbonDown or RRibbonDown or LRibbonRight or RRibbonRight 
+
 Snake = Head or HeadWent
 
 DeletionTemp = LeftTemp1 or LeftTemp2 or RightTemp1 or RightTemp2
+
+Object = Player or Ribbon or Wall or StickyBlock
 
 
 =======
@@ -294,6 +314,10 @@ LeftDeleteEndPiece
 RightTemp1
 RightTemp2
 RightDeleteEndPiece
+IncisionPoint
+TempSwitchParity
+TempReverseHeadWent
+TempAlreadyReversedHeadWent
 HeadWent
 RRibbonUp
 RRibbonDown
@@ -313,12 +337,17 @@ TailEndRight
 RULES
 ======
 
-[> Player | HeadWent] -> [ > Player | ]
+[> Head | HeadWent] -> [ > Head | ]
 
 
-[> Player | Ribbon] -> cancel 
+[> Head | Ribbon] -> cancel 
 [> Player | Wall] -> cancel
 [> Player | StickyBlock] -> cancel
+
+[ up HeadDown] -> cancel
+[ down HeadUp] -> cancel
+[ right HeadLeft] -> cancel
+[ left HeadRight] -> cancel
 
 (lay down string and record how much of each side created)
 [up HeadUp no Ribbon] -> [LRibbonLeft RRibbonRight HeadWentUp LeftTemp1 RightTemp1 up HeadUp] 
@@ -347,6 +376,7 @@ RULES
 [left HeadLoose] -> [left HeadLooseLeft]
 
 
+[Stuck] -> [] (clear stuck status)
 
 (record if ribbon stuck on sticky blocks)
 up [ LRibbonUp | StickyBlock ] -> [ LRibbonUp | StickyBlock LeftStuck]
@@ -438,6 +468,75 @@ there's only one to delete from other side)
 [RightDeleteEndPiece][Head HeadWentRight LRibbonUp] -> [][Head HeadWentRight]
 [RightDeleteEndPiece][Head HeadWentLeft LRibbonDown] -> [][Head HeadWentLeft]
 
+
+
+(move end markers back to where there is any ribbon, to address overshoot when separating from ribbon)
+
+up [TailEnd no Ribbon | HeadWentDown ] -> [ | TailEnd HeadWentDown ] 
++ down [TailEnd no Ribbon | HeadWentUp ] -> [ | TailEnd HeadWentUp ]  
++ right [TailEnd no Ribbon | HeadWentLeft ] -> [ | TailEnd HeadWentLeft ]  
++ left [TailEnd no Ribbon | HeadWentRight ] -> [ | TailEnd HeadWentRight ]  
+
+
+
+
+(-----------Connect Head------------)
+
+[ > HeadLoose | Ribbon | Object ] -> cancel
+
+
+[ > HeadLooseUp | notUpRibbon] -> cancel
+[ > HeadLooseDown | notDownRibbon] -> cancel
+[ > HeadLooseRight | notRightRibbon] -> cancel
+[ > HeadLooseLeft | notLeftRibbon] -> cancel
+
+[ > HeadLoose | TailEnd ] -> cancel (might want to change this)
+[ > HeadLoose | ribbon ] -> [ | HeadLoose TempSwitchParity]
+
+
+(propagate parity switching)
+
+up [ HeadWentUp TempSwitchParity no TailEnd | ] -> [HeadWentUp TempSwitchParity | TempSwitchParity]
++down [ HeadWentDown TempSwitchParity no TailEnd | ] -> [HeadWentDown TempSwitchParity | TempSwitchParity]
++right [ HeadWentRight TempSwitchParity no TailEnd | ] -> [HeadWentRight TempSwitchParity | TempSwitchParity]
++left [ HeadWentLeft TempSwitchParity no TailEnd | ] -> [HeadWentLeft TempSwitchParity | TempSwitchParity]
+
+
+(reverse the HeadWent direction)
+
+[TailEnd TempSwitchParity] -> [TailEnd TempSwitchParity TempReverseHeadWent]
+
+up [TempReverseHeadWent HeadWent | HeadWentDown no TempAlreadyReversedHeadWent TempSwitchParity] -> [ TempAlreadyReversedHeadWent HeadWentUp | TempReverseHeadWent HeadWentDown TempSwitchParity ]
++down [TempReverseHeadWent HeadWent | HeadWentUp no TempAlreadyReversedHeadWent TempSwitchParity] -> [ TempAlreadyReversedHeadWent HeadWentDown | TempReverseHeadWent HeadWentUp TempSwitchParity]
++right [TempReverseHeadWent HeadWent | HeadWentLeft no TempAlreadyReversedHeadWent TempSwitchParity] -> [ TempAlreadyReversedHeadWent HeadWentRight | TempReverseHeadWent HeadWentLeft TempSwitchParity]
++left [TempReverseHeadWent HeadWent | HeadWentRight no TempAlreadyReversedHeadWent TempSwitchParity] -> [ TempAlreadyReversedHeadWent HeadWentLeft | TempReverseHeadWent HeadWentRight TempSwitchParity]
+
+[TempAlreadyReversedHeadWent] -> []
+[TempReverseHeadWent] -> []
+
+(switch ribbon parity)
+[TailEndRight TempSwitchParity][LRibbonUp TempSwitchParity] -> [TailEndRight TempSwitchParity][RRibbonUp TempSwitchParity] 
++[TailEndRight TempSwitchParity][LRibbonDown TempSwitchParity] -> [TailEndRight TempSwitchParity][RRibbonDown TempSwitchParity] 
++[TailEndRight TempSwitchParity][LRibbonRight TempSwitchParity] -> [TailEndRight TempSwitchParity][RRibbonRight TempSwitchParity] 
++[TailEndRight TempSwitchParity][LRibbonLeft TempSwitchParity] -> [TailEndRight TempSwitchParity][RRibbonLeft TempSwitchParity] 
+
+[TailEndLeft TempSwitchParity][RRibbonUp TempSwitchParity] -> [TailEndLeft TempSwitchParity][LRibbonUp TempSwitchParity] 
++[TailEndLeft TempSwitchParity][RRibbonDown TempSwitchParity] -> [TailEndLeft TempSwitchParity][LRibbonDown TempSwitchParity] 
++[TailEndLeft TempSwitchParity][RRibbonRight TempSwitchParity] -> [TailEndLeft TempSwitchParity][LRibbonRight TempSwitchParity] 
++[TailEndLeft TempSwitchParity][RRibbonLeft TempSwitchParity] -> [TailEndLEft TempSwitchParity][LRibbonLeft TempSwitchParity] 
+
+
+
+(move loose head past ribbon)
+up [TempSwitchParity][ HeadLooseUp | ] -> [TempSwitchParity][HeadWentUp | HeadUp]
+down [TempSwitchParity][ HeadLooseDown | ] -> [TempSwitchParity][HeadWentDown | HeadDown]
+right [TempSwitchParity][ HeadLooseRight | ] -> [TempSwitchParity][HeadWentRight | HeadRight]
+left [TempSwitchParity][ HeadLooseLeft | ] -> [TempSwitchParity][HeadWentLeft | HeadLeft]
+
+[TempSwitchParity] -> []
+
+(----------------------------------)
+
 (Disconnect Head)
 [Head] -> [Head HeadLooseTemp]
 [HeadLooseTemp][ LRibbon ][ RRibbon] -> [][ LRibbon ][ RRibbon ] (check if both types of ribbon still exist)
@@ -455,6 +554,21 @@ WINCONDITIONS
 LEVELS
 =======
 
+###############
+#.............#
+#.............#
+#............h#
+#..........s.k#
+#............k#
+#............k#
+#............k#
+#............k#
+#............k#
+#............x#
+#.............#
+#.............#
+#.............#
+###############
 
 ###############
 #.............#
