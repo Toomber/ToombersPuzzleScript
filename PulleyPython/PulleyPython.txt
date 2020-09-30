@@ -3,6 +3,7 @@ author Toomber
 homepage www.puzzlescript.net
 
 key_repeat_interval 0.12
+run_rules_on_level_start
 
 ========
 OBJECTS
@@ -94,7 +95,7 @@ Blue Red White
 
 
 HeadWentUp
-yellow
+transparent
 ..0..
 .000.
 00000
@@ -102,7 +103,7 @@ yellow
 .....
 
 HeadWentDown
-yellow
+transparent
 .....
 .....
 00000
@@ -110,7 +111,7 @@ yellow
 ..0..
 
 HeadWentRight
-yellow
+transparent
 ..0..
 ..00.
 ..000
@@ -118,7 +119,7 @@ yellow
 ..0..
 
 HeadWentLeft
-yellow
+transparent
 ..0..
 .00..
 000..
@@ -127,7 +128,7 @@ yellow
 
 
 LRibbonUp
-Grey
+red
 00000
 00000
 .....
@@ -136,7 +137,7 @@ Grey
 
 
 LRibbonDown
-Grey
+red
 .....
 .....
 .....
@@ -145,7 +146,7 @@ Grey
 
 
 LRibbonRight
-Grey
+red
 ...00
 ...00
 ...00
@@ -154,7 +155,7 @@ Grey
 
 
 LRibbonLeft
-Grey
+red
 00...
 00...
 00...
@@ -199,7 +200,7 @@ Red
 00...
 
 TailEndLeft
-white
+transparent
 00...
 .....
 .....
@@ -207,7 +208,7 @@ white
 .....
 
 TailEndRight
-purple
+transparent
 .....
 .....
 00...
@@ -241,8 +242,6 @@ transparent
 RightStuck
 transparent
 
-IncisionPoint
-black
 
 TempSwitchParity
 orange
@@ -253,6 +252,9 @@ pink
 TempReverseHeadWent
 transparent
 
+
+GroundColouring
+#3d7a17
 
 =======
 LEGEND
@@ -305,6 +307,7 @@ COLLISIONLAYERS
 
 
 Background
+GroundColouring
 HeadLooseTemp
 LeftStuck
 RightStuck
@@ -314,7 +317,6 @@ LeftDeleteEndPiece
 RightTemp1
 RightTemp2
 RightDeleteEndPiece
-IncisionPoint
 TempSwitchParity
 TempReverseHeadWent
 TempAlreadyReversedHeadWent
@@ -336,6 +338,9 @@ TailEndRight
 ======
 RULES
 ======
+
+[ > HeadLoose | StickyBlock] -> [ > HeadLoose | ] (temporary) 
+
 
 [> Head | HeadWent] -> [ > Head | ]
 
@@ -440,15 +445,15 @@ startloop
 
 
 (move the end of tail markers up if there are no string pieces in the square)
-up [HeadWentUp TailEndLeft no LRibbon | ] -> [HeadWentUp | TailEndLeft]
-down [HeadWentDown TailEndLeft no LRibbon | ] -> [HeadWentDown | TailEndLeft]
-right [HeadWentRight TailEndLeft no LRibbon | ] -> [HeadWentRight | TailEndLeft]
-left [HeadWentLeft TailEndLeft no LRibbon | ] -> [HeadWentLeft | TailEndLeft]
+up [HeadWentUp TailEndLeft no LRibbon | ][Head] -> [HeadWentUp | TailEndLeft][Head]
+down [HeadWentDown TailEndLeft no LRibbon | ][Head] -> [HeadWentDown | TailEndLeft][Head]
+right [HeadWentRight TailEndLeft no LRibbon | ][Head] -> [HeadWentRight | TailEndLeft][Head]
+left [HeadWentLeft TailEndLeft no LRibbon | ][Head] -> [HeadWentLeft | TailEndLeft][Head]
 
-up [HeadWentUp TailEndRight no RRibbon | ] -> [HeadWentUp | TailEndRight]
-down [HeadWentDown TailEndRight no RRibbon | ] -> [HeadWentDown | TailEndRight]
-right [HeadWentRight TailEndRight no RRibbon | ] -> [HeadWentRight | TailEndRight]
-left [HeadWentLeft TailEndRight no RRibbon | ] -> [HeadWentLeft | TailEndRight] 
+up [HeadWentUp TailEndRight no RRibbon | ][Head] -> [HeadWentUp | TailEndRight][Head]
+down [HeadWentDown TailEndRight no RRibbon | ][Head] -> [HeadWentDown | TailEndRight][Head]
+right [HeadWentRight TailEndRight no RRibbon | ][Head] -> [HeadWentRight | TailEndRight][Head]
+left [HeadWentLeft TailEndRight no RRibbon | ][Head] -> [HeadWentLeft | TailEndRight][Head]
 
 [LeftTemp2] -> [LeftTemp1]
 [RightTemp2] -> [RightTemp1]
@@ -470,14 +475,12 @@ there's only one to delete from other side)
 
 
 
-(move end markers back to where there is any ribbon, to address overshoot when separating from ribbon)
+(move end markers back to where the head is, to address overshoot when separating from ribbon)
 
-up [TailEnd no Ribbon | HeadWentDown ] -> [ | TailEnd HeadWentDown ] 
-+ down [TailEnd no Ribbon | HeadWentUp ] -> [ | TailEnd HeadWentUp ]  
-+ right [TailEnd no Ribbon | HeadWentLeft ] -> [ | TailEnd HeadWentLeft ]  
-+ left [TailEnd no Ribbon | HeadWentRight ] -> [ | TailEnd HeadWentRight ]  
-
-
+up [HeadUp | TailEnd no Ribbon] -> [ HeadUp TailEnd| ] 
+down [HeadDown | TailEnd no Ribbon] -> [ HeadDown TailEnd| ] 
+right [HeadRight | TailEnd no Ribbon] -> [ HeadRight TailEnd| ] 
+left [HeadLeft | TailEnd no Ribbon] -> [ HeadLeft TailEnd| ] 
 
 
 (-----------Connect Head------------)
@@ -545,6 +548,11 @@ left [TempSwitchParity][ HeadLooseLeft | ] -> [TempSwitchParity][HeadWentLeft | 
 [HeadLooseTemp moving HeadLeft] -> [moving HeadLooseLeft]
 [HeadLooseTemp moving HeadRight] -> [moving HeadLooseRight]
 
+
+(colour ground)
+[GroundColouring]->[]
+[Ribbon] -> [Ribbon GroundColouring]
+
 ==============
 WINCONDITIONS
 ==============
@@ -554,34 +562,20 @@ WINCONDITIONS
 LEVELS
 =======
 
-###############
-#.............#
-#.............#
-#............h#
-#..........s.k#
-#............k#
-#............k#
-#............k#
-#............k#
-#............k#
-#............x#
-#.............#
-#.............#
-#.............#
-###############
-
-###############
-#.............#
-#.............#
-#............h#
-#..s.........k#
-#............k#
-#..s.........k#
-#......s.....k#
-#............k#
-#...s........k#
-#............k#
-#............x#
-#.............#
-#.....sss.....#
-###############
+#################
+#...............#
+#..s............#
+#...............#
+#...............#
+#..s...........h#
+#..............k#
+#.....s........k#
+#..............k#
+#..............k#
+#..............k#
+#..............k#
+#......s.......k#
+#.s.........s..k#
+#..............x#
+#...............#
+#################
