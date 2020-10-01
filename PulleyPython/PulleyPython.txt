@@ -591,6 +591,8 @@ endloop
 
 (-----------Connect Head------------)
 
+[> HeadLoose | Ribbon | StickyBlock] -> [> HeadLoose | Ribbon | ] (destroy sticky blocks on other side to let you through)
+
 [ > HeadLoose | Ribbon | Object ] -> cancel
 
 
