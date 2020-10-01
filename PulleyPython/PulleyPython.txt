@@ -30,68 +30,68 @@ StickyBlock
 Yellow
 
 HeadUp
-Blue Red Red
+Blue Red 
 ..0..
 .000.
 00000
-00000
-1...2
+01110
+10001
 
 HeadDown
-Blue Red Red
-2...1
-00000
+Blue Red 
+10001
+01110
 00000
 .000.
 ..0..
 
 HeadRight
-Blue Red Red
+Blue Red
 100..
-.000.
-.0000
-.000.
-200..
+0100.
+01000
+0100.
+100..
 
 HeadLeft
-Blue Red Red
-..002
-.000.
-0000.
-.000.
+Blue Red
+..001
+.0010
+00010
+.0010
 ..001
 
 HeadLooseUp
-Blue Red White
+Blue darkblue
 ..0..
 .000.
 00000
-00000
-.....
+01110
+10001
 
 HeadLooseDown
-Blue Red White
-.....
-00000
+Blue darkblue
+10001
+01110
 00000
 .000.
 ..0..
 
 HeadLooseRight
-Blue Red White
-.00..
-.000.
-.0000
-.000.
-.00..
+Blue darkblue
+100..
+0100.
+01000
+0100.
+100..
 
 HeadLooseLeft
-Blue Red White
-..00.
-.000.
-0000.
-.000.
-..00.
+Blue darkblue
+..001
+.0010
+00010
+.0010
+..001
 
 
 HeadWentUp
@@ -199,6 +199,40 @@ Red
 00...
 00...
 
+RibbonCornerUR
+red
+...00
+....0
+.....
+.....
+.....
+
+RibbonCornerUL
+red
+00...
+0....
+.....
+.....
+.....
+
+RibbonCornerDR
+red
+.....
+.....
+.....
+....0
+...00
+
+RibbonCornerDL
+red 
+.....
+.....
+.....
+0....
+00...
+
+
+
 TailEndLeft
 transparent
 00...
@@ -252,6 +286,20 @@ pink
 TempReverseHeadWent
 transparent
 
+TempKeepCornerUR
+transparent
+
+TempKeepCornerUL
+transparent
+
+TempKeepCornerDR
+transparent
+
+TempKeepCornerDL
+transparent
+
+TempCheckCorners
+transparent
 
 GroundColouring
 #3d7a17
@@ -283,7 +331,17 @@ X = LRibbonLeft and RRibbonRight and TailEndLeft and TailEndRight and HeadWentUp
 
 RRibbon = RRibbonUp or RRibbonDown or RRibbonRight or RRibbonLeft
 LRibbon = LRibbonUp or LRibbonDown or LRibbonRight or LRibbonLeft
-Ribbon = RRibbon or LRibbon
+RibbonSide = RRibbon or LRibbon
+RibbonSideUp = LRibbonUp or RRibbonUp
+RibbonSideDown = LRibbonDown or RRibbonDown
+RibbonSideRight = LRibbonRight or RRibbonRight
+RibbonSideLeft = LRibbonLeft or RRibbonLeft
+
+
+RibbonCorner = RibbonCornerUR or RibbonCornerUL or RibbonCornerDR or RibbonCornerDL
+TempKeepCorner = TempKeepCornerUR or TempKeepCornerUL or TempKeepCornerDR or TempKeepCornerDL
+
+Ribbon = RibbonSide or RibbonCorner
 
 notUpRibbon = LRibbonDown or RRibbonDown or LRibbonLeft or RRibbonLeft or LRibbonRight or RRibbonRight
 notDownRibbon = LRibbonUp or RRibbonUp or LRibbonLeft or RRibbonLeft or LRibbonRight or RRibbonRight 
@@ -293,6 +351,7 @@ notLeftRibbon = LRibbonUp or RRibbonUp or LRibbonDown or RRibbonDown or LRibbonR
 Snake = Head or HeadWent
 
 DeletionTemp = LeftTemp1 or LeftTemp2 or RightTemp1 or RightTemp2
+
 
 Object = Player or Ribbon or Wall or StickyBlock
 
@@ -320,6 +379,11 @@ RightDeleteEndPiece
 TempSwitchParity
 TempReverseHeadWent
 TempAlreadyReversedHeadWent
+TempKeepCornerUR
+TempKeepCornerUL
+TempKeepCornerDR 
+TempKeepCornerDL
+TempCheckCorners
 HeadWent
 RRibbonUp
 RRibbonDown
@@ -329,6 +393,10 @@ LRibbonUp
 LRibbonDown
 LRibbonRight
 LRibbonLeft
+RibbonCornerUR
+RibbonCornerUL
+RibbonCornerDR
+RibbonCornerDL
 Head, HeadLoose, Wall, StickyBlock
 
 
@@ -357,21 +425,21 @@ RULES
 [ left HeadRight] -> cancel
 
 (lay down string and record how much of each side created)
-[up HeadUp no Ribbon] -> [LRibbonLeft RRibbonRight HeadWentUp LeftTemp1 RightTemp1 up HeadUp] 
-[right HeadUp no Ribbon] -> [LRibbonLeft LRibbonUp HeadWentRight LeftTemp2 right HeadRight] 
-[left HeadUp no Ribbon] -> [RRibbonRight RRibbonUp HeadWentLeft RightTemp2 left HeadLeft] 
+[up HeadUp no RibbonSide] -> [LRibbonLeft RRibbonRight HeadWentUp LeftTemp1 RightTemp1 up HeadUp] 
+[right HeadUp no RibbonSide] -> [LRibbonLeft LRibbonUp RibbonCornerDR HeadWentRight LeftTemp2 right HeadRight] 
+[left HeadUp no RibbonSide] -> [RRibbonRight RRibbonUp RibbonCornerDL HeadWentLeft RightTemp2 left HeadLeft] 
 
-[down HeadDown no Ribbon] -> [LRibbonRight RRibbonLeft HeadWentDown LeftTemp1 RightTemp1 down HeadDown] 
-[right HeadDown no Ribbon] -> [RRibbonLeft RRibbonDown HeadWentRight RightTemp2 right HeadRight] 
-[left HeadDown no Ribbon] -> [LRibbonRight LRibbonDown HeadWentLeft LeftTemp2 left HeadLeft] 
+[down HeadDown no RibbonSide] -> [LRibbonRight RRibbonLeft HeadWentDown LeftTemp1 RightTemp1 down HeadDown] 
+[right HeadDown no RibbonSide] -> [RRibbonLeft RRibbonDown RibbonCornerUR HeadWentRight RightTemp2 right HeadRight] 
+[left HeadDown no RibbonSide] -> [LRibbonRight LRibbonDown RibbonCornerUL HeadWentLeft LeftTemp2 left HeadLeft] 
 
-[right HeadRight no Ribbon] -> [LRibbonUp RRibbonDown HeadWentRight LeftTemp1 RightTemp1 right HeadRight] 
-[up HeadRight no Ribbon] -> [RRibbonRight RRibbonDown HeadWentUp RightTemp2 up HeadUp] 
-[down HeadRight no Ribbon] -> [LRibbonRight LRibbonUp HeadWentDown LeftTemp2 down HeadDown] 
+[right HeadRight no RibbonSide] -> [LRibbonUp RRibbonDown HeadWentRight LeftTemp1 RightTemp1 right HeadRight] 
+[up HeadRight no RibbonSide] -> [RRibbonRight RRibbonDown RibbonCornerUL HeadWentUp RightTemp2 up HeadUp] 
+[down HeadRight no RibbonSide] -> [LRibbonRight LRibbonUp RibbonCornerDL HeadWentDown LeftTemp2 down HeadDown] 
 
-[left HeadLeft no Ribbon] -> [LRibbonDown RRibbonUp HeadWentLeft LeftTemp1 RightTemp1 left HeadLeft] 
-[up HeadLeft no Ribbon] -> [LRibbonDown LRibbonLeft HeadWentUp LeftTemp2 up HeadUp] 
-[down HeadLeft no Ribbon] -> [RRibbonLeft RRibbonUp HeadWentDown RightTemp2 down HeadDown] 
+[left HeadLeft no RibbonSide] -> [LRibbonDown RRibbonUp HeadWentLeft LeftTemp1 RightTemp1 left HeadLeft] 
+[up HeadLeft no RibbonSide] -> [LRibbonDown LRibbonLeft RibbonCornerUR HeadWentUp LeftTemp2 up HeadUp] 
+[down HeadLeft no RibbonSide] -> [RRibbonLeft RRibbonUp RibbonCornerDR HeadWentDown RightTemp2 down HeadDown] 
 
 
 
@@ -479,10 +547,46 @@ there's only one to delete from other side)
 
 (move end markers back to where the head is, to address overshoot when separating from ribbon)
 
-up [HeadUp | TailEnd no Ribbon] -> [ HeadUp TailEnd| ] 
-down [HeadDown | TailEnd no Ribbon] -> [ HeadDown TailEnd| ] 
-right [HeadRight | TailEnd no Ribbon] -> [ HeadRight TailEnd| ] 
-left [HeadLeft | TailEnd no Ribbon] -> [ HeadLeft TailEnd| ] 
+up [HeadUp | TailEnd no RibbonSide] -> [ HeadUp TailEnd| ] 
+down [HeadDown | TailEnd no RibbonSide] -> [ HeadDown TailEnd| ] 
+right [HeadRight | TailEnd no RibbonSide] -> [ HeadRight TailEnd| ] 
+left [HeadLeft | TailEnd no RibbonSide] -> [ HeadLeft TailEnd| ] 
+
+(delete unconnected corners)
+
+[Player] -> [Player TempCheckCorners]  
+startloop
+up [ RibbonSideLeft HeadWentUp | RibbonCornerDL ] -> [ RibbonSideLeft HeadWentUp | RibbonCornerDL TempKeepCornerDL ]
+up [ RibbonSideRight HeadWentUp | RibbonCornerDR ] -> [ RibbonSideRight HeadWentUp | RibbonCornerDR TempKeepCornerDR ]
+up [ RibbonCornerUL HeadWentUp | RibbonCornerDL ] -> [ RibbonCornerUL HeadWentUp | RibbonCornerDL TempKeepCornerDL ]
+up [ RibbonCornerUR HeadWentUp | RibbonCornerDR ] -> [ RibbonCornerUR HeadWentUp | RibbonCornerDR TempKeepCornerDR ]
+
+down [ RibbonSideLeft HeadWentdown | RibbonCornerUL ] -> [ RibbonSideLeft HeadWentDown | RibbonCornerUL TempKeepCornerUL ]
+down [ RibbonSideRight HeadWentdown | RibbonCornerUR ] -> [ RibbonSideRight HeadWentDown | RibbonCornerUR TempKeepCornerUR ]
+down [ RibbonCornerDL HeadWentdown | RibbonCornerUL ] -> [ RibbonCornerDL HeadWentDown | RibbonCornerUL TempKeepCornerUL ]
+down [ RibbonCornerDR HeadWentdown | RibbonCornerUR ] -> [ RibbonCornerDR HeadWentDown | RibbonCornerUR TempKeepCornerUR ]
+
+right [ RibbonSideUp HeadWentright | RibbonCornerUL ] -> [ RibbonSideUp HeadWentRight | RibbonCornerUL TempKeepCornerUL ]
+right [ RibbonSideDown HeadWentright | RibbonCornerDL ] -> [ RibbonSideDown HeadWentRight | RibbonCornerDL TempKeepCornerDL ]
+right [ RibbonCornerUR HeadWentright | RibbonCornerUL ] -> [ RibbonCornerUR HeadWentRight | RibbonCornerUL TempKeepCornerUL ]
+right [ RibbonCornerDR HeadWentright | RibbonCornerDL ] -> [ RibbonCornerDR HeadWentRight | RibbonCornerDL TempKeepCornerDL ]
+
+left [ RibbonSideUp HeadWentleft | RibbonCornerUR ] -> [ RibbonSideUp HeadWentLeft | RibbonCornerUR TempKeepCornerUR ]
+left [ RibbonSideDown HeadWentleft | RibbonCornerDR ] -> [ RibbonSideDown HeadWentLeft | RibbonCornerDR TempKeepCornerDR ]
+left [ RibbonCornerUL HeadWentleft | RibbonCornerUR ] -> [ RibbonCornerUL HeadWentLeft | RibbonCornerUR TempKeepCornerUR ]
+left [ RibbonCornerDL HeadWentleft | RibbonCornerDR ] -> [ RibbonCornerDL HeadWentLeft | RibbonCornerDR TempKeepCornerDR ]
+
+
+[RibbonCornerUR no TempKeepCornerUR] -> [TempCheckCorners]
+[RibbonCornerUL no TempKeepCornerUL] -> [TempCheckCorners]
+[RibbonCornerDR no TempKeepCornerDR] -> [TempCheckCorners]
+[RibbonCornerDL no TempKeepCornerDL] -> [TempCheckCorners]
+
+[TempKeepCorner][TempCheckCorners] -> [][TempCheckCorners] 
+
+[TempCheckCorners] -> []
+endloop
+[TempKeepCorner] -> []
 
 
 (-----------Connect Head------------)
@@ -496,7 +600,12 @@ left [HeadLeft | TailEnd no Ribbon] -> [ HeadLeft TailEnd| ]
 [ > HeadLooseLeft | notLeftRibbon] -> cancel
 
 [ > HeadLoose | TailEnd ] -> cancel (might want to change this)
-[ > HeadLoose | ribbon ] -> [ | HeadLoose TempSwitchParity]
+
+up[ > HeadLoose | ribbon ] ->    [ | HeadLoose TempSwitchParity RibbonCornerUR RibbonCornerUL ]
+down[ > HeadLoose | ribbon ] ->  [ | HeadLoose TempSwitchParity RibbonCornerDR RibbonCornerDL ]
+right[ > HeadLoose | ribbon ] -> [ | HeadLoose TempSwitchParity RibbonCornerUR RibbonCornerDR ]
+left[ > HeadLoose | ribbon ] ->  [ | HeadLoose TempSwitchParity RibbonCornerUL RibbonCornerDL ]
+
 
 
 (propagate parity switching)
