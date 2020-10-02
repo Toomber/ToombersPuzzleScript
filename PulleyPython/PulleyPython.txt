@@ -5,6 +5,8 @@ homepage www.puzzlescript.net
 key_repeat_interval 0.12
 run_rules_on_level_start
 
+(flickscreen 15x15)
+
 ========
 OBJECTS
 ========
@@ -249,6 +251,14 @@ transparent
 .....
 .....
 
+GrowthPellet
+White
+.....
+.000.
+.000.
+.000.
+.....
+
 HeadLooseTemp
 transparent
 
@@ -312,6 +322,7 @@ LEGEND
 # = Wall
 H = HeadUp
 S = StickyBlock
+G = GrowthPellet
 Head = HeadUp or HeadDown or HeadRight or HeadLeft
 HeadLoose = HeadLooseUp or HeadLooseDown or HeadLooseRight or HeadLooseLeft
 Player = Head or HeadLoose
@@ -328,6 +339,7 @@ TailEnd = TailEndLeft or TailEndRight
 
 K = LRibbonLeft and RRibbonRight and HeadWentUp
 X = LRibbonLeft and RRibbonRight and TailEndLeft and TailEndRight and HeadWentUp
+P = HeadLooseRight
 
 RRibbon = RRibbonUp or RRibbonDown or RRibbonRight or RRibbonLeft
 LRibbon = LRibbonUp or LRibbonDown or LRibbonRight or LRibbonLeft
@@ -347,8 +359,6 @@ notUpRibbon = LRibbonDown or RRibbonDown or LRibbonLeft or RRibbonLeft or LRibbo
 notDownRibbon = LRibbonUp or RRibbonUp or LRibbonLeft or RRibbonLeft or LRibbonRight or RRibbonRight 
 notRightRibbon = LRibbonUp or RRibbonUp or LRibbonDown or RRibbonDown or LRibbonLeft or RRibbonLeft 
 notLeftRibbon = LRibbonUp or RRibbonUp or LRibbonDown or RRibbonDown or LRibbonRight or RRibbonRight 
-
-Snake = Head or HeadWent
 
 DeletionTemp = LeftTemp1 or LeftTemp2 or RightTemp1 or RightTemp2
 
@@ -397,6 +407,9 @@ RibbonCornerUR
 RibbonCornerUL
 RibbonCornerDR
 RibbonCornerDL
+
+
+GrowthPellet
 Head, HeadLoose, Wall, StickyBlock
 
 
@@ -442,6 +455,9 @@ RULES
 [down HeadLeft no RibbonSide] -> [RRibbonLeft RRibbonUp RibbonCornerDR HeadWentDown RightTemp2 down HeadDown] 
 
 
+(if about to consume a growth pellet, remove all deletion temps)
+[> Head | GrowthPellet ][DeletionTemp] -> [> Head | GrowthPellet ][]
+[> Head | GrowthPellet ] -> [> Head | ] (consume pellet)
 
 
 (Rotate Loose Head)
@@ -674,6 +690,24 @@ WINCONDITIONS
 =======
 LEVELS
 =======
+
+#################
+#...............#
+#.........g.....#
+#...............#
+#.....g.........#
+#..............h#
+#..............k#
+#..............k#
+#.........g....k#
+#...g..........k#
+#..............k#
+#..............k#
+#..........g...k#
+#......g.......k#
+#..............x#
+#...............#
+#################
 
 #################
 #...............#
