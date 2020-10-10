@@ -1,0 +1,173 @@
+title Mortar
+author Toomber
+homepage www.puzzlescript.net
+
+(
+========
+COLOURS
+#001427 blue
+#708d81 grey
+#f4d58d yellow
+#bf0603 red
+#ba8712 #5d4409 browns
+)
+
+========
+OBJECTS
+========
+
+Background
+#ba8712 #5d4409
+11111
+01111
+11101
+11111
+10111
+
+
+Target
+#bf0603
+.....
+.000.
+.0.0.
+.000.
+.....
+
+Wall
+ #708d81 #001427
+00010
+11111
+01000
+11111
+00010
+
+Person
+#bf0603 #bf0603 #bf0603 #bf0603
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+Crate
+#001427
+00000
+0...0
+0...0
+0...0
+00000
+
+PersonInside
+#708d81 #bf0603
+00010
+11111
+01000
+11111
+00010
+
+TempPersonExistsAlready
+white
+
+
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+P = Person
+Q = PersonInside
+* = Crate
+@ = Crate and Target
+O = Target
+
+
+Player = Person or PersonInside
+
+=======
+SOUNDS
+=======
+
+Crate MOVE 36772507
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Target
+Person, Wall, Crate
+PersonInside
+
+TempPersonExistsAlready
+
+======
+RULES
+======
+
+(push crates)
+[ >  Person | Crate ] -> [  >  Person | > Crate  ]
+
+
+(enter contiguous walls)
+[> Person | Wall] -> [ | PersonInside]  
+[PersonInside | Wall no PersonInside] -> [PersonInside | PersonInside]
+
+
+(exit walls)
+[ > PersonInside | Crate ] -> [ PersonInside > Person | > Crate ]
+[ moving PersonInside] -> [stationary PersonInside]
+
+
+(stop crates against PersonInsides)
+[> Crate | PersonInside] -> [Crate | PersonInside]
+
+late [Person PersonInside] -> [PersonInside]
+late  [Person][PersonInside] -> [Person][Wall]
+
+late random [Person] -> [Person TempPersonExistsAlready]
+late [Person no TempPersonExistsAlready] -> cancel
+late [TempPersonExistsAlready] -> []
+
+
+
+(should it be that walls can walk around if not attached to anything?)
+(should it be that multiple blocks next to walls spawn multiple main characters?)
+
+==============
+WINCONDITIONS
+==============
+
+All Target on Crate
+
+=======
+LEVELS
+=======
+
+..###.
+..#.#.
+..#.##
+###*o#
+#.o..#
+#*..p#
+######
+
+......
+....o.
+..*...
+######
+.*....
+...op.
+......
+
+##########
+#........#
+#.....*..#
+#.*####..#
+#..#..#..#
+#..#p.#..#
+#.*####..#
+#........#
+#........#
+##########
