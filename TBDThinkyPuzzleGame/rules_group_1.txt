@@ -1,0 +1,122 @@
+﻿So, the basic flow is that you should look at what the project is so far, add to it, and then pass it on
+
+You can send me (jackk#8103) any questions that come up.
+
+These guidelines were written by Jack Lance for the previous game, slightly modified in a few places where appropriate by Patrick. 
+Le Slo and I have prepared this version with a few more small additions.
+
+This new version is that the base project has been given to two different groups, it can be fun how it diverges.
+The main addition is a suggestion to try not to take too long, since we have around 25 people in each group!
+
+Don't feel like the game has to resemble any of the previous games, What Gophers Go For and Dr Jelly and Mr Slime, in terms of difficulty, theming, size, scope, etc.
+
+==============
+LOOKING AT IT
+==============
+
+Yup, this one's pretty self explanatory.
+Just play through to get a sense of how it is so far.
+You don't need to beat every level, but you should probably at least get a sense of all the mechanics.
+(This will be a longer step the longer it took to get to you)
+
+If you want to say something in the server regarding this, *don't* share the game or details about it. 
+Part of the fun is only seeing it once it gets to you, and then again at the end! 
+I imagine that it will mostly silently pass around from person to person and then eventually resurface.
+
+=============
+ADDING TO IT
+=============
+
+You can either
+
+- Add a level
+- Add a new mechanic along with a level that uses it
+- Add a level along with some polish/themeing (like sprites/sounds/story)
+- Add some polish/themeing (like sprites/sounds/story)
+(- Do nothing and just pass it on if you're not feeling up for it. This is a 0 commitment thing.)
+
+In general, don't delete or revert anything! You can change code if it makes it easier to add a mechanic, but you shouldn't be changing its functionality. (unless you find a clear bug you think should get fixed.)
+
+On the same thought, definitely don't be editing or deleting anyone else's levels. You _can_ choose to put your level before another one though if you think it belongs there.
+
+You can leave comments of ideas and stuff, for example by your level (or by your visuals or code) allowing others to tweak it, reorder it, etc.
+
+There is a dev log at the top of the file: please make a note of what you did before passing it on.
+
+MECHANICS:
+
+A new mechanic either consists of some new object along with rules for that object (e.g. a monster that chases you), or a new interaction between existing objects that *couldn't happen in any level so far* (e.g. defining what occurs if there's more than one player on the screen if all levels so far only have one player)
+
+Be sure you don't invalidate prior levels. For example, changing or adding new abilities ("the player now moves two spaces instead of one" or "X removes all walls from the level") or changing interactions that come up in existing levels ("pushing a crate against a wall now flattens it"). 
+However it would be okay to add these kind of changes if they're self-contained in their own areas / sequences of levels ("in this puzzle, you play as a special version of the player which is the same except it moves two spaces instead of one") or ("after picking up this new object, the player can move two spaces instead of one").
+
+Only make "one" mechanic, which isn't technically rigidly defined. A good rule of thumb is that, a door and key, for example, count as one mechanic because neither makes sense on its own. A door without a way to open it is the same as a wall, and a key without a door doesn't do anything at all. 
+(On the other hand, fire and water might go together naturally, but also can work as mechanics on their own, so might count as two mechanics)
+Really just kind of use your reasoning on what feels like one mechanic.
+
+If you add code, you don't have to comment every line or anything, but try to keep commenting in mind if you do anything fancy to keep it readable.
+
+POLISH:
+
+For sprites, assume that a solidly colored object is just a placeholder and you can change it. Otherwise it's something that someone else designed, and you shouldn't (unless they've commented that you can tweak it)
+
+If you make a sprite into some theme (e.g. making the player into a cat) you can also rename stuff to reflect what it represents. At the start (and maybe still?) everything was just solidly colored 5x5s without any theming at all.
+
+==============
+PASSING IT ON
+==============
+
+Here's the list of people in this group (Group 1):
+
+	X jackk
+Elyot
+Mischka Kamener
+	X devness
+Portponky
+Kneeckoh
+	X Dan Williams
+	X Noa
+	X Toomblercazz
+Joel
+	X Patrick
+TophWells
+jcGyo
+	X Plurmorant
+clementsparrow
+	X That Scar
+zabel
+	X jodediah 🌱🌿🌲
+	X knexator
+	X Henrique de Lima
+pancelor
+	X Justas
+	X marcosd
+Stacko
+	X TheZachMan
+KristianHedeholm
+	X stevenjmiller
+	X crychair
+
+Randomly select who to send it to next (I use random.org) and put an X by their name. 
+Also DM me who you sent it to so I can make sure it's progressing and know who to send names of any additional sign ups to if necessary. I'll try to keep track of both projects so they end at more or less the same time.
+
+If there's no one left, yay! Let me know, and if it's the first project done we should wait to the other group to be finished, if not, it's time to play!
+
+Give them the link to the current project (or just copy paste the source if you don't want to link your github account), everything in these instructions (use triple apostrophes for a code tag), and any personal message you want to say.
+
+There's no hard deadline, but you should definitely aim not to take more than a week to pass it on to the next person (25 weeks is a lot of time). 
+I think it'd be nice to go a little quicker than last time, since we have even more people! If you're able to pass it on to the next person within a few days, or even that day, that's great.
+
+Obviously you could cause chaos by changing these instructions, sending it on to multiple people, etc. but just like.... how about don't, please?
+
+
+
+.
+.
+.
+## hello this is "jodediah 🌱🌿🌲"!! i got passed the project .zip the same day i left for a vacation without my laptop,
+## also i've never made a game with puzzlescript before, also i haven't been sleeping well lately and this is all a little overwhelming.
+## i added some tabs to the rules.txt so it's easier to see who's gotten it! other than that i am passing the project on without doing anything.
+## if you're reading this you're allowed to remove this text, remove my name from the above group1 participants list, 
+## or send the project back to me (maybe now that i've been back home for a few days/weeks i'm in a better headspace to be able to add to the game!)
+## hope you're doing well and good luck and have fun and all that :- )
