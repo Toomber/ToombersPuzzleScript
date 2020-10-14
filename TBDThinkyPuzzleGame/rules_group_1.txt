@@ -79,7 +79,7 @@ Kneeckoh
 	X Toomblercazz
 Joel
 	X Patrick
-TophWells
+	X TophWells
 jcGyo
 	X Plurmorant
 clementsparrow
@@ -109,14 +109,3 @@ I think it'd be nice to go a little quicker than last time, since we have even m
 
 Obviously you could cause chaos by changing these instructions, sending it on to multiple people, etc. but just like.... how about don't, please?
 
-
-
-.
-.
-.
-## hello this is "jodediah 🌱🌿🌲"!! i got passed the project .zip the same day i left for a vacation without my laptop,
-## also i've never made a game with puzzlescript before, also i haven't been sleeping well lately and this is all a little overwhelming.
-## i added some tabs to the rules.txt so it's easier to see who's gotten it! other than that i am passing the project on without doing anything.
-## if you're reading this you're allowed to remove this text, remove my name from the above group1 participants list, 
-## or send the project back to me (maybe now that i've been back home for a few days/weeks i'm in a better headspace to be able to add to the game!)
-## hope you're doing well and good luck and have fun and all that :- )
