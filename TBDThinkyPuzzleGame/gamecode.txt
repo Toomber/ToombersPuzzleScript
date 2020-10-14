@@ -36,29 +36,28 @@ got confused with multiple players moving, so there's some placeholder variants.
 
 (#12 stevenjmiller: Added a level and added a couple of bugs to the list)
 
+(#13 Toomber: Gave horizontal movements priority over downwards movement, to fix inconsistent behaviour with objects moving into a space another object is due to fall into. Made it so that an elevator running into something doesn't cancel the turn, but instead is stopped while other players can still move. Added 2 levels.)
+
 
 ( BUGS )
 
 (known bugs and/or features - remove from this list when you either fix the issue or deliberately use it in a level)
 
-(- in some cases, merely horizontally mirroring a setup changes the order of what moves into an empty square: the climbing player or one falling/pushing into the same spot?)
-(examples:
-.p.e
-.o..
-p###
-
-@.e
-...
-P##
-)
-
 (- I don't know much about puzzlescript, but the code seems like it could be greatly simplified) (Hm, I dunno if it could be.)
 
 (When moving vertically between two elevators, the gear animates wrong)
-(With multiple players, moving vertically in elevators is sometimes not allowed when only one player is blocked)
 
 (The player is not able to move when on top of a gear, even when the gear is inside of a wall)
 (The player is not able to move if an orange block is on top of the exit)
+
+(block sounds play sometimes when they shouldn't)
+
+(cases that maybe should be looked at)
+(######
+#....#
+#...e#
+#po1.#
+######)
 
 ========
 OBJECTS
@@ -252,6 +251,22 @@ transparent
 fall
 transparent
 
+(variable stores if an object is moving horizontally into this space, and if so prevents objects moving down into it)
+moving_here_horizontally
+black
+
+elevator_trying_to_move_down
+black
+
+elevator_trying_to_move_up
+black
+
+revert_elevator_move_up
+black
+
+revert_elevator_move_down
+black
+
 (feel free to throw out the animation or change it in anyway if you'd like)
 anim_smoke_RIGHT_0
 #919191
@@ -379,6 +394,7 @@ u = elevator
 0 = gear_bg_start
 9 = gear_wall_start
 l = wire
+j = wire and orange
 @ = player1_normal and elevator
 $ = player1_normal and player2_normal and elevator
 % = player1_normal and player3_normal and elevator
@@ -388,13 +404,15 @@ player = player1
 move_marker = move_right or move_left
 stuck = stuck_right or stuck_left
 climbable = climbable_right or climbable_left
+elevator_trying_to_move = elevator_trying_to_move_down or elevator_trying_to_move_up
+revert_elevator_move = revert_elevator_move_down or revert_elevator_move_up
 
 player_tint = player2 or player3
 
 faller = player or orange
 gear = gear_bg_start or gear_bg_turn
 gear_wall = gear_wall_start or gear_wall_turn
-elevator_stuck = exit or gear
+elevator_stuck = exit or gear or gear_wall or wall or orange
 walls = wall or gear_wall or gear
 
 animator = anim_smoke_RIGHT_0 or anim_smoke_RIGHT_1 or anim_smoke_RIGHT_2 or anim_smoke_RIGHT_3 or anim_smoke_RIGHT_4 or anim_smoke_LEFT_0 or anim_smoke_LEFT_1 or anim_smoke_LEFT_2 or anim_smoke_LEFT_3 or anim_smoke_LEFT_4 
@@ -431,6 +449,9 @@ stuck_right
 stuck_left
 climbable_right
 climbable_left
+moving_here_horizontally
+elevator_trying_to_move
+revert_elevator_move
 
 animator
 
@@ -442,13 +463,39 @@ play_ground_hit_sfx
 RULES
 ======
 
-(elevator action)
-vertical [vertical player elevator] -> [ vertical player vertical elevator ]
+(-------elevator action--------) 
+(if someone has a better / simpler solution for elevators with multiple players, feel free to change this part.
+The old system was simply 
 
+vertical [vertical player elevator] -> [ vertical player vertical elevator ]
 late [elevator walls] -> cancel
 late [elevator orange] -> cancel
 late [elevator exit] -> cancel
+
+but this doesn't allow moving other players when one is stuck in an elevator -Toomber)
+
+up 		[ up player elevator 	| elevator ] -> [ up player up elevator 		| elevator ]
+down 	[ down player elevator 	| elevator ] -> [ down player down elevator 	| elevator ]
+
+up 		[ up player elevator 	| no elevator ] -> [ up player up elevator 		| elevator_trying_to_move_up   ]
+down 	[ down player elevator 	| no elevator ] -> [ down player down elevator 	| elevator_trying_to_move_down ]
+
+(revert elevator position if it's inside an object, and propagate the reversion to adjacent elevators)
+late [ elevator_trying_to_move_up  elevator  elevator_stuck ] -> [ elevator_stuck elevator revert_elevator_move_up]
+late [ elevator_trying_to_move_down  elevator  elevator_stuck ] -> [ elevator_stuck elevator revert_elevator_move_down]
+
+late up [ elevator | revert_elevator_move_up ] -> [ elevator revert_elevator_move_up | revert_elevator_move_up ]
+late down [ elevator | revert_elevator_move_down ] -> [ elevator revert_elevator_move_down | revert_elevator_move_down ]
+
+late up [ no elevator | elevator revert_elevator_move_up ] -> [ elevator | ]
+late down [ no elevator | elevator revert_elevator_move_down ] -> [ elevator | ]
+
+late [elevator_trying_to_move] -> []
+(------------------------------) 
+
+
 late [orange exit] -> cancel
+
 
 vertical [ gear_bg_turn | ... | wire ] -> [ gear_bg_start | ... | wire ]
 vertical [ gear_wall_turn | ... | wire ] -> [ gear_wall_start | ... | wire ]
@@ -489,7 +536,7 @@ right [ no solids | marker_spawn_smoke_anim ] -> [ anim_smoke_LEFT_0 | marker_sp
 right [ marker_spawn_smoke_anim | no solids ] -> [ marker_spawn_smoke_anim  | anim_smoke_RIGHT_0 ]
 [ marker_spawn_smoke_anim ] -> [ ]
 
-(move fallers down when falling)
+(move fallers down when falling) 
 down [ fall faller no elevator | no elevator] -> [ down faller | ] 
 [ fall ] -> [] 
 
@@ -501,6 +548,17 @@ left  [ left  player no elevator | climbable_left  ] -> [ up player up move_left
 [ > player | orange ] -> [ > player | > orange ]
 (push sound effect)
 [ > player | > orange | no walls ] -> sfx2
+(disallow pushing blocks inside elevators)
+[ > orange | elevator ] -> [ orange | elevator ]
+
+(give horizontal movement priority over vertical movement, and delete incorrect "move_marker"s)
+horizontal [ > solids | no moving_here_horizontally] -> [ > solids | moving_here_horizontally ]
+up [ up move_marker | moving_here_horizontally ] -> [ | moving_here_horizontally ] 
+vertical [ > faller | moving_here_horizontally ] -> [ faller | moving_here_horizontally ] 
+[ moving_here_horizontally ] -> []
+
+(disallow moving vertically into exit from elevator)
+vertical [ > player elevator | exit ] -> [ player elevator | exit ]
 
 (elevator wire controls)
 late up [ elevator | no elevator_stuck no wire ] -> [ elevator | wire ]
@@ -654,7 +712,7 @@ rrrrr uuurr rlrll lddrr rrrll lllll lrrru uulll lrrrr u)
 #...o..l..o...#
 #...o..l..o...#
 #...###l###...#
-#......o......#
+#......j......#
 #.p....u......#
 ###############
 
@@ -687,7 +745,7 @@ rrrrr uuurr rlrll lddrr rrrll lllll lrrru uulll lrrrr u)
 #.p....lu#
 ####...l##
 #......l##
-#..1...o##
+#..1...j##
 #..####u##
 #........#
 #........#
@@ -698,17 +756,27 @@ rrrrr uuurr rlrll lddrr rrrll lllll lrrru uulll lrrrr u)
 #..ll0e...#
 #..lll....#
 #..lll....#
-#..llo....#
-#..olu..p.#
+#..llj....#
+#..jlu..p.#
 #..uu.o.1.#
 #######.###
 ###########
+
+(solution: https://imgur.com/a/upqeYff 		Reorder if needed - Toomber)
+
+#9#######9####
+#l.......l...#
+#lp1.e...l...#
+#u##.....u...#
+#....o.......#
+#....o.......#
+##############
 
 (added for fun. anyone can update into a more interesting puzzle. Or delete if you want.)
 ###99999####
 #..lllll..##
 #..lllll#.e#
-#..uouou..##
+#..ujuju..##
 #..uuuuu..##
 #..#l#lu..##
 #..llllu.###
@@ -730,6 +798,15 @@ rrrrr uuurr rlrll lddrr rrrll lllll lrrru uulll lrrrr u)
 #.......#
 #########
 
+(solution: https://imgur.com/a/iJbPK3F		Reorder if needed - Toomber)
+###########
+#e..9#99###
+#...l.lj.##
+#p1.l.lj..#
+###.u.uu..#
+#########.#
+###########
+
 (This level's way too big, might need to be removed, reorder if needed - Zach)
 #############
 ########o####
@@ -749,4 +826,10 @@ rrrrr uuurr rlrll lddrr rrrll lllll lrrru uulll lrrrr u)
 #..########.#
 ##..........#
 #############
+
+
+
+
+
+
 
