@@ -2,6 +2,8 @@ title Mortar
 author Toomber
 homepage www.puzzlescript.net
 
+(again_interval 0.05)
+
 (
 ========
 COLOURS
@@ -65,9 +67,11 @@ PersonInside
 11111
 00010
 
+SolidWall
+#4f635b (#708d81)
+
 TempPersonExistsAlready
 white
-
 
 
 =======
@@ -76,6 +80,7 @@ LEGEND
 
 . = Background
 # = Wall
+% = SolidWall
 P = Person
 Q = PersonInside
 * = Crate
@@ -97,7 +102,7 @@ COLLISIONLAYERS
 
 Background
 Target
-Person, Wall, Crate
+Person, Wall, SolidWall, Crate
 PersonInside
 
 TempPersonExistsAlready
@@ -111,8 +116,14 @@ RULES
 
 
 (enter contiguous walls)
-[> Person | Wall] -> [ | PersonInside]  
-[PersonInside | Wall no PersonInside] -> [PersonInside | PersonInside]
+
+(random [PersonInside | Wall no PersonInside] -> [PersonInside | PersonInside] again
+[> Person | Wall] -> [ | PersonInside] again 
+slow growth)
+
+[> Person | Wall] -> [ | PersonInside] 
+[PersonInside | Wall no PersonInside] -> [PersonInside | PersonInside] 
+
 
 
 (exit walls)
@@ -126,8 +137,14 @@ RULES
 late [Person PersonInside] -> [PersonInside]
 late  [Person][PersonInside] -> [Person][Wall]
 
-late random [Person] -> [Person TempPersonExistsAlready]
+(ensure only one player, without using random)
+late [Background] -> [Background TempPersonExistsAlready]
+late left [TempPersonExistsAlready | TempPersonExistsAlready] -> [TempPersonExistsAlready | ]
++late up [TempPersonExistsAlready | TempPersonExistsAlready] -> [TempPersonExistsAlready | ]
+
+late [Person][TempPersonExistsAlready no Person] -> [Person TempPersonExistsAlready][]
 late [Person no TempPersonExistsAlready] -> cancel
+
 late [TempPersonExistsAlready] -> []
 
 
@@ -145,20 +162,37 @@ All Target on Crate
 LEVELS
 =======
 
+
+%#%#%#%%%%
+%%####%.o%
+###%%##..%
+%#%%#%%.##
+#....%...%
+%.#*.....#
+%....%%.%%
+##%%%#...%
+%#%##%.p.%
+#%#%#%###%
+
+
+
+
+
 ..###.
 ..#.#.
 ..#.##
 ###*o#
 #.o..#
 #*..p#
-######
+###### 
+(I like that there's no way to get completely stuck the first time you enter the walls, so as to teach the mechanic) 
 
 
 #####
 #.@p#
 #.o*#
 #*o.#
-#####
+##### (ok)
 
 
 ......
@@ -179,3 +213,102 @@ LEVELS
 #........#
 #........#
 ##########
+
+######
+##.o##
+##*###
+######
+#....#
+#*.p*#
+#.oo.#
+###### (use block on wall as means of transport)
+
+
+
+
+
+
+
+
+
+#####
+#**.#
+#*.##
+#p###
+#o.##
+#oo.#
+##### 
+(easy)
+
+####
+#@@#
+#@o#
+#p##
+#..#
+#.*#
+####
+
+####
+#oo#
+#.##
+#..#
+##*#
+#p*#
+####
+
+
+
+%%%%%%%
+%.....%
+%.....%
+##*...%
+#.....%
+#%%%%p%
+#.....%
+##*...%
+%.....%
+%.....%
+%%%%%%%
+
+
+
+
+(computer levels)
+
+#####
+#o*p#
+#**o#
+#*oo#
+#####
+
+######
+##..##
+##o*##
+######
+#o.*.#
+#o*.o#
+#*..p#
+######
+
+######
+##@o##
+##@*##
+######
+#**oo#
+#o*o*#
+#..*p#
+######
+
+.o###
+....#
+.#.##
+.*..#
+..p.#
+
+.o...
+##.*#
+##.##
+...##
+..p##
+
+
