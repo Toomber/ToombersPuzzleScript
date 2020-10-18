@@ -73,6 +73,9 @@ SolidWall
 TempPersonExistsAlready
 white
 
+TempCannotPushCrate
+white
+
 
 =======
 LEGEND
@@ -96,6 +99,15 @@ SOUNDS
 
 Crate MOVE 36772507
 
+PersonInside create 74438701
+PersonInside destroy 82957503
+
+(no crate options sound)
+sfx0 90720904 (33509502) (62262506)  (97691709)
+
+(multiple crate options sound)
+cancel 9703504 (5206902) (12711101) (48573106) ()
+
 ================
 COLLISIONLAYERS
 ================
@@ -106,6 +118,7 @@ Person, Wall, SolidWall, Crate
 PersonInside
 
 TempPersonExistsAlready
+TempCannotPushCrate
 
 ======
 RULES
@@ -119,11 +132,17 @@ RULES
 
 (random [PersonInside | Wall no PersonInside] -> [PersonInside | PersonInside] again
 [> Person | Wall] -> [ | PersonInside] again 
-slow growth)
+slow growth - it would be possible to let players interrupt)
 
 [> Person | Wall] -> [ | PersonInside] 
 [PersonInside | Wall no PersonInside] -> [PersonInside | PersonInside] 
 
+
+
+(if there are no possible crates to push, play sound)
+	 [ moving PersonInside ] -> [  moving PersonInside TempCannotPushCrate ]
+late [ Person no PersonInside ][ TempCannotPushCrate ] -> [ Person ][]
+late [ TempCannotPushCrate ] -> [] sfx0
 
 
 (exit walls)
@@ -132,9 +151,12 @@ slow growth)
 
 
 (stop crates against PersonInsides)
-[> Crate | PersonInside] -> [Crate | PersonInside]
+[> Crate | PersonInside] -> [Crate | PersonInside] 
 
+
+(delete people that can't move)
 late [Person PersonInside] -> [PersonInside]
+(reconvert PersonInsides to walls)
 late  [Person][PersonInside] -> [Person][Wall]
 
 (ensure only one player, without using random)
@@ -174,8 +196,30 @@ LEVELS
 %#%##%.p.%
 #%#%#%###%
 
+%#%##%##%%
+#%#.....##
+%%#%##%.%#
+###%#o..##
+%#%#%%%.%%
+#....%...%
+%.#*.....#
+%....%%.%%
+##%%%#...%
+%#%##%.p.%
+#%#%#%###%
 
 
+######
+##..##
+#%.o##
+#%.###
+##..##
+##.*##
+#%..##
+##..%#
+##o*##
+##p.##
+###### (meh)
 
 
 ..###.
@@ -186,13 +230,6 @@ LEVELS
 #*..p#
 ###### 
 (I like that there's no way to get completely stuck the first time you enter the walls, so as to teach the mechanic) 
-
-
-#####
-#.@p#
-#.o*#
-#*o.#
-##### (ok)
 
 
 ......
@@ -215,13 +252,31 @@ LEVELS
 ##########
 
 ######
-##.o##
+##po##
 ##*###
 ######
 #....#
-#*.p*#
+#*..*#
 #.oo.#
 ###### (use block on wall as means of transport)
+
+######
+#....#
+#*##o#
+######
+#.p..#
+#*..*#
+#.oo.#
+######
+
+######
+#....#
+#*##.#
+####.#
+#.p..#
+#*..*#
+#.ooo#
+######
 
 
 
@@ -279,7 +334,7 @@ LEVELS
 #o*p#
 #**o#
 #*oo#
-#####
+##### (hard)
 
 ######
 ##..##
@@ -288,7 +343,7 @@ LEVELS
 #o.*.#
 #o*.o#
 #*..p#
-######
+###### (good)
 
 ######
 ##@o##
@@ -297,7 +352,7 @@ LEVELS
 #**oo#
 #o*o*#
 #..*p#
-######
+###### (insanely hard)
 
 .o###
 ....#
