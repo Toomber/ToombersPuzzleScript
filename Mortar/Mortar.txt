@@ -4,6 +4,8 @@ homepage www.puzzlescript.net
 
 (again_interval 0.05)
 
+realtime_interval 0.1
+
 (
 ========
 COLOURS
@@ -51,6 +53,7 @@ Person
 .333.
 .3.3.
 
+
 Crate
 #001427
 00000
@@ -60,7 +63,7 @@ Crate
 00000
 
 PersonInside
-#708d81 #bf0603
+#708d81 transparent #bf0603
 00010
 11111
 01000
@@ -75,6 +78,88 @@ white
 
 TempCannotPushCrate
 white
+
+pattern0
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+55434 
+75346 
+53257 
+32355 
+33443 
+ 
+pattern1
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+45433 
+76335 
+74246 
+53246 
+33344 
+ 
+pattern2
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+34432 
+56423 
+76335 
+64346 
+33344 
+ 
+pattern3
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+34432 
+46522 
+67423 
+65335 
+44344 
+ 
+pattern4
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+23443 
+25531 
+47532 
+66434 
+54445 
+ 
+pattern5
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+33454 
+13542 
+35631 
+56533 
+55445 
+ 
+pattern6
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+43455 
+12553 
+14642 
+35642 
+55544 
+ 
+pattern7
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+54456 
+32465 
+12553 
+24542 
+55544 
+ 
+pattern8
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+54456 
+42366 
+21465 
+23553 
+44544 
+ 
+pattern9
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+65445 
+63357 
+41356 
+22454 
+34443
+
+
 
 
 =======
@@ -92,6 +177,10 @@ O = Target
 
 
 Player = Person or PersonInside
+
+pattern = pattern0 or pattern1 or pattern2 or pattern3 or pattern4 or pattern5 or pattern6 or pattern7 or pattern8 or pattern9
+
+
 
 =======
 SOUNDS
@@ -113,6 +202,7 @@ COLLISIONLAYERS
 ================
 
 Background
+pattern
 Target
 Person, Wall, SolidWall, Crate
 PersonInside
@@ -120,9 +210,28 @@ PersonInside
 TempPersonExistsAlready
 TempCannotPushCrate
 
+
+
+
 ======
 RULES
 ======
+
+
+
+[ stationary player ][ pattern9 ] -> [ stationary player ][ pattern0 ]
+[ stationary player ][ pattern8 ] -> [ stationary player ][ pattern9 ]
+[ stationary player ][ pattern7 ] -> [ stationary player ][ pattern8 ]
+[ stationary player ][ pattern6 ] -> [ stationary player ][ pattern7 ]
+[ stationary player ][ pattern5 ] -> [ stationary player ][ pattern6 ]
+[ stationary player ][ pattern4 ] -> [ stationary player ][ pattern5 ]
+[ stationary player ][ pattern3 ] -> [ stationary player ][ pattern4 ]
+[ stationary player ][ pattern2 ] -> [ stationary player ][ pattern3 ]
+[ stationary player ][ pattern1 ] -> [ stationary player ][ pattern2 ]
+[ stationary player ][ pattern0 ] -> [ stationary player ][ pattern1 ]
+
+
+
 
 (push crates)
 [ >  Person | Crate ] -> [  >  Person | > Crate  ]
@@ -134,8 +243,8 @@ RULES
 [> Person | Wall] -> [ | PersonInside] again 
 slow growth - it would be possible to let players interrupt)
 
-[> Person | Wall] -> [ | PersonInside] 
-[PersonInside | Wall no PersonInside] -> [PersonInside | PersonInside] 
+[> Person | Wall] -> [ | PersonInside pattern0] 
+[PersonInside | Wall no PersonInside] -> [PersonInside | PersonInside pattern0] 
 
 
 
@@ -159,6 +268,7 @@ late [Person PersonInside] -> [PersonInside]
 (reconvert PersonInsides to walls)
 late  [Person][PersonInside] -> [Person][Wall]
 
+
 (ensure only one player, without using random)
 late [Background] -> [Background TempPersonExistsAlready]
 late left [TempPersonExistsAlready | TempPersonExistsAlready] -> [TempPersonExistsAlready | ]
@@ -168,6 +278,10 @@ late [Person][TempPersonExistsAlready no Person] -> [Person TempPersonExistsAlre
 late [Person no TempPersonExistsAlready] -> cancel
 
 late [TempPersonExistsAlready] -> []
+
+
+
+late [ pattern no PersonInside ] -> []
 
 
 
@@ -185,17 +299,6 @@ LEVELS
 =======
 
 
-%#%#%#%%%%
-%%####%.o%
-###%%##..%
-%#%%#%%.##
-#....%...%
-%.#*.....#
-%....%%.%%
-##%%%#...%
-%#%##%.p.%
-#%#%#%###%
-
 %#%##%##%%
 #%#.....##
 %%#%##%.%#
@@ -209,17 +312,51 @@ LEVELS
 #%#%#%###%
 
 
-######
-##..##
-#%.o##
-#%.###
-##..##
-##.*##
-#%..##
-##..%#
-##o*##
-##p.##
-###### (meh)
+%%%%%%%%%%%%%
+%%...#.....#%
+%%.*.#..*..#%
+%%...#.....#%
+%%%.%%%.%%%#%
+%.o..p...o.#%
+%...%%%%...#%
+%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%
+%%%###%###%%%
+%%%###%###%%%
+%%%###%###%%%
+%###########%
+%.o.........%
+%.*...*.%.o.%
+%###p###%###%
+%%%###%###%%%
+%%%%%%%%%%%%%  (gap or solid wall as removing crate option)
+
+
+
+
+
+
+(crate as removing crate option)
+
+
+
+
+
+
+
+%%%%%%%%%%%%%
+%...........%
+%....%p%....%
+%....%.%....%
+%.o.@.@.@.*.%
+%%%%.%.%.%%%%
+%%%%#####%%%%
+%%%%%%%%%%%%% (some way to tempt you into placing 2 down?)
+
+
+
 
 
 ..###.
@@ -231,14 +368,6 @@ LEVELS
 ###### 
 (I like that there's no way to get completely stuck the first time you enter the walls, so as to teach the mechanic) 
 
-
-......
-....o.
-..*...
-######
-.*....
-...op.
-......
 
 ##########
 #........#
@@ -285,6 +414,14 @@ LEVELS
 
 
 
+%%%%%%%%%
+%...#...%
+%.*.#.*.%
+%...#...%
+%..%%%..%
+%..opo..%
+%%%%%%%%%
+
 
 #####
 #**.#
@@ -312,19 +449,19 @@ LEVELS
 ####
 
 
-
-%%%%%%%
-%.....%
-%.....%
-##*...%
-#.....%
-#%%%%p%
-#.....%
-##*...%
-%.....%
-%.....%
-%%%%%%%
-
+%%%%%%%%%%%%%
+%.....%.....%
+%..*..#.....%
+%.....%..*..%
+%..*..#.....%
+%....o%o....%
+%%%#%%%%%#%%%
+%....o%o....%
+%.....#.....%
+%..*..%.*.*.%
+%.....#.....%
+%.....%....p%
+%%%%%%%%%%%%%
 
 
 
@@ -353,12 +490,6 @@ LEVELS
 #o*o*#
 #..*p#
 ###### (insanely hard)
-
-.o###
-....#
-.#.##
-.*..#
-..p.#
 
 .o...
 ##.*#
