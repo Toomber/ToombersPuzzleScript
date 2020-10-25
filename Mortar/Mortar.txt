@@ -4,7 +4,9 @@ homepage www.puzzlescript.net
 
 (again_interval 0.05)
 
-realtime_interval 0.1
+realtime_interval 0.08
+
+background_color #3c1518
 
 (
 ========
@@ -21,7 +23,7 @@ OBJECTS
 ========
 
 Background
-#ba8712 #5d4409
+#d58936 #d58936  (#ba8712) (#fbc40e)
 11111
 01111
 11101
@@ -38,7 +40,7 @@ Target
 .....
 
 Wall
- #708d81 #001427
+ #D65636 #69140e (#c33f28) (#708d81 #001427)
 00010
 11111
 01000
@@ -46,16 +48,22 @@ Wall
 00010
 
 Person
-#bf0603 #bf0603 #bf0603 #bf0603
+#bf0603 (#8e1c00) (#69140e) 
+.000.
+.000.
+00000
+.000.
+.0.0.
+(
 .000.
 .111.
 22222
 .333.
 .3.3.
-
+)
 
 Crate
-#001427
+#b14700 (#a44200) (#001427)
 00000
 0...0
 0...0
@@ -63,7 +71,7 @@ Crate
 00000
 
 PersonInside
-#708d81 transparent #bf0603
+#D65636 (#708d81) transparent #bf0603
 00010
 11111
 01000
@@ -71,7 +79,7 @@ PersonInside
 00010
 
 SolidWall
-#4f635b (#708d81)
+#3c1518 (#4f635b) (#708d81) (#000000 #1F1F1F #3F3F3F #5F5F5F #7F7F7F #9F9F9F #BFBFBF #DFDFDF #FFFFFF)   
 
 TempPersonExistsAlready
 white
@@ -81,83 +89,164 @@ white
 
 pattern0
 #000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
-55434 
-75346 
-53257 
+65445 
+53236 
+41146 
 32355 
-33443 
+44554 
  
 pattern1
 #000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
-45433 
-76335 
-74246 
-53246 
-33344 
+65445 
+64235 
+42146 
+32355 
+44554 
  
 pattern2
 #000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
-34432 
-56423 
-76335 
-64346 
-33344 
+66544 
+65335 
+52135 
+42245 
+44454 
  
 pattern3
 #000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
-34432 
-46522 
-67423 
-65335 
-44344 
+56544 
+76335 
+63125 
+42245 
+43444 
  
 pattern4
 #000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
-23443 
-25531 
-47532 
+56544 
 66434 
-54445 
+64225 
+42135 
+43344 
  
 pattern5
 #000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
-33454 
-13542 
-35631 
-56533 
-55445 
+45543 
+67534 
+65224 
+53135 
+33344 
  
 pattern6
 #000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
-43455 
-12553 
-14642 
-35642 
-55544 
+45543 
+67533 
+66324 
+54224 
+43334 
  
 pattern7
 #000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
-54456 
-32465 
-12553 
-24542 
-55544 
+34543 
+57633 
+67423 
+54224 
+43334 
  
 pattern8
 #000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
-54456 
-42366 
-21465 
-23553 
-44544 
+34543 
+46643 
+67533 
+55324 
+43334 
  
 pattern9
 #000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
-65445 
-63357 
-41356 
+23443 
+36642 
+57633 
+56423 
+43334 
+ 
+pattern10
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+23443 
+35652 
+47742 
+56533 
+44334 
+ 
+pattern11
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+23443 
+24653 
+46742 
+56533 
+44334 
+ 
+pattern12
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+22344 
+23553 
+36753 
+46643 
+44434 
+ 
+pattern13
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+32344 
+12553 
+25763 
+46643 
+45444 
+ 
+pattern14
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+32344 
 22454 
-34443
+24663 
+46753 
+45544 
+ 
+pattern15
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+43345 
+21354 
+23664 
+35753 
+55544 
+ 
+pattern16
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+43345 
+21355 
+22564 
+34664 
+45554 
+ 
+pattern17
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+54345 
+31255 
+21465 
+34664 
+45554 
+ 
+pattern18
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+54345 
+42245 
+21355 
+33564 
+45554 
+ 
+pattern19
+#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+65445 
+52246 
+31255 
+32465 
+45554 
+
 
 
 
@@ -178,7 +267,8 @@ O = Target
 
 Player = Person or PersonInside
 
-pattern = pattern0 or pattern1 or pattern2 or pattern3 or pattern4 or pattern5 or pattern6 or pattern7 or pattern8 or pattern9
+pattern = pattern0 or pattern1 or pattern2 or pattern3 or pattern4 or pattern5 or pattern6 or pattern7 or pattern8 or pattern9 or pattern10 or pattern11 or pattern12 or pattern13 or pattern14 or pattern15 or pattern16 or pattern17 or pattern18 or pattern19
+
 
 
 
@@ -219,7 +309,17 @@ RULES
 
 
 
-[ stationary player ][ pattern9 ] -> [ stationary player ][ pattern0 ]
+[ stationary player ][ pattern19 ] -> [ stationary player ][ pattern0 ]
+[ stationary player ][ pattern18 ] -> [ stationary player ][ pattern19 ]
+[ stationary player ][ pattern17 ] -> [ stationary player ][ pattern18 ]
+[ stationary player ][ pattern16 ] -> [ stationary player ][ pattern17 ]
+[ stationary player ][ pattern15 ] -> [ stationary player ][ pattern16 ]
+[ stationary player ][ pattern14 ] -> [ stationary player ][ pattern15 ]
+[ stationary player ][ pattern13 ] -> [ stationary player ][ pattern14 ]
+[ stationary player ][ pattern12 ] -> [ stationary player ][ pattern13 ]
+[ stationary player ][ pattern11 ] -> [ stationary player ][ pattern12 ]
+[ stationary player ][ pattern10 ] -> [ stationary player ][ pattern11 ]
+[ stationary player ][ pattern9 ] -> [ stationary player ][ pattern10 ]
 [ stationary player ][ pattern8 ] -> [ stationary player ][ pattern9 ]
 [ stationary player ][ pattern7 ] -> [ stationary player ][ pattern8 ]
 [ stationary player ][ pattern6 ] -> [ stationary player ][ pattern7 ]
@@ -229,6 +329,7 @@ RULES
 [ stationary player ][ pattern2 ] -> [ stationary player ][ pattern3 ]
 [ stationary player ][ pattern1 ] -> [ stationary player ][ pattern2 ]
 [ stationary player ][ pattern0 ] -> [ stationary player ][ pattern1 ]
+
 
 
 
@@ -299,7 +400,9 @@ LEVELS
 =======
 
 
-%#%##%##%%
+(A level showing crates on targets?)
+
+(%#%##%##%%
 #%#.....##
 %%#%##%.%#
 ###%#o..##
@@ -309,7 +412,34 @@ LEVELS
 %....%%.%%
 ##%%%#...%
 %#%##%.p.%
-#%#%#%###%
+#%#%#%###%)
+
+%%%%%%%%%%%%%%%%
+%%%%%%%####%%%%%
+%%%%%%%#%%#%%%%%
+%%###......##%%%
+%%#%%%%%%%.%#%%%
+%%#%%%%o...##%%%
+%%#%%%%%%%.%%%%%
+%%#%....%....#%%
+%%##.#*......#%%
+%%%%....%%.%%%%%
+%%%%%#%%%...%%%%
+%%%%%#%%%.p.%%%%
+%%%%%###%###%%%%
+%%%%%%%%%%%%%%%%
+(
+%%%#%#%##%##%%#%#%
+#%%%#%#.....##%#%%
+%%%%%%#%##%.%#%#%#
+%#%%###%#o..##%%%%
+%%%#%#%#%%%.%%#%%%
+%%%%#....%...%%%#%
+%%%%%.#*.....#%%%%
+#%#%%....%%.%%%#%%
+%%%%##%%%#...%%%%#
+%%%#%#%##%.p.%#%%%
+%#%%#%#%#%###%%#%%)
 
 
 %%%%%%%%%%%%%
@@ -335,10 +465,107 @@ LEVELS
 
 
 
+.........
+##.....##
+%#.....#%
+%#*.o..#%
+%#*.o..#%
+%#..o.*#%
+%#.....#%
+##..p..##
+......... (crate as removing crate option) (have a double block to demonstrate that you cannot push 2 blocks?)
+
+(
+%%%%%%%%
+%######%
+%#oo.*#%
+%#op..#%
+%#....#%
+%#*..*#%
+%######%
+%%%%%%%%
+
+###########
+#..*.p.*..#
+#.........#
+#.ooo@ooo.#
+#.........#
+#.*.*.*.*.#
+###########
+)
+
+%%%%%%%%%%%
+%#########%
+%#......*#%
+%#*..p...#%
+%#*.....o#%
+%#*....oo#%
+%#..*.oo@#%
+%#########%
+%%%%%%%%%%% (free three w/ two, free from corner)
+
+
+######
+##..##
+##o*##
+######
+#o.*.#
+#o*.o#
+#*..p#
+######
 
 
 
-(crate as removing crate option)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%
+%###########%
+%#.........#%
+%#..*.*.*..#%
+%#.#######.#%
+%#..#####..#%
+%##..ooo..##%
+%%#...p...#%%
+%%#########%%
+%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%
+%%#####%%
+%%#...#%%
+%##.p.##%
+%#*...*#%
+%#..o..#%
+%#.o@o.#%
+%#..o..#%
+%#*...*#%
+%#######%
+%%%%%%%%%
+
+(use two that you free to free three on same wall?)
+
+%%%%%%%%%
+%#######%
+%#*.#.*#%
+%#.o.o.#%
+%#*o*o*#%
+%#.o.o.#%
+%#p...*#%
+%#######%
+%%%%%%%%%
 
 
 
@@ -369,16 +596,6 @@ LEVELS
 (I like that there's no way to get completely stuck the first time you enter the walls, so as to teach the mechanic) 
 
 
-##########
-#........#
-#.....*..#
-#.*####..#
-#..#..#..#
-#..#p.#..#
-#.*####..#
-#........#
-#........#
-##########
 
 ######
 ##po##
@@ -389,23 +606,6 @@ LEVELS
 #.oo.#
 ###### (use block on wall as means of transport)
 
-######
-#....#
-#*##o#
-######
-#.p..#
-#*..*#
-#.oo.#
-######
-
-######
-#....#
-#*##.#
-####.#
-#.p..#
-#*..*#
-#.ooo#
-######
 
 
 
@@ -462,6 +662,79 @@ LEVELS
 %.....#.....%
 %.....%....p%
 %%%%%%%%%%%%%
+
+%%%%%%%%%%%%%
+%...%...%...%
+%.o.%.o.%.o.%
+%...%...%...%
+%%%%%%%%%%%%%
+%...%...%...%
+%.o.%.o.%.o.%
+%...%...%...%
+%%%%%%%%%%%%%
+%...%...%...%
+%.o.%.o.%.o.%
+%...%...%..p%
+%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%
+%...%...%...%
+%.o.#*o.#*o.%
+%.*.%...%...%
+%%#%%%#%%%#%%
+%...%.*.%.*.%
+%.o.%.o.%.o.%
+%.*.%...%...%
+%%#%%%#%%%#%%
+%...%...%.*.%
+%.o*#.o*#.o.%
+%...%...%..p%
+%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%
+%...%...%...%
+%...%.o.%.o.%
+%.@.%...%...%
+%%#%%%%%%%%%%
+%...%...%...%
+%.o.%.o.%.o.%
+%...%...%...%
+%%%%%%%%%%%%%
+%...%...%...%
+%.o.%.o.%.o.%
+%...%...%..p%
+%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%
+%.o.%...%...%
+%...%.o.#.o.%
+%.*.%..*%.*.%
+%%#%%#%#%%#%%
+%...%...%...%
+%.o.#*o.#*o.%
+%.*.%...%...%
+%%#%%%#%%%#%%
+%...%...%...%
+%.o*#.o*#.@.%
+%...%...%..p%
+%%%%%%%%%%%%% (this but more interesting. Can set one-way direction of start square, this isn't used)
+
+%%%%%%%%%%
+%..%..#..%
+#..#..%..%
+%%%%%#%#%%
+%..#..%..%
+%..%..#..%
+%#%%#%%#%%
+%..%..%..%
+#..#..#..%
+%%%%%%%%%%
+
+(want: deducible end point
+reusing squares
+3-way junctions?)
+
 
 
 
