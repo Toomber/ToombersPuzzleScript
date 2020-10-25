@@ -32,7 +32,7 @@ Background
 
 
 Target
-#bf0603
+#554a4b (#495057) (#bf0603) 
 .....
 .000.
 .0.0.
@@ -46,21 +46,6 @@ Wall
 01000
 11111
 00010
-
-Person
-#bf0603 (#8e1c00) (#69140e) 
-.000.
-.000.
-00000
-.000.
-.0.0.
-(
-.000.
-.111.
-22222
-.333.
-.3.3.
-)
 
 Crate
 #b14700 (#a44200) (#001427)
@@ -87,8 +72,9 @@ white
 TempCannotPushCrate
 white
 
+ 
 pattern0
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 65445 
 53236 
 41146 
@@ -96,7 +82,7 @@ pattern0
 44554 
  
 pattern1
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 65445 
 64235 
 42146 
@@ -104,7 +90,7 @@ pattern1
 44554 
  
 pattern2
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 66544 
 65335 
 52135 
@@ -112,7 +98,7 @@ pattern2
 44454 
  
 pattern3
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 56544 
 76335 
 63125 
@@ -120,7 +106,7 @@ pattern3
 43444 
  
 pattern4
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 56544 
 66434 
 64225 
@@ -128,7 +114,7 @@ pattern4
 43344 
  
 pattern5
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 45543 
 67534 
 65224 
@@ -136,7 +122,7 @@ pattern5
 33344 
  
 pattern6
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 45543 
 67533 
 66324 
@@ -144,7 +130,7 @@ pattern6
 43334 
  
 pattern7
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 34543 
 57633 
 67423 
@@ -152,7 +138,7 @@ pattern7
 43334 
  
 pattern8
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 34543 
 46643 
 67533 
@@ -160,7 +146,7 @@ pattern8
 43334 
  
 pattern9
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 23443 
 36642 
 57633 
@@ -168,7 +154,7 @@ pattern9
 43334 
  
 pattern10
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 23443 
 35652 
 47742 
@@ -176,7 +162,7 @@ pattern10
 44334 
  
 pattern11
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 23443 
 24653 
 46742 
@@ -184,7 +170,7 @@ pattern11
 44334 
  
 pattern12
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 22344 
 23553 
 36753 
@@ -192,7 +178,7 @@ pattern12
 44434 
  
 pattern13
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 32344 
 12553 
 25763 
@@ -200,7 +186,7 @@ pattern13
 45444 
  
 pattern14
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 32344 
 22454 
 24663 
@@ -208,7 +194,7 @@ pattern14
 45544 
  
 pattern15
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 43345 
 21354 
 23664 
@@ -216,7 +202,7 @@ pattern15
 55544 
  
 pattern16
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 43345 
 21355 
 22564 
@@ -224,7 +210,7 @@ pattern16
 45554 
  
 pattern17
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 54345 
 31255 
 21465 
@@ -232,7 +218,7 @@ pattern17
 45554 
  
 pattern18
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 54345 
 42245 
 21355 
@@ -240,13 +226,418 @@ pattern18
 45554 
  
 pattern19
-#000000 #1F0000 #3F0000 #5F0000 #7F0000 #9F0000 #BF0000 #DF0000 #FF0000  
+#BF0603 #B40804 #AA0A06 #9F0B07 #940D09 #890F0A #7F110B #74120D #69140E  
 65445 
 52246 
 31255 
 32465 
 45554 
 
+
+
+
+
+
+person0
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.434. 
+.224. 
+31255 
+.356. 
+.5.5. 
+ 
+person1
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.434. 
+.224. 
+21355 
+.356. 
+.5.5. 
+ 
+person2
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.434. 
+.124. 
+21365 
+.356. 
+.5.5. 
+ 
+person3
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.434. 
+.125. 
+21465 
+.466. 
+.5.5. 
+ 
+person4
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.334. 
+.125. 
+22464 
+.466. 
+.5.5. 
+ 
+person5
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.334. 
+.135. 
+22564 
+.466. 
+.5.5. 
+ 
+person6
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.334. 
+.135. 
+22564 
+.566. 
+.5.4. 
+ 
+person7
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.334. 
+.135. 
+23664 
+.575. 
+.5.4. 
+ 
+person8
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.334. 
+.145. 
+23663 
+.575. 
+.5.4. 
+ 
+person9
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.234. 
+.245. 
+24663 
+.675. 
+.5.4. 
+ 
+person10
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.234. 
+.245. 
+24763 
+.665. 
+.5.4. 
+ 
+person11
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.234. 
+.255. 
+25763 
+.664. 
+.5.4. 
+ 
+person12
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.234. 
+.355. 
+35753 
+.664. 
+.4.3. 
+ 
+person13
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.234. 
+.355. 
+36753 
+.664. 
+.4.3. 
+ 
+person14
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.244. 
+.465. 
+36752 
+.664. 
+.4.3. 
+ 
+person15
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.344. 
+.465. 
+46742 
+.653. 
+.4.3. 
+ 
+person16
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.344. 
+.465. 
+47742 
+.653. 
+.4.3. 
+ 
+person17
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.344. 
+.565. 
+47742 
+.653. 
+.4.3. 
+ 
+person18
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.344. 
+.565. 
+57633 
+.642. 
+.3.3. 
+ 
+person19
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.344. 
+.664. 
+57633 
+.642. 
+.3.3. 
+ 
+person20
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.454. 
+.664. 
+57633 
+.532. 
+.3.3. 
+ 
+person21
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.454. 
+.664. 
+67533 
+.532. 
+.3.3. 
+ 
+person22
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.454. 
+.764. 
+67523 
+.532. 
+.3.3. 
+ 
+person23
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.454. 
+.763. 
+67423 
+.422. 
+.3.3. 
+ 
+person24
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.554. 
+.763. 
+66424 
+.422. 
+.3.3. 
+ 
+person25
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.554. 
+.753. 
+66324 
+.422. 
+.3.3. 
+ 
+person26
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.554. 
+.753. 
+66324 
+.322. 
+.3.4. 
+ 
+person27
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.554. 
+.753. 
+65224 
+.313. 
+.3.4. 
+ 
+person28
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.554. 
+.743. 
+65225 
+.313. 
+.3.4. 
+ 
+person29
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.654. 
+.643. 
+64225 
+.213. 
+.3.4. 
+ 
+person30
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.654. 
+.643. 
+64125 
+.223. 
+.3.4. 
+ 
+person31
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.654. 
+.633. 
+63125 
+.224. 
+.3.4. 
+ 
+person32
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.654. 
+.533. 
+53135 
+.224. 
+.4.5. 
+ 
+person33
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.654. 
+.533. 
+52135 
+.224. 
+.4.5. 
+ 
+person34
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.644. 
+.423. 
+52136 
+.224. 
+.4.5. 
+ 
+person35
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.544. 
+.423. 
+42146 
+.235. 
+.4.5. 
+ 
+person36
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.544. 
+.423. 
+41146 
+.235. 
+.4.5. 
+ 
+person37
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.544. 
+.323. 
+41146 
+.235. 
+.4.5. 
+ 
+person38
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.544. 
+.323. 
+31255 
+.246. 
+.5.5. 
+ 
+person39
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+.544. 
+.224. 
+31255 
+.246. 
+.5.5.
+
+
+1Trail0
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+..... 
+.135. 
+.256. 
+.566. 
+..... 
+ 
+1Trail1
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+..... 
+.35.. 
+.5.5. 
+.664. 
+..... 
+ 
+1Trail2
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+..... 
+.66.. 
+...3. 
+..42. 
+..... 
+ 
+1Trail3
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+..... 
+..5.. 
+..... 
+..22. 
+..... 
+ 
+1Trail4
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+..... 
+..3.. 
+..... 
+..... 
+..... 
+
+2Trail0
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+..... 
+.135. 
+.256. 
+.566. 
+..... 
+ 
+2Trail1
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+..... 
+...5. 
+.575. 
+.664. 
+..... 
+ 
+2Trail2
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+..... 
+...4. 
+.763. 
+..4.. 
+..... 
+ 
+2Trail3
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+..... 
+...3. 
+..3.. 
+..2.. 
+..... 
+ 
+2Trail4
+#BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
+..... 
+..... 
+..... 
+..2.. 
+..... 
 
 
 
@@ -258,11 +649,13 @@ LEGEND
 . = Background
 # = Wall
 % = SolidWall
-P = Person
+P = Person0
 Q = PersonInside
 * = Crate
 @ = Crate and Target
 O = Target
+
+person = person0 or person1 or person2 or person3 or person4 or person5 or person6 or person7 or person8 or person9 or person10 or person11 or person12 or person13 or person14 or person15 or person16 or person17 or person18 or person19 or person20 or person21 or person22 or person23 or person24 or person25 or person26 or person27 or person28 or person29 or person30 or person31 or person32 or person33 or person34 or person35 or person36 or person37 or person38 or person39
 
 
 Player = Person or PersonInside
@@ -270,13 +663,18 @@ Player = Person or PersonInside
 pattern = pattern0 or pattern1 or pattern2 or pattern3 or pattern4 or pattern5 or pattern6 or pattern7 or pattern8 or pattern9 or pattern10 or pattern11 or pattern12 or pattern13 or pattern14 or pattern15 or pattern16 or pattern17 or pattern18 or pattern19
 
 
-
+1Trail = 1Trail0 or 1Trail1 or 1Trail2 or 1Trail3 or 1Trail4
+2Trail = 2Trail0 or 2Trail1 or 2Trail2 or 2Trail3 or 2Trail4
+trail0 = 1Trail0 or 2Trail0
+trail = 1Trail or 2Trail
 
 =======
 SOUNDS
 =======
 
 Crate MOVE 36772507
+
+Person MOVE 92929507 (2845707) (60851507) (83645907)
 
 PersonInside create 74438701
 PersonInside destroy 82957503
@@ -294,6 +692,9 @@ COLLISIONLAYERS
 Background
 pattern
 Target
+trail
+
+
 Person, Wall, SolidWall, Crate
 PersonInside
 
@@ -331,7 +732,67 @@ RULES
 [ stationary player ][ pattern0 ] -> [ stationary player ][ pattern1 ]
 
 
+[ stationary player ][ person39 ] -> [ stationary player ][ person0 ]
+[ stationary player ][ person38 ] -> [ stationary player ][ person39 ]
+[ stationary player ][ person37 ] -> [ stationary player ][ person38 ]
+[ stationary player ][ person36 ] -> [ stationary player ][ person37 ]
+[ stationary player ][ person35 ] -> [ stationary player ][ person36 ]
+[ stationary player ][ person34 ] -> [ stationary player ][ person35 ]
+[ stationary player ][ person33 ] -> [ stationary player ][ person34 ]
+[ stationary player ][ person32 ] -> [ stationary player ][ person33 ]
+[ stationary player ][ person31 ] -> [ stationary player ][ person32 ]
+[ stationary player ][ person30 ] -> [ stationary player ][ person31 ]
+[ stationary player ][ person29 ] -> [ stationary player ][ person30 ]
+[ stationary player ][ person28 ] -> [ stationary player ][ person29 ]
+[ stationary player ][ person27 ] -> [ stationary player ][ person28 ]
+[ stationary player ][ person26 ] -> [ stationary player ][ person27 ]
+[ stationary player ][ person25 ] -> [ stationary player ][ person26 ]
+[ stationary player ][ person24 ] -> [ stationary player ][ person25 ]
+[ stationary player ][ person23 ] -> [ stationary player ][ person24 ]
+[ stationary player ][ person22 ] -> [ stationary player ][ person23 ]
+[ stationary player ][ person21 ] -> [ stationary player ][ person22 ]
+[ stationary player ][ person20 ] -> [ stationary player ][ person21 ]
+[ stationary player ][ person19 ] -> [ stationary player ][ person20 ]
+[ stationary player ][ person18 ] -> [ stationary player ][ person19 ]
+[ stationary player ][ person17 ] -> [ stationary player ][ person18 ]
+[ stationary player ][ person16 ] -> [ stationary player ][ person17 ]
+[ stationary player ][ person15 ] -> [ stationary player ][ person16 ]
+[ stationary player ][ person14 ] -> [ stationary player ][ person15 ]
+[ stationary player ][ person13 ] -> [ stationary player ][ person14 ]
+[ stationary player ][ person12 ] -> [ stationary player ][ person13 ]
+[ stationary player ][ person11 ] -> [ stationary player ][ person12 ]
+[ stationary player ][ person10 ] -> [ stationary player ][ person11 ]
+[ stationary player ][ person9 ] -> [ stationary player ][ person10 ]
+[ stationary player ][ person8 ] -> [ stationary player ][ person9 ]
+[ stationary player ][ person7 ] -> [ stationary player ][ person8 ]
+[ stationary player ][ person6 ] -> [ stationary player ][ person7 ]
+[ stationary player ][ person5 ] -> [ stationary player ][ person6 ]
+[ stationary player ][ person4 ] -> [ stationary player ][ person5 ]
+[ stationary player ][ person3 ] -> [ stationary player ][ person4 ]
+[ stationary player ][ person2 ] -> [ stationary player ][ person3 ]
+[ stationary player ][ person1 ] -> [ stationary player ][ person2 ]
+[ stationary player ][ person0 ] -> [ stationary player ][ person1 ]
 
+
+[ stationary player ][ 1Trail4 ] -> [ stationary player ][ ]
+[ stationary player ][ 1Trail3 ] -> [ stationary player ][ 1Trail4 ]
+[ stationary player ][ 1Trail2 ] -> [ stationary player ][ 1Trail3 ]
+[ stationary player ][ 1Trail1 ] -> [ stationary player ][ 1Trail2 ]
+[ stationary player ][ 1Trail0 ] -> [ stationary player ][ 1Trail1 ]
+
+[ stationary player ][ 2Trail4 ] -> [ stationary player ][  ]
+[ stationary player ][ 2Trail3 ] -> [ stationary player ][ 2Trail4 ]
+[ stationary player ][ 2Trail2 ] -> [ stationary player ][ 2Trail3 ]
+[ stationary player ][ 2Trail1 ] -> [ stationary player ][ 2Trail2 ]
+[ stationary player ][ 2Trail0 ] -> [ stationary player ][ 2Trail1 ]
+
+
+
+
+
+(trail)
+[ moving person ] -> [ moving person random trail0 ]
+late [ trail person ] -> [ person ]
 
 
 (push crates)
@@ -356,7 +817,7 @@ late [ TempCannotPushCrate ] -> [] sfx0
 
 
 (exit walls)
-[ > PersonInside | Crate ] -> [ PersonInside > Person | > Crate ]
+[ > PersonInside | Crate ] -> [ PersonInside > Person0 | > Crate ]
 [ moving PersonInside] -> [stationary PersonInside]
 
 
@@ -394,6 +855,9 @@ WINCONDITIONS
 ==============
 
 All Target on Crate
+(no 1trail4
+no 2trail4)
+no trail
 
 =======
 LEVELS
@@ -455,7 +919,6 @@ LEVELS
 %%%%%%%%%%%%%
 %%%###%###%%%
 %%%###%###%%%
-%%%###%###%%%
 %###########%
 %.o.........%
 %.*...*.%.o.%
@@ -465,15 +928,17 @@ LEVELS
 
 
 
-.........
+%%%%%%%%%
 ##.....##
+%#.....#%
 %#.....#%
 %#*.o..#%
 %#*.o..#%
 %#..o.*#%
 %#.....#%
-##..p..##
-......... (crate as removing crate option) (have a double block to demonstrate that you cannot push 2 blocks?)
+%#..p..#%
+##.....##
+%%%%%%%%% (crate as removing crate option) (have a double block to demonstrate that you cannot push 2 blocks?)
 
 (
 %%%%%%%%
