@@ -233,6 +233,9 @@ pattern19
 32465 
 45554 
 
+pattern20
+black 
+
 
 
 
@@ -642,6 +645,37 @@ person39
 
 
 
+
+
+
+Human
+Black Orange White Blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+DeadHuman
+Black Orange White Blue red
+.....
+.....
+.043.
+42414
+24321
+
+BlackenedDeadHuman
+darkgrey darkgrey darkgrey darkgrey darkred
+.....
+.....
+.044.
+4.4.4
+.43.1
+
+TimerStart
+transparent
+
+
 =======
 LEGEND
 =======
@@ -650,17 +684,19 @@ LEGEND
 # = Wall
 % = SolidWall
 P = Person0
-Q = PersonInside
+Q = PersonInside and pattern0
 * = Crate
 @ = Crate and Target
 O = Target
+H = Human
 
 person = person0 or person1 or person2 or person3 or person4 or person5 or person6 or person7 or person8 or person9 or person10 or person11 or person12 or person13 or person14 or person15 or person16 or person17 or person18 or person19 or person20 or person21 or person22 or person23 or person24 or person25 or person26 or person27 or person28 or person29 or person30 or person31 or person32 or person33 or person34 or person35 or person36 or person37 or person38 or person39
 
+Collider = Crate or Wall or SolidWall or PersonInside
 
-Player = Person or PersonInside
+Player = Person or PersonInside or Human
 
-pattern = pattern0 or pattern1 or pattern2 or pattern3 or pattern4 or pattern5 or pattern6 or pattern7 or pattern8 or pattern9 or pattern10 or pattern11 or pattern12 or pattern13 or pattern14 or pattern15 or pattern16 or pattern17 or pattern18 or pattern19
+pattern = pattern0 or pattern1 or pattern2 or pattern3 or pattern4 or pattern5 or pattern6 or pattern7 or pattern8 or pattern9 or pattern10 or pattern11 or pattern12 or pattern13 or pattern14 or pattern15 or pattern16 or pattern17 or pattern18 or pattern19 or pattern20
 
 
 1Trail = 1Trail0 or 1Trail1 or 1Trail2 or 1Trail3 or 1Trail4
@@ -687,6 +723,20 @@ sfx0 90720904 (33509502) (62262506)  (97691709)
 (multiple crate options sound)
 cancel 9703504 (5206902) (12711101) (48573106) ()
 
+Human destroy 68529302 
+Human destroy 37228708
+
+TimerStart create 90890708 (39470708)  (23938708)
+
+
+
+(laugh sound? 23938708
+free sound 44604308
+59830508
+90890708
+56771108
+)
+
 ================
 COLLISIONLAYERS
 ================
@@ -694,14 +744,18 @@ COLLISIONLAYERS
 Background
 pattern
 Target
+
 trail
+DeadHuman
+BlackenedDeadHuman
 
-
-Person, Wall, SolidWall, Crate
+Human, Person, Wall, SolidWall, Crate
 PersonInside
 
 TempPersonExistsAlready
 TempCannotPushCrate
+TimerStart
+
 
 
 
@@ -712,7 +766,7 @@ RULES
 
 
 
-[ stationary player ][ pattern19 ] -> [ stationary player ][ pattern0 ]
+[ stationary player ][ pattern19 ] -> [ stationary player ][ pattern20 ]
 [ stationary player ][ pattern18 ] -> [ stationary player ][ pattern19 ]
 [ stationary player ][ pattern17 ] -> [ stationary player ][ pattern18 ]
 [ stationary player ][ pattern16 ] -> [ stationary player ][ pattern17 ]
@@ -732,6 +786,7 @@ RULES
 [ stationary player ][ pattern2 ] -> [ stationary player ][ pattern3 ]
 [ stationary player ][ pattern1 ] -> [ stationary player ][ pattern2 ]
 [ stationary player ][ pattern0 ] -> [ stationary player ][ pattern1 ]
+[ stationary player ][ pattern20 ] -> [ stationary player ][ pattern0 ] (pattern 20 is never shown)
 
 
 [ stationary player ][ person39 ] -> [ stationary player ][ person0 ]
@@ -790,11 +845,31 @@ RULES
 
 
 
+(human stuff)
+
+[ moving Human ][ moving PersonInside ] -> [ moving Human ][ stationary PersonInside ] 
+[ >  Human | PersonInside ] -> [  stationary  Human | PersonInside  ]
+[ moving Human][ TimerStart ] -> [stationary Human][ TimerStart ]
+
+[ PersonInside | crate | human ] -> [  PersonInside  | Crate | stationary human ]
+[ PersonInside pattern0 TimerStart | crate | human ] -> [ > PersonInside pattern0 TimerStart | Crate | > human ]
+[ PersonInside pattern0 | crate | stationary human ] -> [  PersonInside pattern0 TimerStart | Crate |  stationary human ]
+
+[ moving Person no PersonInside][ TimerStart ] -> [stationary Person][ TimerStart ]
 
 
-(trail)(
+[ stationary Person | ... | crate | Human | Collider ][TimerStart] -> [ stationary Person | ... | | crate DeadHuman | Collider][]
+[ stationary Person | ... | crate | Human | no Collider ] -> [ stationary Person | ... | | crate | Human]
+
+[ >  Human | Crate ] -> [  >  Human | > Crate  ]
+([Person DeadHuman] -> [Person BlackenedDeadHuman]) 
+ (
+[ PersonInside | crate | stationary human ][pattern0 no TimerStart] -> [  PersonInside | Crate | stationary human ][ pattern0 TimerStart ])
+
+
+(trail)
 [ moving person ] -> [ moving person random trail0 ]
-late [ trail person ] -> [ person ])
+late [ trail person ] -> [ person ]
 
 
 (push crates)
@@ -860,6 +935,7 @@ All Target on Crate
 (no 1trail4
 no 2trail4)
 no trail
+no Human
 
 =======
 LEVELS
@@ -869,6 +945,23 @@ message Arise, fire spirit. We have summoned you to serve our temple. A great di
 message sort out the boxes we have lying around. Complete all X tasks, and only then shall you be free to the spirit plane.  )
 
 (A level showing crates on targets?)
+
+(beginning)
+%%%%%%%%%%%
+%%%%qqq%%%%
+%%%%q.q%%%%
+%%%%qqq%%%%
+%%#..o..#%%
+#..o...o..#
+#h...*....#
+#...*.*...#
+%%#.....#%%
+%%%%###%%%%
+%%%%%%%%%%%
+%%%%%%%%%%%
+
+(end)
+
 
 (%#%##%##%%
 #%#.....##
