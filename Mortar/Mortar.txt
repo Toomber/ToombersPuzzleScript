@@ -237,9 +237,8 @@ pattern20
 black 
 
 
-
-
-
+person40
+black
 
 person0
 #BF0603 #C21609 #C52710 #C73716 #CA481D #CD5823 #D06829 #D27930 #D58936  
@@ -645,11 +644,8 @@ person39
 
 
 
-
-
-
 Human
-Black Orange White Blue
+#000000 #EB6F31 #CFCFCF #4172B6 #BE2633
 .000.
 .111.
 22222
@@ -657,12 +653,30 @@ Black Orange White Blue
 .3.3.
 
 DeadHuman
-Black Orange White Blue red
+#000000 #EB6F31 #CFCFCF #4172B6 #BE2633
 .....
 .....
 .043.
 42414
 24321
+
+DeadHumanLeft
+#000000 #EB6F31 #CFCFCF #4172B6 #BE2633
+.....
+.....
+.....
+.....
+....0
+
+DeadHumanRight
+#000000 #EB6F31 #CFCFCF #4172B6 #BE2633
+.....
+.....
+.....
+.....
+4....
+
+
 
 BlackenedDeadHuman
 darkgrey darkgrey darkgrey darkgrey darkred
@@ -690,7 +704,7 @@ Q = PersonInside and pattern0
 O = Target
 H = Human
 
-person = person0 or person1 or person2 or person3 or person4 or person5 or person6 or person7 or person8 or person9 or person10 or person11 or person12 or person13 or person14 or person15 or person16 or person17 or person18 or person19 or person20 or person21 or person22 or person23 or person24 or person25 or person26 or person27 or person28 or person29 or person30 or person31 or person32 or person33 or person34 or person35 or person36 or person37 or person38 or person39
+person = person0 or person1 or person2 or person3 or person4 or person5 or person6 or person7 or person8 or person9 or person10 or person11 or person12 or person13 or person14 or person15 or person16 or person17 or person18 or person19 or person20 or person21 or person22 or person23 or person24 or person25 or person26 or person27 or person28 or person29 or person30 or person31 or person32 or person33 or person34 or person35 or person36 or person37 or person38 or person39 or person40
 
 Collider = Crate or Wall or SolidWall or PersonInside
 
@@ -710,7 +724,8 @@ SOUNDS
 
 Crate MOVE 36772507
 
-Person MOVE 92929507 (2845707) (60851507) (83645907)
+Person MOVE 98574507 (92929507) (2845707) (60851507) (83645907)
+Human MOVE 2845707
 
 (enter blocks sound)
 PersonInside create 74438701 (25439302) (45627102) (70832702)(74438701)
@@ -723,11 +738,11 @@ sfx0 90720904 (33509502) (62262506)  (97691709)
 (multiple crate options sound)
 cancel 9703504 (5206902) (12711101) (48573106) ()
 
-Human destroy 68529302 
-Human destroy 37228708
+DeadHuman create 68529302 
+DeadHuman create 37228708
 
-TimerStart create 90890708 (39470708)  (23938708)
-
+TimerStart create 23938708 (90890708) (39470708)  ()
+(TimerStart create 90890708)
 
 
 (laugh sound? 23938708
@@ -735,6 +750,8 @@ free sound 44604308
 59830508
 90890708
 56771108
+
+52406108
 )
 
 ================
@@ -747,6 +764,8 @@ Target
 
 trail
 DeadHuman
+DeadHumanLeft
+DeadHumanRight
 BlackenedDeadHuman
 
 Human, Person, Wall, SolidWall, Crate
@@ -789,7 +808,7 @@ RULES
 [ stationary player ][ pattern20 ] -> [ stationary player ][ pattern0 ] (pattern 20 is never shown)
 
 
-[ stationary player ][ person39 ] -> [ stationary player ][ person0 ]
+[ stationary player ][ person39 ] -> [ stationary player ][ person40 ]
 [ stationary player ][ person38 ] -> [ stationary player ][ person39 ]
 [ stationary player ][ person37 ] -> [ stationary player ][ person38 ]
 [ stationary player ][ person36 ] -> [ stationary player ][ person37 ]
@@ -829,6 +848,7 @@ RULES
 [ stationary player ][ person2 ] -> [ stationary player ][ person3 ]
 [ stationary player ][ person1 ] -> [ stationary player ][ person2 ]
 [ stationary player ][ person0 ] -> [ stationary player ][ person1 ]
+[ stationary player ][ person40 ] -> [ stationary player ][ person0 ] (person40 is never shown)
 
 
 [ stationary player ][ 1Trail4 ] -> [ stationary player ][ ]
@@ -845,7 +865,7 @@ RULES
 
 
 
-(human stuff)
+(-----------human stuff-----------)
 
 [ moving Human ][ moving PersonInside ] -> [ moving Human ][ stationary PersonInside ] 
 [ >  Human | PersonInside ] -> [  stationary  Human | PersonInside  ]
@@ -857,14 +877,15 @@ RULES
 
 [ moving Person no PersonInside][ TimerStart ] -> [stationary Person][ TimerStart ]
 
-
 [ stationary Person | ... | crate | Human | Collider ][TimerStart] -> [ stationary Person | ... | | crate DeadHuman | Collider][]
 [ stationary Person | ... | crate | Human | no Collider ] -> [ stationary Person | ... | | crate | Human]
 
+(right [ | DeadHuman | ] ->  [ DeadHumanLeft | DeadHuman | DeadHumanRight])
+
 [ >  Human | Crate ] -> [  >  Human | > Crate  ]
 ([Person DeadHuman] -> [Person BlackenedDeadHuman]) 
- (
-[ PersonInside | crate | stationary human ][pattern0 no TimerStart] -> [  PersonInside | Crate | stationary human ][ pattern0 TimerStart ])
+ 
+(----------------------)
 
 
 (trail)
@@ -877,10 +898,11 @@ late [ trail person ] -> [ person ]
 
 
 (enter contiguous walls)
-
-(random [PersonInside | Wall no PersonInside] -> [PersonInside | PersonInside] again
-[> Person | Wall] -> [ | PersonInside] again 
+(
+random [PersonInside pattern | Wall no PersonInside ] -> [PersonInside pattern | PersonInside pattern] again
+[> Person | Wall] -> [ | PersonInside pattern0] again 
 slow growth - it would be possible to let players interrupt)
+
 
 [> Person | Wall] -> [ | PersonInside pattern0] 
 [PersonInside | Wall no PersonInside] -> [PersonInside | PersonInside pattern0] 
@@ -947,18 +969,113 @@ message sort out the boxes we have lying around. Complete all X tasks, and only 
 (A level showing crates on targets?)
 
 (beginning)
+
+(
 %%%%%%%%%%%
-%%%%qqq%%%%
-%%%%q.q%%%%
-%%%%qqq%%%%
-%%#..o..#%%
-#..o...o..#
-#h...*....#
-#...*.*...#
-%%#.....#%%
-%%%%###%%%%
+%##%qqq%##%
+%#..qqq..#%
+%#..qqq..#%
+%#...o...#%
+%#..*.*..#%
+%#...*...#%
+%#..o.o..#%
+%#...h...#%
+%#..%%%..#%
+%###%%%###%
 %%%%%%%%%%%
+
 %%%%%%%%%%%
+%##%qqq%##%
+%##.qqq.##%
+%##.qqq.##%
+%##..o..##%
+%#..*.*..#%
+%#...*...#%
+%#..o.o..#%
+%#...h...#%
+%#..%%%..#%
+%###%%%###%
+%%%%%%%%%%%
+
+%%%%%%%%%%%
+%##%qqq%##%
+%##.qqq.##%
+%##.qqq.##%
+%##.o.o.##%
+%#...*...#%
+%#..*.*..#%
+%#...o...#%
+%#...h...#%
+%#..%%%..#%
+%###%%%###%
+%%%%%%%%%%%
+
+%%%%%%%%%%%
+%##%qqq%##%
+%##oqqqo##%
+%##.qqq.##%
+%##..o..##%
+%#..*.*..#%
+%#...*...#%
+%#.......#%
+%#...h...#%
+%#..%%%..#%
+%###%%%###%
+%%%%%%%%%%%
+
+%%%%%%%%%%%
+%##%qqq%##%
+%##oqqqo##%
+%##.qqq.##%
+%##..o..##%
+%#.......#%
+%#..*.*..#%
+%#...h...#%
+%#...*...#%
+%#..%%%..#%
+%###%%%###%
+%%%%%%%%%%%
+
+
+%%%%%%%%%%%
+%##%qqq%##%
+%##oqqqo##%
+%##.qqq.##%
+%##..o..##%
+%#.......#%
+%#..*h*..#%
+%#...*...#%
+%##.....##%
+%##.###.##%
+%##.###.##%
+%##%###%##% (don't like that you need to enter block or block death w/ crate?)
+
+
+)
+
+
+%%%%%%%%%%%
+%##%qqq%##%
+%##oqqqo##%
+%##.qqq.##%
+%##..o..##%
+%#.......#%
+%#.*.h.*.#%
+%#.......#%
+%#...*...#%
+%#..%%%..#%
+%###%%%###%
+%%%%%%%%%%% (this one is best I think) 
+
+
+
+(want: 
+crate which releases to naturally be last crate you set
+It's possible (easy?) to complete without entering blocks 
+
+)
+
+(what other potential does this human killing mechanic have?)
 
 (end)
 
