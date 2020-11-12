@@ -8,15 +8,6 @@ realtime_interval 0.08
 
 background_color #3c1518
 
-(
-========
-COLOURS
-#001427 blue
-#708d81 grey
-#f4d58d yellow
-#bf0603 red
-#ba8712 #5d4409 browns
-)
 
 ========
 OBJECTS
@@ -40,7 +31,7 @@ Target
 .....
 
 Wall
- #D65636 #69140e (#c33f28) (#708d81 #001427)
+#D65636 #69140e (#c33f28) (#708d81 #001427)
 00010
 11111
 01000
@@ -643,7 +634,6 @@ person39
 
 
 
-
 Human
 #000000 #EB6F31 #CFCFCF #4172B6 #BE2633
 .000.
@@ -660,33 +650,16 @@ DeadHuman
 42414
 24321
 
-DeadHumanLeft
-#000000 #EB6F31 #CFCFCF #4172B6 #BE2633
-.....
-.....
-.....
-.....
-....0
-
-DeadHumanRight
-#000000 #EB6F31 #CFCFCF #4172B6 #BE2633
-.....
-.....
-.....
-.....
-4....
-
-
-
-BlackenedDeadHuman
-darkgrey darkgrey darkgrey darkgrey darkred
-.....
-.....
-.044.
-4.4.4
-.43.1
-
 TimerStart
+transparent
+
+NeedCrateOnForCinematic
+transparent
+
+SpawnHuman
+transparent
+
+DontLetHumanWin
 transparent
 
 
@@ -703,6 +676,10 @@ Q = PersonInside and pattern0
 @ = Crate and Target
 O = Target
 H = Human
+
+D = DontLetHumanWin
+Y = SpawnHuman
+Z = NeedCrateOnForCinematic and Target
 
 person = person0 or person1 or person2 or person3 or person4 or person5 or person6 or person7 or person8 or person9 or person10 or person11 or person12 or person13 or person14 or person15 or person16 or person17 or person18 or person19 or person20 or person21 or person22 or person23 or person24 or person25 or person26 or person27 or person28 or person29 or person30 or person31 or person32 or person33 or person34 or person35 or person36 or person37 or person38 or person39 or person40
 
@@ -744,6 +721,14 @@ DeadHuman create 37228708
 TimerStart create 23938708 (90890708) (39470708)  ()
 (TimerStart create 90890708)
 
+SpawnHuman destroy 56523708
+
+(trapped noise)
+sfx1 55243708 (71777708 )
+
+(walk into trapped person noise)
+sfx2 77067508 (22203708) (59306508)
+
 
 (laugh sound? 23938708
 free sound 44604308
@@ -759,14 +744,16 @@ COLLISIONLAYERS
 ================
 
 Background
+
+SpawnHuman
+NeedCrateOnForCinematic
+DontLetHumanWin
+
 pattern
 Target
 
 trail
 DeadHuman
-DeadHumanLeft
-DeadHumanRight
-BlackenedDeadHuman
 
 Human, Person, Wall, SolidWall, Crate
 PersonInside
@@ -774,6 +761,7 @@ PersonInside
 TempPersonExistsAlready
 TempCannotPushCrate
 TimerStart
+
 
 
 
@@ -867,23 +855,50 @@ RULES
 
 (-----------human stuff-----------)
 
-[ moving Human ][ moving PersonInside ] -> [ moving Human ][ stationary PersonInside ] 
-[ >  Human | PersonInside ] -> [  stationary  Human | PersonInside  ]
+(ending stuff)
+
+(spawn human is crates on targets)
+[ SpawnHuman ][ PersonInside ] -> [ SpawnHuman Human ][ PersonInside ]
+[ SpawnHuman Human ][PersonInside | NeedCrateOnForCinematic ] -> [ SpawnHuman ][PersonInside | NeedCrateOnForCinematic ]  
+[ SpawnHuman Human ][ NeedCrateOnForCinematic no crate] -> [ SpawnHuman ][ NeedCrateOnForCinematic no crate]
+[ Human SpawnHuman ] -> [ Human ]
+
+(move human to trap person)
+[ Human ][ NeedCrateOnForCinematic ] -> [ left Human ][ NeedCrateOnForCinematic ]
+left [ Human |  |Target ][ NeedCrateOnForCinematic ] -> [ down Human |  |Target ][ NeedCrateOnForCinematic ]
+left [ Human | PersonInside][ NeedCrateOnForCinematic ] -> [ down Human | PersonInside][ NeedCrateOnForCinematic ]
+[ Human | Crate | SolidWall ][ NeedCrateOnForCinematic ] -> [ Human | Crate | SolidWall ][] sfx1
+
+
+
+
+
+(stop personInsides from moving if there is a human moving)
+[ moving Human ][ moving PersonInside ] -> [ moving Human ][ stationary PersonInside ]
+(prevent humans from entering personInsides)
+[ >  Human | PersonInside ] -> [  stationary  Human | PersonInside  ] sfx2
+(if timer active, stop human from moving)
 [ moving Human][ TimerStart ] -> [stationary Human][ TimerStart ]
 
+(stop human from moving when next to crate on personInside)
 [ PersonInside | crate | human ] -> [  PersonInside  | Crate | stationary human ]
+(start human moving off wall if pattern0 exists and the timer has started)
 [ PersonInside pattern0 TimerStart | crate | human ] -> [ > PersonInside pattern0 TimerStart | Crate | > human ]
+(start the timer if pattern0 exists)
 [ PersonInside pattern0 | crate | stationary human ] -> [  PersonInside pattern0 TimerStart | Crate |  stationary human ]
 
+(prevent person from moving during person leaving animation)
 [ moving Person no PersonInside][ TimerStart ] -> [stationary Person][ TimerStart ]
 
+
+(kill human against collider)
+[ stationary Person | ... | crate | Human | Collider ][TimerStart][DontLetHumanWin] -> [ stationary Person | ... | | crate DeadHuman | Collider][][]
 [ stationary Person | ... | crate | Human | Collider ][TimerStart] -> [ stationary Person | ... | | crate DeadHuman | Collider][]
+(move human from person leaving animation)
 [ stationary Person | ... | crate | Human | no Collider ] -> [ stationary Person | ... | | crate | Human]
 
-(right [ | DeadHuman | ] ->  [ DeadHumanLeft | DeadHuman | DeadHumanRight])
-
+(humans push crates)
 [ >  Human | Crate ] -> [  >  Human | > Crate  ]
-([Person DeadHuman] -> [Person BlackenedDeadHuman]) 
  
 (----------------------)
 
@@ -957,12 +972,17 @@ All Target on Crate
 (no 1trail4
 no 2trail4)
 no trail
-no Human
+no DontLetHumanWin
 
 =======
 LEVELS
 =======
 
+( 
+-A level showing crates on targets
+crate which releases is naturally last crate you set
+It's possible (easy?) to complete without entering blocks 
+)
 
 %%%%%%%%%%%
 %##%qqq%##%
@@ -972,16 +992,10 @@ LEVELS
 %#.......#%
 %#.*.h.*.#%
 %#.......#%
-%#...*...#%
+%#.d.*...#%
 %#..%%%..#%
 %###%%%###%
 %%%%%%%%%%%
-
-( 
-crate which releases is naturally last crate you set
-It's possible (easy?) to complete without entering blocks 
--A level showing crates on targets
-)
 
 (what other potential does this human killing mechanic have?
 is there a way that more humans can arrive? - reinforcements?
@@ -1042,8 +1056,13 @@ is there a way that more humans can arrive? - reinforcements?
 %%%%%%%%%%%%%
 
 
-(maze of rooms with single wall connectors & crates?)
 
+(maze of rooms with single wall connectors & crates)
+(checklist: 
+end point you can deduce
+back tracking
+3-way junctions
+)
 %%%%%%%%%%%%%%%%%
 %%%...%...%...%%%
 %.%.p.#o.*#@..%.%
@@ -1054,11 +1073,6 @@ is there a way that more humans can arrive? - reinforcements?
 %%%...%...%...%%%
 %%%%%%%%%%%%%%%%% (good?)
 
-(checklist: 
-end point you can deduce
-back tracking
-3-way junctions
-)
 
 
 
@@ -1108,49 +1122,43 @@ back tracking
 %#o*.o#%
 %#*..p#%
 ########
-%%%%%%%% (plan ahead which side you have crates on in order to return, and avoid doubles)
+%%%%%%%%  (plan ahead which side you have crates on in order to return, and avoid doubles)
 
 
 
-
+(end level where you get trapped then can choose to finish with the human or the spirit
+needs to be obvious that you were going to win when you get trapped
+)
 
 (
-%%%%%%%
-%%q%#%%
-%%o%o%%
-%.....%
-%.h.*.%
-%..*..%
-%.....%
-%%%%%%%)
-
-(end)
+%%%%%%%%%%%%%%%%%%%
+%%#####%%%o......y%
+%%#z*z#%%###..*..%%
+%%#zp*...###*.o..%%
+%%#*z*#%%###..*..%%
+%%#####%%%o.......%
+%%%%%%%%%%%%%%%%%%%
 
 
+%%%%%%%%%%%%%%%%%%%
+%%#####%%%o......y%
+%%#p*z#%%###..*..%%
+%%#z**...###*.o..%%
+%%#zz*#%%###..*..%%
+%%#####%%%o.......%
+%%%%%%%%%%%%%%%%%%%)
+
+%%%%%%%%%%%%%%%%%%%
+%%#####%%%o......y%
+%%#*zz#%%###..*..%%
+%%#zp*...###*.o..%%
+%%#**z#%%###..*..%%
+%%#####%%%o.......%
+%%%%%%%%%%%%%%%%%%%
 
 
+message THE END. Thanks For Playing!
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%
-%...........%
-%....%p%....%
-%....%.%....%
-%.o.@.@.@.*.%
-%%%%.%.%.%%%%
-%%%%#####%%%%
-%%%%%%%%%%%%% (some way to tempt you into placing 2 down?)
 
 
 
@@ -1186,10 +1194,6 @@ back tracking
 #.........#
 #.*.*.*.*.#
 ###########
-
-
-
-
 
 )
 
