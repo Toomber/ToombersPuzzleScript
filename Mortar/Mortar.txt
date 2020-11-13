@@ -1,6 +1,6 @@
 title Mortar
 author Toomber
-homepage www.puzzlescript.net
+homepage https://toombler.itch.io/
 
 (again_interval 0.05)
 
@@ -8,6 +8,7 @@ realtime_interval 0.08
 
 background_color #3c1518
 
+(enable_level_select)
 
 ========
 OBJECTS
