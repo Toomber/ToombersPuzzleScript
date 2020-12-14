@@ -2,8 +2,11 @@ title Pulley Python
 author Toomber
 homepage www.puzzlescript.net
 
+background_color darkblue
+
 key_repeat_interval 0.12
 run_rules_on_level_start
+
 
 (flickscreen 15x15)
 
@@ -259,6 +262,14 @@ White
 .000.
 .....
 
+ShrinkPellet
+Black
+.....
+.000.
+.000.
+.000.
+.....
+
 HeadLooseTemp
 transparent
 
@@ -268,6 +279,12 @@ transparent
 LeftTemp2
 transparent
 
+LeftTemp3
+transparent
+
+LeftTemp4
+transparent
+
 LeftDeleteEndPiece
 transparent
 
@@ -275,6 +292,12 @@ RightTemp1
 transparent
 
 RightTemp2 
+transparent
+
+RightTemp3 
+transparent
+
+RightTemp4 
 transparent
 
 RightDeleteEndPiece
@@ -323,6 +346,7 @@ LEGEND
 H = HeadUp
 S = StickyBlock
 G = GrowthPellet
+N = ShrinkPellet
 Head = HeadUp or HeadDown or HeadRight or HeadLeft
 HeadLoose = HeadLooseUp or HeadLooseDown or HeadLooseRight or HeadLooseLeft
 Player = Head or HeadLoose
@@ -360,7 +384,7 @@ notDownRibbon = LRibbonUp or RRibbonUp or LRibbonLeft or RRibbonLeft or LRibbonR
 notRightRibbon = LRibbonUp or RRibbonUp or LRibbonDown or RRibbonDown or LRibbonLeft or RRibbonLeft 
 notLeftRibbon = LRibbonUp or RRibbonUp or LRibbonDown or RRibbonDown or LRibbonRight or RRibbonRight 
 
-DeletionTemp = LeftTemp1 or LeftTemp2 or RightTemp1 or RightTemp2
+DeletionTemp = LeftTemp1 or LeftTemp2 or LeftTemp3 or LeftTemp4 or RightTemp1 or RightTemp2 or RightTemp3 or RightTemp4
 
 
 Object = Player or Ribbon or Wall or StickyBlock
@@ -382,9 +406,13 @@ LeftStuck
 RightStuck
 LeftTemp1
 LeftTemp2
-LeftDeleteEndPiece
+LeftTemp3
+LeftTemp4
 RightTemp1
 RightTemp2
+RightTemp3
+RightTemp4
+LeftDeleteEndPiece
 RightDeleteEndPiece
 TempSwitchParity
 TempReverseHeadWent
@@ -409,7 +437,7 @@ RibbonCornerDR
 RibbonCornerDL
 
 
-GrowthPellet
+GrowthPellet, ShrinkPellet
 Head, HeadLoose, Wall, StickyBlock
 
 
@@ -459,7 +487,6 @@ RULES
 [> Head | GrowthPellet ][DeletionTemp] -> [> Head | GrowthPellet ][]
 [> Head | GrowthPellet ] -> [> Head | ] (consume pellet)
 
-
 (Rotate Loose Head)
 [up HeadLoose] -> [up HeadLooseUp]
 [down HeadLoose] -> [down HeadLooseDown]
@@ -491,11 +518,21 @@ left [ RRibbonLeft | StickyBlock ] -> [ RRibbonLeft | StickyBlock RightStuck]
 [RightStuck][RightTemp2] -> [RightStuck][[LeftTemp2]
 
 
+(if about to consume a shrink pellet, double each deletion temp)
+[> Head LeftTemp2 | ShrinkPellet ] -> [> Head LeftTemp4 | ShrinkPellet ]
+[> Head LeftTemp1 | ShrinkPellet ] -> [> Head LeftTemp2 | ShrinkPellet ]
+[> Head RightTemp2 | ShrinkPellet ] -> [> Head RightTemp4 | ShrinkPellet ]
+[> Head RightTemp1 | ShrinkPellet ] -> [> Head RightTemp2 | ShrinkPellet ]
+[> Head | ShrinkPellet ] -> [> Head | ] (consume pellet)
 
 
 (loop through all tail end configurations and delete strings if there are temp objects)
 startloop
 
+[LeftTemp4] -> [LeftTemp4 LeftDeleteEndPiece]
+[RightTemp4] -> [RightTemp4 RightDeleteEndPiece]
+[LeftTemp3] -> [LeftTemp3 LeftDeleteEndPiece]
+[RightTemp3] -> [RightTemp3 RightDeleteEndPiece]
 [LeftTemp2] -> [LeftTemp2 LeftDeleteEndPiece]
 [RightTemp2] -> [RightTemp2 RightDeleteEndPiece]
 
@@ -542,7 +579,11 @@ right [HeadWentRight TailEndRight no RRibbon | ][Head] -> [HeadWentRight | TailE
 left [HeadWentLeft TailEndRight no RRibbon | ][Head] -> [HeadWentLeft | TailEndRight][Head]
 
 [LeftTemp2] -> [LeftTemp1]
+[LeftTemp3] -> [LeftTemp2]
+[LeftTemp4] -> [LeftTemp3]
 [RightTemp2] -> [RightTemp1]
+[RightTemp3] -> [RightTemp2]
+[RightTemp4] -> [RightTemp3]
 
 endloop
 
@@ -705,6 +746,24 @@ LEVELS
 #..............k#
 #..........g...k#
 #......g.......k#
+#..............x#
+#...............#
+#################
+
+#################
+#...............#
+#...............#
+#...............#
+#.........n.....#
+#...n..........h#
+#..............k#
+#.......n......k#
+#..............k#
+#.n............k#
+#..............k#
+#....n.........k#
+#...........n..k#
+#..............k#
 #..............x#
 #...............#
 #################
