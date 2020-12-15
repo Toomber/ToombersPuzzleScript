@@ -2,8 +2,8 @@ title Car Mechanic
 author Toomber
 homepage www.puzzlescript.net
 
-again_interval 0.03
-key_repeat_interval 0.07
+again_interval 0.05
+key_repeat_interval 0.13
 run_rules_on_level_start
 
 ========
@@ -424,7 +424,6 @@ late[SwitchesOn] -> []
 late [Car TagBlue DoorClosed] -> [DoorClosed]
 late [DeadCar TagBlue DoorClosed] -> [DoorClosed]
 late [Tag DoorClosed] -> [Tag DoorOpen]
-
 (-------------------------------------)
 
 ==============
@@ -506,21 +505,19 @@ Black Cars
 #............#
 #............#
 ##..........##
-############## (good)
+############## (good?)
 
-#########
-#.....#.#
-#.o.o.#.#
-#.......#
-#####...#
-#.......#
-#.......#
-#.......#
-#.......#
-#.......#
-#.......#
-#..q.q..#
-######### (must be backwards-- make this a challenge?)
+###########
+#.....#...#
+#.....#...#
+#.o.o.#...#
+#.........#
+#.........#
+####......#
+#.........#
+#.....q.q.#
+#.........#
+###########  (ok, requires backwards movement)
 
 (--------------------------)
 
@@ -558,7 +555,20 @@ Black Cars
 #e.#.....#.#
 #..#.###.#.#
 #........#.#
-############ (ok)
+############ (ok - expand this somehow, to make parity switch more deliberate?)
+
+#########
+#.....#.#
+#.###.#.#
+#.#w.w..#
+#.###.#.#
+#.....#.#
+#..o..#.#
+#.#.#.#.#
+#.#o#...#
+#.###...#
+#.......#
+######### (ok, backwards movement as switching parity. Would be nice if more open.)
 
 #############
 #....o#o.o..#
@@ -598,9 +608,17 @@ Black Cars
 #................#
 #....#.#.#.#.#.#.#
 #................#
-################## (a bit annoying maybe)
+################## (bad, a bit annoying maybe)
 
 
+(how to make a deductive level using this?
+-maze?
+-some moves are not reversible (turns)
+-more cars are always better here (assuming in same positions). If different positions, not so - could have player sacrifice some cars early so as to keep more later
+
+problem parameters: wall locations, target locations, starting car locations/number
+solution parameters: which cars are deleted, car positions
+)
 
 
 
@@ -663,7 +681,7 @@ Black Cars
 #5.5#
 #...#
 #...#
-##### (make narrower from wall) (ok)
+##### (make narrower from wall) (pretty good)
 
 #########
 #o.o#####
@@ -712,6 +730,7 @@ Black Cars
 #..qqq..#
 ##.....##
 ######### (good, also uses deduction that only targets close enough for cars are top ones)
+		  (do I want it to be difficult to place red car in middle because of ordering?)
 
 (--------------------------)
 
