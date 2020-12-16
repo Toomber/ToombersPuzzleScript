@@ -507,14 +507,16 @@ Black Cars
 ##..........##
 ############## (ok)
 
-##########
-#.......##
-#.qqq.####
-#........#
-#..o.....#
-#######..#
-##.o.....#
-########## (good?) 
+############
+##.......###
+#........###
+#..qqq.#####
+#.........##
+##..o......#
+########...#
+###.o......#
+###.......##
+############ (good?) 
 
 (--------------------------)
 
@@ -560,7 +562,7 @@ Black Cars
 #...#.....#.#
 #.#.#.###.#.#
 #...........#
-############# (pretty good)
+############# (good)(parity)
 
 #########
 #.....#.#
@@ -623,11 +625,53 @@ Black Cars
 #................#
 ################## (bad, a bit annoying maybe)
 
+#################
+#...............#
+#...............#
+#.e...#####...o.#
+#.e.......#.....#
+#.e...#...#...o.#
+#.e...#.......o.#
+#.e...#####.....#
+#...............#
+#...............#
+################# (like the idea of one thing in the middle that you need to pass through)
+
+#################
+#...............#
+#...............#
+#.e...#####...o.#
+#.e...#...#.....#
+#.e...#.#####.o.#
+#.e...#.#.#.#.o.#
+#.e...#####.#...#
+#.......#...#...#
+#.......#####...#
+#...............#
+#...............#
+#################
+
+##################
+#...........######
+#.....#.###.######
+#.....#..........#
+#.....#.....##.#.#
+#q.q.q#........#.#
+#.....###...##.#.#
+#...........o.o.o#
+#.......###.######
+#...........######
+##################
+(want one where you weave through w/ 3 or more)
+
+(a level with asymmetric cars) 
+
 
 (how to make a deductive level using this?
 -maze?
 -some moves are not reversible (turns)
 -more cars are always better here (assuming in same positions). If different positions, not so - could have player sacrifice some cars early so as to keep more later
+- like a physical puzzle interweaving objects
 
 problem parameters: wall locations, target locations, starting car locations/number
 solution parameters: which cars are deleted, car positions
