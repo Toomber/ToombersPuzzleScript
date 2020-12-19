@@ -261,7 +261,7 @@ O = Target
 SOUNDS
 =======
 
- TagBlue destroy 32872900
+ TagBlue destroy 2225700 (32872900)
 
 ================
 COLLISIONLAYERS
@@ -517,13 +517,13 @@ Black Cars
 ############
 ##.......###
 #........###
-#..qqq.#####
+#..q.q.#####
 #.........##
 ##..o......#
 ########...#
 ###.o......#
 ###.......##
-############ (good?) 
+############ (good? - make it more of a puzzle somehow?) 
 
 (--------------------------)
 
@@ -606,16 +606,6 @@ Black Cars
 #qqqqq#.#.#.#
 ############# (ok)
 
-###########
-#....#....#
-#..#......#
-#.......o.#
-#.........#
-#.#...#.o.#
-#.........#
-#.qqqq....#
-###########
-
 ##################
 #................#
 #....#.#.#.#.###.#
@@ -630,7 +620,7 @@ Black Cars
 #................#
 #....#.#.#.#.#.#.#
 #................#
-################## (bad, a bit annoying maybe)
+################## (a maze)(bad, a bit annoying maybe)
 
 #################
 #...............#
@@ -643,47 +633,12 @@ Black Cars
 #...............#
 #...............#
 ################# (like the idea of one thing in the middle that you need to pass through) 
-(reflection is the same when it comes to targets - could use to misdirect) 
-
-#################
-#.......#.......#
-#...............#
-#...............#
-#.......#.......#
-#.......#.......#
-#.e...........o.#
-#.e.....#.....o.#
-#.e.....#.......#
-#.e...........o.#
-#.......#.......#
-#...............#
-#...............#
-#.......#.......#
-#.......#.......#
-#################
-
-#################
-#.......#......o#
-#............#.o#
-#...............#
-#.......#......o#
-#.......#.......#
-#.e.............#
-#.e.....#.......#
-#.e.....#.......#
-#.e.............#
-#.......#.......#
-#...............#
-#...............#
-#.......#.......#
-#.......#.......#
-#################
 
 ############
 #.........o#
 #.......#.o#
-#..........#
-#.......#.o#
+#.......#..#
+#.........o#
 #.......#..#
 #.e........#
 #.e.....#..#
@@ -694,7 +649,63 @@ Black Cars
 #..........#
 #.......#..#
 #.......#..#
-############
+############ (could do something like these instead of current "teaches deletion while turning" level, by making no pattern fit - a set of 2 levels, one where there is a backwards pattern, and one where no pattern works - or a multipart level?) 
+
+#####################
+#.......#....#......#
+#............#......#
+#............#......#
+#.......#...........#
+#.......#....#......#
+#.e..........#.....o#
+#.e.....#..........o#
+#.e.....#...........#
+#.e..........#.....o#
+#.......#....#......#
+#...................#
+#...................#
+#.......#...........#
+#.......#....#......#
+##################### (level like this with two sets of walls, and the solution requires going through first wall backwards in order to get through second wall> - can force going through straight with double thick walls. Do I want to have translation AND rotation? Solution is finding intersection of patterns which matches targets? Otherwise no point in second wall? single thick wall -> can weave through wall - should that be the point of the level?)
+
+(##########################
+##......##......##......##
+##......##......##......##
+##......##......##......##
+##......##......##......##
+##e...................o.##
+##e.....................##
+##e...................o.##
+##e.....##..............##
+##e.............##....o.##
+##e...................o.##
+##......##......##......##
+##......##......##......##
+##......##......##......##
+##......##......##......##
+########################## (no translation))
+
+##########################
+##########################
+##......##......##......##
+##......##......##......##
+##..............##......##
+##......................##
+##.e............##....o.##
+##.e....##......##......##
+##.e..................o.##
+##.e....................##
+##.e....##............o.##
+##.e..................o.##
+##......................##
+##......##......##......##
+##......##..............##
+##......##......##......##
+##########################
+########################## (good)
+
+(translation, other holes -> use deductions of evenly spaced walls not being allowed/end cars 6 apart must be holes. Forces first move to be backwards.)
+
 
 
 
@@ -728,13 +739,12 @@ Black Cars
 ##################
 (want one where you weave through w/ 3 or more)
 
-(a level with asymmetric cars) 
-
 
 (how to make a deductive level using this?
 -maze?
 -some moves are not reversible (turns)
 -more cars are always better here (assuming in same positions). If different positions, not so - could have player sacrifice some cars early so as to keep more later
+- forwards/backwards are the same when it comes to cars on targets -> reflections
 - like a physical puzzle interweaving objects
 
 problem parameters: wall locations, target locations, starting car locations/number
