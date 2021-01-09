@@ -57,6 +57,8 @@ Purple
 .000.
 .....
 
+(glass is solid but not opaque)
+
 GlassWall
 lightblue
 (0.1.0
@@ -71,6 +73,25 @@ lightblue
 0...0
 0...0
 0...0
+00000
+
+(Bushes are opaque but not solid)
+(idea: Bush + glass block = normal block?
+can you push a spirit w/ a crate to get it unstuck from a bush? Or maybe kick bush spirit gets stuck in?
+
+Spirit continues unitil it hits something, even after entering and leaving bush?
+Perhaps more thematic if it hides in a bush.
+Maybe spirits in leaves flee the sight of crates? Doesn't make a huge amount of sense.
+
+Like hitting it one block out the best probably.
+)
+
+Bush
+green
+.....
+.0...
+000.0
+00000
 00000
 
 Water 
@@ -100,13 +121,14 @@ P = Player
 O = Target
 S = Spirit
 ~ = Water
+B = Bush
 
 G = GlassCrate
 T = GlassWall
 
 Blocking = BlockingU or BlockingD or BlockingR or BlockingL
 Crate = StoneCrate or GlassCrate
-Opaque = StoneCrate or Wall
+Opaque = StoneCrate or Wall or Bush
 
 
 =======
@@ -121,6 +143,10 @@ Spirit move 39212302
 
 Player move 74291507
 
+sfx0 7389303 (kick spirit out of bush)
+
+sfx1 49801907 (26041300) (64859107)  () (something enters bush)
+
 ================
 COLLISIONLAYERS
 ================
@@ -129,6 +155,7 @@ Background
 Water
 Target
 Player, Wall, Crate, Spirit, GlassWall, GlassCrate
+Bush
 
 Blocking
 
@@ -137,11 +164,16 @@ Blocking
 RULES
 ======
 
-[ > Player | Water ] -> [ Player | Water ]
-[ >  Player | Crate ] -> [  >  Player | > Crate ]
-late [Crate Water] -> [Water]
+[ > Player | Water ] -> [ Player | Water ] (don't let player enter water)
+[ >  Player | Crate ] -> [  >  Player | > Crate ] (push crate)
+[ > Player | Spirit Bush ] -> [ Player | > Spirit Bush ] sfx0 (kick spirit out of bush)
+[ > Player Bush | Spirit ] -> [ > Player Bush | > Spirit] (kick spirit from bush - maybe this rule shouldn't be a thing)
 
- 
+
+late [Player Bush] -> [Player Bush] sfx1 (player bush sound)
+
+late [Crate Water] -> [Water] (destroy crate in water)
+
 
 (check lines of sight from spirit)
 [Blocking] -> []
@@ -151,7 +183,7 @@ right [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingR]
 left [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingL]
 
 (make spirit move away)
-[ Player | ... | Spirit | no wall no crate Background] -> [ Player | ... | > Spirit | no wall no crate Background]
+[ Player no Bush | ... | Spirit no Bush | no wall no crate Background] -> [ Player | ... | > Spirit | no wall no crate Background]
 (cancel spirit movement if line of sight blocked) 
 up [up Spirit][ Player | ... | BlockingD ] ->  [ stationary Spirit][ Player | ... | BlockingD ]
 down [down Spirit][ Player | ... | BlockingU ] ->  [ stationary Spirit][ Player | ... | BlockingU ] 
@@ -280,6 +312,37 @@ LEVELS
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~
+~~~~~~###~~~~
+~~~~~#.o.~~~~
+~~~.......~~~
+~~~.#...s.~~~
+~~........#~~
+~~.#.......~~
+~~......#..~~
+~~#.p......~~
+~~~......#.~~
+~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+
+
+
+
+
+
+(
 ~~~~~~~~~~~~~~~~~~
 ~~~~~...~~~~~~~~~~
 ~~~~~....~~~..~~~~
@@ -369,26 +432,47 @@ LEVELS
 ~~~~~~~~....~~~~~
 ~~~~~~~~~~~~~~~~~
 
-
-
-
-
-
-
+)
 
 
 
 ~~~~~~~~~~~~~
-~~..........~
-~...........~
-~...........~
-~...t.....#.~
-~...t..s.o#.~
-~...t.....#.~
-~....#..p...~
-~...........~
+~~~.....~~~~~
+~~........~~~
+~..........~~
+~..g.s..o#.~~
+~..........~~
+~...#......~~
 ~~.........~~
+~~~....p..~~~
 ~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~
+~~~~~~~~~..~~~
+~~~~........~~
+~~......g...~~
+~~..........~~
+~~~...s...o.~~
+~~~.........~~
+~~~~....*...~~
+~~~~~.......~~
+~~~~~..p...~~~
+~~~~~~~~~~~~~~
+
+
+
+
+~~~~~~~~~~~~~~~
+~~..........~~~
+~.......##...~~
+~##.....##...~~
+~##.to....t..~~
+~...t..s..t..~~
+~...t.....t..~~
+~...##.......~~
+~...##...p..~~~
+~~.........~~~~
+~~~~~~~~~~~~~~~
 
 
 ~~~~~~~~~~~~~~
@@ -401,4 +485,18 @@ LEVELS
 ~...#........~
 ~~...........~
 ~~~.........~~
+~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~
+~~~~~~~~~..~~~
+~~~~........~~
+~~~....b....~~
+~~~.....pb..~~
+~~~..b...s..~~
+~~~~..b.....~~
+~~~~....*...~~
+~~~~~.....b.~~
+~~~~~......~~~
 ~~~~~~~~~~~~~~
