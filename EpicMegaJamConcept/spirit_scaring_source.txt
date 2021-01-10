@@ -84,6 +84,10 @@ Perhaps more thematic if it hides in a bush.
 Maybe spirits in leaves flee the sight of crates? Doesn't make a huge amount of sense.
 
 Like hitting it one block out the best probably.
+
+Maybe bushes should be dstroyed when used by spirit? - or you? - both>
+
+Spirit leaves whenever you are one block away?
 )
 
 Bush
@@ -93,6 +97,17 @@ green
 000.0
 00000
 00000
+
+DestroyedBush
+green
+.....
+.....
+.....
+.....
+0.00.
+
+TempVacatedBush
+black
 
 Water 
 #27A599
@@ -155,9 +170,10 @@ Background
 Water
 Target
 Player, Wall, Crate, Spirit, GlassWall, GlassCrate
-Bush
+Bush, DestroyedBush
 
 Blocking
+TempVacatedBush
 
 
 ======
@@ -166,8 +182,14 @@ RULES
 
 [ > Player | Water ] -> [ Player | Water ] (don't let player enter water)
 [ >  Player | Crate ] -> [  >  Player | > Crate ] (push crate)
-[ > Player | Spirit Bush ] -> [ Player | > Spirit Bush ] sfx0 (kick spirit out of bush)
-[ > Player Bush | Spirit ] -> [ > Player Bush | > Spirit] (kick spirit from bush - maybe this rule shouldn't be a thing)
+
+([ > Player | Spirit Bush ] -> [ Player | > Spirit Bush ] sfx0 (kick spirit out of bush))
+late [ Player | Spirit Bush ] -> [ Player | Spirit DestroyedBush] sfx0 (kick spirit out of bush)
+
+[ > Player Bush | Spirit ] -> [ > Player Bush | > Spirit] (kick spirit from bush)
+
+[ > Player Bush ] -> [ > Player Bush TempVacatedBush] (kill bush that you walked through)
+late [TempVacatedBush Bush no Player] -> [ DestroyedBush ]
 
 
 late [Player Bush] -> [Player Bush] sfx1 (player bush sound)
@@ -500,3 +522,29 @@ LEVELS
 ~~~~~.....b.~~
 ~~~~~......~~~
 ~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~
+~~#~#~~~~~..~~~
+~~###~~~~....~~
+~~~##ob.~b...~~
+~#~~...~~..p.~~
+~~~~~..~.....~~
+~~~~~.b..s.#.~~
+~~~##........~~
+~~~##~...b...~~
+~~#~#~~#~##.~~~
+~~~~~~#~~~~~~~~
+~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~
+~~#~##~~~~..~~~~
+~~#....~~b.o#~~~
+~~~.#~b.~b...~~~
+~#~...~~~..p..~~
+~~~~...~......~~
+~~~~~.b..s.b.~~~
+~~~##........~~~
+~~~##~...b...~~~
+~~#~#~~#~##.~~~~
+~~~~~~#~~~~~~~~~
+~~~~~~~~~~~~~~~~
