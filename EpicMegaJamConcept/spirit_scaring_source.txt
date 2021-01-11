@@ -184,15 +184,16 @@ RULES
 [ >  Player | Crate ] -> [  >  Player | > Crate ] (push crate)
 
 ([ > Player | Spirit Bush ] -> [ Player | > Spirit Bush ] sfx0 (kick spirit out of bush))
-late [ Player | Spirit Bush ] -> [ Player | Spirit DestroyedBush] sfx0 (kick spirit out of bush)
+late [ Player no Bush | Spirit Bush ] -> [ Player | Spirit DestroyedBush] sfx0 sfx1 (kick spirit out of bush)
 
 [ > Player Bush | Spirit ] -> [ > Player Bush | > Spirit] (kick spirit from bush)
 
+[TempVacatedBush] -> []
 [ > Player Bush ] -> [ > Player Bush TempVacatedBush] (kill bush that you walked through)
-late [TempVacatedBush Bush no Player] -> [ DestroyedBush ]
+late [TempVacatedBush Bush no Player] -> [ DestroyedBush ] sfx1
 
 
-late [Player Bush] -> [Player Bush] sfx1 (player bush sound)
+(late [Player Bush] -> [Player Bush]  (player bush sound))
 
 late [Crate Water] -> [Water] (destroy crate in water)
 
@@ -536,6 +537,19 @@ LEVELS
 ~~~~~~#~~~~~~~~
 ~~~~~~~~~~~~~~~
 
+~~~~~~~~~~~~~~~
+~~#~#~~~...~~~~
+~~###~.......~~
+~~~##ob~~.b..~~
+~#~~...~.....~~
+~~~~~..~...p.~~
+~~~~~~.~.s.#.~~
+~~~##~~~.....~~
+~~~##~~..b...~~
+~~#~#~~#~##.~~~
+~~~~~~#~~~~~~~~
+~~~~~~~~~~~~~~~
+
 ~~~~~~~~~~~~~~~~
 ~~#~##~~~~..~~~~
 ~~#....~~b.o#~~~
@@ -547,4 +561,98 @@ LEVELS
 ~~~##~...b...~~~
 ~~#~#~~#~##.~~~~
 ~~~~~~#~~~~~~~~~
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~ (you can break the top bush at different times. Any way to avoid that?)
+
+
+~~~~~~~~~~~~~~~
+~~~~#~~..~~~~~~
+~~#~##....~..~~
+~~#....~~b~o#~~
+~~~.#~b.~b...~~
+~#~...~~~..p..~
+~~~~...~......~
+~~~~~.b..s.b.~~
+~~~##........~~
+~~~##~...b...~~
+~~#~#~~#~##.~~~
+~~~~~~#~~~~~~~~
+~~~~~~~~~~~~~~~ (still a bit broken w/ current rules. Should moving into a bush next to a spirit in a bush spook it?)
+
+~~~~~~~~~~~~~~~
+~~~~##~~~~~~#~~
+~~#~....~b~o#~~
+~~#.......~..~~
+~~~.#~b~~b...#~
+~#~...~~~..p..~
+~~~~...~......~
+~~~~~.b..s.b.~~
+~~~##........~~
+~~~##~...b...~~
+~~#~#~~#~##.~~~
+~~~~~~#~~~~~~~~
+~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~
+~~~~#~~~~~~~~~~
+~~#~##~~~~~..~~
+~~#....~~b~o#~~
+~~~.#~b.~b...~~
+~#~...~~~..p..~
+~~~~...~......~
+~~~~~b...s.b.~~
+~~~##....b...~~
+~~~##~.......~~
+~~#~#~~#~##.~~~
+~~~~~~#~~~~~~~~
+~~~~~~~~~~~~~~~ (leaning into it not working)
+
+
+
+
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~
+~~~~~~.#....~~~
+~~#o.........~~
+~.....~b#~~...~
+~.....~~~~~~#.~
+~....~~~~...~.~
+~#.b~~.s.b~...~
+~~........~~~~~
+~~~....b.p~~~~~
+~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~
+~~~~~~.#....~~~
+~~#o.........~~
+~.....~b#~~...~
+~..~.~~~~~~~#.~
+~...~~~~~...~.~
+~#.b~..s.b~...~
+~~........~~~~~
+~~~....b.p~~~~~
+~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~
+~#~~~~~~##~~~~~
+~~~~~~.##...~~~
+~~#o.........~~
+~.....~b#~~...~
+~.....~~~~~~#.~
+~....~~~~...~.~
+~#.b~~.s.b~...~
+~~........~##~~
+~~~....b.p~##~~
+~~~~##~##~~~#~~
+~~#~~~~#~~~#~~~
+~~~~~~~~~~~~~~~ (maybe good?)
+
