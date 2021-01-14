@@ -188,10 +188,10 @@ late [ Player no Bush | Spirit Bush ] -> [ Player | Spirit DestroyedBush] sfx0 s
 
 [ > Player Bush | Spirit ] -> [ > Player Bush | > Spirit] (kick spirit from bush)
 
-[TempVacatedBush] -> []
+
 [ > Player Bush ] -> [ > Player Bush TempVacatedBush] (kill bush that you walked through)
 late [TempVacatedBush Bush no Player] -> [ DestroyedBush ] sfx1
-
+late [TempVacatedBush] -> []
 
 (late [Player Bush] -> [Player Bush]  (player bush sound))
 
@@ -320,7 +320,7 @@ LEVELS
 
 
 
-(level introducing bushes as limited use cover)
+(levels introducing bushes as limited use cover)
 
 ~~~~~~~~~~~~~~~~
 ~~~~#~~~~~~~~~~~
@@ -340,7 +340,7 @@ LEVELS
 ~~~~#~~#~~~~~~~
 ~~~...~#~~~~~~~
 ~~..#~~~~~~b~~~
-~~b.#~#~~.#.#~~
+~~b.#~#~~##.#~~
 ~~....#~..b..~~
 ~b............~
 ~..b....s.....~
@@ -351,25 +351,111 @@ LEVELS
 ~~~~~~~~~~~~~~~
 
 
-(level introducing bushes as catching spirit)
+(levels introducing bushes as catching spirit)
+
+
+~~~~~~~~~~~~~~~
+~~....~~~...~~~
+~..b.b~...b..~~
+~.......b..b.~~
+~~..s....o#..#~
+~~~#....p....#~
+~#~..b.b......~
+~~.........#.~~
+~~..b...b..#~#~
+~~~#~~....##~~~
+~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~
+~~.#....~~~~~~~~~~~
+~.....p.#~~#....~~~
+~..~~~...~~.....#~~
+~...~~~..~~..~#...~
+~.b.~~~.~~...~~.o#~
+~....~..~~...~~...~
+~.s.#~...~..~#~...~
+~~..~~......#~~#..~
+~~...~~#....~~...~~
+~~~~~~~~~~~~~~~~~~~ (make it unlikely/impossible player would break bush they need)
+
+~~~~~~~~~~~~~~~~~
+~~.#~...~~...~~~~
+~.....p.#~....~~~
+~..~~~...~~.#.~~~
+~...~~~..#~~...~~
+~.b.~~..~~~...o#~
+~....~..~~#....~~
+~.s.#~~..~....~~~
+~~..~~~.......~~~
+~~~~~.~..b...#~~~
+~~~~~..#..~..~~~~
+~~~~~~...~~~~~~~~
+~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~
+~~~...~~#~~~~
+~...#.~....~~
+~.b...~bo#.~~
+~...~#~....~~
+~........~~~~
+~#.#........~
+~#.....b.b..~
+~~b......b..~
+~~......s..~~
+~#~...p...~~~
+~~~~~~~~~~~~~
+
+~~~~~~~~~~
+~~~##~~~~~
+~~.#o...~~
+~~......~~
+~~~.b...~~
+~~~~~...~~
+~~......~~
+~~..b#.~~~
+~~.....~~~
+~~.p...~~~
+~~~~~~~~~~ (player won't accidentally break bush)
+
+~~~~~~~~~~~~~
+~~~~##~~~~~~~
+~...#o.....~~
+~..........~~
+~~~~.b...b.~~
+~~~~~~.....~~
+~..........~~
+~..p.b#....~~
+~~.......b.~~
+~~#..s.....~~
+~~........~~~
+~~~~~~~~~~~~~
 
 
 
 
-
-
-
+(intentionally break bushes)
 
 ~~~~~~~~~~~~
 ~~~.#.~~~~~~
 ~~......o#~~
 ~~.#b~.....~
-~..~~~.....~
-~...~~~....~
+~..~~~~....~
+~...~~~~...~
 ~~..s.~~b.#~
 ~~p.......~~
 ~~~.b...#~~~
 ~~~~~~~~~~~~ (bush you can't break and run until moving the spirit)(forces you to do a circuit)
+
+
+
+
+
+
+
+
+
 
 
 
