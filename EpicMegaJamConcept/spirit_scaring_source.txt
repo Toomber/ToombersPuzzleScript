@@ -77,17 +77,12 @@ lightblue
 
 (Bushes are opaque but not solid)
 (idea: Bush + glass block = normal block?
-can you push a spirit w/ a crate to get it unstuck from a bush? Or maybe kick bush spirit gets stuck in?
 
-Spirit continues unitil it hits something, even after entering and leaving bush?
-Perhaps more thematic if it hides in a bush.
-Maybe spirits in leaves flee the sight of crates? Doesn't make a huge amount of sense.
-
-Like hitting it one block out the best probably.
-
-Maybe bushes should be dstroyed when used by spirit? - or you? - both>
-
+Spirit hides in bushes
+Bushes are destroyed when used by you or the spirit
 Spirit leaves whenever you are one block away?
+
+Maybe the spirit revives dead bushes it passes over? - would have to be when it stops moving.
 )
 
 Bush
@@ -312,16 +307,17 @@ LEVELS
 ~#~~~~..~~~~#~
 ~#~~~~~~~~#~~~
 
-.....~~~~~~~~~
-#########~~~~~
-#.......#.~~~~
-#.*~~...#...~~
-#..~~~....#.~~
-#..~~~..s...~~
-#..~~~.....#.~
-#.*~~~po#..#.~
-#.......#...~~
-#########.~~~~
+.....~~~~~~~~
+#########~~~~
+#.......#.~~~
+#.*~~...#...~
+#..~~~....#.~
+#..~~~..s...~
+#..~~~.....#~
+#.*~~~po#..#~
+#.......#..~~
+#########.~~~
+
 
 
 
@@ -347,23 +343,36 @@ LEVELS
 ~~~~~#~~~~~~~~~~
 ~~~~~~~~~~~~~~~~
 
-
 ~~~~~~~~~~~~~~~
 ~~~~#~~#~~~~~~~
 ~~~...~#~~~~~~~
 ~~..#~~~~~~b~~~
 ~~b.#~#~~##.#~~
 ~~....#~..b..~~
-~b............~
+~b.#..........~
 ~..b....s.....~
 ~..........#..~
 ~..p.bo###...~~
 ~~b..####b.~~~~
 ~~~...~~~~~~~~~
-~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~ (not sure about block in column of player: forces you to go around rather than through bush)
 
 
 (levels introducing bushes as catching spirit)
+
+
+~~~~~~~~~~~~~~
+~~~~~...~~~~~~
+~~....b.#~##~~
+~~.b.........~
+~............~
+~#b...s...#..~
+~#.bo#.......~
+~#..b~~b...b~~
+~~.p.#~~~...~~
+~~~~##~~#~~~~~
+~~~~~~~~~~~~~~ (makes it look like bushes will stop spirit like walls) (maybe add an animation for entering bush for the first time?)
+
 
 
 ~~~~~~~~~~~~~~~
@@ -377,7 +386,7 @@ LEVELS
 ~~~#..b...b.#~~
 ~~~##.......~~~
 ~~~~~~~#...~~~~
-~~~~~~~~~~~~~~~ (ok)
+~~~~~~~~~~~~~~~ (needs work)
 
 
 (
@@ -509,11 +518,32 @@ LEVELS
 (double bushes)
 
 
+(crates and bushes)
+
+~~~~~~~~~~~~
+~~~~~~~#.~~~
+~~~~...o..~~
+~~~..b....~~
+~~........~~
+~~........~~
+~~b..s....~~
+~~........~~
+~~~p......~~
+~~~..b.*.~~~
+~~~~~....~~~
+~~~~~~~~~~~~
 
 
 
 
 
+
+
+
+
+
+
+(misc)
 
 ~~~~~~~~~~~~~
 ~~~~~~###~~~~
