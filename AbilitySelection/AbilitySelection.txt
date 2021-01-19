@@ -143,15 +143,25 @@ RULES
 
 (ideas: 
 things which happen on their own whenever you move or press x -> cost to changing ability
+
 Find a way to make "menu" persist when you change screens -> transport things through rooms using it
+
+Use symbols from menu in puzzle - "key" is last unlock, and you must switch places with things to get it?
+
+telekinetically move crate in menu to rearrange it and make something possible? (ie if the order is different) - another level of breaking outside the box before freeing the cursor.
 
 abilities:
 	blank space = 
     crate 		=
-    player 		=
+    player 		= Switch spaces with an object ala Heroes of Sokoban magician?
     Fire?		=
     			= something to do with breaking or moving walls (in order to get the cursor out of there)
 
+Icons
+Blank Space, crate, player. fire?, Key? 
+
+Abilities
+Push, Pull?, Destroy?, Shoot?
 )
 
 
@@ -167,7 +177,7 @@ abilities:
   right [CursorR | BouncesCursor ][ action Player ] -> [CursorL | BouncesCursor ][ action Player ]
   left [CursorL | BouncesCursor ][ action Player ] -> [CursorR | BouncesCursor ][ action Player ]  
 
-  (redirect if player visible)
+  (redirect if player visible) (maybe this should redirect even if not pressing an action? Maybe more puzzle opportunity this way.)
 	
     (Mark objects as in view of cursor)
     up [ cursor | ... | Opaque ] -> [ cursor | ... | Opaque BlockingU]
