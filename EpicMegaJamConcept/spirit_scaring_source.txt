@@ -82,7 +82,11 @@ Spirit hides in bushes
 Bushes are destroyed when used by you or the spirit
 Spirit leaves whenever you are one block away?
 
-Maybe the spirit revives dead bushes it passes over? - would have to be when it stops moving.
+Maybe the spirit revives dead bushes it passes over? - would have to be when it stops moving. Maybe a different kind of bush?
+
+Can you push the spirit with a crate? Nah
+
+Maybe the main character is a fan? Has a Leaf blower?
 )
 
 Bush
@@ -310,13 +314,15 @@ LEVELS
 .....~~~~~~~~
 #########~~~~
 #.......#.~~~
-#.*~~...#...~
+#.*~~~.o#...~
 #..~~~....#.~
 #..~~~..s...~
 #..~~~.....#~
-#.*~~~po#..#~
+#.*~~~.p#..#~
 #.......#..~~
-#########.~~~
+#########.~~~ (hard)
+
+
 
 
 
@@ -475,6 +481,13 @@ LEVELS
 
 
 
+~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
+~.b..b..b..b.~~
+~....s.......~~
+~.......p....~~
+~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~ (bushes in a line)
 
 
 
@@ -495,7 +508,7 @@ LEVELS
 ~~#.#~~#~~#.~~~
 ~~~~~~#~~~~~~~~
 ~~~~~~~~~~~~~~~ (breaking bushes)(focus on double bushes) (two bushes are red herrings. Is this bad?)
-
+(
 ~~~~~~~~~~~~~~~~
 ~~~~#~~~~~~~#~~~
 ~~#~##~~~~~...~~
@@ -510,7 +523,7 @@ LEVELS
 ~~~~~~#~~..o~~~~
 ~~~~~~~~~~~#~~~~
 ~~~~~~~~~~~~~~~~
-
+)
 
 
 
@@ -656,6 +669,3 @@ LEVELS
 ~~~~~.....b.~~
 ~~~~~......~~~
 ~~~~~~~~~~~~~~
-
-
-
