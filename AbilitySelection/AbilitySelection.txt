@@ -1,0 +1,220 @@
+title Ability Selection Game
+author Toombler
+homepage www.puzzlescript.net
+
+========
+OBJECTS
+========
+
+Background
+darkred
+
+
+Target
+DarkBlue
+.....
+.000.
+.0.0.
+.000.
+.....
+
+Wall
+darkgray DARKBROWN
+00010
+11111
+01000
+11111
+00010
+
+Player
+Black Orange White Blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+Crate
+Orange Yellow
+00000
+0...0
+0...0
+0...0
+00000
+
+CursorU
+Red pink
+00100
+0...0
+.....
+0...0
+00.00
+
+CursorD
+Red pink
+00.00
+0...0
+.....
+0...0
+00100
+
+CursorR
+Red pink
+00.00
+0...0
+....1
+0...0
+00.00
+
+CursorL
+Red pink
+00.00
+0...0
+1....
+0...0
+00.00
+
+UnlockableAbility
+black white
+01110
+00010
+00110
+00000
+00100
+
+BlockingU
+transparent
+
+BlockingD
+transparent
+
+BlockingR
+transparent
+
+BlockingL
+transparent
+
+Blocked 
+black
+
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+P = Player
+* = Crate
+@ = Crate and Target
+O = Target
+C = CursorR
+Cursor = CursorU or CursorD or CursorR or CursorL
+U = UnlockableAbility
+
+Opaque = Wall or Crate
+BouncesCursor = Wall or UnlockableAbility
+Blocking = BlockingU or BlockingD or BlockingR or BlockingL
+
+
+=======
+SOUNDS
+=======
+
+Crate MOVE 36772507
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Target
+Player, Wall, Crate, UnlockableAbility
+
+Cursor
+
+
+Blocking
+Blocked
+
+======
+RULES
+======
+
+(ideas: 
+things which happen on their own whenever you move or press x -> cost to changing ability
+Find a way to make "menu" persist when you change screens -> transport things through rooms using it
+
+abilities:
+	blank space = 
+    crate 		=
+    player 		=
+    Fire?		=
+    			= something to do with breaking or moving walls (in order to get the cursor out of there)
+
+)
+
+
+
+[ >  Player | Crate ] -> [  >  Player | > Crate  ]
+
+
+(cursor follows you if you are in sight, and if not, it continues on its current trajectory, bouncing off of walls. It moves when you use an action)
+
+  (bounce cursor)
+  up [CursorU | BouncesCursor ][ action Player ] -> [CursorD | BouncesCursor ][ action Player ]
+  down [CursorD | BouncesCursor ][ action Player ] -> [CursorU | BouncesCursor ][ action Player ] 
+  right [CursorR | BouncesCursor ][ action Player ] -> [CursorL | BouncesCursor ][ action Player ]
+  left [CursorL | BouncesCursor ][ action Player ] -> [CursorR | BouncesCursor ][ action Player ]  
+
+  (redirect if player visible)
+	
+    (Mark objects as in view of cursor)
+    up [ cursor | ... | Opaque ] -> [ cursor | ... | Opaque BlockingU]
+    down [ cursor | ... | Opaque ] -> [ cursor | ... | Opaque BlockingD]
+    right [ cursor | ... | Opaque ] -> [ cursor | ... | Opaque BlockingR]
+    left [ cursor | ... | Opaque ] -> [ cursor | ... | Opaque BlockingL]
+
+    (check if line of sight from cursor to player is blocked) 
+    up [cursor][ action Player | ... | BlockingD ] ->  [cursor][ action Player Blocked | ... | BlockingD ]
+    down [cursor][ action Player | ... | BlockingU ] ->  [cursor][ action  Player Blocked| ... | BlockingU ] 
+    right [cursor][ action Player | ... | BlockingL ] ->  [cursor][ action  Player Blocked| ... | BlockingL ] 
+    left [cursor][ action Player | ... | BlockingR ] ->  [cursor][ action  Player Blocked| ... | BlockingR ] 
+    
+    (redirect cursor towards player if view not blocked)
+    up [cursor | ... |  action Player no Blocked] ->  [cursorU | ... |  action Player no Blocked]
+    down [cursor | ... |  action Player no Blocked] ->  [cursorD | ... |  action Player no Blocked]
+    right [cursor | ... |  action Player no Blocked] ->  [cursorR | ... |  action Player no Blocked]
+    left [cursor | ... |  action Player no Blocked] ->  [cursorL | ... |  action Player no Blocked]
+    
+    [Blocking] -> []
+    [Blocked] -> []
+
+  (move cursor with action)
+  up[ CursorU | ][ action Player ] -> [ | CursorU ][ Player ]
+  down[ CursorD | ][ action Player ] -> [ | CursorD ][ Player ]
+  right[ CursorR | ][ action Player ] -> [ | CursorR ][ Player ]
+  left[ CursorL | ][ action Player ] -> [ | CursorL ][ Player ]
+  
+
+==============
+WINCONDITIONS
+==============
+
+All Target on Crate
+
+=======
+LEVELS
+=======
+
+
+
+###c*uuu
+########
+........
+........
+.......o
+..p.....
+........
+
+
