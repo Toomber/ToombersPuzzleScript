@@ -87,6 +87,9 @@ Maybe the spirit revives dead bushes it passes over? - would have to be when it 
 Can you push the spirit with a crate? Nah
 
 Maybe the main character is a fan? Has a Leaf blower?
+
+
+idea: make it so that the spirit leaving the screen at a sand block opens a secret?
 )
 
 Bush
@@ -334,17 +337,28 @@ LEVELS
 #.......#..~~
 #########.~~~
 
-.....~~~~~~~~
-#########~~~~
+.b..b~~~~~~~~
+##.######~~~~
 #.......#.~~~
-#.*~#~.o#...~
+#.*~~~.o....~
 #..~~~....#.~
 #..~~~..s...~
 #..~~~.....#~
 #.*~~~.p#...~
-#.......#..~~
+#.......#b.~~
 #########.~~~
 
+
+
+~~~~~~~~~
+~~~~..~~~
+~~~~.*#~~
+~~~..~~~~
+~~*s..*~~
+~#o....~~
+~~p~.#.~~
+~~~~~~~~~
+~~~~~~~~~(level introducing destroying crates)
 
 ~~~~~~~
 ~.....~
@@ -358,6 +372,17 @@ LEVELS
 ~~.o.~~
 ~~###~~
 ~~~~~~~ (destroy crates that are in the way)
+
+.....~~~~~~~~
+#########~~~~
+#.......#.~~~
+#.*~~~.o#...~
+#.*~~~......~
+#.*~~~..s...~
+#.*~~~......~
+#.*~~~.p#...~
+#.......#..~~
+#########.~~~ (add some extra crates to this level?)
 
 
 
@@ -541,6 +566,15 @@ LEVELS
 ~~~..b.*.~~~
 ~~~~~....~~~
 ~~~~~~~~~~~~
+
+~###~
+~.o.~
+~p..~
+~.*.~
+~...~
+~.h.~
+~...~
+~~~~~ (should this not destroy bush?)
 
 
 
