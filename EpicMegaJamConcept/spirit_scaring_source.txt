@@ -392,29 +392,6 @@ LEVELS
 ~####~~#...~
 ~~~~~~~~~~~~)
 
-#~~~~~~#~~~~#
-#~~~~~~#~...#
-#..*.*.**...#
-#o.*.***..s.#
-#.p.**..*...#
-#~~~~~~#~...#
-#~~~~~~#~~~~# (destroy crates that are in the way) (must have at least one crate on each side)(must have one in middle before back crate in place)
-
-#~~~~~~~~~~~#
-#~~~~~~~~...#
-#..*.*.*....#
-#o.*.****.s.#
-#.p.**......#
-#~~~~~~~~...#
-#~~~~~~~~~~~#
-
-#~~~~~~~~~~~#
-#~~~~~~~~...#
-#...*..*....#
-#op.*****.s.#
-#....*..*...#
-#~~~~~~~~...#
-#~~~~~~~~~~~#
 
 ####~~~######
 ##~~~~~~~...#
@@ -422,7 +399,8 @@ LEVELS
 #.o.*.***.s.#
 #..p.**.....#
 ##~~~~~~~...#
-####~~~######
+####~~~###### (destroy crates that are in the way) (must have at least one crate on each side)(must have one in middle before back crate in place) (would be nice to have this be more deductive but difficult to design)
+
 
 
 
