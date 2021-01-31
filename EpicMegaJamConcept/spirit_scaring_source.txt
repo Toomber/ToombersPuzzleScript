@@ -233,8 +233,11 @@ WINCONDITIONS
 =======
 LEVELS
 =======
+(
+message Every year, biologists ___ the rare ____ . But they have to catch them first.
 
-
+messages can be about the strange behaviours/properties of the species.
+)
 
 ~~~~~~~~~~
 ~~~#...#.~
@@ -366,20 +369,7 @@ LEVELS
 ~~~~~#~.o.#~~
 ~~~~~~~~#~~~~
 ~~~~~~~~~~~~~  (level introducing destroying crates)
-
-
-
 (
-~~~~~~~~~
-~~...*.#~
-~~*..*.#~
-~#*~.#~~~
-~..*so.*~
-~p#.....~
-~.*.~**.~
-~~##~~##~
-~~~~~~~~~
-
 ~~~~~~~~~~~~
 ~~~~~~...~~~
 ~~~......~.~
@@ -395,13 +385,11 @@ LEVELS
 
 ####~~~######
 ##~~~~~~~...#
-#...*.*.*...#
-#.o.*.***.s.#
-#..p.**.....#
+#...**.*....#
+#po*.**...s.#
+#..*..*.*...#
 ##~~~~~~~...#
-####~~~###### (destroy crates that are in the way) (must have at least one crate on each side)(must have one in middle before back crate in place) (would be nice to have this be more deductive but difficult to design)
-
-
+####~~~######  (destroy crates that are in the way) (must have at least one crate on each side)(must have one in middle before back crate in place) (would be nice to have this be more deductive but difficult to design)
 
 
 
@@ -521,6 +509,66 @@ LEVELS
 ~.b.b.b.~
 ~~...p.~~
 ~~~~~~~~~
+
+...............
+.~.b.~.b.~.b.~.
+b.b~b.b~b.b~b.b
+~.~~~.~~~.~~~.~
+~b.b.b~w~b.b.b~
+~~~.~~~~~~~.~~~
+~~~p...b....~~~
+~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~
+~...........~
+~.b.~~h...b.~
+~...........~
+~.p.~~~~~...~
+~...........~
+~.b...b~~.b.~
+~...........~
+~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~
+~...........~
+~...b....b..~
+~.b....b....~
+~....b....b.~
+~..b....b...~
+~.....b.....~
+~.p.b....b..~
+~...........~
+~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~
+~~~~~~~~...~~
+~~~~~......~~
+~~~~~.b..b.~~
+~...~~~.~~~~~
+~.....~.....~
+~.b.b.w~~b..~
+~~~.....~...~
+~.b...b.~~~.~
+~...o.......~
+~...#~~~.p..~
+~~~~~~~~...~~
+~~~~~~~~~~~~~  (features wanted: can't walk adjacent to bush w/ spirit. Use Bush as Cover.)
+
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~......~~
+~~....~....~~...~
+~...b.~~.b..~b..~
+~~~....~~~~.~~~~~
+~~........~.~..~~
+~~~.b..b.w~..b..~
+~~~~~~....~~...~~
+~~~..~.........~~
+~...b..o.b.p.b~~~
+~~.....#....~~~~~
+~~~~~~~~~~~~~~~~~
+
+
+
 
 
 (level where you must leave at least one bush per col as cover?)
@@ -669,21 +717,16 @@ LEVELS
 ~~~~~~~~~~~
 ~~~~~~~~~~~ (level where you recover box)
 
-~~~~~~~~~~~
-~~~~~~~...~
-~~~~~~~...~
-~~~~~~.s..~
-~~~....o..~
-~~~.*..#..~
-~~~...p...~
-~~~.......~
-~~~~~~~~~~~
-~~~~~~~~~~~ (unrecoverable boxes + freeing boxes? - finding shortest # of hops?)
 
-
-
-
-
+~~~~~~~~~
+~~...*.#~
+~~*..*.#~
+~#*~.#~~~
+~..*so.*~
+~p#.....~
+~.*.~**.~
+~~##~~##~
+~~~~~~~~~
 
 
 
@@ -714,13 +757,6 @@ LEVELS
 ~~..b..#...~~~~
 ~~~...~~~~~~~~~
 ~~~~~~~~~~~~~~~
-
-
-
-
-
-
-
 
 
 ~~~~~~~~~~~~~~~~~
@@ -787,17 +823,4 @@ LEVELS
 ~...#........~
 ~~...........~
 ~~~.........~~
-~~~~~~~~~~~~~~
-
-
-~~~~~~~~~~~~~~
-~~~~~~~~~..~~~
-~~~~........~~
-~~~....b....~~
-~~~.....pb..~~
-~~~..b...s..~~
-~~~~..b.....~~
-~~~~....*...~~
-~~~~~.....b.~~
-~~~~~......~~~
 ~~~~~~~~~~~~~~
