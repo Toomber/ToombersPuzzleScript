@@ -156,6 +156,7 @@ abilities:
     player 		= Switch spaces with an object ala Heroes of Sokoban magician?
     Fire?		=
     			= something to do with breaking or moving walls (in order to get the cursor out of there)
+    Key 		= transforms adjacent block into a key?
 
 Icons
 Blank Space, crate, player. fire?, Key? 
