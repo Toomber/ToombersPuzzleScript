@@ -1,0 +1,835 @@
+title TBD
+author Thinky Collective
+homepage www.puzzlescript.net
+
+run_rules_on_level_start
+again_interval 0.1
+realtime_interval .1 (so that vanity animations don't block input)
+
+
+( DEV LOG )
+
+(#0 jackk: created the game seed! added falling and climbing. goal is to reach the exit. all graphics are squares.)
+
+(#1 Plurmorant: Added a level)
+
+(#2 Noa: Added a level. made it possible to climb into orange from below if it's not stuck in that direction. needed to add directions for both stuck_ and climbable_, perhaps there's a better way.
+got confused with multiple players moving, so there's some placeholder variants.)
+
+(#3 Marcos D: added elevator logic and a level using it)
+
+(#4 knexator: added a simple level using elevators)
+
+(#5 Dan Williams: added sound effects, exit graphics, and a level)
+
+(#6 Evan Malmud (crychair): Added two levels with existing mechanics. Made slight change to layer ordering to have elevators draw properly for player 2 and 3)
+
+(#7 Patrick: Disabled the stuck block indicator since it was confusing me. Fixed blocks getting marked with "fall" when on top of an elevator. Fixed one of crychair's levels which relied on the bug, with his approval, and removed his second level at his request. Added a level. Reordered crychair's level and the level Noa and I both said was hard.)
+
+(#8 ThatScar: fixed a player tint bug, reordered, added simple level)
+
+(#9 devness: polished elevator art, added wire and gear objects. Added a level.) 
+
+(#10 TheZachMan: added 2 levels)
+
+(#11 Justas: made some smoke and squishy animations, sfx tweaks)
+
+(#12 stevenjmiller: Added a level and added a couple of bugs to the list)
+
+(#13 Toomber: Gave horizontal movements priority over downwards movement, to fix inconsistent behaviour with objects moving into a space another object is due to fall into. Made it so that an elevator running into something doesn't cancel the turn, but instead is stopped while other players can still move. Added 2 levels.)
+
+
+( BUGS )
+
+(known bugs and/or features - remove from this list when you either fix the issue or deliberately use it in a level)
+
+(- I don't know much about puzzlescript, but the code seems like it could be greatly simplified) (Hm, I dunno if it could be.)
+
+(When moving vertically between two elevators, the gear animates wrong)
+
+(The player is not able to move when on top of a gear, even when the gear is inside of a wall)
+(The player is not able to move if an orange block is on top of the exit)
+
+(block sounds play sometimes when they shouldn't)
+
+(cases that maybe should be looked at)
+(######
+#....#
+#...e#
+#po1.#
+######)
+
+========
+OBJECTS
+========
+
+background
+lightgray
+
+(exit
+green)
+
+exit
+green yellow darkgreen
+.101.
+00000
+10201
+00000
+.101.
+
+
+(exit3
+green yellow)
+
+wall
+darkgray
+
+(variants to make players next to each other distinct, might help to separate more complicated maneuvers without smooth animations)
+(all players are placeholder graphics, feel free to change and remove this text!)
+
+(feel free to throw out the animation or change it in anyway if you'd like)
+player1_normal
+blue #29d 
+00000
+00000
+00100
+00000
+00000
+
+player1_anim_squish_1
+blue #29d 
+.....
+00000
+00100
+00100
+00000
+
+player1_anim_squish_2
+blue #29d 
+.....
+00000
+00000
+00100
+00000
+
+player1_anim_squish_3
+blue #29d 
+00000
+00000
+00100
+00100
+00000
+
+player2_normal
+blue #29d 
+00000
+00000
+01010
+00000
+00000
+
+player2_anim_squish_1
+blue #29d 
+.....
+00000
+01010
+01010
+00000
+
+player2_anim_squish_2
+blue #29d 
+.....
+00000
+00000
+01010
+00000
+
+player2_anim_squish_3
+blue #29d 
+00000
+00000
+01010
+00000
+00000
+
+player3_normal
+blue #29d 
+00000
+00010
+00100
+01000
+00000
+
+player3_anim_squish_1
+blue #29d 
+.....
+00010
+00110
+01100
+01000
+
+player3_anim_squish_2
+blue #29d 
+.....
+00000
+00010
+00100
+01000
+
+player3_anim_squish_3
+blue #29d 
+00000
+00010
+00110
+01100
+01000
+
+orange
+orange 
+00000
+00000
+00000
+00000
+00000
+
+
+(feel free to modify the elevator graphics)
+elevator
+black white grey
+22222
+2...2
+2...2
+2...2
+22222
+
+gear_bg_start
+lightgray brown lightbrown
+..1..
+.111.
+11211
+.111.
+..1..
+
+gear_bg_turn
+lightgray brown lightbrown
+10001
+.111.
+.121.
+.111.
+1.2.1
+
+gear_wall_start
+darkgray brown lightbrown
+00100
+01110
+11211
+01110
+00100
+
+gear_wall_turn
+darkgray brown lightbrown
+10001
+01110
+01210
+01110
+10201
+
+wire
+lightbrown
+..0..
+..0..
+..0..
+..0..
+..0..
+
+move_right
+transparent
+
+move_left
+transparent
+
+fall
+transparent
+
+(variable stores if an object is moving horizontally into this space, and if so prevents objects moving down into it)
+moving_here_horizontally
+black
+
+elevator_trying_to_move_down
+black
+
+elevator_trying_to_move_up
+black
+
+revert_elevator_move_up
+black
+
+revert_elevator_move_down
+black
+
+(feel free to throw out the animation or change it in anyway if you'd like)
+anim_smoke_RIGHT_0
+#919191
+.....
+.....
+.....
+.....
+.....
+
+anim_smoke_RIGHT_1
+#919191 #797979
+.....
+.....
+.....
+0....
+110..
+
+anim_smoke_RIGHT_2
+#919191 #797979
+.....
+...0.
+.00..
+0100.
+10100
+
+anim_smoke_RIGHT_3
+#919191 #797979
+...0.
+..1.0
+...1.
+....0
+.....
+
+anim_smoke_RIGHT_4
+#919191 #797979
+....0
+.....
+.....
+.....
+.....
+
+
+anim_smoke_LEFT_0
+#919191 #797979
+.....
+.....
+.....
+.....
+.....
+
+anim_smoke_LEFT_1
+#919191 #797979
+.....
+.....
+.....
+....0
+..011
+
+anim_smoke_LEFT_2
+#919191 #797979
+.....
+.0...
+.000.
+..010
+00101
+
+anim_smoke_LEFT_3
+#919191 #797979
+.0...
+0.1..
+.1...
+..0..
+.....
+anim_smoke_LEFT_4
+#919191 #797979
+0....
+.....
+.....
+.....
+.....
+
+marker_spawn_smoke_anim
+transparent
+
+start_squish_anim
+transparent
+
+play_ground_hit_sfx
+transparent
+
+(doesn't necessarily have to be visible)
+(Disabled the stuck indicator because it was confusing to me when playing. -Patrick)
+(why it's confusing: it is visual but applied before movement instead of "late", this actually makes them desync the visuals from actual state; I don't think it helps so I support the idea of having it hidden - ThatScar)
+(example:
+@o.
+e##
+)
+stuck_right
+transparent #c63 (swap the order of these to enable/disable the indicator)
+
+stuck_left
+transparent #c63
+
+climbable_right
+transparent
+
+climbable_left
+transparent
+
+=======
+LEGEND
+=======
+player1 = player1_normal or player1_anim_squish_1 or player1_anim_squish_2 or player1_anim_squish_3
+player2 = player2_normal or player2_anim_squish_1 or player2_anim_squish_2 or player2_anim_squish_3
+player3 = player3_normal or player3_anim_squish_1 or player3_anim_squish_2 or player3_anim_squish_3
+
+. = background
+# = wall
+p = player1_normal
+1 = player1_normal and player2_normal
+2 = player1_normal and player3_normal
+e = exit
+o = orange
+u = elevator
+0 = gear_bg_start
+9 = gear_wall_start
+l = wire
+j = wire and orange
+@ = player1_normal and elevator
+$ = player1_normal and player2_normal and elevator
+% = player1_normal and player3_normal and elevator
+
+player = player1
+
+move_marker = move_right or move_left
+stuck = stuck_right or stuck_left
+climbable = climbable_right or climbable_left
+elevator_trying_to_move = elevator_trying_to_move_down or elevator_trying_to_move_up
+revert_elevator_move = revert_elevator_move_down or revert_elevator_move_up
+
+player_tint = player2 or player3
+
+faller = player or orange
+gear = gear_bg_start or gear_bg_turn
+gear_wall = gear_wall_start or gear_wall_turn
+elevator_stuck = exit or gear or gear_wall or wall or orange
+walls = wall or gear_wall or gear
+
+animator = anim_smoke_RIGHT_0 or anim_smoke_RIGHT_1 or anim_smoke_RIGHT_2 or anim_smoke_RIGHT_3 or anim_smoke_RIGHT_4 or anim_smoke_LEFT_0 or anim_smoke_LEFT_1 or anim_smoke_LEFT_2 or anim_smoke_LEFT_3 or anim_smoke_LEFT_4 
+
+solids = player1 or player2 or player3 or orange or walls or elevator
+
+=======
+SOUNDS
+=======
+
+sfx0 16201107
+sfx1 38994307
+sfx2 66738307
+
+endlevel 17015503
+restart 92054109
+undo 40906309
+startgame 32053703
+
+
+================
+COLLISIONLAYERS
+================
+
+background
+exit, wire
+player, walls, orange
+player_tint
+elevator
+
+move_marker
+fall
+stuck_right
+stuck_left
+climbable_right
+climbable_left
+moving_here_horizontally
+elevator_trying_to_move
+revert_elevator_move
+
+animator
+
+marker_spawn_smoke_anim
+start_squish_anim
+play_ground_hit_sfx
+
+======
+RULES
+======
+
+(-------elevator action--------) 
+(if someone has a better / simpler solution for elevators with multiple players, feel free to change this part.
+The old system was simply 
+
+vertical [vertical player elevator] -> [ vertical player vertical elevator ]
+late [elevator walls] -> cancel
+late [elevator orange] -> cancel
+late [elevator exit] -> cancel
+
+but this doesn't allow moving other players when one is stuck in an elevator -Toomber)
+
+up 		[ up player elevator 	| elevator ] -> [ up player up elevator 		| elevator ]
+down 	[ down player elevator 	| elevator ] -> [ down player down elevator 	| elevator ]
+
+up 		[ up player elevator 	| no elevator ] -> [ up player up elevator 		| elevator_trying_to_move_up   ]
+down 	[ down player elevator 	| no elevator ] -> [ down player down elevator 	| elevator_trying_to_move_down ]
+
+(revert elevator position if it's inside an object, and propagate the reversion to adjacent elevators)
+late [ elevator_trying_to_move_up  elevator  elevator_stuck ] -> [ elevator_stuck elevator revert_elevator_move_up]
+late [ elevator_trying_to_move_down  elevator  elevator_stuck ] -> [ elevator_stuck elevator revert_elevator_move_down]
+
+late up [ elevator | revert_elevator_move_up ] -> [ elevator revert_elevator_move_up | revert_elevator_move_up ]
+late down [ elevator | revert_elevator_move_down ] -> [ elevator revert_elevator_move_down | revert_elevator_move_down ]
+
+late up [ no elevator | elevator revert_elevator_move_up ] -> [ elevator | ]
+late down [ no elevator | elevator revert_elevator_move_down ] -> [ elevator | ]
+
+late [elevator_trying_to_move] -> []
+(------------------------------) 
+
+
+late [orange exit] -> cancel
+
+
+vertical [ gear_bg_turn | ... | wire ] -> [ gear_bg_start | ... | wire ]
+vertical [ gear_wall_turn | ... | wire ] -> [ gear_wall_start | ... | wire ]
+
+(reset what is stuck each turn)
+[ stuck ] -> []
+right [ orange no fall no stuck_right | elevator       ] -> [ orange stuck_right | elevator ] 
+right [ orange no fall no stuck_right | wall           ] -> [ orange stuck_right | wall     ] 
+right [ orange no fall no stuck_right | orange no fall ] -> [ orange stuck_right | orange   ] 
+right [ orange no fall no stuck_right | stuck          ] -> [ orange stuck_right | stuck    ] 
+
+left [ orange no fall no stuck_left   | elevator       ] -> [ orange stuck_left | elevator  ] 
+left [ orange no fall no stuck_left   | wall           ] -> [ orange stuck_left | wall      ] 
+left [ orange no fall no stuck_left   | orange no fall ] -> [ orange stuck_left | orange    ] 
+left [ orange no fall no stuck_left   | stuck          ] -> [ orange stuck_left | stuck     ] 
+
+(reset what is climbable each turn)
+[ climbable ] -> []
+down [ no wall no stuck_right | wall no climbable_right ] -> [ | wall climbable_right ]
+down [ no wall no stuck_left  | wall no climbable_left  ] -> [ | wall climbable_left ]
+down [ no wall no stuck_right | stuck_right orange no climbable_right ] -> [ | stuck_right orange climbable_right ] 
+down [ no wall no stuck_left  | stuck_left  orange no climbable_left  ] -> [ | stuck_left orange climbable_left  ] 
+
+(apply any saved moves on the player)
+[ move_right player ] -> [ right player ]
+[ move_left  player ] -> [ left  player ]
+[ move_marker ] -> []
+
+(play some sound effects when the (bodies) hit the floor)
+down [ fall faller no elevator | | solids ] -> [ fall faller no elevator play_ground_hit_sfx | | solids ]
+[ play_ground_hit_sfx player1 ] -> sfx0
+[ play_ground_hit_sfx orange ] -> sfx1 sfx0
+[ play_ground_hit_sfx ] -> [ ]
+
+(start smoke & squish animations)
+down [ fall faller no elevator | | solids ] -> [ fall faller | marker_spawn_smoke_anim start_squish_anim | solids ]
+right [ no solids | marker_spawn_smoke_anim ] -> [ anim_smoke_LEFT_0 | marker_spawn_smoke_anim  ]
+right [ marker_spawn_smoke_anim | no solids ] -> [ marker_spawn_smoke_anim  | anim_smoke_RIGHT_0 ]
+[ marker_spawn_smoke_anim ] -> [ ]
+
+(move fallers down when falling) 
+down [ fall faller no elevator | no elevator] -> [ down faller | ] 
+[ fall ] -> [] 
+
+(climb up climbable ledges)
+right [ right player no elevator | climbable_right ] -> [ up player up move_right | climbable_right ] again
+left  [ left  player no elevator | climbable_left  ] -> [ up player up move_left  | climbable_left ] again
+
+(push)
+[ > player | orange ] -> [ > player | > orange ]
+(push sound effect)
+[ > player | > orange | no walls ] -> sfx2
+(disallow pushing blocks inside elevators)
+[ > orange | elevator ] -> [ orange | elevator ]
+
+(give horizontal movement priority over vertical movement, and delete incorrect "move_marker"s)
+horizontal [ > solids | no moving_here_horizontally] -> [ > solids | moving_here_horizontally ]
+up [ up move_marker | moving_here_horizontally ] -> [ | moving_here_horizontally ] 
+vertical [ > faller | moving_here_horizontally ] -> [ faller | moving_here_horizontally ] 
+[ moving_here_horizontally ] -> []
+
+(disallow moving vertically into exit from elevator)
+vertical [ > player elevator | exit ] -> [ player elevator | exit ]
+
+(elevator wire controls)
+late up [ elevator | no elevator_stuck no wire ] -> [ elevator | wire ]
+late down [ elevator | wire | no wire no elevator ] -> [ elevator | | ]
+late [ elevator no wire ] -> [ elevator wire ]
+
+(gear turning)
+vertical [ vertical player elevator | ... | gear_bg_turn ] -> [ vertical player elevator | ... | gear_bg_start ]
+vertical [ vertical player elevator | ... | gear_bg_start ] -> [ vertical player elevator | ... | gear_bg_turn ]
+vertical [ vertical player elevator | ... | gear_wall_turn ] -> [ vertical player elevator | ... | gear_wall_start ]
+vertical [ vertical player elevator | ... | gear_wall_start ] -> [ vertical player elevator | ... | gear_wall_turn ]
+
+(move different overlays with players that make them distinct)
+(Be extremely careful with rigid rules! Right now player tint works fully well only when there's at most one object of each tint; to surpass this limitation, don't use rigid)
+rigid [ > player player2 ] -> [ > player > player2 ]
+rigid [ > player player3 ] -> [ > player > player3 ]
+
+(make fallers fall when idle in air)
+late down [ faller no move_marker | no wall no orange no player no elevator ] -> [ fall faller | ] again
+
+(run animations)
+late [anim_smoke_LEFT_4 ] -> [ ] 
+late [anim_smoke_LEFT_3 ] -> [ anim_smoke_LEFT_4 ]  
+late [anim_smoke_LEFT_2 ] -> [ anim_smoke_LEFT_3 ] 
+late [anim_smoke_LEFT_1 ] -> [ anim_smoke_LEFT_2 ] 
+late [anim_smoke_LEFT_0 ] -> [ anim_smoke_LEFT_1 ] 
+
+late [anim_smoke_RIGHT_4 ] -> [ ] 
+late [anim_smoke_RIGHT_3 ] -> [ anim_smoke_RIGHT_4 ] 
+late [anim_smoke_RIGHT_2 ] -> [ anim_smoke_RIGHT_3 ] 
+late [anim_smoke_RIGHT_1 ] -> [ anim_smoke_RIGHT_2 ] 
+late [anim_smoke_RIGHT_0 ] -> [ anim_smoke_RIGHT_1 ] 
+
+late [ player1_anim_squish_3 ] -> [ player1_normal ] 
+late [ player1_anim_squish_2 ] -> [ player1_anim_squish_3 ] 
+late [ player1_anim_squish_1 ] -> [ player1_anim_squish_2 ] 
+late [ start_squish_anim player1_normal ] -> [ start_squish_anim player1_anim_squish_1 ] 
+
+late [ player2_anim_squish_3 ] -> [ player2_normal ] 
+late [ player2_anim_squish_2 ] -> [ player2_anim_squish_3 ] 
+late [ player2_anim_squish_1 ] -> [ player2_anim_squish_2 ] 
+late [ start_squish_anim player2_normal ] -> [ start_squish_anim player2_anim_squish_1 ] 
+
+late [ player3_anim_squish_3 ] -> [ player3_normal ] 
+late [ player3_anim_squish_2 ] -> [ player3_anim_squish_3 ] 
+late [ player3_anim_squish_1 ] -> [ player3_anim_squish_2 ] 
+late [ start_squish_anim player3_normal ] -> [ start_squish_anim player3_anim_squish_1 ] 
+
+late [ start_squish_anim ] -> [ ]
+
+
+==============
+WINCONDITIONS
+==============
+
+(win by reaching the exit)
+all exit on player
+
+
+=======
+LEVELS
+=======
+
+
+#############
+#.p.........#
+#....o......#
+#...##......#
+#####....e..#
+####........#
+###......o..#
+#############
+
+(feel free to tweak, reorder, etc. -Patrick)
+##################
+#................#
+#............e...#
+#....o.......o...#
+#....o.......o...#
+#....o.....#######
+#....o....o#.....#
+#######.#.o......#
+############..o..#
+############p.o..#
+##################
+
+##########
+#.1p.....#
+#.##.....#
+###......#
+##..o#...#
+##..o...e#
+##.oo....#
+#####....#
+##########
+
+(ThatScar)
+message Elevators are useful. 
+(moved message to first puzzle featuring an elevator -devness)
+##########
+#.....p.0#
+#....###l#
+#e......l#
+#...o...u#
+#...o....#
+#.########
+##########
+
+(feel free to reorder this level, or even include it inside a larger level - knexator)
+#######
+#e.0..#
+#..u..#
+#.olo.#
+#.olo.#
+###l###
+#p.u..#
+#######
+
+(unintended solution? (level not by me): rrrll lllll luuuu uurrr rrl -Justas)
+############
+#0....p...0#
+#l..####..l#
+#l........l#
+#l.o....o.l#
+#l####.###l#
+#l........l#
+#l...e....l#
+#l........l#
+#l.o..o...l#
+#u..o..o..u#
+############
+
+(feel free to reorder -stevenjmiller)
+###############
+#0...##00.....#
+#l...0#lu.....#
+#p...l#ll###..#
+#u...l0ll....e#
+#....llul.....#
+#..o.ll.u.#...#
+#.###ul#.######
+#.....u.......#
+###############
+
+(feel free to reorder this level and/or change the message - Marcos D)
+
+(if you need the solution, here it is:
+rrrrr uuurr rlrll lddrr rrrll lllll lrrru uulll lrrrr u)
+#######9#######
+#......e......#
+#...o..l..o...#
+#...o..l..o...#
+#...###l###...#
+#......j......#
+#.p....u......#
+###############
+
+(I think this might be somewhat hard, unless I'm missing very unintended solutions - noa)
+(Agreed. Reordered to be later for now (was 4th). -Patrick)
+(I found this level very easy, compared to the new elevator and multi-player features; it would be nice if more people commented on this level's difficulty; my solution follows - ThatScar)
+(I felt this level was easier than knexator's and Marcos D's... could be reordered? - devness)
+(rrrrl rlrrl rllllr rlllu)
+(The solve felt brute-force-y, but wasn't hard. I solved thid one the same way ThatScar did -Justas)
+##########
+#...o.o..#
+#.e.o.o..#
+#...o.o..#
+#.p.o.o..#
+#.##o.o..#
+#.##o.o..#
+#.##o.o..#
+#...o.o..#
+##########
+
+(feel free to reoder -Evan Malmud - crychair)
+(reordered - ThatScar)
+((found two solutions... both begin: llrr rllr rrrr
+... first solution then goes: uddu urlu ur (<- this solution ignores 2nd elevator)
+... second solution then goes: uuuu uurd uuld uur (<- this solution leaves player variant on the ground) -devness))
+#######99#
+#......le#
+#......ll#
+#......ll#
+#.p....lu#
+####...l##
+#......l##
+#..1...j##
+#..####u##
+#........#
+#........#
+##########
+
+(reorder if needed -devness)
+###99######
+#..ll0e...#
+#..lll....#
+#..lll....#
+#..llj....#
+#..jlu..p.#
+#..uu.o.1.#
+#######.###
+###########
+
+(solution: https://imgur.com/a/upqeYff 		Reorder if needed - Toomber)
+
+#9#######9####
+#l.......l...#
+#lp1.e...l...#
+#u##.....u...#
+#....o.......#
+#....o.......#
+##############
+
+(added for fun. anyone can update into a more interesting puzzle. Or delete if you want.)
+###99999####
+#..lllll..##
+#..lllll#.e#
+#..ujuju..##
+#..uuuuu..##
+#..#l#lu..##
+#..llllu.###
+#p.uuuuu.###
+############
+
+(Reorder if needed - Zach)
+#99###99#
+#ll.e.ll#
+#ll...ll#
+#@l...lu#
+#.l.o.l.#
+#.l###l.#
+#.l.o.l.#
+#.l.o.l.#
+#.l.o.l.#
+#.l###l.#
+#.u...u.#
+#.......#
+#########
+
+(solution: https://imgur.com/a/iJbPK3F		Reorder if needed - Toomber)
+###########
+#e..9#99###
+#...l.lj.##
+#p1.l.lj..#
+###.u.uu..#
+#########.#
+###########
+
+(This level's way too big, might need to be removed, reorder if needed - Zach)
+#############
+########o####
+########o####
+########o####
+########o####
+########o...#
+####9999o.e.#
+###.llllo.p.#
+###.llll##..#
+###.llll##..#
+###.llll##..#
+###.llll##..#
+###.llll##..#
+#99.llll##..#
+#uu.uuuu##..#
+#..########.#
+##..........#
+#############
+
+
+
+
+
+
+
