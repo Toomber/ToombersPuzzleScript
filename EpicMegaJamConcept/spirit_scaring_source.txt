@@ -4,6 +4,8 @@ homepage www.puzzlescript.net
 
 again_interval 0.05
 
+run_rules_on_level_start
+
 (verbose_logging)
 
 ========
@@ -11,12 +13,94 @@ OBJECTS
 ========
 
 Background
-#ffaf47 #ffbf69
+#CCDCEA #99C6E2  #ffaf47 #ffbf69
 11011
 01110
 11001
 11100
 00111
+
+WaterCoversDone
+transparent
+
+
+WaterCoverUp
+#7fb0d7 #4089c4 (#96bede #67a1d0) (#95e6de #2ec2b4)
+00000
+11111
+.....
+.....
+.....
+
+WaterCoverDown
+transparent #2c757d
+.....
+.....
+.....
+.....
+00000
+
+WaterCoverRight
+transparent #2c757d
+....0
+....0
+....0
+....0
+....0
+
+WaterCoverLeft
+transparent #2c757d
+0....
+0....
+0....
+0....
+0....
+
+WaterCoverUpRightCorner
+transparent #2c757d
+....0
+.....
+.....
+.....
+.....
+
+WaterCoverDownRightCorner
+transparent #2c757d
+.....
+.....
+.....
+.....
+....0
+
+WaterCoverUpLeftCorner
+transparent #2c757d
+0....
+.....
+.....
+.....
+.....
+
+WaterCoverDownLeftCorner
+transparent #2c757d
+.....
+.....
+.....
+.....
+0....
+
+
+SandIsU
+transparent
+
+SandIsD
+transparent
+
+SandIsR
+transparent
+
+SandIsL
+transparent
+
 
 
 Target
@@ -28,28 +112,56 @@ DarkBlue
 .....
 
 Wall
-BROWN DARKBROWN
+#3a3c3a #505451 #6a6e6b #8c908c
+20203
+22302
+02312
+03010
+20010
+
+
+(BROWN DARKBROWN
 00010
 11111
 01000
 11111
-00010
+00010)
 
+
+
+Player
+#383430 #A09D95 #6D6C69 #574236
+.000.
+.111.
+33333
+02220
+.0.0.
+
+(
 Player
 Red green darkblue darkgray
 .000.
 .111.
 02220
 02220
-.0.0.
+.0.0.)
 
 StoneCrate
-darkbrown Yellow
-00000
-0...0
-0...0
-0...0
-00000
+#a05f75 #a35c68 #b14e6d #94555c #da737b #6d4b78
+02322
+3...2
+3...2
+3...1
+33331
+(
+#bb5044 #9f443a #c33c51 #9a2d32 #da737b #6d4b78
+02322
+3...2
+3...2
+3...1
+33331)
+
+
 
 Spirit
 Purple
@@ -95,20 +207,20 @@ idea: make it so that the spirit leaving the screen at a sand block opens a secr
 )
 
 Bush
-green
+#4b916c #3e785a #579a65 #BD4242 darkgreen green
 .....
 .0...
-000.0
-00000
-00000
+021.0
+10212
+10102
 
 DestroyedBush
-green
+#4b916c #3e785a #BD4242 green
 .....
 .....
 .....
 .....
-0.00.
+0.01.
 
 TempVacatedBush
 black
@@ -118,7 +230,7 @@ SpiritLeftScreen
 transparent
 
 Water 
-#27A599
+#3473a6 (#3B83BD) (#27A599)
 
 BlockingU
 transparent
@@ -178,6 +290,11 @@ Opaque = StoneCrate or Wall or Bush
 
 Timer = Timer0 or Timer1 or Timer2 or Timer3 or Timer4 or Timer5 
 
+SandIs = SandIsU or SandIsD or SandIsR or SandIsL
+
+
+WaterCover = WaterCoverUp or WaterCoverDown or WaterCoverRight or WaterCoverLeft or WaterCoverUpRightCorner or WaterCoverDownRightCorner or WaterCoverUpLeftCorner or WaterCoverDownLeftCorner
+
 
 =======
 SOUNDS
@@ -203,7 +320,20 @@ COLLISIONLAYERS
 ================
 
 Background
+
 Water
+
+WaterCoversDone,
+WaterCoverUp,
+WaterCoverDown,
+WaterCoverRight,
+WaterCoverLeft,   
+WaterCoverUpRightCorner,   
+WaterCoverDownRightCorner,   
+WaterCoverUpLeftCorner,   
+WaterCoverDownLeftCorner,
+
+
 Target
 Player, Wall, Crate, Spirit, GlassWall, GlassCrate
 Bush, DestroyedBush
@@ -213,11 +343,43 @@ TempVacatedBush
 SpiritLeftScreen
 Timer
 
+SandIsU
+SandIsD
+SandIsR
+SandIsL
+
 
 
 ======
 RULES
 ======
+
+(create side borders)
+late up [ Water no WaterCoversDone | no Water ] -> [ Water WaterCoverUp | ]
+late down [ Water no WaterCoversDone | no Water ] -> [ Water WaterCoverDown | ]
+late right [ Water no WaterCoversDone | no Water ] -> [ Water WaterCoverRight | ]
+late left [ Water no WaterCoversDone | no Water ] -> [ Water WaterCoverLeft | ]
+
+(
+(create corners)
+late down [ Water no WaterCoversDone | ] -> [ Water WaterCoverDownRightCorner WaterCoverDownLeftCorner | ] 
+late up [ Water no WaterCoversDone | ] -> [ Water WaterCoverUpRightCorner WaterCoverUpLeftCorner | ]
+
+(remove extra corners)
+late up [ Water WaterCoverUpRightCorner no WaterCoversDone | no WaterCoverRight ] -> [ Water | ] 
+late right [ Water WaterCoverUpRightCorner no WaterCoversDone | no WaterCoverUp ] -> [ Water | ] 
+late down [ Water WaterCoverDownRightCorner no WaterCoversDone | no WaterCoverRight ] -> [ Water | ] 
+late right [ Water WaterCoverDownRightCorner no WaterCoversDone | no WaterCoverDown ] -> [ Water | ] 
+late up [ Water WaterCoverUpLeftCorner no WaterCoversDone | no WaterCoverLeft ] -> [ Water | ]
+late left [ Water WaterCoverUpLeftCorner no WaterCoversDone | no WaterCoverUp ] -> [ Water | ] 
+late down [ Water WaterCoverDownLeftCorner no WaterCoversDone | no WaterCoverLeft ] -> [ Water | ] 
+late left [ Water WaterCoverDownLeftCorner no WaterCoversDone | no WaterCoverDown ] -> [ Water | ] 
+)
+(finish covering Waters)
+late [ Water no WaterCoversDone ] -> [ Water WaterCoversDone]
+
+
+
 
 [ > Player | Water ] -> [ Player | Water ] (don't let player enter water)
 [ >  Player | Crate ] -> [  >  Player | > Crate ] (push crate)
