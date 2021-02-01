@@ -4,6 +4,8 @@ homepage www.puzzlescript.net
 
 again_interval 0.05
 
+(verbose_logging)
+
 ========
 OBJECTS
 ========
@@ -111,6 +113,10 @@ green
 TempVacatedBush
 black
 
+
+SpiritLeftScreen
+transparent
+
 Water 
 #27A599
 
@@ -125,6 +131,26 @@ transparent
 
 BlockingL
 transparent
+
+Timer0
+transparent
+
+Timer1
+transparent
+
+Timer2
+transparent
+
+Timer3
+transparent
+
+Timer4
+transparent
+
+Timer5
+transparent
+
+
 
 =======
 LEGEND
@@ -150,6 +176,8 @@ Blocking = BlockingU or BlockingD or BlockingR or BlockingL
 Crate = StoneCrate or GlassCrate
 Opaque = StoneCrate or Wall or Bush
 
+Timer = Timer0 or Timer1 or Timer2 or Timer3 or Timer4 or Timer5 
+
 
 =======
 SOUNDS
@@ -162,12 +190,13 @@ Crate destroy 58667903
 Endlevel 96976903
 
 Spirit move 39212302
+sfx2 39212302 (sound for when spirit has left screen)
 
 Player move 74291507
 
 sfx0 7389303 (kick spirit out of bush)
 
-sfx1 49801907 (26041300) (64859107)  () (something enters bush)
+sfx1 49801907 (26041300) (64859107)  () (destroy bush)
 
 ================
 COLLISIONLAYERS
@@ -181,6 +210,9 @@ Bush, DestroyedBush
 
 Blocking
 TempVacatedBush
+SpiritLeftScreen
+Timer
+
 
 
 ======
@@ -191,13 +223,14 @@ RULES
 [ >  Player | Crate ] -> [  >  Player | > Crate ] (push crate)
 
 ([ > Player | Spirit Bush ] -> [ Player | > Spirit Bush ] sfx0 (kick spirit out of bush))
-late [ Player no Bush | Spirit Bush ] -> [ Player | Spirit DestroyedBush] sfx0 sfx1 (kick spirit out of bush)
+[ Player no Bush | Spirit Bush ] -> [ Player | > Spirit Bush TempVacatedBush] again (kick spirit out of bush)
+late [ Player no Bush | Spirit Bush | no Crate no Wall ] -> [ Player no Bush | Spirit Bush | no Crate no Wall ]  sfx0 (play sound)
 
 [ > Player Bush | Spirit ] -> [ > Player Bush | > Spirit] (kick spirit from bush)
 
-
 [ > Player Bush ] -> [ > Player Bush TempVacatedBush] (kill bush that you walked through)
-late [TempVacatedBush Bush no Player] -> [ DestroyedBush ] sfx1
+
+late [TempVacatedBush Bush no Player no Spirit] -> [ DestroyedBush ] sfx1 (don't destroy bushes if there is something occupying them, like if the movement failed)
 late [TempVacatedBush] -> []
 
 (late [Player Bush] -> [Player Bush]  (player bush sound))
@@ -224,6 +257,36 @@ left [left Spirit][ Player | ... | BlockingR ] ->  [ stationary Spirit][ Player 
 [stationary Spirit Target] -> win
 
 late [Player | ... | Spirit] -> [Player | ... | Spirit] again
+
+
+(delete the spirit if it gets to the edge of the screen)
+
+[ Spirit ] -> [ Spirit SpiritLeftScreen ]
+up [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
+[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ]
+
+[ Spirit ] -> [ Spirit SpiritLeftScreen ]
+down [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
+[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ]
+
+[ Spirit ] -> [ Spirit SpiritLeftScreen ]
+right [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
+[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ]
+
+[ Spirit ] -> [ Spirit SpiritLeftScreen ]
+left [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
+[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ]
+
+(delay to let running sounds keep going after spirit leaves the screen)
+[ Timer5 ] -> []
+[ Timer4 ] -> [ Timer5 ] again sfx2
+[ Timer3 ] -> [ Timer4 ] again
+[ Timer2 ] -> [ Timer3 ] again
+[ Timer1 ] -> [ Timer2 ] again sfx2
+[ Timer0 ] -> [ Timer1 ] again
+[SpiritLeftScreen] -> [ Timer0 ] again sfx2
+
+
 
 ==============
 WINCONDITIONS
@@ -474,6 +537,36 @@ messages can be about the strange behaviours/properties of the species.
 ~~~~~~~~~~~~~~~ )
 
 
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~......~~
+~~....~....~~...~
+~...b.~~.b..~b..~
+~~~....~~~~.~~~~~
+~~........~.~..~~
+~~~.b..b.w~..b..~
+~~~~~~....~~...~~
+~~~..~.........~~
+~...b..o.b.p.b~~~
+~~.....#....~~~~~
+~~~~~~~~~~~~~~~~~ (features: can't walk adjacent to bush w/ spirit (must be on correct side of it). Use Bush as Cover.)
+
+
+(
+~~~~~~~~~~~~~
+~~~~~~~~...~~
+~~~~~......~~
+~~~~~.b..b.~~
+~...~~~.~~~~~
+~.....~.....~
+~.b.b.w~~b..~
+~~~.....~...~
+~.b...b.~~~.~
+~...o.......~
+~...#~~~.p..~
+~~~~~~~~...~~
+~~~~~~~~~~~~~  )
+
+
 ~~~~~~~~~~~
 ~#~...~...~
 ~~~.~.~.~.~
@@ -490,15 +583,13 @@ messages can be about the strange behaviours/properties of the species.
 
 
 
-~~~~~~~~~~~~~~~
-~b.b.b~#~b.b.b~
-~.~.~.~o~.~.~.~
-~b.b.h.b.b.b.b~
-~.~.~.~~~.~.~.~
-~b.b.b.b.b.b.p~
-~.~.~.~~~.~.~.~
-~b.b.b~~~b.b.b~
-~~~~~~~~~~~~~~~
+
+
+
+
+
+
+
 
 ~~~~~~~~~
 ~~.....~~
@@ -510,62 +601,6 @@ messages can be about the strange behaviours/properties of the species.
 ~~...p.~~
 ~~~~~~~~~
 
-...............
-.~.b.~.b.~.b.~.
-b.b~b.b~b.b~b.b
-~.~~~.~~~.~~~.~
-~b.b.b~w~b.b.b~
-~~~.~~~~~~~.~~~
-~~~p...b....~~~
-~~~~~~~~~~~~~~~
-
-~~~~~~~~~~~~~
-~...........~
-~.b.~~h...b.~
-~...........~
-~.p.~~~~~...~
-~...........~
-~.b...b~~.b.~
-~...........~
-~~~~~~~~~~~~~
-
-~~~~~~~~~~~~~
-~...........~
-~...b....b..~
-~.b....b....~
-~....b....b.~
-~..b....b...~
-~.....b.....~
-~.p.b....b..~
-~...........~
-~~~~~~~~~~~~~
-
-~~~~~~~~~~~~~
-~~~~~~~~...~~
-~~~~~......~~
-~~~~~.b..b.~~
-~...~~~.~~~~~
-~.....~.....~
-~.b.b.w~~b..~
-~~~.....~...~
-~.b...b.~~~.~
-~...o.......~
-~...#~~~.p..~
-~~~~~~~~...~~
-~~~~~~~~~~~~~  (features wanted: can't walk adjacent to bush w/ spirit. Use Bush as Cover.)
-
-~~~~~~~~~~~~~~~~~
-~~~~~~~~~......~~
-~~....~....~~...~
-~...b.~~.b..~b..~
-~~~....~~~~.~~~~~
-~~........~.~..~~
-~~~.b..b.w~..b..~
-~~~~~~....~~...~~
-~~~..~.........~~
-~...b..o.b.p.b~~~
-~~.....#....~~~~~
-~~~~~~~~~~~~~~~~~
 
 
 
@@ -600,6 +635,8 @@ b.b~b.b~b.b~b.b
 #####..##.#........  (intentionally breaking bushes, and progress gated by bushes that must be used constructively)
 
 
+
+
 (
 ........
 ...~.~..
@@ -609,7 +646,7 @@ b.b~b.b~b.b~b.b
 ...p.... (break when in view of spirit / break and go back?)
 
 )
-
+(
 ~~~~~~~~~~~~~~~
 ~~~~#~~~~~~~~~~
 ~~#~##~~~~~.~~~
@@ -623,7 +660,22 @@ b.b~b.b~b.b~b.b
 ~~#.#~~#~~#.~~~
 ~~~~~~#~~~~~~~~
 ~~~~~~~~~~~~~~~ (breaking bushes)(focus on double bushes) (two bushes are red herrings. Is this bad?)
-(
+
+~~~~~~~~~~~~~~~
+~~~~#~~~~~~~~~~
+~~#~##~~~~~.~~~
+~~#~..~~~b~o#~~
+~~~~.bb.~b...~~
+~#~~...~~..p..~
+~~~~~..~~.....~
+~.#~.bs~bb...~~
+~..##........~~
+~~.##.b..#...~~
+~~#.#~~#~~#.~~~
+~~~~~~#~~~~~~~~
+~~~~~~~~~~~~~~~
+
+
 ~~~~~~~~~~~~~~~~
 ~~~~#~~~~~~~#~~~
 ~~#~##~~~~~...~~
@@ -637,8 +689,8 @@ b.b~b.b~b.b~b.b
 ~~#.#~~#..#b~~~~
 ~~~~~~#~~..o~~~~
 ~~~~~~~~~~~#~~~~
-~~~~~~~~~~~~~~~~
-)
+~~~~~~~~~~~~~~~~)
+
 
 
 
@@ -668,6 +720,30 @@ b.b~b.b~b.b~b.b
 ~~~..b.*.~~~
 ~~~~~....~~~
 ~~~~~~~~~~~~
+
+~~~~~~~~
+~.....~~
+~....~~~
+~..b.b#~
+~.....#~
+~...bo.~
+~......~
+~...~~~~
+~.h....~
+~...p*.~
+~......~
+~~~~~~~~ (doesn't work)
+
+
+
+
+
+
+
+
+
+
+
 
 ~###~
 ~.o.~
@@ -772,6 +848,44 @@ b.b~b.b~b.b~b.b
 ~~~~~~~~..~..~~~~
 ~~~~~~~~....~~~~~
 ~~~~~~~~~~~~~~~~~
+
+
+
+
+~~~~~~~~~~~~~~~
+~b.b.b~#~b.b.b~
+~.~.~.~o~.~.~.~
+~b.b.h.b.b.b.b~
+~.~.~.~~~.~.~.~
+~b.b.b.b.b.b.p~
+~.~.~.~~~.~.~.~
+~b.b.b~~~b.b.b~
+~~~~~~~~~~~~~~~
+
+
+...............
+.~.b.~.b.~.b.~.
+b.b~b.b~b.b~b.b
+~.~~~.~~~.~~~.~
+~b.b.b~w~b.b.b~
+~~~.~~~~~~~.~~~
+~~~p...b....~~~
+~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~
+~...........~
+~...b....b..~
+~.b....b....~
+~....b....b.~
+~..b....b...~
+~.....b.....~
+~.p.b....b..~
+~...........~
+~~~~~~~~~~~~~
+
+
+
+
 
 
 
