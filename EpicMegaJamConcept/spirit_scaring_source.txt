@@ -311,7 +311,7 @@ sfx2 39212302 (sound for when spirit has left screen)
 
 Player move 74291507
 
-sfx0 7389303 (kick spirit out of bush)
+sfx0 84286303 (96059500 31288108)  (7389303) (kick spirit out of bush)
 
 sfx1 49801907 (26041300) (64859107)  () (destroy bush)
 
@@ -895,6 +895,15 @@ messages can be about the strange behaviours/properties of the species.
 ~...p*.~
 ~......~
 ~~~~~~~~ (doesn't work)
+
+~~~~~~~~~~
+~........~
+~.b.*.b..~
+~.......~~
+~.h..p..b~
+~.......o~
+~~~~~~~##~
+~~~~~~~~~~ (want to use bush as cover)
 
 
 
