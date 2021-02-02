@@ -376,7 +376,7 @@ late down [ Water WaterCoverDownLeftCorner no WaterCoversDone | no WaterCoverLef
 late left [ Water WaterCoverDownLeftCorner no WaterCoversDone | no WaterCoverDown ] -> [ Water | ] 
 )
 (finish covering Waters)
-late [ Water no WaterCoversDone ] -> [ Water WaterCoversDone]
+(late [ Water no WaterCoversDone ] -> [ Water WaterCoversDone])
 
 
 
@@ -392,12 +392,13 @@ late [ Player no Bush | Spirit Bush | no Crate no Wall ] -> [ Player no Bush | S
 
 [ > Player Bush ] -> [ > Player Bush TempVacatedBush] (kill bush that you walked through)
 
-late [TempVacatedBush Bush no Player no Spirit] -> [ DestroyedBush ] sfx1 (don't destroy bushes if there is something occupying them, like if the movement failed)
+late [TempVacatedBush Bush no Player no Spirit] -> [ DestroyedBush ] sfx1 (destroy bushes if there is nothing occupying them, like if the movement failed)
 late [TempVacatedBush] -> []
 
 (late [Player Bush] -> [Player Bush]  (player bush sound))
 
 late [Crate Water] -> [Water] (destroy crate in water)
+late [Crate Bush] -> [Crate DestroyedBush] sfx1
 
 
 (check lines of sight from spirit)
@@ -790,7 +791,7 @@ messages can be about the strange behaviours/properties of the species.
 
 ~~~~~~~~~~~~~~~~~~~
 #o~b~.b.~~~~~~~~~~~
-#.....~.~~~~~~~~~~~
+~.....~.~~~~~~~~~~~
 #.#~~~~b~.b.h.~b~b.
 #.#~......~...~.~..
 #..b...##.~.p...~..
@@ -870,61 +871,15 @@ messages can be about the strange behaviours/properties of the species.
 
 (crates and bushes)
 
-~~~~~~~~~~~~
-~~~~~~~#.~~~
-~~~~...o..~~
-~~~..b....~~
-~~........~~
-~~........~~
-~~b..s....~~
-~~........~~
-~~~p......~~
-~~~..b.*.~~~
-~~~~~....~~~
-~~~~~~~~~~~~
-
-~~~~~~~~
-~.....~~
-~....~~~
-~..b.b#~
-~.....#~
-~...bo.~
-~......~
-~...~~~~
-~.h....~
-~...p*.~
-~......~
-~~~~~~~~ (doesn't work)
-
-~~~~~~~~~~
-~........~
-~.b.*.b..~
-~.......~~
-~.h..p..b~
-~.......o~
-~~~~~~~##~
-~~~~~~~~~~ (want to use bush as cover)
-
-
-
-
-
-
-
-
-
-
-
-
-~###~
-~.o.~
-~p..~
-~.*.~
-~...~
-~.h.~
-~...~
-~~~~~ (should this not destroy bush?)
-
+~~~~~~~~~~~~~
+~~.....~~~#~~
+~.h.*.b..~~~~
+~.........~#~
+~.....b.b.~~~
+~.....~~..~~~
+~~~.p.~~bo#~~
+~#~...~~~~~#~
+~~~~~~~~~~~~~
 
 
 
