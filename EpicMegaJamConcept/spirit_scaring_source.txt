@@ -987,8 +987,22 @@ messages can be about the strange behaviours/properties of the species.
 
 
 
+
 (Push crate in bush to get it past spirit)
 
+
+~~~~~~~~~~~~~~
+~~~~~~~####~~~
+~~...#~o..~~~~
+~~........~~~~
+~##b..s..b##~~
+~~...##~#..~~~
+~~.........~~~
+~~..*.p.b..##~
+~#####~~#..~~~
+~~~~~~~~~~~~~~
+
+(
 ~~~~~~~~~~~~~~
 ~#~~~~...~#~~~
 ~~.....b.~~~#~
@@ -997,21 +1011,25 @@ messages can be about the strange behaviours/properties of the species.
 ~#~#.......~#~
 ~~~~.*.#.p.#~~
 ~~~#.......~~~
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~)
 
 ~~~~~~~~~~~~~~
-~#~~~~...~#~~~
-~~.....b.~~~#~
+~~~~~~...~~~~~
+~~.......~#~~~
+~~..~~.b.~~~#~
 ~#.........o#~
-~#..#b.s.b##~~
-~#~#.......~#~
-~~~~.*.#.p.#~~
-~~~#.......~~~
+~#..bb.s.b##~~
+~#~#..~....~~~
+~~~~~.##...~#~
+~~~#~....*.~~~
+~~~~~.p....~~~
 ~~~~~~~~~~~~~~
+
+
 
 (Push crate in bush to get it past spirit in bush)
 
-(break bush with crate intentionally?)
+(break bush with crate intentionally? - much easier to force if there are multiple spirits)
 
 ~~~~~~~~~~~~
 ~.........~~
@@ -1043,6 +1061,19 @@ messages can be about the strange behaviours/properties of the species.
 ~..*....~
 ~....p..~
 ~~~~~~~~~
+
+~~~~~~~~~
+~~~~~...~
+~..bb*..~
+~.*.s...~
+~..~~#..~
+~j.bb~b.~
+~~~~b~..~
+~~~~.~..~
+~~.*....~
+~~...p..~
+~~~~~~~~~ (almost something?)
+
 
 
 
