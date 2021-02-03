@@ -3,6 +3,7 @@ author Toombler
 homepage www.puzzlescript.net
 
 again_interval 0.05
+realtime_interval 0.1
 
 run_rules_on_level_start
 
@@ -153,6 +154,87 @@ StoneCrate
 3...2
 3...1
 33331
+
+StoneCrateSink0
+#966179 #995E6E #A65172 #8B5863
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink1
+#8C637E #8F6073 #9A5577 #835A69
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink2
+#836482 #856279 #8F587D #7A5D70
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink3
+#796687 #7B647F #845B82 #716077
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink4
+#6F688B #716684 #785F87 #68637E
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink5
+#656A90 #66698A #6D628C #606584
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink6
+#5B6C94 #5C6B8F #616691 #57688B
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink7
+#516E99 #526D95 #566996 #4E6B92
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink8
+#486F9D #486F9B #4B6C9C #456E99
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink9
+#3E71A2 #3E71A0 #3F70A1 #3D709F
+02322
+3...2
+3...2
+3...1
+33331
+
 (
 #bb5044 #9f443a #c33c51 #9a2d32 #da737b #6d4b78
 02322
@@ -273,6 +355,7 @@ LEGEND
 P = Player
 * = StoneCrate
 @ = StoneCrate and Target
+% = StoneCrate and Bush
 O = Target
 S = Spirit
 ~ = Water
@@ -295,6 +378,7 @@ SandIs = SandIsU or SandIsD or SandIsR or SandIsL
 
 WaterCover = WaterCoverUp or WaterCoverDown or WaterCoverRight or WaterCoverLeft or WaterCoverUpRightCorner or WaterCoverDownRightCorner or WaterCoverUpLeftCorner or WaterCoverDownLeftCorner
 
+StoneCrateSink = StoneCrateSink0 or StoneCrateSink1 or StoneCrateSink2 or StoneCrateSink3 or StoneCrateSink4 or StoneCrateSink5 or StoneCrateSink6 or StoneCrateSink7 or StoneCrateSink8 or StoneCrateSink9
 
 =======
 SOUNDS
@@ -302,7 +386,7 @@ SOUNDS
 
 Crate MOVE 36772507
 
-Crate destroy 58667903
+Crate destroy 45416100 (33195900) (58667903)
 
 Endlevel 96976903
 
@@ -323,6 +407,8 @@ Background
 
 Water
 
+StoneCrateSink
+
 WaterCoversDone,
 WaterCoverUp,
 WaterCoverDown,
@@ -332,6 +418,7 @@ WaterCoverUpRightCorner,
 WaterCoverDownRightCorner,   
 WaterCoverUpLeftCorner,   
 WaterCoverDownLeftCorner,
+
 
 
 Target
@@ -379,9 +466,26 @@ late left [ Water WaterCoverDownLeftCorner no WaterCoversDone | no WaterCoverDow
 (late [ Water no WaterCoversDone ] -> [ Water WaterCoversDone])
 
 
+(crate sinking animation)
+[ StoneCrateSink9 ] -> []
+[ StoneCrateSink8 ] -> [ StoneCrateSink9 ] again
+[ StoneCrateSink7 ] -> [ StoneCrateSink8 ] again
+[ StoneCrateSink6 ] -> [ StoneCrateSink7 ] again
+[ StoneCrateSink5 ] -> [ StoneCrateSink6 ] again
+[ StoneCrateSink4 ] -> [ StoneCrateSink5 ] again
+[ StoneCrateSink3 ] -> [ StoneCrateSink4 ] again
+[ StoneCrateSink2 ] -> [ StoneCrateSink3 ] again
+[ StoneCrateSink1 ] -> [ StoneCrateSink2 ] again (want this to use realtime) (also it looks jank with water covers)
+[ StoneCrateSink0 ] -> [ StoneCrateSink1 ] again
+
+
+
+
+
 
 
 [ > Player | Water ] -> [ Player | Water ] (don't let player enter water)
+[ >  Player | Bush Crate ] -> [  Player | Bush TempVacatedBush > Crate ] sfx1 (push crate that's inside a bush, Akurra style. Should this destroy the bush?)
 [ >  Player | Crate ] -> [  >  Player | > Crate ] (push crate)
 
 ([ > Player | Spirit Bush ] -> [ Player | > Spirit Bush ] sfx0 (kick spirit out of bush))
@@ -392,13 +496,13 @@ late [ Player no Bush | Spirit Bush | no Crate no Wall ] -> [ Player no Bush | S
 
 [ > Player Bush ] -> [ > Player Bush TempVacatedBush] (kill bush that you walked through)
 
-late [TempVacatedBush Bush no Player no Spirit] -> [ DestroyedBush ] sfx1 (destroy bushes if there is nothing occupying them, like if the movement failed)
+late [TempVacatedBush Bush no Player no Spirit no Crate ] -> [ DestroyedBush ] sfx1 (destroy bushes if there is nothing occupying them)
 late [TempVacatedBush] -> []
 
 (late [Player Bush] -> [Player Bush]  (player bush sound))
 
-late [Crate Water] -> [Water] (destroy crate in water)
-late [Crate Bush] -> [Crate DestroyedBush] sfx1
+late [Crate Water] -> [StoneCrateSink0 Water] again (destroy crate in water)
+(late [Crate Bush] -> [Crate DestroyedBush] sfx1)
 
 
 (check lines of sight from spirit)
@@ -883,9 +987,62 @@ messages can be about the strange behaviours/properties of the species.
 
 
 
+(Push crate in bush to get it past spirit)
 
+~~~~~~~~~~~~~~
+~#~~~~...~#~~~
+~~.....b.~~~#~
+~#.........o#~
+~#..#b.s.b.#~~
+~#~#.......~#~
+~~~~.*.#.p.#~~
+~~~#.......~~~
+~~~~~~~~~~~~~~
 
+~~~~~~~~~~~~~~
+~#~~~~...~#~~~
+~~.....b.~~~#~
+~#.........o#~
+~#..#b.s.b##~~
+~#~#.......~#~
+~~~~.*.#.p.#~~
+~~~#.......~~~
+~~~~~~~~~~~~~~
 
+(Push crate in bush to get it past spirit in bush)
+
+(break bush with crate intentionally?)
+
+~~~~~~~~~~~~
+~.........~~
+~..s......~~
+~.........~~
+~....~~~..~~
+~~~b......~~
+~~~..*....~~
+~~~....p..~~
+~~~~~~~~~~~~
+
+~~~~~~~~~~~~
+~.........~~
+~..s......~~
+~.~~~~....~~
+~~~.......~~
+~~~bb.*...~~
+~~~....p..~~
+~~~.......~~
+~~~~~~~~~~~~
+
+~~~~~~~~~
+~...b...~
+~...s.b.~
+~~~~~~..~
+~..~.~..~
+~.j~b~b.~
+~..~.~..~
+~..*....~
+~....p..~
+~~~~~~~~~
 
 
 
