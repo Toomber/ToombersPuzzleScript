@@ -492,7 +492,7 @@ late left [ Water WaterCoverDownLeftCorner no WaterCoversDone | no WaterCoverDow
 [ Player no Bush | Spirit Bush ] -> [ Player | > Spirit Bush TempVacatedBush] again (kick spirit out of bush)
 late [ Player no Bush | Spirit Bush | no Crate no Wall ] -> [ Player no Bush | Spirit Bush | no Crate no Wall ]  sfx0 (play sound)
 
-[ > Player Bush | Spirit ] -> [ > Player Bush | > Spirit] (kick spirit from bush)
+[ > Player Bush | Spirit ] -> [ > Player Bush | > Spirit] (kick spirit from bush - this is only useful with one spirit if the spirit is also in a bush)
 
 [ > Player Bush ] -> [ > Player Bush TempVacatedBush] (kill bush that you walked through)
 
@@ -961,16 +961,61 @@ messages can be about the strange behaviours/properties of the species.
 
 
 
+(level using wall next to spirit in bush means it stays in bush)
 
-(double bushes)
-(
-~~~~~
-~...~
-~..b.
-~..b.
-~#ob.
-~~~~~
-~~~~~)
+
+(hiding in bush adjacent to spirit in bush)
+
+~~~~~~~~~~~~~
+~...~~~~~~~~~
+~.~.~~~~...~~
+~.bb..p~.bb~~
+~~~~.~...b.~~
+~#bb.h.b..~~~
+~.~.~#~#~o~~~
+~...~#..~#~~~
+~~~~~~~~~~~~~
+
+
+
+(double bushes and pushing spirit free)
+
+~~~~~~~~~~~~
+~#~~~~~~###~
+~~~~obb~~~#~
+~.....bb.~~~
+~.b.b....b.~
+~.b.b....h.~
+~.....p..~~~
+~~~~~~~~~~~~
+
+
+(pushing spirit in field of bushes)
+
+~~~~~~~~~
+~.bbbbb.~
+~p~hjbb.~
+~~bb~b~~~
+~.bbbbb.~
+~...~...~
+~~~~~~~~~
+
+
+
+(intentionally breaking + hiding in bush next to spirit)
+~~~~~~~~~~~~
+~~~.b.~~...~
+~.bb~b...j.~
+~.~.b.~~...~
+~...~~~~~~~~
+~~~b....~#~~
+~..b~b~hb.~~
+~b~b...b~.~~
+~.~~~.~...~~
+~..p..~~~~~~
+~~~~~~~~~~~~ (nearly there)
+
+
 
 
 (crates and bushes)
@@ -991,6 +1036,7 @@ messages can be about the strange behaviours/properties of the species.
 (Push crate in bush to get it past spirit)
 
 
+
 ~~~~~~~~~~~~~~
 ~~~~~~~####~~~
 ~~...#~o..~~~~
@@ -1001,6 +1047,16 @@ messages can be about the strange behaviours/properties of the species.
 ~~..*.p.b..##~
 ~#####~~#..~~~
 ~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~
+~~.......#~#~
+~~........~~~
+~~.s.b~~bb.~~
+~##........#~
+~~~..p.*.o~#~
+~~#~.....#~~~
+~~~~~~~~~~~~~
+
 
 (
 ~~~~~~~~~~~~~~
