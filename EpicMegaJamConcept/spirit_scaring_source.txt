@@ -815,7 +815,7 @@ messages can be about the strange behaviours/properties of the species.
 ~~~..~.........~~
 ~...b..o.b.p.b~~~
 ~~.....#....~~~~~
-~~~~~~~~~~~~~~~~~ (features: can't walk adjacent to bush w/ spirit (must be on correct side of it). Use Bush as Cover.)
+~~~~~~~~~~~~~~~~~ (can't walk adjacent to bush w/ spirit (must be on correct side of it). Use Bush as Cover.)
 
 
 (
@@ -903,6 +903,20 @@ messages can be about the strange behaviours/properties of the species.
 
 
 
+~~~~~~~~~~~~
+~####~#~#~#~
+~#o..~~~b~.~
+~#.~.....~.~
+~#.~~~~~~~.~
+~~..h......~
+~~.........~
+~~.....p...~
+~~~~~~~~~~~~  (intentionally break sa it won't block line of sight)
+
+
+
+
+
 
 (
 ........
@@ -980,15 +994,6 @@ messages can be about the strange behaviours/properties of the species.
 
 (double bushes and pushing spirit free)
 
-~~~~~~~~~~~~
-~#~~~~~~###~
-~~~~obb~~~#~
-~.....bb.~~~
-~.b.b....b.~
-~.b.b....h.~
-~.....p..~~~
-~~~~~~~~~~~~
-
 ~~~~~~~~~~~~~~~
 ~~#~~~..~~~~#~~
 ~~~~.bb.~..~#~~
@@ -999,6 +1004,22 @@ messages can be about the strange behaviours/properties of the species.
 ~~##..obb..#~~~
 ~~~~~~####~~~~~
 ~~~~~~~~~~~~~~~
+
+
+
+
+(line of bushes)
+
+~~~~~~~~~~~~~
+~~~.#.....~~~
+~.....p.#...~
+~.hbbbbbbbo.~
+~..#.......#~
+~.....#.....~
+~~~~#....~~~~
+~~#~~~~#~~~~~
+~~~~~~~~~~~~~
+
 
 
 (pushing spirit in field of bushes)
@@ -1012,7 +1033,6 @@ messages can be about the strange behaviours/properties of the species.
 ~~~~~~~~~
 
 
-
 (intentionally breaking + hiding in bush next to spirit)
 ~~~~~~~~~~~
 ~~~.b.~...~
@@ -1020,7 +1040,7 @@ messages can be about the strange behaviours/properties of the species.
 ~.~.b.~...~
 ~...~~~~~~~
 ~~~b....b.~
-~..b.b~bsb~
+~..b.b~bs.~
 ~b~b.~~.~.~
 ~.~~~~~.#.~
 ~...p.....~
@@ -1044,9 +1064,11 @@ messages can be about the strange behaviours/properties of the species.
 
 
 
+(place crate next to spirit in bush so you can walk past without breaking it)
+
+
+
 (Push crate in bush to get it past spirit)
-
-
 
 ~~~~~~~~~~~~~~
 ~~~~~~~####~~~
@@ -1092,31 +1114,22 @@ messages can be about the strange behaviours/properties of the species.
 ~~~~~.p....~~~
 ~~~~~~~~~~~~~~
 
+(push crate in bush so that spirit can hit it)
+
+~~~~~~~~~~~~~
+~...........~
+~.p.h~~~~~~.~
+~....~....~.~
+~.*..~..#.~.~
+#o..b~....~.~
+~......#..~~~
+~~~~~~...~~~~
+~~~~~~~~~~~~~ (some way to make it necessary to push crate from bush when in line with spirit)
 
 
 (Push crate in bush to get it past spirit in bush)
 
 (break bush with crate intentionally? - much easier to force if there are multiple spirits)
-
-~~~~~~~~~~~~
-~.........~~
-~..s......~~
-~.........~~
-~....~~~..~~
-~~~b......~~
-~~~..*....~~
-~~~....p..~~
-~~~~~~~~~~~~
-
-~~~~~~~~~~~~
-~.........~~
-~..s......~~
-~.~~~~....~~
-~~~.......~~
-~~~bb.*...~~
-~~~....p..~~
-~~~.......~~
-~~~~~~~~~~~~
 
 ~~~~~~~~~
 ~...b...~
