@@ -989,6 +989,17 @@ messages can be about the strange behaviours/properties of the species.
 ~.....p..~~~
 ~~~~~~~~~~~~
 
+~~~~~~~~~~~~~~~
+~~#~~~..~~~~#~~
+~~~~.bb.~..~#~~
+~~.......b.~~~~
+~#.b.b...b..b.~
+~..b.b.p....h.~
+~.............~
+~~##..obb..#~~~
+~~~~~~####~~~~~
+~~~~~~~~~~~~~~~
+
 
 (pushing spirit in field of bushes)
 
@@ -1003,17 +1014,17 @@ messages can be about the strange behaviours/properties of the species.
 
 
 (intentionally breaking + hiding in bush next to spirit)
-~~~~~~~~~~~~
-~~~.b.~~...~
-~.bb~b...j.~
-~.~.b.~~...~
-~...~~~~~~~~
-~~~b....~#~~
-~..b~b~hb.~~
-~b~b...b~.~~
-~.~~~.~...~~
-~..p..~~~~~~
-~~~~~~~~~~~~ (nearly there)
+~~~~~~~~~~~
+~~~.b.~...~
+~.bb~b..j.~
+~.~.b.~...~
+~...~~~~~~~
+~~~b....b.~
+~..b.b~bsb~
+~b~b.~~.~.~
+~.~~~~~.#.~
+~...p.....~
+~~~~~~~~~~~
 
 
 
