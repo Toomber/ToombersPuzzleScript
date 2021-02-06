@@ -699,18 +699,6 @@ messages can be about the strange behaviours/properties of the species.
 ~~~~~#~.o.#~~
 ~~~~~~~~#~~~~
 ~~~~~~~~~~~~~  (level introducing destroying crates)
-(
-~~~~~~~~~~~~
-~~~~~~...~~~
-~~~......~.~
-~#~*##*#.~~~
-~~..*..#..~~
-~#p.#..#..~~
-~#..#~~.s..~
-~~#~~......~
-~#o.~~....~~
-~####~~#...~
-~~~~~~~~~~~~)
 
 
 ####~~~######
@@ -762,19 +750,6 @@ messages can be about the strange behaviours/properties of the species.
 
 (levels introducing bushes as catching spirit)
 
-(
-~~~~~~~~~~~~~~~~~~~
-~~.#....~~~~~~~~~~~
-~.....p.#~~#....~~~
-~..~~~...~~.....#~~
-~...~~~..~~..~#...~
-~.b.~~~.~~...~~.o#~
-~....~..~~...~~...~
-~.s.#~...~..~#~...~
-~~..~~......#~~#..~
-~~...~~#....~~...~~
-~~~~~~~~~~~~~~~~~~~ (make it unlikely/impossible player would break bush they need)
-)
 
 ~~~~~~~~~~~~~~
 ~~~~~...~~~~~~
@@ -787,21 +762,6 @@ messages can be about the strange behaviours/properties of the species.
 ~~.p.#~~~...~~
 ~~~~##~~#~~~~~
 ~~~~~~~~~~~~~~ (makes it look like bushes will stop spirit like walls) (maybe add an animation for entering bush for the first time?)
-
-
-(
-~~~~~~~~~~~~~~~
-~~~...~~~....~~
-~~..b...~b.b..~
-~~.b..b......b~
-~#..#o....s..#~
-~#.........#~~~
-~....p.b.b..~~~
-~~b#.........~~
-~~~#..b...b.#~~
-~~~##.......~~~
-~~~~~~~#...~~~~
-~~~~~~~~~~~~~~~ )
 
 
 ~~~~~~~~~~~~~~~~~
@@ -818,22 +778,6 @@ messages can be about the strange behaviours/properties of the species.
 ~~~~~~~~~~~~~~~~~ (can't walk adjacent to bush w/ spirit (must be on correct side of it). Use Bush as Cover.)
 
 
-(
-~~~~~~~~~~~~~
-~~~~~~~~...~~
-~~~~~......~~
-~~~~~.b..b.~~
-~...~~~.~~~~~
-~.....~.....~
-~.b.b.w~~b..~
-~~~.....~...~
-~.b...b.~~~.~
-~...o.......~
-~...#~~~.p..~
-~~~~~~~~...~~
-~~~~~~~~~~~~~  )
-
-
 ~~~~~~~~~~~
 ~#~...~...~
 ~~~.~.~.~.~
@@ -846,18 +790,7 @@ messages can be about the strange behaviours/properties of the species.
 ~...~...~#~
 ~~~~~~~~~~~
 
-
-
-
-
-
-
-
-
-
-
-
-
+(
 ~~~~~~~~~
 ~~.....~~
 ~.b.b#h.~
@@ -867,7 +800,7 @@ messages can be about the strange behaviours/properties of the species.
 ~.b.b.b.~
 ~~...p.~~
 ~~~~~~~~~
-
+)
 
 
 
@@ -903,6 +836,8 @@ messages can be about the strange behaviours/properties of the species.
 
 
 
+
+
 ~~~~~~~~~~~~
 ~####~#~#~#~
 ~#o..~~~b~.~
@@ -911,7 +846,7 @@ messages can be about the strange behaviours/properties of the species.
 ~~..h......~
 ~~.........~
 ~~.....p...~
-~~~~~~~~~~~~  (intentionally break sa it won't block line of sight)
+~~~~~~~~~~~~  (intentionally break so it won't block line of sight)
 
 
 
@@ -927,6 +862,7 @@ messages can be about the strange behaviours/properties of the species.
 ...p.... (break when in view of spirit / break and go back?)
 
 )
+
 (
 ~~~~~~~~~~~~~~~
 ~~~~#~~~~~~~~~~
@@ -941,36 +877,7 @@ messages can be about the strange behaviours/properties of the species.
 ~~#.#~~#~~#.~~~
 ~~~~~~#~~~~~~~~
 ~~~~~~~~~~~~~~~ (breaking bushes)(focus on double bushes) (two bushes are red herrings. Is this bad?)
-
-~~~~~~~~~~~~~~~
-~~~~#~~~~~~~~~~
-~~#~##~~~~~.~~~
-~~#~..~~~b~o#~~
-~~~~.bb.~b...~~
-~#~~...~~..p..~
-~~~~~..~~.....~
-~.#~.bs~bb...~~
-~..##........~~
-~~.##.b..#...~~
-~~#.#~~#~~#.~~~
-~~~~~~#~~~~~~~~
-~~~~~~~~~~~~~~~
-
-
-~~~~~~~~~~~~~~~~
-~~~~#~~~~~~~#~~~
-~~#~##~~~~~...~~
-~~#~..~~~b~.#.#~
-~~~~.bb.~b....#~
-~#~~...~~...p.~~
-~~~~~..~...~..~~
-~.#~.#b..s.b.~~~
-~..###...b...~~~
-~~.##~~..#~~~~~~
-~~#.#~~#..#b~~~~
-~~~~~~#~~..o~~~~
-~~~~~~~~~~~#~~~~
-~~~~~~~~~~~~~~~~)
+)
 
 
 
@@ -1066,6 +973,12 @@ messages can be about the strange behaviours/properties of the species.
 
 (place crate next to spirit in bush so you can walk past without breaking it)
 
+~~~~~~~~~~~~~~~~~~~
+~...........~.....~
+~.b.p.h.%.b.~b....~
+~.....#...#.......~
+~..~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 
 (Push crate in bush to get it past spirit)
@@ -1081,6 +994,8 @@ messages can be about the strange behaviours/properties of the species.
 ~#####~~#..~~~
 ~~~~~~~~~~~~~~
 
+
+(
 ~~~~~~~~~~~~~
 ~~.......#~#~
 ~~........~~~
@@ -1089,9 +1004,9 @@ messages can be about the strange behaviours/properties of the species.
 ~~~..p.*.o~#~
 ~~#~.....#~~~
 ~~~~~~~~~~~~~
+)
 
 
-(
 ~~~~~~~~~~~~~~
 ~#~~~~...~#~~~
 ~~.....b.~~~#~
@@ -1100,7 +1015,7 @@ messages can be about the strange behaviours/properties of the species.
 ~#~#.......~#~
 ~~~~.*.#.p.#~~
 ~~~#.......~~~
-~~~~~~~~~~~~~~)
+~~~~~~~~~~~~~~
 
 ~~~~~~~~~~~~~~
 ~~~~~~...~~~~~
@@ -1122,9 +1037,21 @@ messages can be about the strange behaviours/properties of the species.
 ~~~#.....w.~
 ~~~~~~.~~~.~
 ~#o.b~b~...~
-~#.~~~.#.##~
-~#.......##~
+~#.~.~.#.##~
+~#.~.....##~
 ~~~~~~~~~~~~
+
+(
+~~~~~~~~~~~~~~
+~~~~~#.......~
+~~~#~#..p..%.~
+~~~~~#.....w.~
+~~~~~~~~.~~~.~
+~#o..~b~b~...~
+~#.~...~.#.##~
+~#.~~~~~.#.##~
+~#.........~~~
+~~~~~~~~~~~~~~)
 
 
 
@@ -1159,8 +1086,43 @@ messages can be about the strange behaviours/properties of the species.
 
 
 
-(misc)
 
+
+
+
+
+
+
+
+
+
+
+(misclevels)
+
+
+~~~~~~~~~~~~~~~
+~~~...~~~....~~
+~~..b...~b.b..~
+~~.b..b......b~
+~#..#o....s..#~
+~#.........#~~~
+~....p.b.b..~~~
+~~b#.........~~
+~~~#..b...b.#~~
+~~~##.......~~~
+~~~~~~~#...~~~~
+~~~~~~~~~~~~~~~ 
+
+
+~~~~~~~~~
+~~...*.#~
+~~*..*.#~
+~#*~.#~~~
+~..*so.*~
+~p#.....~
+~.*.~**.~
+~~##~~##~
+~~~~~~~~~
 
 ~~~~~~~~~~~
 ~~~~#~~~~~~
@@ -1175,6 +1137,53 @@ messages can be about the strange behaviours/properties of the species.
 ~~~.#~~~~~~
 ~~~~~~~~~~~ (meh?) (fill gaps)
 
+~~~~~~~~~~~~~~~~~~~
+~~.#....~~~~~~~~~~~
+~.....p.#~~#....~~~
+~..~~~...~~.....#~~
+~...~~~..~~..~#...~
+~.b.~~~.~~...~~.o#~
+~....~..~~...~~...~
+~.s.#~...~..~#~...~
+~~..~~......#~~#..~
+~~...~~#....~~...~~
+~~~~~~~~~~~~~~~~~~~ 
+
+~~~~~~~~~~~~
+~~~~~~...~~~
+~~~......~.~
+~#~*##*#.~~~
+~~..*..#..~~
+~#p.#..#..~~
+~#..#~~.s..~
+~~#~~......~
+~#o.~~....~~
+~####~~#...~
+~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~
+~~~~~...~~~~~~~~~
+~~~~~....~~~..~~~
+~~~~....s~....~~~
+~~~~.*...~~~~..~~
+~~~~.#.*....~~..~
+~#o.........~~.~~
+~~~~~.~~....~~.~~
+~~~~~p....~~~..~~
+~~~~~~~~.~~...~~~
+~~~~~~~~..~..~~~~
+~~~~~~~~....~~~~~
+~~~~~~~~~~~~~~~~~
+
+
+
+
+
+(misc non-levels)
+
+
 ~~~~~~~~~~~
 ~~~~~~####~
 ~~~~~~#...~
@@ -1187,18 +1196,6 @@ messages can be about the strange behaviours/properties of the species.
 ~.p.......~
 ~~~~~~~~~~~
 ~~~~~~~~~~~ (level where you recover box)
-
-
-~~~~~~~~~
-~~...*.#~
-~~*..*.#~
-~#*~.#~~~
-~..*so.*~
-~p#.....~
-~.*.~**.~
-~~##~~##~
-~~~~~~~~~
-
 
 
 
@@ -1228,23 +1225,6 @@ messages can be about the strange behaviours/properties of the species.
 ~~..b..#...~~~~
 ~~~...~~~~~~~~~
 ~~~~~~~~~~~~~~~
-
-
-~~~~~~~~~~~~~~~~~
-~~~~~...~~~~~~~~~
-~~~~~....~~~..~~~
-~~~~....s~....~~~
-~~~~.*...~~~~..~~
-~~~~.#.*....~~..~
-~#o.........~~.~~
-~~~~~.~~....~~.~~
-~~~~~p....~~~..~~
-~~~~~~~~.~~...~~~
-~~~~~~~~..~..~~~~
-~~~~~~~~....~~~~~
-~~~~~~~~~~~~~~~~~
-
-
 
 
 ~~~~~~~~~~~~~~~
