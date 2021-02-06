@@ -1116,15 +1116,16 @@ messages can be about the strange behaviours/properties of the species.
 
 (push crate in bush so that spirit can hit it)
 
-~~~~~~~~~~~~~
-~...........~
-~.p.h~~~~~~.~
-~....~....~.~
-~.*..~..#.~.~
-#o..b~....~.~
-~......#..~~~
-~~~~~~...~~~~
-~~~~~~~~~~~~~ (some way to make it necessary to push crate from bush when in line with spirit)
+~~~~~~~~~~~~
+~~~#.......~
+~#~#.p...%.~
+~~~#.....w.~
+~~~~~~.~~~.~
+~#o.b~b~...~
+~#.~~~.#.##~
+~#.......##~
+~~~~~~~~~~~~
+
 
 
 (Push crate in bush to get it past spirit in bush)
