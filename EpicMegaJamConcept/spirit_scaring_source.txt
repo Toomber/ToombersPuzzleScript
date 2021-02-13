@@ -663,15 +663,15 @@ messages can be about the strange behaviours/properties of the species.
 #.......#..~~
 #########.~~~
 
-~~~~~~~~~~~~~~~~~
-~.~...~~~~~...~.~
-~.~.s.~~~~~...~.~
-~#~...~~~~~...~#~
-~~~...~~~~~...~~~
-~.~...#...#...~.~
-~.~.o.*.p.*...~.~
-~#~...........~#~
-~~~~~~~~~~~~~~~~~ (send back the way it came with crate)
+~~~~~~~~~~~~~~~
+~~...~~~~~..#~~
+~~.s.~~~~~..#~~
+~~...~~~~~..#~~
+~~...~~~~~..#~~
+~~...#...#..#~~
+~~.o.*.p.*..#~~
+~~..........#~~
+~~~~~~~~~~~~~~~ (send back the way it came with crate - make this clearer somehow?)
 
 .b..b~~~~~~~~
 ##.######~~~~
@@ -733,6 +733,21 @@ messages can be about the strange behaviours/properties of the species.
 ~~~~~#~~~~~~~~~~
 ~~~~~~~~~~~~~~~~
 
+(
+~~~~~~~~~~~~~~~~
+~~~~#~~~~~~~~~~~
+~~#~~~.b..~~~~~~
+~~~~#...b.b~#~~~
+~~~~##b##....~~~
+~~~......~.#b.~~
+~~#.#.s.b~~~..~~
+~~#.....b~#...~~
+~~##.....~~..b~~
+~~~~..##~~~p.~~~
+~~~~~#~~~o~~~~~~
+~~~~~~~~~#~~~~~~
+~~~~~~~~~~~~~~~~ (simplify to put focus on the important discovery?))
+
 ~~~~~~~~~~~~~~~
 ~~~~#~~#~~~~~~~
 ~~~...~#~~~~~~~
@@ -764,6 +779,18 @@ messages can be about the strange behaviours/properties of the species.
 ~~~~~~~~~~~~~~ (makes it look like bushes will stop spirit like walls) (maybe add an animation for entering bush for the first time?)
 
 
+~~~~~~~~~~~
+~#~...~...~
+~~~.~.~.~.~
+~..b#b.h..~
+~.~.~.~.~.~
+~p.b.b.b..~
+~.~.~.~.~.~
+~..j.b#b..~
+~.~.~.~.~~~
+~...~...~#~
+~~~~~~~~~~~
+
 ~~~~~~~~~~~~~~~~~
 ~~~~~~~~~......~~
 ~~....~....~~...~
@@ -776,19 +803,6 @@ messages can be about the strange behaviours/properties of the species.
 ~...b..o.b.p.b~~~
 ~~.....#....~~~~~
 ~~~~~~~~~~~~~~~~~ (can't walk adjacent to bush w/ spirit (must be on correct side of it). Use Bush as Cover.)
-
-
-~~~~~~~~~~~
-~#~...~...~
-~~~.~.~.~.~
-~..b#b.h..~
-~.~.~.~.~.~
-~p.b.b.b..~
-~.~.~.~.~.~
-~..j.b#b..~
-~.~.~.~.~~~
-~...~...~#~
-~~~~~~~~~~~
 
 (
 ~~~~~~~~~
@@ -1040,19 +1054,6 @@ messages can be about the strange behaviours/properties of the species.
 ~#.~.~.#.##~
 ~#.~.....##~
 ~~~~~~~~~~~~
-
-(
-~~~~~~~~~~~~~~
-~~~~~#.......~
-~~~#~#..p..%.~
-~~~~~#.....w.~
-~~~~~~~~.~~~.~
-~#o..~b~b~...~
-~#.~...~.#.##~
-~#.~~~~~.#.##~
-~#.........~~~
-~~~~~~~~~~~~~~)
-
 
 
 (Push crate in bush to get it past spirit in bush)
