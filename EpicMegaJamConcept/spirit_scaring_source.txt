@@ -468,15 +468,15 @@ late left [ Water WaterCoverDownLeftCorner no WaterCoversDone | no WaterCoverDow
 
 (crate sinking animation)
 [ StoneCrateSink9 ] -> []
-[ StoneCrateSink8 ] -> [ StoneCrateSink9 ] again
-[ StoneCrateSink7 ] -> [ StoneCrateSink8 ] again
-[ StoneCrateSink6 ] -> [ StoneCrateSink7 ] again
-[ StoneCrateSink5 ] -> [ StoneCrateSink6 ] again
-[ StoneCrateSink4 ] -> [ StoneCrateSink5 ] again
-[ StoneCrateSink3 ] -> [ StoneCrateSink4 ] again
-[ StoneCrateSink2 ] -> [ StoneCrateSink3 ] again
-[ StoneCrateSink1 ] -> [ StoneCrateSink2 ] again (want this to use realtime) (also it looks jank with water covers)
-[ StoneCrateSink0 ] -> [ StoneCrateSink1 ] again
+[ StoneCrateSink8 ] -> [ StoneCrateSink9 ] 
+[ StoneCrateSink7 ] -> [ StoneCrateSink8 ] 
+[ StoneCrateSink6 ] -> [ StoneCrateSink7 ] 
+[ StoneCrateSink5 ] -> [ StoneCrateSink6 ] 
+[ StoneCrateSink4 ] -> [ StoneCrateSink5 ] 
+[ StoneCrateSink3 ] -> [ StoneCrateSink4 ] 
+[ StoneCrateSink2 ] -> [ StoneCrateSink3 ] 
+[ StoneCrateSink1 ] -> [ StoneCrateSink2 ]
+[ StoneCrateSink0 ] -> [ StoneCrateSink1 ]  (it looks jank with water covers - also  at the moment player has to wait if in line 										with spirit, due to again being triggered. Some way to avoid this?) 
 
 
 
@@ -501,7 +501,7 @@ late [TempVacatedBush] -> []
 
 (late [Player Bush] -> [Player Bush]  (player bush sound))
 
-late [Crate Water] -> [StoneCrateSink0 Water] again (destroy crate in water)
+late [Crate Water] -> [StoneCrateSink0 Water] (again) (destroy crate in water)
 (late [Crate Bush] -> [Crate DestroyedBush] sfx1)
 
 
@@ -546,12 +546,12 @@ left [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
 
 (delay to let running sounds keep going after spirit leaves the screen)
 [ Timer5 ] -> []
-[ Timer4 ] -> [ Timer5 ] again sfx2
-[ Timer3 ] -> [ Timer4 ] again
-[ Timer2 ] -> [ Timer3 ] again
-[ Timer1 ] -> [ Timer2 ] again sfx2
-[ Timer0 ] -> [ Timer1 ] again
-[SpiritLeftScreen] -> [ Timer0 ] again sfx2
+[ Timer4 ] -> [ Timer5 ] sfx2
+[ Timer3 ] -> [ Timer4 ]
+[ Timer2 ] -> [ Timer3 ]
+[ Timer1 ] -> [ Timer2 ] sfx2
+[ Timer0 ] -> [ Timer1 ]
+[SpiritLeftScreen] -> [ Timer0 ] sfx2
 
 
 
