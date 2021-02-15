@@ -363,6 +363,7 @@ W = Spirit and Water
 B = Bush
 H = Bush and Spirit
 J = Bush and Target
+X = Player and Bush
 
 G = GlassCrate
 T = GlassWall
@@ -881,8 +882,6 @@ messages can be about the strange behaviours/properties of the species.
 
 
 (level using wall next to spirit in bush means it stays in bush)
-
-
 (hiding in bush adjacent to spirit in bush)
 
 ~~~~~~~~~~~~~
@@ -894,6 +893,22 @@ messages can be about the strange behaviours/properties of the species.
 ~.~.~#~#~o~~~
 ~...~#..~#~~~
 ~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~
+~~##~#~~j~~~
+~.bb..~..bb~
+~.##~~~....~
+~....s.....~
+~~~~~x~~~~~~
+~~~~~~~~~~~~
+
+~~~~~~~~~~~
+~..#o..b..~
+~.bh.p.b..~
+~.....~b..~
+~~~~~~~~~~~
 
 
 
@@ -971,12 +986,13 @@ messages can be about the strange behaviours/properties of the species.
 
 (place crate next to spirit in bush so you can walk past without breaking it)
 
-~~~~~~~~~~~~~~~~~~~
-~...........~.....~
-~.b.p.h.%.b.~b....~
-~.....#...#.......~
-~..~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~...............~
+~.b.p.h.b.*..bb.~
+~.......#.#.o...~
+~~#~~~#~#~#~#~~~~
+~~~~~~~~~~~~~~~~~
+
 
 
 (Push crate in bush to get it past spirit)
