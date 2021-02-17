@@ -850,16 +850,16 @@ messages can be about the strange behaviours/properties of the species.
 #####..##.#........  (intentionally breaking bushes, and progress gated by bushes that must be used constructively)
 
 
-~~~~~~~~~~~~~~
-~####~#~...#~~
-~#o..~b~w~b#~~
-~#.~...~~~.#~~
-~~.~~~~~b...~~
-~~.~~~~~~~~.#~
-~#.#b.b..b~.#~
-~#.~~.~.#~~.#~
-~#...p......~~
-~~~~~~~~~~~~~~ (intentionally break so it won't block line of sight)(break when in view of spirit / break and go back)
+~~~~~~~~~~~~~
+~####~#~...#~
+~#o..~b~w~b#~
+~#.~...~~~.#~
+~~.~~~~~b...~
+~~.~~~~~~~~.~
+~#.#b.b..b~.~
+~#.~~.~.#~~.~
+~#...p......~
+~~~~~~~~~~~~~ (intentionally break so it won't block line of sight)(break when in view of spirit / break and go back)
 
 
 (
@@ -881,7 +881,6 @@ messages can be about the strange behaviours/properties of the species.
 
 
 
-(level using wall next to spirit in bush means it stays in bush)
 (hiding in bush adjacent to spirit in bush)
 
 ~~~~~~~~~~~~~
@@ -949,7 +948,7 @@ messages can be about the strange behaviours/properties of the species.
 ~#bb..b.bhb#~
 ~#bb...~~~##~
 ~##~~~~~~~~~~
-~~~~~~~~~~~~~
+~~~~~~~~~~~~~ (ok)
 
 ~~~~~~~~~~~~~~~~~~~~
 ~#~~~~~~~~~~~~#~#~~~
@@ -961,12 +960,42 @@ messages can be about the strange behaviours/properties of the species.
 ~~~~~~~~~~~~~~~~~~~~
 
 ~~~~~~~~~~~~~~~~
-~~~..b......b.~~
+~~~~~~~#..~~~~~~
+~~...b......b.~~
 ~xs..b.~b...b.~~
 ~##..b....#...#~
-~#~~~#~~~~#..o#~
+~#..~~~..~#..o#~
 ~~#~~~~~#~#~~##~
 ~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~..#.~~~~#~##~~
+~~...b...#..b....o#~~
+~xs..b.~b...b.#...~~~
+~##..b....#.b...bb#~~
+~#..~~~..~#.....~##~~
+~~#~~~~~#~#~~###~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~..#.~~~#~~~~~
+~~...b...#..b....o#~
+~xs..b.~b...b.#~b.#~
+~##..b....#.b...b.~~
+~#..~~~..~#.....b.~~
+~~#~~~~~#~#~~###~~~~
+~~~~~~~~~~~~~~~~~~~~ (ok but has a red herring)
+
+~~~~~~~~~~~~~~~~~~
+~~~~~~~..#.~~~###~
+~~...b...#..b..o#~
+~xs..b.~b...b.~.~~
+~##..b....#.b...~~
+~#..~~~..~#.....#~
+~~#~~~~~#~#~~##~~~
+~~~~~~~~~~~~~~~~~~ (pretty good)
+
+
 
 
 
