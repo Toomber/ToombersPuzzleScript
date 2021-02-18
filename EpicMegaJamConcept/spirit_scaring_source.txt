@@ -21,10 +21,6 @@ Background
 11100
 00111
 
-WaterCoversDone
-transparent
-
-
 WaterCoverUp
 #7fb0d7 #4089c4 (#96bede #67a1d0) (#95e6de #2ec2b4)
 00000
@@ -32,77 +28,6 @@ WaterCoverUp
 .....
 .....
 .....
-
-WaterCoverDown
-transparent #2c757d
-.....
-.....
-.....
-.....
-00000
-
-WaterCoverRight
-transparent #2c757d
-....0
-....0
-....0
-....0
-....0
-
-WaterCoverLeft
-transparent #2c757d
-0....
-0....
-0....
-0....
-0....
-
-WaterCoverUpRightCorner
-transparent #2c757d
-....0
-.....
-.....
-.....
-.....
-
-WaterCoverDownRightCorner
-transparent #2c757d
-.....
-.....
-.....
-.....
-....0
-
-WaterCoverUpLeftCorner
-transparent #2c757d
-0....
-.....
-.....
-.....
-.....
-
-WaterCoverDownLeftCorner
-transparent #2c757d
-.....
-.....
-.....
-.....
-0....
-
-
-SandIsU
-transparent
-
-SandIsD
-transparent
-
-SandIsR
-transparent
-
-SandIsL
-transparent
-
-
 
 Target
 DarkBlue
@@ -137,15 +62,6 @@ Player
 33333
 02220
 .0.0.
-
-(
-Player
-Red green darkblue darkgray
-.000.
-.111.
-02220
-02220
-.0.0.)
 
 StoneCrate
 #a05f75 #a35c68 #b14e6d #94555c #da737b #6d4b78
@@ -235,23 +151,79 @@ StoneCrateSink9
 3...1
 33331
 
-(
-#bb5044 #9f443a #c33c51 #9a2d32 #da737b #6d4b78
-02322
-3...2
-3...2
-3...1
-33331)
-
-
-
-Spirit
+SpiritStationary
 Purple
 .....
 .000.
 .000.
 .000.
 .....
+
+SpiritHitsU
+Purple
+00000
+00000
+.....
+.....
+.....
+
+SpiritHitsD
+Purple
+.....
+.....
+.....
+00000
+00000
+
+SpiritHitsR
+Purple
+...00
+...00
+...00
+...00
+...00
+
+SpiritHitsL
+Purple
+00...
+00...
+00...
+00...
+00...
+
+SpiritMovesU
+Purple
+.000.
+.000.
+.000.
+.000.
+.....
+
+SpiritMovesD
+Purple
+.....
+.000.
+.000.
+.000.
+.000.
+
+
+SpiritMovesR
+Purple
+.....
+.0000
+.0000
+.0000
+.....
+
+SpiritMovesL
+Purple
+.....
+0000.
+0000.
+0000.
+.....
+
 
 (glass is solid but not opaque)
 
@@ -307,6 +279,8 @@ DestroyedBush
 TempVacatedBush
 black
 
+TempSpiritAlreadyCollided
+transparent
 
 SpiritLeftScreen
 transparent
@@ -357,27 +331,26 @@ P = Player
 @ = StoneCrate and Target
 % = StoneCrate and Bush
 O = Target
-S = Spirit
+S = SpiritStationary and TempSpiritAlreadyCollided
 ~ = Water
-W = Spirit and Water
+W = SpiritStationary and Water and TempSpiritAlreadyCollided
 B = Bush
-H = Bush and Spirit
+H = Bush and SpiritStationary and TempSpiritAlreadyCollided
 J = Bush and Target
 X = Player and Bush
 
 G = GlassCrate
 T = GlassWall
 
+
 Blocking = BlockingU or BlockingD or BlockingR or BlockingL
+SpiritHits = SpiritHitsU or SpiritHitsD or SpiritHitsR or SpiritHitsL
+SpiritMoves = SpiritMovesU or SpiritMovesD or SpiritMovesR or SpiritMovesL
+Spirit = SpiritStationary or SpiritHits or SpiritMoves
 Crate = StoneCrate or GlassCrate
 Opaque = StoneCrate or Wall or Bush
 
 Timer = Timer0 or Timer1 or Timer2 or Timer3 or Timer4 or Timer5 
-
-SandIs = SandIsU or SandIsD or SandIsR or SandIsL
-
-
-WaterCover = WaterCoverUp or WaterCoverDown or WaterCoverRight or WaterCoverLeft or WaterCoverUpRightCorner or WaterCoverDownRightCorner or WaterCoverUpLeftCorner or WaterCoverDownLeftCorner
 
 StoneCrateSink = StoneCrateSink0 or StoneCrateSink1 or StoneCrateSink2 or StoneCrateSink3 or StoneCrateSink4 or StoneCrateSink5 or StoneCrateSink6 or StoneCrateSink7 or StoneCrateSink8 or StoneCrateSink9
 
@@ -391,7 +364,7 @@ Crate destroy 45416100 (33195900) (58667903)
 
 Endlevel 96976903
 
-Spirit move 39212302
+Spirit move 50223502 (39212302)
 sfx2 39212302 (sound for when spirit has left screen)
 
 Player move 74291507
@@ -399,6 +372,10 @@ Player move 74291507
 sfx0 84286303 (96059500 31288108)  (7389303) (kick spirit out of bush)
 
 sfx1 49801907 (26041300) (64859107)  () (destroy bush)
+
+sfx3 2447107 (spirit collides with wall)
+sfx4 33912304 (71683100) (76311307) (spirit collides with crate)
+sfx5 13888100 (63113700) (spirit collides with crate 2)
 
 ================
 COLLISIONLAYERS
@@ -410,17 +387,7 @@ Water
 
 StoneCrateSink
 
-WaterCoversDone,
-WaterCoverUp,
-WaterCoverDown,
-WaterCoverRight,
-WaterCoverLeft,   
-WaterCoverUpRightCorner,   
-WaterCoverDownRightCorner,   
-WaterCoverUpLeftCorner,   
-WaterCoverDownLeftCorner,
-
-
+WaterCoverUp
 
 Target
 Player, Wall, Crate, Spirit, GlassWall, GlassCrate
@@ -428,61 +395,15 @@ Bush, DestroyedBush
 
 Blocking
 TempVacatedBush
+TempSpiritAlreadyCollided
 SpiritLeftScreen
 Timer
-
-SandIsU
-SandIsD
-SandIsR
-SandIsL
 
 
 
 ======
 RULES
 ======
-
-(create side borders)
-late up [ Water no WaterCoversDone | no Water ] -> [ Water WaterCoverUp | ]
-late down [ Water no WaterCoversDone | no Water ] -> [ Water WaterCoverDown | ]
-late right [ Water no WaterCoversDone | no Water ] -> [ Water WaterCoverRight | ]
-late left [ Water no WaterCoversDone | no Water ] -> [ Water WaterCoverLeft | ]
-
-(
-(create corners)
-late down [ Water no WaterCoversDone | ] -> [ Water WaterCoverDownRightCorner WaterCoverDownLeftCorner | ] 
-late up [ Water no WaterCoversDone | ] -> [ Water WaterCoverUpRightCorner WaterCoverUpLeftCorner | ]
-
-(remove extra corners)
-late up [ Water WaterCoverUpRightCorner no WaterCoversDone | no WaterCoverRight ] -> [ Water | ] 
-late right [ Water WaterCoverUpRightCorner no WaterCoversDone | no WaterCoverUp ] -> [ Water | ] 
-late down [ Water WaterCoverDownRightCorner no WaterCoversDone | no WaterCoverRight ] -> [ Water | ] 
-late right [ Water WaterCoverDownRightCorner no WaterCoversDone | no WaterCoverDown ] -> [ Water | ] 
-late up [ Water WaterCoverUpLeftCorner no WaterCoversDone | no WaterCoverLeft ] -> [ Water | ]
-late left [ Water WaterCoverUpLeftCorner no WaterCoversDone | no WaterCoverUp ] -> [ Water | ] 
-late down [ Water WaterCoverDownLeftCorner no WaterCoversDone | no WaterCoverLeft ] -> [ Water | ] 
-late left [ Water WaterCoverDownLeftCorner no WaterCoversDone | no WaterCoverDown ] -> [ Water | ] 
-)
-(finish covering Waters)
-(late [ Water no WaterCoversDone ] -> [ Water WaterCoversDone])
-
-
-(crate sinking animation)
-[ StoneCrateSink9 ] -> []
-[ StoneCrateSink8 ] -> [ StoneCrateSink9 ] 
-[ StoneCrateSink7 ] -> [ StoneCrateSink8 ] 
-[ StoneCrateSink6 ] -> [ StoneCrateSink7 ] 
-[ StoneCrateSink5 ] -> [ StoneCrateSink6 ] 
-[ StoneCrateSink4 ] -> [ StoneCrateSink5 ] 
-[ StoneCrateSink3 ] -> [ StoneCrateSink4 ] 
-[ StoneCrateSink2 ] -> [ StoneCrateSink3 ] 
-[ StoneCrateSink1 ] -> [ StoneCrateSink2 ]
-[ StoneCrateSink0 ] -> [ StoneCrateSink1 ]  (it looks jank with water covers - also  at the moment player has to wait if in line 										with spirit, due to again being triggered. Some way to avoid this?) 
-
-
-
-
-
 
 
 [ > Player | Water ] -> [ Player | Water ] (don't let player enter water)
@@ -514,7 +435,7 @@ right [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingR]
 left [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingL]
 
 (make spirit move away)
-[ Player no Bush | ... | Spirit no Bush | no wall no crate Background] -> [ Player | ... | > Spirit | no wall no crate Background]
+[ Player no Bush | ... | Spirit no Bush | no wall no crate] -> [ Player | ... | > Spirit | no wall no crate]
 (cancel spirit movement if line of sight blocked) 
 up [up Spirit][ Player | ... | BlockingD ] ->  [ stationary Spirit][ Player | ... | BlockingD ]
 down [down Spirit][ Player | ... | BlockingU ] ->  [ stationary Spirit][ Player | ... | BlockingU ] 
@@ -522,10 +443,27 @@ right [right Spirit][ Player | ... | BlockingL ] ->  [ stationary Spirit][ Playe
 left [left Spirit][ Player | ... | BlockingR ] ->  [ stationary Spirit][ Player | ... | BlockingR ] 
  
 
-[stationary Spirit Target] -> win
+[stationary SpiritStationary Target] -> win
 
-late [Player | ... | Spirit] -> [Player | ... | Spirit] again
+(late [Player | ... | Spirit | no Wall no Crate ] -> [Player | ... | Spirit | no Wall no Crate ] again)
+[moving spirit] -> [moving spirit] again
 
+(----------------- Aesthetics ---------------------)
+
+(create side borders)
+up [ Water | no Water ] -> [ Water WaterCoverUp | ]
+
+(crate sinking animation)
+[ StoneCrateSink9 ] -> []
+[ StoneCrateSink8 ] -> [ StoneCrateSink9 ] 
+[ StoneCrateSink7 ] -> [ StoneCrateSink8 ] 
+[ StoneCrateSink6 ] -> [ StoneCrateSink7 ] 
+[ StoneCrateSink5 ] -> [ StoneCrateSink6 ] 
+[ StoneCrateSink4 ] -> [ StoneCrateSink5 ] 
+[ StoneCrateSink3 ] -> [ StoneCrateSink4 ] 
+[ StoneCrateSink2 ] -> [ StoneCrateSink3 ] 
+[ StoneCrateSink1 ] -> [ StoneCrateSink2 ]
+[ StoneCrateSink0 ] -> [ StoneCrateSink1 ]  (it looks jank with water covers - also  at the moment player has to wait if in line 										with spirit, due to again being triggered. Some way to avoid this?) 
 
 (delete the spirit if it gets to the edge of the screen)
 
@@ -545,21 +483,50 @@ right [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
 left [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
 [ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ]
 
+(collision effects)
+[TempSpiritAlreadyCollided no Spirit] -> []
+up 		[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Wall ] -> [ Player | ... | SpiritHitsU TempSpiritAlreadyCollided | Wall ] sfx3
+down 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Wall ] -> [ Player | ... | SpiritHitsD TempSpiritAlreadyCollided | Wall ] sfx3
+right 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Wall ] -> [ Player | ... | SpiritHitsR TempSpiritAlreadyCollided | Wall ] sfx3
+left 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Wall ] -> [ Player | ... | SpiritHitsL TempSpiritAlreadyCollided | Wall ] sfx3
+
+up 		[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Crate ] -> [ Player | ... | SpiritHitsU TempSpiritAlreadyCollided | Crate ] sfx4 sfx5
+down 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Crate ] -> [ Player | ... | SpiritHitsD TempSpiritAlreadyCollided | Crate ] sfx4 sfx5
+right 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Crate ] -> [ Player | ... | SpiritHitsR TempSpiritAlreadyCollided | Crate ] sfx4 sfx5
+left 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Crate ] -> [ Player | ... | SpiritHitsL TempSpiritAlreadyCollided | Crate ] sfx4 sfx5
+
+([ stationary Player ][ SpiritHitsU Timer5 ] -> [ stationary Player ][ SpiritStationary ]
+[ stationary Player ][ SpiritHitsU Timer4 ] -> [ stationary Player ][ SpiritHitsU Timer5 ]
+[ stationary Player ][ SpiritHitsU Timer3 ] -> [ stationary Player ][ SpiritHitsU Timer4 ]
+[ stationary Player ][ SpiritHits Timer2 ] -> [ stationary Player ][ SpiritStationary ])
+[ stationary Player ][ SpiritHits Timer1 ] -> [ stationary Player ][ SpiritStationary ]
+[ stationary Player ][ SpiritHits Timer0 ] -> [ stationary Player ][ SpiritHits Timer1 ]
+[ stationary Player ][ SpiritHits no Timer] -> [ stationary Player ][ SpiritHits Timer0 ]
+
+
+(movement sprites)
+up 		[ > Spirit no bush | no wall no Crate ] -> [ > SpiritMovesU | ]
+down 	[ > Spirit no bush | no wall no Crate ] -> [ > SpiritMovesD | ]
+right 	[ > Spirit no bush | no wall no Crate ] -> [ > SpiritMovesR | ]
+left 	[ > Spirit no bush | no wall no Crate ] -> [ > SpiritMovesL | ]
+
+[ stationary spirit no TempSpiritAlreadyCollided ] -> [ stationary SpiritStationary ]
+late [ Spirit Bush ] -> [ SpiritStationary Bush ]
+
 (delay to let running sounds keep going after spirit leaves the screen)
-[ Timer5 ] -> []
-[ Timer4 ] -> [ Timer5 ] sfx2
-[ Timer3 ] -> [ Timer4 ]
-[ Timer2 ] -> [ Timer3 ]
-[ Timer1 ] -> [ Timer2 ] sfx2
-[ Timer0 ] -> [ Timer1 ]
-[SpiritLeftScreen] -> [ Timer0 ] sfx2
+[ stationary Player ][ SpiritLeftScreen Timer5 ] -> [ stationary Player ][]
+[ stationary Player ][ SpiritLeftScreen Timer4 ] -> [ stationary Player ][ SpiritLeftScreen Timer5 ] sfx2
+[ stationary Player ][ SpiritLeftScreen Timer3 ] -> [ stationary Player ][ SpiritLeftScreen Timer4 ]
+[ stationary Player ][ SpiritLeftScreen Timer2 ] -> [ stationary Player ][ SpiritLeftScreen Timer3 ]
+[ stationary Player ][ SpiritLeftScreen Timer1 ] -> [ stationary Player ][ SpiritLeftScreen Timer2 ] sfx2
+[ stationary Player ][ SpiritLeftScreen Timer0 ] -> [ stationary Player ][ SpiritLeftScreen Timer1 ]
+[ stationary Player ][SpiritLeftScreen no Timer] -> [ stationary Player ][ SpiritLeftScreen Timer0 ] sfx2
 
 
 
 ==============
 WINCONDITIONS
 ==============
-
 
 =======
 LEVELS
@@ -686,8 +653,6 @@ messages can be about the strange behaviours/properties of the species.
 #########.~~~
 
 
-(3 crates?)
-
 ~~~~~~~~~~~~~
 ~~~~~....~~~~
 ~~.......~~~~
@@ -708,7 +673,7 @@ messages can be about the strange behaviours/properties of the species.
 #po*.**...s.#
 #..*..*.*...#
 ##~~~~~~~...#
-####~~~######  (destroy crates that are in the way) (must have at least one crate on each side)(must have one in middle before back crate in place) (would be nice to have this be more deductive but difficult to design)
+####~~~######  (destroy crates that are in the way)
 
 
 
@@ -817,10 +782,6 @@ messages can be about the strange behaviours/properties of the species.
 ~~~~~~~~~
 )
 
-
-
-
-
 (level where you must leave at least one bush per col as cover?)
 
 
@@ -884,14 +845,24 @@ messages can be about the strange behaviours/properties of the species.
 (hiding in bush adjacent to spirit in bush, and pushing spirit free)
 
 
-~~~~~~~~~~~~~~~~~~
-~~~~~~~..#.~~~###~
-~~...b...#..b..o#~
-~xs..b.~b...b.~.~~
-~##..b....#.b...~~
-~#..~~~..~#.....#~
-~~#~~~~~#~#~~##~~~
-~~~~~~~~~~~~~~~~~~ (pretty good)
+~~~~~~~~~~~~~~~~~~~
+~~~~~~~..#.~~~###~~
+~~...b...#..b..o#~~
+~xs..b.~b...b.~.~~~
+~##..b....#.b.....~
+~#..~~~..~#.....#.~
+~~#~~~~~#~#~~##...~
+~~~~~~~~~~~~~~~~~~~ 
+
+~~~~~~~~~~~~~~~~~~~
+~~~~~~~..#.~~~###~~
+~~...b...#..b..o#~~
+~xs..b.~b...b.~...~
+~##..b....#.b.~~~.~
+~#..~~~..~#.....#.~
+~~#~~~~~#~#~~##...~
+~~~~~~~~~~~~~~~~~~~ (pretty good)
+
 
 (
 ~~~~~~~~~~~~~~~~~~~~
@@ -911,10 +882,17 @@ messages can be about the strange behaviours/properties of the species.
 ~#..~~~..~#..o#~
 ~~#~~~~~#~#~~##~
 ~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~
+~~~~~~~..#.~~~###~
+~~...b...#..b..o#~
+~xs..b.~b...b.~.~~
+~##..b....#.b...~~
+~#..~~~..~#.....#~
+~~#~~~~~#~#~~##~~~
+~~~~~~~~~~~~~~~~~~ 
+
 )
-
-
-
 
 
 (double bushes and pushing spirit free)
@@ -931,8 +909,6 @@ messages can be about the strange behaviours/properties of the species.
 ~~~~~~~~~~~~~~~
 
 
-
-
 (line of bushes)
 
 ~~~~~~~~~~~~~
@@ -944,6 +920,11 @@ messages can be about the strange behaviours/properties of the species.
 ~~~~#....~~~~
 ~~#~~~~#~~~~~
 ~~~~~~~~~~~~~
+
+
+
+
+
 
 
 
@@ -1013,8 +994,19 @@ messages can be about the strange behaviours/properties of the species.
 ~#####~~#..~~~
 ~~~~~~~~~~~~~~
 
+~~~~~~~~~
+~.......~
+~...b...~
+~.......~
+~.b.s.b.~
+~.......~
+~.p.b...~
+~.......~
+~~~~~~~~~
 
-(
+
+
+
 ~~~~~~~~~~~~~
 ~~.......#~#~
 ~~........~~~
@@ -1023,30 +1015,40 @@ messages can be about the strange behaviours/properties of the species.
 ~~~..p.*.o~#~
 ~~#~.....#~~~
 ~~~~~~~~~~~~~
-)
+
+~~~~~~~~~~~~~
+~....b......~
+~...........~
+~b...s.b~~b~~
+~....~......~
+~....b...*..~
+~....~.p....~
+~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~
+~....~~~~~~~~
+~....b......~
+~...........~
+~b...s....b~~
+~....~......~
+~.*..b...*..~
+~....~.p....~
+~~~~~~~~~~~~~ (create permanent pathway with crate)
+
+~~~~~~~~
+~..b...~
+~.%sb..~
+~......~
+~p...%.~
+~......~
+~~~~~~~~
+
+(level where you must get both crates to the same place?)
 
 
-~~~~~~~~~~~~~~
-~#~~~~...~#~~~
-~~.....b.~~~#~
-~#.........o#~
-~#..#b.s.b.#~~
-~#~#.......~#~
-~~~~.*.#.p.#~~
-~~~#.......~~~
-~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~~
-~~~~~~...~~~~~
-~~.......~#~~~
-~~..~~.b.~~~#~
-~#.........o#~
-~#..bb.s.b##~~
-~#~#..~....~~~
-~~~~~.##...~#~
-~~~#~....*.~~~
-~~~~~.p....~~~
-~~~~~~~~~~~~~~
+
+
 
 (push crate in bush so that spirit can hit it)
 
@@ -1062,31 +1064,6 @@ messages can be about the strange behaviours/properties of the species.
 
 
 (Push crate in bush to get it past spirit in bush)
-
-(break bush with crate intentionally? - much easier to force if there are multiple spirits)
-
-~~~~~~~~~
-~...b...~
-~...s.b.~
-~~~~~~..~
-~..~.~..~
-~.j~b~b.~
-~..~.~..~
-~..*....~
-~....p..~
-~~~~~~~~~
-
-~~~~~~~~~
-~~~~~...~
-~..bb*..~
-~.*.s...~
-~..~~#..~
-~j.bb~b.~
-~~~~b~..~
-~~~~.~..~
-~~.*....~
-~~...p..~
-~~~~~~~~~ (almost something?)
 
 
 
@@ -1184,6 +1161,20 @@ messages can be about the strange behaviours/properties of the species.
 ~.bbbbb.~
 ~.~~~~~.~
 #########
+
+
+~~~~~~~~~~~~~~
+~~~~~~...~~~~~
+~~.......~#~~~
+~~..~~.b.~~~#~
+~#.........o#~
+~#..bb.s.b##~~
+~#~#..~....~~~
+~~~~~.##...~#~
+~~~#~....*.~~~
+~~~~~.p....~~~
+~~~~~~~~~~~~~~
+
 
 ~~~~~~~~~~~~~~~~~
 ~~~~~...~~~~~~~~~
