@@ -390,8 +390,9 @@ StoneCrateSink
 WaterCoverUp
 
 Target
+DestroyedBush
 Player, Wall, Crate, Spirit, GlassWall, GlassCrate
-Bush, DestroyedBush
+Bush,
 
 Blocking
 TempVacatedBush
@@ -854,15 +855,6 @@ messages can be about the strange behaviours/properties of the species.
 ~~#~~~~~#~#~~##...~
 ~~~~~~~~~~~~~~~~~~~ 
 
-~~~~~~~~~~~~~~~~~~~
-~~~~~~~..#.~~~###~~
-~~...b...#..b..o#~~
-~xs..b.~b...b.~...~
-~##..b....#.b.~~~.~
-~#..~~~..~#.....#.~
-~~#~~~~~#~#~~##...~
-~~~~~~~~~~~~~~~~~~~ (pretty good)
-
 
 (
 ~~~~~~~~~~~~~~~~~~~~
@@ -929,14 +921,14 @@ messages can be about the strange behaviours/properties of the species.
 
 
 (pushing spirit in field of bushes)
-
+(
 ~~~~~~~~~
 ~.bbbbb.~
 ~p~hjbb.~
 ~~bb~b~~~
 ~.bbbbb.~
 ~...~...~
-~~~~~~~~~
+~~~~~~~~~)
 
 
 (intentionally breaking + hiding in bush next to spirit)
@@ -994,36 +986,19 @@ messages can be about the strange behaviours/properties of the species.
 ~#####~~#..~~~
 ~~~~~~~~~~~~~~
 
-~~~~~~~~~
-~.......~
-~...b...~
-~.......~
-~.b.s.b.~
-~.......~
-~.p.b...~
-~.......~
-~~~~~~~~~
+~~~~~~~~~~
+~.....###~
+~........~
+~.s.b~b~b~
+~#~......~
+~#o.p.*..~
+~#~......~
+~~~~~~~~~~ (ok) (combine with other level?) 
 
 
 
 
-~~~~~~~~~~~~~
-~~.......#~#~
-~~........~~~
-~~.s.b~~bb.~~
-~##........#~
-~~~..p.*.o~#~
-~~#~.....#~~~
-~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~
-~....b......~
-~...........~
-~b...s.b~~b~~
-~....~......~
-~....b...*..~
-~....~.p....~
-~~~~~~~~~~~~~
 
 ~~~~~~~~~~~~~
 ~....~~~~~~~~
@@ -1033,20 +1008,19 @@ messages can be about the strange behaviours/properties of the species.
 ~....~......~
 ~.*..b...*..~
 ~....~.p....~
-~~~~~~~~~~~~~ (create permanent pathway with crate)
+~~~~~~~~~~~~~ (create permanent pathway with crate?)
 
-~~~~~~~~
-~..b...~
-~.%sb..~
-~......~
-~p...%.~
-~......~
-~~~~~~~~
+
+
+
+
+
+
 
 (level where you must get both crates to the same place?)
 
 
-
+(level where you must push a crate through bushes and conserve them?)
 
 
 
@@ -1060,10 +1034,70 @@ messages can be about the strange behaviours/properties of the species.
 ~#o.b~b~...~
 ~#.~.~.#.##~
 ~#.~.....##~
-~~~~~~~~~~~~
+~~~~~~~~~~~~ 
+
+
+
+(crate and double bushes)
+~~~~~~~~~~~~~~~
+~##~..........~
+~.....bb...~~.~
+~..p.....~.bb.~
+~.....~~......~
+~.~.*.......s.~
+~.o........~..~
+~~~~~~~~~~#~~~~
+~#~~##~~#~~~#~~
+~~~~~~~~~~~~~~~
+
+(
+~~~~~~~~~
+~#......~
+~#o.~.~.~
+~....h~.~
+~.p*.b..~
+~.......~
+~~~~~~~~~
+
+~~~~~~~~~~~
+~.....j...~
+~.*.....s.~
+~.~~......~
+~....~.bb.~
+~.bb...~~.~
+~....p....~
+~~~~~~~~~~~ (almost ok)
+)
+
 
 
 (Push crate in bush to get it past spirit in bush)
+
+~~~~~~~~~~
+~........~
+~..b.....~
+~.%hb~...~
+~..b.~...~
+~....~...~
+~..p.~...~
+~~~~~~~~~~
+
+
+
+
+
+
+~~~~~~~~
+~.#....~
+~.o....~
+~.bb.s.~
+~#...#.~
+~..*...~
+~..p...~
+~~~~~~~~ (push crate from bush)
+
+
+
 
 
 
