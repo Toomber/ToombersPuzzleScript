@@ -455,6 +455,8 @@ Alive red and blue cars
 Alive red and unawoken blue cars
 Black Cars
 
+idea: maybe black cars must be alive to activate targets?
+
 )
 
 
