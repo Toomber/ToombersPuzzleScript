@@ -786,7 +786,15 @@ messages can be about the strange behaviours/properties of the species.
 (level where you must leave at least one bush per col as cover?)
 
 
-
+~~~~~~~~~
+~.#.....~
+~...~bo#~
+~.s.~...~
+~#..~...~
+~..p~#..~
+~...~..#~
+~.#.~...~
+~~~~~~~~~ (new path opens because bush is used?)
 
 
 (intentionally break bushes)
@@ -930,6 +938,14 @@ messages can be about the strange behaviours/properties of the species.
 ~...~...~
 ~~~~~~~~~)
 
+~~~~~~~~~
+~.bbbbb.~
+~p~hjbb.~
+~~bb~b~~~
+~.bbbbb.~
+~...~...~
+~~~~~~~~~
+
 
 (intentionally breaking + hiding in bush next to spirit)
 ~~~~~~~~~~~
@@ -1013,10 +1029,6 @@ messages can be about the strange behaviours/properties of the species.
 
 
 
-
-
-
-
 (level where you must get both crates to the same place?)
 
 
@@ -1036,8 +1048,6 @@ messages can be about the strange behaviours/properties of the species.
 ~#.~.....##~
 ~~~~~~~~~~~~ 
 
-
-
 (crate and double bushes)
 ~~~~~~~~~~~~~~~
 ~##~..........~
@@ -1050,57 +1060,28 @@ messages can be about the strange behaviours/properties of the species.
 ~#~~##~~#~~~#~~
 ~~~~~~~~~~~~~~~
 
-(
-~~~~~~~~~
-~#......~
-~#o.~.~.~
-~....h~.~
-~.p*.b..~
-~.......~
-~~~~~~~~~
-
-~~~~~~~~~~~
-~.....j...~
-~.*.....s.~
-~.~~......~
-~....~.bb.~
-~.bb...~~.~
-~....p....~
-~~~~~~~~~~~ (almost ok)
-)
-
-
-
 (Push crate in bush to get it past spirit in bush)
 
-~~~~~~~~~~
-~........~
-~..b.....~
-~.%hb~...~
-~..b.~...~
-~....~...~
-~..p.~...~
-~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
+~.....#...~#.~.~#~
+~..b......~#o.b~.~
+~.%hb~~~~.~#..b#.~
+~..b.~#...~.b....~
+~....~#b.b..b%.##~
+~#.p.~#~#~~....##~
+~~~~~~~~~~~~~~~~~~ 
 
 
 
-
-
-
-~~~~~~~~
-~.#....~
-~.o....~
-~.bb.s.~
-~#...#.~
-~..*...~
-~..p...~
-~~~~~~~~ (push crate from bush)
-
-
-
-
-
-
+(
+~~~~~~~~~
+~....%~~~
+~.......~
+~..p...%~
+~.......~
+~.%...%.~
+~~~~~~~~~(lvl with crates already inside?)
+)
 
 
 
