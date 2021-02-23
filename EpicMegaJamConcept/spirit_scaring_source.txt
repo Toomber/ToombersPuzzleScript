@@ -4,8 +4,9 @@ homepage www.puzzlescript.net
 
 again_interval 0.05
 realtime_interval 0.1
-
+noaction
 run_rules_on_level_start
+
 
 (verbose_logging)
 
@@ -248,13 +249,9 @@ lightblue
 
 Spirit hides in bushes
 Bushes are destroyed when used by you or the spirit
-Spirit leaves whenever you are one block away?
+Spirit leaves whenever you are one block away
 
 Maybe the spirit revives dead bushes it passes over? - would have to be when it stops moving. Maybe a different kind of bush?
-
-Can you push the spirit with a crate? Nah
-
-Maybe the main character is a fan? Has a Leaf blower?
 
 
 idea: make it so that the spirit leaving the screen at a sand block opens a secret?
@@ -364,18 +361,37 @@ Crate destroy 45416100 (33195900) (58667903)
 
 Endlevel 96976903
 
-Spirit move 50223502 (39212302)
-sfx2 39212302 (sound for when spirit has left screen)
+(Spirit move 50223502 (39212302))
+
+SpiritMoves create 66783707 (31766707) (13235302) (8021307) (spirit scared)
+
+sfx2 9086109 (71499902) (17662302) (39212302) (sound for when spirit has left screen)
 
 Player move 74291507
 
-sfx0 84286303 (96059500 31288108)  (7389303) (kick spirit out of bush)
+sfx0  15065104      (kick spirit out of bush)
+(
+7389303
+96059500
+49635507
+31288108)
+
 
 sfx1 49801907 (26041300) (64859107)  () (destroy bush)
+(
+9249708
+62997108
+86294708)
 
 sfx3 2447107 (spirit collides with wall)
+
 sfx4 33912304 (71683100) (76311307) (spirit collides with crate)
 sfx5 13888100 (63113700) (spirit collides with crate 2)
+
+
+
+sfx6 60883704 (51866502) (49962304) (spirit enter bush sound)
+
 
 ================
 COLLISIONLAYERS
@@ -408,10 +424,9 @@ RULES
 
 
 [ > Player | Water ] -> [ Player | Water ] (don't let player enter water)
-[ >  Player | Bush Crate ] -> [  Player | Bush TempVacatedBush > Crate ] sfx1 (push crate that's inside a bush, Akurra style. Should this destroy the bush?)
+[ >  Player | Bush Crate ] -> [  Player | Bush TempVacatedBush > Crate ] sfx1 (push crate that's inside a bush, Akurra style)
 [ >  Player | Crate ] -> [  >  Player | > Crate ] (push crate)
 
-([ > Player | Spirit Bush ] -> [ Player | > Spirit Bush ] sfx0 (kick spirit out of bush))
 [ Player no Bush | Spirit Bush ] -> [ Player | > Spirit Bush TempVacatedBush] again (kick spirit out of bush)
 late [ Player no Bush | Spirit Bush | no Crate no Wall ] -> [ Player no Bush | Spirit Bush | no Crate no Wall ]  sfx0 (play sound)
 
@@ -444,8 +459,6 @@ right [right Spirit][ Player | ... | BlockingL ] ->  [ stationary Spirit][ Playe
 left [left Spirit][ Player | ... | BlockingR ] ->  [ stationary Spirit][ Player | ... | BlockingR ] 
  
 
-[stationary SpiritStationary Target] -> win
-
 (late [Player | ... | Spirit | no Wall no Crate ] -> [Player | ... | Spirit | no Wall no Crate ] again)
 [moving spirit] -> [moving spirit] again
 
@@ -470,20 +483,20 @@ up [ Water | no Water ] -> [ Water WaterCoverUp | ]
 
 [ Spirit ] -> [ Spirit SpiritLeftScreen ]
 up [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
-[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ]
+[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ] sfx2
 
 [ Spirit ] -> [ Spirit SpiritLeftScreen ]
 down [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
-[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ]
+[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ] sfx2
 
 [ Spirit ] -> [ Spirit SpiritLeftScreen ]
 right [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
-[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ]
+[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ] sfx2
 
 [ Spirit ] -> [ Spirit SpiritLeftScreen ]
 left [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
-[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ]
-
+[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ] sfx2
+ 
 (collision effects)
 [TempSpiritAlreadyCollided no Spirit] -> []
 up 		[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Wall ] -> [ Player | ... | SpiritHitsU TempSpiritAlreadyCollided | Wall ] sfx3
@@ -512,18 +525,20 @@ right 	[ > Spirit no bush | no wall no Crate ] -> [ > SpiritMovesR | ]
 left 	[ > Spirit no bush | no wall no Crate ] -> [ > SpiritMovesL | ]
 
 [ stationary spirit no TempSpiritAlreadyCollided ] -> [ stationary SpiritStationary ]
-late [ Spirit Bush ] -> [ SpiritStationary Bush ]
+late [ SpiritMoves Bush ] -> [ SpiritStationary Bush ] sfx6
 
 (delay to let running sounds keep going after spirit leaves the screen)
-[ stationary Player ][ SpiritLeftScreen Timer5 ] -> [ stationary Player ][]
+([ stationary Player ][ SpiritLeftScreen Timer5 ] -> [ stationary Player ][]
 [ stationary Player ][ SpiritLeftScreen Timer4 ] -> [ stationary Player ][ SpiritLeftScreen Timer5 ] sfx2
 [ stationary Player ][ SpiritLeftScreen Timer3 ] -> [ stationary Player ][ SpiritLeftScreen Timer4 ]
 [ stationary Player ][ SpiritLeftScreen Timer2 ] -> [ stationary Player ][ SpiritLeftScreen Timer3 ]
 [ stationary Player ][ SpiritLeftScreen Timer1 ] -> [ stationary Player ][ SpiritLeftScreen Timer2 ] sfx2
 [ stationary Player ][ SpiritLeftScreen Timer0 ] -> [ stationary Player ][ SpiritLeftScreen Timer1 ]
 [ stationary Player ][SpiritLeftScreen no Timer] -> [ stationary Player ][ SpiritLeftScreen Timer0 ] sfx2
+)
 
 
+[stationary SpiritStationary Target] -> win
 
 ==============
 WINCONDITIONS
@@ -536,6 +551,8 @@ LEVELS
 message Every year, biologists ___ the rare ____ . But they have to catch them first.
 
 messages can be about the strange behaviours/properties of the species.
+
+todo: make bushes more satisfying
 )
 
 ~~~~~~~~~~
