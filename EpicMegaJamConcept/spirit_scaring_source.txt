@@ -31,10 +31,10 @@ WaterCoverUp
 .....
 
 Target
-DarkBlue
+#445c75 #1b2632 darkblue (#ba6eac)
 .....
 .000.
-.0.0.
+.000.
 .000.
 .....
 
@@ -46,16 +46,6 @@ Wall
 03010
 20010
 
-
-(BROWN DARKBROWN
-00010
-11111
-01000
-11111
-00010)
-
-
-
 Player
 #383430 #A09D95 #6D6C69 #574236
 .000.
@@ -65,12 +55,95 @@ Player
 .0.0.
 
 StoneCrate
-#a05f75 #a35c68 #b14e6d #94555c #da737b #6d4b78
+#a05f75 #a35c68 #b14e6d #94555c 
 02322
 3...2
 3...2
 3...1
 33331
+
+StoneCrateSinkCover0
+#966179 #995E6E #A65172 #8B5863 #9D667E #AC5777 #925D67 #A75375 #8C5A65
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover1
+#8C637E #8F6073 #9A5577 #835A69 #9A6E87 #A86080 #906672 #9C597D #855E6F
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover2
+#836482 #856279 #8F587D #7A5D70 #977590 #A3698A #8E6E7E #925E85 #7D6378
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover3
+#796687 #7B647F #845B82 #716077 #947C99 #9F7294 #8C7689 #88638D #756882
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover4   
+#6F688B #716684 #785F87 #68637E #9184A2 #9A7B9D #8A7E94 #7E6995 #6E6D8B
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover5
+#656A90 #66698A #6D628C #606584 #8E8BAA #9683A7 #89879F #736E9C #667195
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover6
+#5B6C94 #5C6B8F #616691 #57688B #8B93B3 #918CB0 #878FAA #6974A4 #5F769E
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover7
+#516E99 #526D95 #566996 #4E6B92 #889ABC #8D95BA #8597B5 #5F79AC #577BA8
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover8
+#486F9D #486F9B #4B6C9C #456E99 #85A1C5 #889EC4 #839FC1 #557EB4 #4F80B1
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover9
+#3E71A2 #3E71A0 #3F70A1 #3D709F #82A9CE #84A7CD #81A8CC #4A84BC #4884BB
+45655
+8...7
+3...2
+3...1
+33331
+
+
+
 
 StoneCrateSink0
 #966179 #995E6E #A65172 #8B5863
@@ -225,53 +298,81 @@ Purple
 0000.
 .....
 
-
-(glass is solid but not opaque)
-
-GlassWall
-lightblue
-(0.1.0
-00.1.
-.00.1
-1.00.
-.1.00)
-
-GlassCrate
-lightblue
-00000
-0...0
-0...0
-0...0
-00000
-
-(Bushes are opaque but not solid)
-(idea: Bush + glass block = normal block?
-
-Spirit hides in bushes
-Bushes are destroyed when used by you or the spirit
-Spirit leaves whenever you are one block away
-
-Maybe the spirit revives dead bushes it passes over? - would have to be when it stops moving. Maybe a different kind of bush?
-
-
-idea: make it so that the spirit leaving the screen at a sand block opens a secret?
-)
-
-Bush
-#4b916c #3e785a #579a65 #BD4242 darkgreen green
+Bush0A
+#4b916c #3e785a #579a65
+.....
 .....
 .0...
 021.0
 10212
-10102
 
-DestroyedBush
-#4b916c #3e785a #BD4242 green
+Bush0B
+#4b916c #3e785a #579a65
+.....
+.....
+...0.
+0.120
+21201
+
+Bush1A
+#4b916c #3e785a #579a65
+.....
+.....
+..22.
+.1012
+12110
+
+Bush1B
+#4b916c #3e785a #579a65
+.....
+.....
+.22..
+2101.
+01121
+
+Bush2A
+#4b916c #3e785a #579a65
+.....
+.0...
+.020.
+1210.
+11210
+
+Bush2B
+#4b916c #3e785a #579a65
+.....
+...0.
+.020.
+.0121
+01211
+
+
+DestroyedBush0
+#54a199 #4f9c99 #4f633b #325c4e #4b916c #3e785a
 .....
 .....
 .....
 .....
 0.01.
+
+DestroyedBush1
+#54a199 #4f9c99 #4f633b #325c4e #4b916c #3e785a
+.....
+.....
+.....
+.....
+1..0.
+
+DestroyedBush2
+#54a199 #4f9c99 #4f633b #325c4e #4b916c #3e785a
+.....
+.....
+.....
+.....
+01.1.
+
+BushHasBeenRandomised
+transparent
 
 TempVacatedBush
 black
@@ -326,30 +427,31 @@ LEGEND
 P = Player
 * = StoneCrate
 @ = StoneCrate and Target
-% = StoneCrate and Bush
+% = StoneCrate and Bush1A
 O = Target
 S = SpiritStationary and TempSpiritAlreadyCollided
 ~ = Water
 W = SpiritStationary and Water and TempSpiritAlreadyCollided
-B = Bush
-H = Bush and SpiritStationary and TempSpiritAlreadyCollided
-J = Bush and Target
-X = Player and Bush
+B = Bush1A
+H = Bush1A and SpiritStationary and TempSpiritAlreadyCollided
+J = Bush1A and Target
+X = Player and Bush1A
 
-G = GlassCrate
-T = GlassWall
 
 
 Blocking = BlockingU or BlockingD or BlockingR or BlockingL
 SpiritHits = SpiritHitsU or SpiritHitsD or SpiritHitsR or SpiritHitsL
 SpiritMoves = SpiritMovesU or SpiritMovesD or SpiritMovesR or SpiritMovesL
 Spirit = SpiritStationary or SpiritHits or SpiritMoves
-Crate = StoneCrate or GlassCrate
+Crate = StoneCrate
+Bush = Bush0A or Bush1A or Bush2A or Bush0B or Bush1B or Bush2B
+DestroyedBush = DestroyedBush0 or DestroyedBush1 or DestroyedBush2
 Opaque = StoneCrate or Wall or Bush
 
 Timer = Timer0 or Timer1 or Timer2 or Timer3 or Timer4 or Timer5 
 
 StoneCrateSink = StoneCrateSink0 or StoneCrateSink1 or StoneCrateSink2 or StoneCrateSink3 or StoneCrateSink4 or StoneCrateSink5 or StoneCrateSink6 or StoneCrateSink7 or StoneCrateSink8 or StoneCrateSink9
+StoneCrateSinkCover = StoneCrateSinkCover0 or StoneCrateSinkCover1 or StoneCrateSinkCover2 or StoneCrateSinkCover3 or StoneCrateSinkCover4 or StoneCrateSinkCover5 or StoneCrateSinkCover6 or StoneCrateSinkCover7 or StoneCrateSinkCover8 or StoneCrateSinkCover9  
 
 =======
 SOUNDS
@@ -367,7 +469,7 @@ SpiritMoves create 66783707 (31766707) (13235302) (8021307) (spirit scared)
 
 sfx2 9086109 (71499902) (17662302) (39212302) (sound for when spirit has left screen)
 
-Player move 74291507
+Player move 78892307 (23662107) (16418907) (74291507)
 
 sfx0  15065104      (kick spirit out of bush)
 (
@@ -401,20 +503,20 @@ Background
 
 Water
 
-StoneCrateSink
-
 WaterCoverUp
+StoneCrateSink, StoneCrateSinkCover
 
 Target
 DestroyedBush
-Player, Wall, Crate, Spirit, GlassWall, GlassCrate
-Bush,
+Player, Wall, Crate, Spirit,
+Bush, 
 
 Blocking
 TempVacatedBush
 TempSpiritAlreadyCollided
 SpiritLeftScreen
 Timer
+BushHasBeenRandomised
 
 
 
@@ -434,14 +536,12 @@ late [ Player no Bush | Spirit Bush | no Crate no Wall ] -> [ Player no Bush | S
 
 [ > Player Bush ] -> [ > Player Bush TempVacatedBush] (kill bush that you walked through)
 
-late [TempVacatedBush Bush no Player no Spirit no Crate ] -> [ DestroyedBush ] sfx1 (destroy bushes if there is nothing occupying them)
+late [TempVacatedBush Bush no Player no Spirit no Crate ] -> [ random DestroyedBush ] sfx1 (destroy bushes if there is nothing occupying them)
 late [TempVacatedBush] -> []
 
-(late [Player Bush] -> [Player Bush]  (player bush sound))
-
-late [Crate Water] -> [StoneCrateSink0 Water] (again) (destroy crate in water)
-(late [Crate Bush] -> [Crate DestroyedBush] sfx1)
-
+(destroy crates in water)
+late [Crate Water WaterCoverUp] -> [StoneCrateSinkCover0 Water WaterCoverUp]
+late [Crate Water] -> [StoneCrateSink0 Water]
 
 (check lines of sight from spirit)
 [Blocking] -> []
@@ -464,6 +564,10 @@ left [left Spirit][ Player | ... | BlockingR ] ->  [ stationary Spirit][ Player 
 
 (----------------- Aesthetics ---------------------)
 
+(bush randomisation)
+[ Bush no BushHasBeenRandomised ] -> [ random Bush BushHasBeenRandomised] checkpoint
+
+
 (create side borders)
 up [ Water | no Water ] -> [ Water WaterCoverUp | ]
 
@@ -477,7 +581,18 @@ up [ Water | no Water ] -> [ Water WaterCoverUp | ]
 [ StoneCrateSink3 ] -> [ StoneCrateSink4 ] 
 [ StoneCrateSink2 ] -> [ StoneCrateSink3 ] 
 [ StoneCrateSink1 ] -> [ StoneCrateSink2 ]
-[ StoneCrateSink0 ] -> [ StoneCrateSink1 ]  (it looks jank with water covers - also  at the moment player has to wait if in line 										with spirit, due to again being triggered. Some way to avoid this?) 
+[ StoneCrateSink0 ] -> [ StoneCrateSink1 ]
+
+[ StoneCrateSinkCover9 ] -> []
+[ StoneCrateSinkCover8 ] -> [ StoneCrateSinkCover9 ] 
+[ StoneCrateSinkCover7 ] -> [ StoneCrateSinkCover8 ] 
+[ StoneCrateSinkCover6 ] -> [ StoneCrateSinkCover7 ] 
+[ StoneCrateSinkCover5 ] -> [ StoneCrateSinkCover6 ] 
+[ StoneCrateSinkCover4 ] -> [ StoneCrateSinkCover5 ] 
+[ StoneCrateSinkCover3 ] -> [ StoneCrateSinkCover4 ] 
+[ StoneCrateSinkCover2 ] -> [ StoneCrateSinkCover3 ] 
+[ StoneCrateSinkCover1 ] -> [ StoneCrateSinkCover2 ]
+[ StoneCrateSinkCover0 ] -> [ StoneCrateSinkCover1 ]
 
 (delete the spirit if it gets to the edge of the screen)
 
@@ -538,6 +653,7 @@ late [ SpiritMoves Bush ] -> [ SpiritStationary Bush ] sfx6
 )
 
 
+[stationary Spirit Target][ moving Player ] -> [stationary Spirit Target][ stationary Player ] (don't let player move during bounce if they're going to win)
 [stationary SpiritStationary Target] -> win
 
 ==============
@@ -552,7 +668,8 @@ message Every year, biologists ___ the rare ____ . But they have to catch them f
 
 messages can be about the strange behaviours/properties of the species.
 
-todo: make bushes more satisfying
+todo: make bushes more satisfying?
+make top edges look nicer?
 )
 
 ~~~~~~~~~~
@@ -675,13 +792,13 @@ todo: make bushes more satisfying
 ~~~~~~~~~~~~~
 ~~~~~....~~~~
 ~~.......~~~~
-~#*##*#....~~
+~#*##*#...b~~
 ~..*..#~...#~
 ~p.#..#~~..#~
-~..#.~~~w*.#~
+~b.#.~~~w*.#~
 ~~.#~~~#~~..~
 ~~~#~~~#*...~
-~~~~~#~.o.#~~
+~~~~~#~bo.#~~
 ~~~~~~~~#~~~~
 ~~~~~~~~~~~~~  (level introducing destroying crates)
 
@@ -693,13 +810,6 @@ todo: make bushes more satisfying
 #..*..*.*...#
 ##~~~~~~~...#
 ####~~~######  (destroy crates that are in the way)
-
-
-
-
-(put some bushes you must break in earlier levels, to show that you can)
-
-
 
 
 
@@ -717,21 +827,6 @@ todo: make bushes more satisfying
 ~~~~..##~~~p.~~~
 ~~~~~#~~~~~~~~~~
 ~~~~~~~~~~~~~~~~
-
-(
-~~~~~~~~~~~~~~~~
-~~~~#~~~~~~~~~~~
-~~#~~~.b..~~~~~~
-~~~~#...b.b~#~~~
-~~~~##b##....~~~
-~~~......~.#b.~~
-~~#.#.s.b~~~..~~
-~~#.....b~#...~~
-~~##.....~~..b~~
-~~~~..##~~~p.~~~
-~~~~~#~~~o~~~~~~
-~~~~~~~~~#~~~~~~
-~~~~~~~~~~~~~~~~ (simplify to put focus on the important discovery?))
 
 ~~~~~~~~~~~~~~~
 ~~~~#~~#~~~~~~~
@@ -882,7 +977,6 @@ todo: make bushes more satisfying
 ~~#~~~~~#~#~~##...~
 ~~~~~~~~~~~~~~~~~~~ 
 
-
 (
 ~~~~~~~~~~~~~~~~~~~~
 ~#~~~~~~~~~~~~#~#~~~
@@ -910,11 +1004,30 @@ todo: make bushes more satisfying
 ~#..~~~..~#.....#~
 ~~#~~~~~#~#~~##~~~
 ~~~~~~~~~~~~~~~~~~ 
-
 )
 
+~~~~~~~~~~~~~~~
+~~~~~~~.#....~~
+~~~#.....p.#..~
+~.bhb..bbbbbbo~
+~~.....#......~
+~~~~#.....#...~
+~#~~~~~.#...~~~
+~~~~~#~~~~~~~#~
+~~~~~~~~~~~~~~~ (shows how you can win from pushing spirits)
 
-(double bushes and pushing spirit free)
+
+~~~~~~~~~~~~~~
+~~~##~......~~
+~#~.....~~#.~~
+~~~.~b.#~~~..~
+~~..~b.bbh~..~
+~#...b..~...~~
+~~...b~....~~~
+~##o.....p.~#~
+~~###.~#~##~~~
+~~~~~~~~~~~~~~
+
 
 ~~~~~~~~~~~~~~~
 ~~#~~~..~~~~#~~
@@ -925,7 +1038,7 @@ todo: make bushes more satisfying
 ~.............~
 ~~##..obb..#~~~
 ~~~~~~####~~~~~
-~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~ (double bushes and pushing spirit free)
 
 
 (line of bushes)
@@ -940,21 +1053,6 @@ todo: make bushes more satisfying
 ~~#~~~~#~~~~~
 ~~~~~~~~~~~~~
 )
-~~~~~~~~~~~~~~~
-~~~~~~~.#....~~
-~~~#.....p.#..~
-~.bhb..bbbbbbo~
-~......#......~
-~~~~#.....#...~
-~#~~~~~.#..~~~~
-~~~~~#~~~~~~#~~
-~~~~~~~~~~~~~~~
-
-
-
-
-
-
 
 
 
@@ -1084,6 +1182,8 @@ todo: make bushes more satisfying
 ~~~~~~~~~~~~ 
 
 (crate and double bushes)
+
+
 ~~~~~~~~~~~~~~~
 ~##~..........~
 ~.....bb...~~.~
@@ -1096,6 +1196,8 @@ todo: make bushes more satisfying
 ~~~~~~~~~~~~~~~
 
 (Push crate in bush to get it past spirit in bush)
+
+
 
 ~~~~~~~~~~~~~~~~~~
 ~.....#...~#.~.~#~
@@ -1129,7 +1231,7 @@ message The End. Thanks for playing!
 
 
 
-
+(
 (misclevels)
 
 
@@ -1332,57 +1434,4 @@ b.b~b.b~b.b~b.b
 ~~~~~~~~~~~~~
 
 
-
-
-
-
-
-
-
-~~~~~~~~~~~~~
-~~~.....~~~~~
-~~........~~~
-~..........~~
-~..g.s..o#.~~
-~..........~~
-~...#......~~
-~~.........~~
-~~~....p..~~~
-~~~~~~~~~~~~~
-
-~~~~~~~~~~~~~~
-~~~~~~~~~..~~~
-~~~~........~~
-~~......g...~~
-~~..........~~
-~~~...s...o.~~
-~~~.........~~
-~~~~....*...~~
-~~~~~.......~~
-~~~~~..p...~~~
-~~~~~~~~~~~~~~
-
-~~~~~~~~~~~~~~~
-~~..........~~~
-~.......##...~~
-~##.....##...~~
-~##.to....t..~~
-~...t..s..t..~~
-~...t.....t..~~
-~...##.......~~
-~...##...p..~~~
-~~.........~~~~
-~~~~~~~~~~~~~~~
-
-
-~~~~~~~~~~~~~~
-~~~..........~
-~~...........~
-~~.......g.p.~
-~..#.........~
-~.........*o.~
-~......s.....~
-~...#........~
-~~...........~
-~~~.........~~
-~~~~~~~~~~~~~~
+)
