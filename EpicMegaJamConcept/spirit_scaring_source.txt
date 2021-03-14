@@ -561,6 +561,7 @@ left [left Spirit][ Player | ... | BlockingR ] ->  [ stationary Spirit][ Player 
 
 (late [Player | ... | Spirit | no Wall no Crate ] -> [Player | ... | Spirit | no Wall no Crate ] again)
 [moving spirit] -> [moving spirit] again
+([moving spirit][moving player] -> [moving spirit][stationary player])
 
 (----------------- Aesthetics ---------------------)
 
@@ -668,8 +669,14 @@ message Every year, biologists ___ the rare ____ . But they have to catch them f
 
 messages can be about the strange behaviours/properties of the species.
 
+name idea: Re-homing Pigeons. Lore is that [after solar flares], species of pigeon has 
+lost their sense of direction and you are there to guide them to their nests (by frightening them) 
+
 todo: make bushes more satisfying?
 make top edges look nicer?
+make player more distinct?
+
+make not vulnerable to fast button presses
 )
 
 ~~~~~~~~~~
@@ -802,6 +809,22 @@ make top edges look nicer?
 ~~~~~~~~#~~~~
 ~~~~~~~~~~~~~  (level introducing destroying crates)
 
+(two solutions)
+
+~~~~~~~~~~~~~~
+~~~~~....~~~~~
+~~.......~~~~~
+~#*##*#....~~~
+~..*..#~...#~~
+~p.#..#~~...#~
+~..#.~~~w~*.#~
+~~.#~~~#~~~..~
+~~~#~~~#*....~
+~~~~~#~.o.##~~
+~~~~~~~~#~~~~~
+~~~~~~~~~~~~~~ 
+
+
 
 ####~~~######
 ##~~~~~~~...#
@@ -899,7 +922,7 @@ make top edges look nicer?
 
 (level where you must leave at least one bush per col as cover?)
 
-(
+
 ~~~~~~~~~
 ~.#.....~
 ~...~bo#~
@@ -909,7 +932,16 @@ make top edges look nicer?
 ~...~..#~
 ~.#.~...~
 ~~~~~~~~~ (new path opens because bush is used?)
-)
+
+~~~~~~~~~~~~
+~.#......~.~
+~...~b..*~o#
+~.s.~....~.~
+~#.p~....~.~
+~...~###.~.~
+~~~~~....~~~
+~~~~~~~~~~~~
+
 
 (intentionally break bushes)
 
@@ -1131,7 +1163,7 @@ make top edges look nicer?
 ~~.........~~~
 ~~..*.p.b..##~
 ~#####~~#..~~~
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~ (force pushing into bush sooner?)
 
 ~~~~~~~~~~
 ~.....###~
@@ -1148,7 +1180,7 @@ make top edges look nicer?
 
 
 
-(
+
 ~~~~~~~~~~~~~
 ~....~~~~~~~~
 ~....b......~
@@ -1158,7 +1190,22 @@ make top edges look nicer?
 ~.*..b...*..~
 ~....~.p....~
 ~~~~~~~~~~~~~ (create permanent pathway with crate?)
-)
+
+~~~~~~~~~~~
+~~~...~~~~~
+~~..#.....~
+~~..b..*..~
+~~........~
+~~..s.....~
+~~..~.p...~
+~~..b...*.~
+~~..~~~...~
+~~.ob.~~~~~
+~~~.#.~~~~~
+~~~...~~~~~
+~~~~~~~~~~~ (doesn't work)
+
+
 
 
 
