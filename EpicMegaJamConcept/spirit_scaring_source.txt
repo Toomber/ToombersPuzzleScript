@@ -420,6 +420,9 @@ Timer5
 transparent
 
 
+WaterDepthneg1
+#397cb3
+
 WaterDepth0
 #3473a6 
 
@@ -475,7 +478,7 @@ X = Player and Bush1A
 
 L = water and ManualWaterDepth0
 D = water and ManualWaterDepth4
-WaterDepth = WaterDepth0 or WaterDepth1 or WaterDepth2 or WaterDepth3 or WaterDepth4 or WaterDepth5 or WaterDepth6 or WaterDepth7 or WaterDepth8 
+WaterDepth = WaterDepthneg1 or WaterDepth0 or WaterDepth1 or WaterDepth2 or WaterDepth3 or WaterDepth4 or WaterDepth5 or WaterDepth6 or WaterDepth7 or WaterDepth8 
 
 
 Blocking = BlockingU or BlockingD or BlockingR or BlockingL
@@ -543,9 +546,10 @@ Background
 Water
 
 
-WaterDepth
+
 ManualWaterDepth0
 ManualWaterDepth4
+WaterDepth
 WaterCoverUp
 StoneCrateSink, StoneCrateSinkCover
 
@@ -627,17 +631,22 @@ late [SpiritScaredMarker] -> again
 up [ Water | no Water ] -> [ Water WaterCoverUp | ]
 
 
-[ManualWaterDepth0] -> [WaterDepth0]
-[ManualWaterDepth4] -> [WaterDepth4]
+[WaterDepth] -> []
 
-(like it with dark at bottom, light at top) (manually place some water tiles?)
-down [ Water no WaterDepth | no Water no wall] -> [ Water WaterDepth0 | ]
+[Spirit Water] -> [Spirit Water WaterDepthneg1] (make spirit's light brighter?)
+[ Water no WaterDepth | no Wall WaterDepthneg1 ] -> [ Water WaterDepth0 | WaterDepthneg1 ]
+
+[ManualWaterDepth0 no WaterDepth] -> [ManualWaterDepth0 WaterDepth0]
+
+(like it with dark at bottom, light at top) (manually place some water tiles)
+down [ Water no WaterDepth no ManualWaterDepth4 | no Water no wall] -> [ Water WaterDepth0 | ]
 [ Water no WaterDepth | no Wall WaterDepth0 ] -> [ Water WaterDepth1 | WaterDepth0 ]
 [ Water no WaterDepth | no Wall WaterDepth1 ] -> [ Water WaterDepth2 | WaterDepth1 ]
 (down [ Water no WaterDepth | no Water] -> [ Water WaterDepth2 | ])
 [ Water no WaterDepth | no Wall WaterDepth2 ] -> [ Water WaterDepth3 | WaterDepth2 ]
 [ Water no WaterDepth | no Wall WaterDepth3 ] -> [ Water WaterDepth4 | WaterDepth3 ]
 up [ Water no WaterDepth | no Water ] -> [ Water WaterDepth4 | ]
+[ManualWaterDepth4 no WaterDepth] -> [ManualWaterDepth4 WaterDepth4]
 [ Water no WaterDepth | no Wall WaterDepth4 ] -> [ Water WaterDepth5 | WaterDepth4 ]
 [ Water no WaterDepth | no Wall WaterDepth5 ] -> [ Water WaterDepth6 | WaterDepth5 ]
 [ Water no WaterDepth | no Wall WaterDepth6 ] -> [ Water WaterDepth7 | WaterDepth6 ]
@@ -1036,7 +1045,7 @@ introduce bushes before crates?
 
 LLLLLLLLL~~~~~~~~~~
 #o~b~.b.LL~~~~~~~~~
-L.....L.LL~~~~L~L~~
+L.....L.LL~~~~~~~~~
 #.#L~~~b~.b.h.LbLb.
 #.#~......L...L.L..
 #..b...##.L.p...L..
