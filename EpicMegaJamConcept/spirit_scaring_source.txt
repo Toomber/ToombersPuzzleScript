@@ -386,6 +386,9 @@ transparent
 Water 
 #3473a6 (#3B83BD) (#27A599)
 
+SpiritScaredMarker
+transparent
+
 BlockingU
 transparent
 
@@ -512,6 +515,7 @@ Player, Wall, Crate, Spirit,
 Bush, 
 
 Blocking
+SpiritScaredMarker
 TempVacatedBush
 TempSpiritAlreadyCollided
 SpiritLeftScreen
@@ -529,39 +533,49 @@ RULES
 [ >  Player | Bush Crate ] -> [  Player | Bush TempVacatedBush > Crate ] sfx1 (push crate that's inside a bush, Akurra style)
 [ >  Player | Crate ] -> [  >  Player | > Crate ] (push crate)
 
-[ Player no Bush | Spirit Bush ] -> [ Player | > Spirit Bush TempVacatedBush] again (kick spirit out of bush)
-late [ Player no Bush | Spirit Bush | no Crate no Wall ] -> [ Player no Bush | Spirit Bush | no Crate no Wall ]  sfx0 (play sound)
 
 [ > Player Bush | Spirit ] -> [ > Player Bush | > Spirit] (kick spirit from bush - this is only useful with one spirit if the spirit is also in a bush)
 
+late [ Player no Bush | Spirit Bush | no Crate no Wall ] -> [ Player no Bush | Spirit random DestroyedBush | no Crate no Wall ]  sfx0 sfx1 (kick spirit out of bush)
+
+
 [ > Player Bush ] -> [ > Player Bush TempVacatedBush] (kill bush that you walked through)
 
-late [TempVacatedBush Bush no Player no Spirit no Crate ] -> [ random DestroyedBush ] sfx1 (destroy bushes if there is nothing occupying them)
+late [TempVacatedBush Bush no Player no Spirit no Crate ] -> [ random DestroyedBush ] sfx1 (destroy marked bushes if there is nothing occupying them)
 late [TempVacatedBush] -> []
 
 (destroy crates in water)
 late [Crate Water WaterCoverUp] -> [StoneCrateSinkCover0 Water WaterCoverUp]
 late [Crate Water] -> [StoneCrateSink0 Water]
 
+
+(move spirit away from player if marked to do so)
+[ Player | ... | Spirit SpiritScaredMarker ] -> [ Player | ... | > Spirit ] 
+[SpiritScaredMarker] -> [] 
+
 (check lines of sight from spirit)
-[Blocking] -> []
-up [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingU]
-down [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingD]
-right [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingR]
-left [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingL]
+late [Blocking] -> []
+late up [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingU]
+late down [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingD]
+late right [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingR]
+late left [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingL]
+
 
 (make spirit move away)
-[ Player no Bush | ... | Spirit no Bush | no wall no crate] -> [ Player | ... | > Spirit | no wall no crate]
-(cancel spirit movement if line of sight blocked) 
-up [up Spirit][ Player | ... | BlockingD ] ->  [ stationary Spirit][ Player | ... | BlockingD ]
-down [down Spirit][ Player | ... | BlockingU ] ->  [ stationary Spirit][ Player | ... | BlockingU ] 
-right [right Spirit][ Player | ... | BlockingL ] ->  [ stationary Spirit][ Player | ... | BlockingL ] 
-left [left Spirit][ Player | ... | BlockingR ] ->  [ stationary Spirit][ Player | ... | BlockingR ] 
- 
 
-(late [Player | ... | Spirit | no Wall no Crate ] -> [Player | ... | Spirit | no Wall no Crate ] again)
-[moving spirit] -> [moving spirit] again
-([moving spirit][moving player] -> [moving spirit][stationary player])
+late [ Player no Bush | ... | Spirit no Bush | no wall no crate ] -> [ Player | ... | Spirit SpiritScaredMarker | ] 
+
+
+(cancel spirit movement if line of sight blocked) 
+
+late up 	[ Player no Bush | ... | Spirit SpiritScaredMarker no Bush ][ Player | ... | BlockingD ]  ->  [ Player | ... | Spirit ][ Player | ... | BlockingD ]
+late down 	[ Player no Bush | ... | Spirit SpiritScaredMarker no Bush ][ Player | ... | BlockingU ]  ->  [ Player | ... | Spirit ][ Player | ... | BlockingU ]
+late right 	[ Player no Bush | ... | Spirit SpiritScaredMarker no Bush ][ Player | ... | BlockingL ]  ->  [ Player | ... | Spirit ][ Player | ... | BlockingL ]
+late left	[ Player no Bush | ... | Spirit SpiritScaredMarker no Bush ][ Player | ... | BlockingR ]  ->  [ Player | ... | Spirit ][ Player | ... | BlockingR ]
+
+
+(if spirit dues to move next turn, play it immediately)
+late [SpiritScaredMarker] -> again
 
 (----------------- Aesthetics ---------------------)
 
@@ -643,15 +657,9 @@ left 	[ > Spirit no bush | no wall no Crate ] -> [ > SpiritMovesL | ]
 [ stationary spirit no TempSpiritAlreadyCollided ] -> [ stationary SpiritStationary ]
 late [ SpiritMoves Bush ] -> [ SpiritStationary Bush ] sfx6
 
-(delay to let running sounds keep going after spirit leaves the screen)
-([ stationary Player ][ SpiritLeftScreen Timer5 ] -> [ stationary Player ][]
-[ stationary Player ][ SpiritLeftScreen Timer4 ] -> [ stationary Player ][ SpiritLeftScreen Timer5 ] sfx2
-[ stationary Player ][ SpiritLeftScreen Timer3 ] -> [ stationary Player ][ SpiritLeftScreen Timer4 ]
-[ stationary Player ][ SpiritLeftScreen Timer2 ] -> [ stationary Player ][ SpiritLeftScreen Timer3 ]
-[ stationary Player ][ SpiritLeftScreen Timer1 ] -> [ stationary Player ][ SpiritLeftScreen Timer2 ] sfx2
-[ stationary Player ][ SpiritLeftScreen Timer0 ] -> [ stationary Player ][ SpiritLeftScreen Timer1 ]
-[ stationary Player ][SpiritLeftScreen no Timer] -> [ stationary Player ][ SpiritLeftScreen Timer0 ] sfx2
-)
+
+(--------------------------------------)
+
 
 
 [stationary Spirit Target][ moving Player ] -> [stationary Spirit Target][ stationary Player ] (don't let player move during bounce if they're going to win)
@@ -676,7 +684,7 @@ todo: make bushes more satisfying?
 make top edges look nicer?
 make player more distinct?
 
-make not vulnerable to fast button presses
+introduce bushes before crates?
 )
 
 ~~~~~~~~~~
