@@ -420,6 +420,38 @@ Timer5
 transparent
 
 
+WaterDepth0
+#3473a6 
+
+ManualWaterDepth0
+#3473a6 
+
+WaterDepth1
+#2d6491
+
+WaterDepth2
+#285a82
+
+WaterDepth3
+#25547a
+
+WaterDepth4
+#204a6b
+
+ManualWaterDepth4
+#204a6b
+
+WaterDepth5
+#1c405c
+
+WaterDepth6
+#17354d
+
+WaterDepth7
+#112738
+
+WaterDepth8
+#0f2230
 
 =======
 LEGEND
@@ -440,6 +472,10 @@ H = Bush1A and SpiritStationary and TempSpiritAlreadyCollided
 J = Bush1A and Target
 X = Player and Bush1A
 
+
+L = water and ManualWaterDepth0
+D = water and ManualWaterDepth4
+WaterDepth = WaterDepth0 or WaterDepth1 or WaterDepth2 or WaterDepth3 or WaterDepth4 or WaterDepth5 or WaterDepth6 or WaterDepth7 or WaterDepth8 
 
 
 Blocking = BlockingU or BlockingD or BlockingR or BlockingL
@@ -506,6 +542,10 @@ Background
 
 Water
 
+
+WaterDepth
+ManualWaterDepth0
+ManualWaterDepth4
 WaterCoverUp
 StoneCrateSink, StoneCrateSinkCover
 
@@ -585,6 +625,35 @@ late [SpiritScaredMarker] -> again
 
 (create side borders)
 up [ Water | no Water ] -> [ Water WaterCoverUp | ]
+
+
+[ManualWaterDepth0] -> [WaterDepth0]
+[ManualWaterDepth4] -> [WaterDepth4]
+
+(like it with dark at bottom, light at top) (manually place some water tiles?)
+down [ Water no WaterDepth | no Water no wall] -> [ Water WaterDepth0 | ]
+[ Water no WaterDepth | no Wall WaterDepth0 ] -> [ Water WaterDepth1 | WaterDepth0 ]
+[ Water no WaterDepth | no Wall WaterDepth1 ] -> [ Water WaterDepth2 | WaterDepth1 ]
+(down [ Water no WaterDepth | no Water] -> [ Water WaterDepth2 | ])
+[ Water no WaterDepth | no Wall WaterDepth2 ] -> [ Water WaterDepth3 | WaterDepth2 ]
+[ Water no WaterDepth | no Wall WaterDepth3 ] -> [ Water WaterDepth4 | WaterDepth3 ]
+up [ Water no WaterDepth | no Water ] -> [ Water WaterDepth4 | ]
+[ Water no WaterDepth | no Wall WaterDepth4 ] -> [ Water WaterDepth5 | WaterDepth4 ]
+[ Water no WaterDepth | no Wall WaterDepth5 ] -> [ Water WaterDepth6 | WaterDepth5 ]
+[ Water no WaterDepth | no Wall WaterDepth6 ] -> [ Water WaterDepth7 | WaterDepth6 ]
+[ Water no WaterDepth ] -> [ Water WaterDepth8 ]
+
+
+
+
+
+
+
+
+
+
+
+
 
 (crate sinking animation)
 [ StoneCrateSink9 ] -> []
@@ -714,7 +783,7 @@ introduce bushes before crates?
 ~~~~~~~~~~~~
 ~~~~####~#~~
 ~####..o~~~~
-~~........~~
+~L........~~
 ~~.#..s...~~
 ~~......p.~~
 ~~~##...###~
@@ -792,14 +861,14 @@ introduce bushes before crates?
 ~~..........#~~
 ~~~~~~~~~~~~~~~ (send back the way it came with crate)
 
-.b..b~~~~~~~~
+.b...~~~~~~~~
 ##.######~~~~
 #.......#.~~~
-#.*~~~.o....~
+#.*lll.o....~
 #..~~~....#.~
 #..~~~..s...~
 #..~~~.....#~
-#.*~~~.p#...~
+#.*ddd.p#...~
 #.......#b.~~
 #########.~~~
 
@@ -811,7 +880,7 @@ introduce bushes before crates?
 ~..*..#~...#~
 ~p.#..#~~..#~
 ~b.#.~~~w*.#~
-~~.#~~~#~~..~
+~~.#~~~#DD..~
 ~~~#~~~#*...~
 ~~~~~#~bo.#~~
 ~~~~~~~~#~~~~
@@ -852,7 +921,7 @@ introduce bushes before crates?
 ~~~~#...b.b~#~~~
 ~~~~##b##....~~~
 ~~~......~.#b.~~
-~~#.#os.b~~~..~~
+~~#.#os.b~~D..~~
 ~~#.....b~~.#.~~
 ~~##.....~~..b~~
 ~~~~..##~~~p.~~~
@@ -893,11 +962,11 @@ introduce bushes before crates?
 
 ~~~~~~~~~~~
 ~#~...~...~
-~~~.~.~.~.~
+~~~.L.~.~.~
 ~..b#b.h..~
 ~.~.~.~.~.~
 ~p.b.b.b..~
-~.~.~.~.~.~
+~.~.~.L.~.~
 ~..j.b#b..~
 ~.~.~.~.~~~
 ~...~...~#~
@@ -965,22 +1034,22 @@ introduce bushes before crates?
 ~~~~~~~~~~~~ (bush you can't break and run until moving the spirit)(forces you to do a circuit)
 
 
-~~~~~~~~~~~~~~~~~~~
-#o~b~.b.~~~~~~~~~~~
-~.....~.~~~~~~~~~~~
-#.#~~~~b~.b.h.~b~b.
-#.#~......~...~.~..
-#..b...##.~.p...~..
+LLLLLLLLL~~~~~~~~~~
+#o~b~.b.LL~~~~~~~~~
+L.....L.LL~~~~L~L~~
+#.#L~~~b~.b.h.LbLb.
+#.#~......L...L.L..
+#..b...##.L.p...L..
 #####..##.#........  (intentionally breaking bushes, and progress gated by bushes that must be used constructively)
 
 
-~~~~~~~~~~~~~
+~~~~~~~~DDD~~
 ~####~#~...#~
 ~#o..~b~w~b#~
 ~#.~...~~~.#~
-~~.~~~~~b...~
-~~.~~~~~~~~.~
-~#.#b.b..b~.~
+~~.~~~~Lb...~
+~~.~~~~~~~L.~
+~#.#b.b..bL.~
 ~#.~~.~.#~~.~
 ~#...p......~
 ~~~~~~~~~~~~~ (intentionally break so it won't block line of sight)(break when in view of spirit / break and go back)
@@ -1115,7 +1184,7 @@ introduce bushes before crates?
 ~...~~~~~~~
 ~~~b....b.~
 ~..b.b~bs.~
-~b~b.~~.~.~
+~b~b.~~.L.~
 ~.~~~~~.#.~
 ~...p.....~
 ~~~~~~~~~~~
@@ -1150,7 +1219,9 @@ introduce bushes before crates?
 
 
 (place crate next to spirit in bush so you can walk past without breaking it)
-
+~~~~~~~~~~~~~~~~~
+~~~~~~#~~~#~~~~~~
+~~#~~~~~#~~~#~~~~
 ~~~~~~~~~~~~~~~~~
 ~...............~
 ~.b.p.h.b.*..bb.~
@@ -1163,8 +1234,8 @@ introduce bushes before crates?
 (Push crate in bush to get it past spirit)
 
 ~~~~~~~~~~~~~~
-~~~~~~~####~~~
-~~...#~o..~~~~
+~~~~~~~####L~~
+~~...#~o..L~~~
 ~~........~~~~
 ~##b..s..b##~~
 ~~...##~#..~~~
@@ -1230,9 +1301,9 @@ introduce bushes before crates?
 ~~~#.......~
 ~#~#.p...%.~
 ~~~#.....w.~
-~~~~~~.~~~.~
-~#o.b~b~...~
-~#.~.~.#.##~
+~~~~~L.L~~.~
+~#o.bLbL...~
+~#.~.L.#.##~
 ~#.~.....##~
 ~~~~~~~~~~~~ 
 
@@ -1245,7 +1316,7 @@ introduce bushes before crates?
 ~..p.....~.bb.~
 ~.....~~......~
 ~.~.*.......s.~
-~.o........~..~
+L.o........~..~
 ~~~~~~~~~~#~~~~
 ~#~~##~~#~~~#~~
 ~~~~~~~~~~~~~~~
@@ -1256,7 +1327,7 @@ introduce bushes before crates?
 
 ~~~~~~~~~~~~~~~~~~
 ~.....#...~#.~.~#~
-~..b......~#o.b~.~
+~..b......~#o.bL.~
 ~.%hb~~~~.~#..b#.~
 ~..b.~#...~.b....~
 ~....~#b.b..b%.##~
