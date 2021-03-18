@@ -46,7 +46,7 @@ Wall
 03010
 20010
 
-Player
+NormalPlayer
 #383430 #A09D95 #6D6C69 #574236
 .000.
 .111.
@@ -383,6 +383,34 @@ transparent
 SpiritLeftScreen
 transparent
 
+CinematicWin
+transparent
+
+CinematicWall
+#3a3c3a #505451 #6a6e6b #8c908c
+20203
+22302
+02312
+03010
+20010
+
+CinematicPlayer
+transparent
+
+CinematicPlayerSwap
+transparent
+
+CinematicPlayerPushed
+#383430 #A09D95 #6D6C69 #574236
+.000.
+.111.
+33333
+02220
+.0.0.
+
+SpiritLightMarker
+transparent
+
 Water 
 #3473a6 (#3B83BD) (#27A599)
 
@@ -462,7 +490,11 @@ LEGEND
 
 . = Background
 # = Wall
-P = Player
+
+P = NormalPlayer
+F = Water and CinematicPlayer
+I = Water and CinematicPlayerSwap
+Player = NormalPlayer or CinematicPlayer
 * = StoneCrate
 @ = StoneCrate and Target
 % = StoneCrate and Bush1A
@@ -473,7 +505,15 @@ W = SpiritStationary and Water and TempSpiritAlreadyCollided
 B = Bush1A
 H = Bush1A and SpiritStationary and TempSpiritAlreadyCollided
 J = Bush1A and Target
-X = Player and Bush1A
+; = DestroyedBush0
++ = DestroyedBush1
+' = DestroyedBush2
+X = NormalPlayer and Bush1A
+
+C = Water and CinematicWin
+U = CinematicWall
+{ = CinematicPlayerPushed
+& = CinematicPlayerPushed and Water
 
 
 L = water and ManualWaterDepth0
@@ -503,7 +543,10 @@ Crate MOVE 36772507
 
 Crate destroy 45416100 (33195900) (58667903)
 
-Endlevel 96976903
+CinematicWall destroy 73561902 (11850702)
+
+(Endlevel 96976903)
+sfx7 96976903
 
 (Spirit move 50223502 (39212302))
 
@@ -555,14 +598,18 @@ StoneCrateSink, StoneCrateSinkCover
 
 Target
 DestroyedBush
-Player, Wall, Crate, Spirit,
-Bush, 
+Player, Wall, CinematicWall, Crate, Spirit,
+Bush
 
 Blocking
 SpiritScaredMarker
 TempVacatedBush
 TempSpiritAlreadyCollided
 SpiritLeftScreen
+CinematicWin
+CinematicPlayerSwap
+CinematicPlayerPushed
+SpiritLightMarker
 Timer
 BushHasBeenRandomised
 
@@ -574,7 +621,7 @@ RULES
 
 
 [ > Player | Water ] -> [ Player | Water ] (don't let player enter water)
-[ >  Player | Bush Crate ] -> [  Player | Bush TempVacatedBush > Crate ] sfx1 (push crate that's inside a bush, Akurra style)
+([ >  Player | Bush Crate ] -> [  Player | Bush TempVacatedBush > Crate ] sfx1 (push crate that's inside a bush, Akurra style))
 [ >  Player | Crate ] -> [  >  Player | > Crate ] (push crate)
 
 
@@ -621,6 +668,36 @@ late left	[ Player no Bush | ... | Spirit SpiritScaredMarker no Bush ][ Player |
 (if spirit dues to move next turn, play it immediately)
 late [SpiritScaredMarker] -> again
 
+
+
+
+
+
+
+
+
+(-----------------cinematics---------------)
+
+(cinematic win - needs to be before edge of screen detection)
+[ Spirit CinematicWin ] -> [] win
+
+(bounce spirit cinematic)
+right [ CinematicPlayer ][ CinematicPlayerSwap ][ spirit | CinematicWall ] -> [  ][ CinematicPlayer ][ left spirit | CinematicWall ] 
+
+(cinematic detroy wall)
+[ > Spirit | CinematicWall ] -> [ > Spirit | water ]
+down [ Spirit | WaterCoverUp ] -> [ Spirit | ]
+
+(Push player)
+[ CinematicPlayerPushed | Spirit ] -> [ < CinematicPlayerPushed | Spirit ]
+[ CinematicPlayerPushed CinematicWin ] -> [ CinematicWin ]
+
+[ > CinematicPlayerPushed | Crate ] -> [ > CinematicPlayerPushed | > Crate ]  
+
+
+(------------------------------------------)
+
+
 (----------------- Aesthetics ---------------------)
 
 (bush randomisation)
@@ -631,10 +708,21 @@ late [SpiritScaredMarker] -> again
 up [ Water | no Water ] -> [ Water WaterCoverUp | ]
 
 
-[WaterDepth] -> []
 
-[Spirit Water] -> [Spirit Water WaterDepthneg1] (make spirit's light brighter?)
+(water depth effect)
+[ WaterDepth ] -> []
+
+
+[ Spirit Water ] -> [ Spirit Water WaterDepthneg1 ]
+[ Spirit | Water ] -> [Spirit | Water WaterDepthneg1 ]
+
+[ SpiritLightMarker Water ] -> [ Water WaterDepthneg1 ] (lighten spot the spirit was previously)
+[ SpiritLightMarker | Water ] -> [ SpiritLightMarker | Water WaterDepthneg1]
+[ SpiritLightMarker ] -> []
+[ Spirit ] -> [ Spirit SpiritLightMarker ] 
+
 [ Water no WaterDepth | no Wall WaterDepthneg1 ] -> [ Water WaterDepth0 | WaterDepthneg1 ]
+
 
 [ManualWaterDepth0 no WaterDepth] -> [ManualWaterDepth0 WaterDepth0]
 
@@ -651,10 +739,6 @@ up [ Water no WaterDepth | no Water ] -> [ Water WaterDepth4 | ]
 [ Water no WaterDepth | no Wall WaterDepth5 ] -> [ Water WaterDepth6 | WaterDepth5 ]
 [ Water no WaterDepth | no Wall WaterDepth6 ] -> [ Water WaterDepth7 | WaterDepth6 ]
 [ Water no WaterDepth ] -> [ Water WaterDepth8 ]
-
-
-
-
 
 
 
@@ -686,6 +770,8 @@ up [ Water no WaterDepth | no Water ] -> [ Water WaterDepth4 | ]
 [ StoneCrateSinkCover2 ] -> [ StoneCrateSinkCover3 ] 
 [ StoneCrateSinkCover1 ] -> [ StoneCrateSinkCover2 ]
 [ StoneCrateSinkCover0 ] -> [ StoneCrateSinkCover1 ]
+
+
 
 (delete the spirit if it gets to the edge of the screen)
 
@@ -741,7 +827,7 @@ late [ SpiritMoves Bush ] -> [ SpiritStationary Bush ] sfx6
 
 
 [stationary Spirit Target][ moving Player ] -> [stationary Spirit Target][ stationary Player ] (don't let player move during bounce if they're going to win)
-[stationary SpiritStationary Target] -> win
+[stationary SpiritStationary Target] -> win sfx7
 
 ==============
 WINCONDITIONS
@@ -852,11 +938,11 @@ introduce bushes before crates?
 .....~~~~~~~~
 #########~~~~
 #.......#.~~~
-#.*~~~.o#...~
+#.*lll.o#...~
 #..~~~......~
 #..~~~..s...~
 #..~~~......~
-#.*~~~.p#...~
+#.*ddd.p#...~
 #.......#..~~
 #########.~~~
 
@@ -1008,7 +1094,7 @@ introduce bushes before crates?
 
 (level where you must leave at least one bush per col as cover?)
 
-
+(
 ~~~~~~~~~
 ~.#.....~
 ~...~bo#~
@@ -1026,7 +1112,7 @@ introduce bushes before crates?
 ~#.p~....~.~
 ~...~###.~.~
 ~~~~~....~~~
-~~~~~~~~~~~~
+~~~~~~~~~~~~)
 
 
 (intentionally break bushes)
@@ -1055,7 +1141,7 @@ L.....L.LL~~~~~~~~~
 ~~~~~~~~DDD~~
 ~####~#~...#~
 ~#o..~b~w~b#~
-~#.~...~~~.#~
+~#.~...L~~.#~
 ~~.~~~~Lb...~
 ~~.~~~~~~~L.~
 ~#.#b.b..bL.~
@@ -1294,6 +1380,32 @@ L.....L.LL~~~~~~~~~
 ~~~~~~~~~~~ (doesn't work)
 
 
+~~~~~~~~~~~~~
+~~.........~~
+~~.*.~~~...~~
+~~.........~~
+~~...~~~...~~
+~~.o.~w~...~~
+~~...~~~...~~
+~~.........~~
+~~.....p.*.~~
+~~.........~~
+~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~
+~~....b...~~~
+~~.*.~~~.o~~~
+~~....b....~~
+~~...~~~...~~
+~~...~w~b~~~~
+~~...~~~...~~
+~~.......*.~~
+~~.....p...~~
+~~~~~~~~~~~~~
+
+
+
+
 
 
 
@@ -1345,17 +1457,109 @@ L.o........~..~
 
 
 
+(End Last level with a cinematic)
+
+~~~~~~~~~~~~
+~~~....###~~
+~~~.#.p..#~~
+~~#.....ou~c
+~~~..#.s.#~~
+~~~~.....#~~
+~~~~~...##~~
+~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~
+~~~#~~~~#~~~~~~#~~
+~~~~~~~~~~~~#~~~~~
+Fw~~~~~~~u~~~~~~~C
+~~~~#~~~~~~~~~~~~~
+~~~~~~#~~~#~~~#~~~
+~~~~~~~~~~~~~~~~~~
+
+.b...~~~~~~~~
+##.##.###~~~~
+#.....b.#.~~~
+#.*lll..b.b.~
+fs.~~~......c
+#..~~~b...b.~
+.b.~~~.b..~#~
+#.*ddd..#...~
+#.....b.#b~~~
+##.b#####.~~~
+
+~~~~~~~~~~~~~~##~~
+~#~~~~~~~~#~~###~#
+~~~~~#~~~~~~##~##~
+cfw~~~~~~~~~uuuuI~
+~~~~~~~~~~~~######
+~~~~#~~~~~~#~#~##~
+~~~~~~~~~~~~~~~~~~
+
+.b...~~~~~~~~
+##.##.###~~~~
+#.....b.#.~~~
+#.*lll..b.b.~
+c..~~~.....wf
+#..~~~b...b.~
+.b.~~~.b..~#~
+#.*ddd..#...~
+#.....b.#b~~~
+##.b#####.~~~
+
+~~~~~~~~~~~~~~~~~~
+~~~#~~~~#~~~~~~#~~
+~~~~~~~~~~~~#~~~~~
+C~~~~~~~~~~~~~~~wF
+~~~~#~~~~~~~~~~~~~
+~~~~~~#~~~#~~~#~~~
+~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~
+~~~....###~~
+~~~.#....#~~
+c~u.{...o~wf
+~~~..#...#~~
+~~~~.....#~~
+~~~~~...##~~
+~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
+c~u~~~u~~~u~~~~&wf
+~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
+c~~~u~~~~~~u~~~&wf
+~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
+
 (
-~~~~~~~~~
-~....%~~~
-~.......~
-~..p...%~
-~.......~
-~.%...%.~
-~~~~~~~~~(lvl with crates already inside?)
-)
+~~~~~~~~~~~~~~~~~~~
+~~~~~~~#~~~#~~~~~~~
+~~~#~~~~~#~~~#~~~~~
+~~~~~~~~~~~~~~~~~~~
+~~...............~~
+~~.b...b.b.*..bb{wf
+~~.......#.#.o...~~
+~~~#~~~#~#~#~#~~~~~
+~~~~~~~~~~~~~~~~~~~ (get caught in bush? or propel along with crate?))
 
-
+~~~~~~~~~~~~~~~~~~~
+~~~~~~~#~~~#~~~~~~~
+~~~#~~~~~#~~~#~~~~~
+~~~~~~~~~~~~~~~~~~~
+~~...............~~
+c~.'...'.+.*..';{wf
+~~.......#.#.o...~~
+~~~#~~~#~#~#~#~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 
 message The End. Thanks for playing!
