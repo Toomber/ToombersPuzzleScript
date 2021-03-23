@@ -1,0 +1,227 @@
+title Harden
+(opportunity cost
+ Funnel
+ Cornered
+ Reduction
+ Static
+ Stabilise
+ Optionless
+ Exhaustion 
+ Secure
+)
+author Toombler
+homepage https://toombler.itch.io/
+
+background_color #132a13 (#1f2041)
+
+
+(verbose_logging)
+
+========
+OBJECTS
+========
+
+(palettes:
+blues
+#1f2041
+#4b3f72
+#ffc857
+#119da4
+#19647e
+
+greens
+#132a13
+#31572c
+#4f772d
+#90a955
+#ecf39e
+#ffc857
+)
+
+Background
+#31572c
+
+(LIGHTGREEN GREEN
+11111
+01111
+11101
+11111
+10111)
+
+
+Target
+DarkBlue
+.....
+.000.
+.0.0.
+.000.
+.....
+
+Wall
+#90a955(BROWN DARKBROWN
+00010
+11111
+01000
+11111
+00010)
+
+Platform
+#119da4
+
+Player
+grey grey grey grey grey (Black Orange White Blue)
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+Crate
+#ffc857 (Orange Yellow)
+00000
+0...0
+0...0
+0...0
+00000
+
+FillMarker
+black
+
+WinMarker
+transparent
+
+
+=======
+LEGEND
+=======
+
+. = Background
+% = Platform
+# = Wall
+P = Player
+Q = Player and Platform
+* = Crate
+@ = Crate and Target
+O = Target
+
+BlocksPlayer = Crate or Wall
+BlocksCrate = Crate or Wall or Platform
+
+=======
+SOUNDS
+=======
+
+Crate MOVE 36772507
+Player MOVE 54585507
+
+endlevel 81161508
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Target
+Platform
+Player, Wall, Crate
+FillMarker
+WinMarker
+
+======
+RULES
+======
+
+
+[ >  Player | Crate ] -> [  >  Player | > Crate  ]
+[ > Crate | Platform ] -> [ Crate | Platform ]  
+
+late [ Player ] -> [ Player WinMarker ]
+late [ Player ] -> [ Player FillMarker ]
+late [ FillMarker | no BlocksPlayer ] -> [ FillMarker | FillMarker ]
+late [ WinMarker ][ FillMarker | Crate | no BlocksCrate ] -> [ ][ FillMarker | Crate | no BlocksCrate ]
+late [ WinMarker ] -> win
+late [ FillMarker ] -> []
+
+
+
+(animation where crates solidify at end of level)
+(visual feedback for crates which can't move)
+(plant themed?)
+
+==============
+WINCONDITIONS
+==============
+
+
+=======
+LEVELS
+=======
+
+#######
+#*#.#.#
+#.#.#*#
+#.#*#.#
+#.....#
+#..p..#
+#######
+
+
+#######
+#.....#
+#.....#
+#.p.*.#
+#.....#
+#.....#
+#######
+
+###%#%##
+###%.%%%
+#%%%...#
+#%*....#
+#%%%%%%#
+###...%#
+###.p.%#
+
+
+##%%%%%
+#.....%
+%...*.#
+%.....#
+%.*.p.%
+%.....%
+%%##%%%
+
+
+%%%%%%%
+%.....%
+%.*.*.%
+%..p..%
+%.*.*.%
+%.....%
+%%%%%%%
+
+
+
+
+
+
+
+(fail states? - a position where a move is always possible)
+#%%%%%%%#
+#.%...%.#
+#.*.p.*.#
+#.%...%.#
+#%%%%%%%#
+
+
+
+
+########
+#%%%...#
+#%%%...#
+#%Q%.*.#
+#%%%...#
+#%%%...#
+########
+
+
