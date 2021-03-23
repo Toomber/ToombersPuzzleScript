@@ -49,14 +49,6 @@ Background
 10111)
 
 
-Target
-DarkBlue
-.....
-.000.
-.0.0.
-.000.
-.....
-
 Wall
 #90a955(BROWN DARKBROWN
 00010
@@ -101,8 +93,6 @@ LEGEND
 P = Player
 Q = Player and Platform
 * = Crate
-@ = Crate and Target
-O = Target
 
 BlocksPlayer = Crate or Wall
 BlocksCrate = Crate or Wall or Platform
@@ -121,7 +111,6 @@ COLLISIONLAYERS
 ================
 
 Background
-Target
 Platform
 Player, Wall, Crate
 FillMarker
@@ -147,6 +136,8 @@ late [ FillMarker ] -> []
 (animation where crates solidify at end of level)
 (visual feedback for crates which can't move)
 (plant themed?)
+(idea: holes which can destroy crates but which fill and open up new possibilities for crates to be moved?)
+(flame -> region of effect highlighted)
 
 ==============
 WINCONDITIONS
@@ -174,6 +165,7 @@ LEVELS
 #.....#
 #######
 
+
 ###%#%##
 ###%.%%%
 #%%%...#
@@ -183,14 +175,13 @@ LEVELS
 ###.p.%#
 
 
-##%%%%%
-#.....%
-%...*.#
-%.....#
-%.*.p.%
-%.....%
-%%##%%%
-
+%##%%%#%%
+%#.....%%
+%%...*.#%
+#%.....%%
+%%.*.p.%#
+%%.....%%
+%%%##%%#%
 
 %%%%%%%
 %.....%
@@ -200,28 +191,49 @@ LEVELS
 %.....%
 %%%%%%%
 
+%%#%%#####
+%....#%%%%
+#.*...%*.%
+#.*.p.%*.%
+%....#%%%%
+%%#%%#####
+
+(%%#%%#%#%%
+%....#%..%
+%.*%.....%
+%..%#%.p.% 
+%##%#%%%#%)
+
+
+
+
+%%%%%#%%
+%.*.%..%
+%...#..%
+##%.*.p%
+%...#..%
+%.*.%..%
+%%%%%#%%
 
 
 
 
 
 
-(fail states? - a position where a move is always possible)
-#%%%%%%%#
-#.%...%.#
-#.*.p.*.#
-#.%...%.#
-#%%%%%%%#
 
 
 
 
-########
-#%%%...#
-#%%%...#
-#%Q%.*.#
-#%%%...#
-#%%%...#
-########
+%%%#%%%%%%
+%..#..%.*%
+%p.**.%..%
+%..#..%%%%
+%%%#%%%%%%
+
+%%%%#%%
+#.p.*%%
+%*..*%%
+%%###%%
+%%%%%%%
 
 
