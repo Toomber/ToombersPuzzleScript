@@ -3,13 +3,18 @@ title Harden
  Funnel
  Cornered
  Reduction
+ Depletion
  Static
  Stabilise
- Optionless
- Exhaustion 
- Secure
+ Optionless 
+ Pin
  Stillness Reigns
  Principle of least actions
+ Loose Cargo
+ 
+ Exhaustion
+ Secure
+ Harden
 )
 author Toombler
 homepage https://toombler.itch.io/
@@ -79,6 +84,14 @@ grey grey grey grey grey (Black Orange White Blue)
 
 Crate
 #ffc857 (Orange Yellow)
+00000
+0...0
+0...0
+0...0
+00000
+
+CrateCannotBePushed
+orange
 00000
 0...0
 0...0
@@ -206,6 +219,7 @@ COLLISIONLAYERS
 Background
 Platform
 Player, Wall, Crate
+CrateCannotBePushed
 WallCoversDone,
 WallCoverUp,
 WallCoverDown,
@@ -226,15 +240,23 @@ RULES
 [ >  Player | Crate ] -> [  >  Player | > Crate  ]
 [ > Crate | Platform ] -> [ Crate | Platform ]  
 
-late [ Player ] -> [ Player WinMarker ]
+
 late [ Player ] -> [ Player FillMarker ]
 late [ FillMarker | no BlocksPlayer ] -> [ FillMarker | FillMarker ]
-late [ WinMarker ][ FillMarker | Crate | no BlocksCrate ] -> [ ][ FillMarker | Crate | no BlocksCrate ]
-late [ WinMarker ] -> win
+
+late [ CrateCannotBePushed ] -> []
+late [ Crate ] -> [ Crate CrateCannotBePushed ]
+late [ FillMarker | Crate CrateCannotBePushed | no BlocksCrate ] -> [ FillMarker | Crate | no BlocksCrate ]
 late [ FillMarker ] -> []
+
+late [ Player ] -> [ Player WinMarker ]
+late [ WinMarker ][ Crate no CrateCannotBePushed ] -> [][ Crate ]
+late [ WinMarker ] -> win
 
 
 (----------graphics----------)
+
+
 
 (create side borders)
 late up [ Wall no WallCoversDone | no Wall ] -> [ Wall WallCoverUp | ]
@@ -263,10 +285,13 @@ late [ Wall no WallCoversDone ] -> [ Wall WallCoversDone]
 (--------------------)
 
 (animation where crates solidify at end of level)
-(visual feedback for crates which can't move)
+(visual feedback for crates which can't move - is this a good idea in terms of surprise?)
 (plant themed?)
 (idea: holes which can destroy crates but which fill and open up new possibilities for crates to be moved?
-       blocks connected at a distance? (like snakebird blocks))
+       More things you can interract with and make inert:
+       Powerup which gives you a temporary trail you can block yourself with?
+       Balloon thing that is pushed off wall if you walk into it, but is destroyed by crate? 
+)        
 (flame -> region of effect highlighted)
 
 ==============
@@ -286,13 +311,14 @@ LEVELS
 #..p..#
 #######
 
-#########
-#....*.##
-#...#####
-#....*.p#
-#...#####
-#.*...###
-#########
+##########
+#....*.###
+#...######
+#....*.p.#
+#...######
+#.*...####
+##########
+
 
 #######
 #.....#
