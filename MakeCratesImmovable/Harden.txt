@@ -8,12 +8,15 @@ title Harden
  Optionless
  Exhaustion 
  Secure
+ Stillness Reigns
+ Principle of least actions
 )
 author Toombler
 homepage https://toombler.itch.io/
 
 background_color #132a13 (#1f2041)
 
+run_rules_on_level_start
 
 (verbose_logging)
 
@@ -49,16 +52,22 @@ Background
 10111)
 
 
-Wall
-#90a955(BROWN DARKBROWN
-00010
-11111
-01000
-11111
-00010)
-
 Platform
-#119da4
+#31572c #3f7338 #3b6935 #396334 #284a23   
+00000
+01010
+00000
+01010
+00000
+
+
+
+(10220
+02212
+21001
+00212
+21122)
+(#119da4)
 
 Player
 grey grey grey grey grey (Black Orange White Blue)
@@ -75,6 +84,88 @@ Crate
 0...0
 0...0
 00000
+
+Wall
+#90a955 (
+#8ea35b #95b056 #90a955 
+10220
+02212
+21001
+00212
+21122 )(BROWN DARKBROWN
+00010
+11111
+01000
+11111
+00010)
+
+WallCoversDone
+transparent
+
+WallCoverUp
+#9bba50 #2c757d
+00000
+.....
+.....
+.....
+.....
+
+WallCoverDown
+#9bba50 #2c757d
+.....
+.....
+.....
+.....
+00000
+
+WallCoverRight
+#9bba50 #2c757d
+....0
+....0
+....0
+....0
+....0
+
+WallCoverLeft
+#9bba50 #2c757d
+0....
+0....
+0....
+0....
+0....
+
+WallCoverUpRightCorner
+#9bba50 #2c757d
+....0
+.....
+.....
+.....
+.....
+
+WallCoverDownRightCorner
+#9bba50 #2c757d
+.....
+.....
+.....
+.....
+....0
+
+WallCoverUpLeftCorner
+#9bba50 #2c757d
+0....
+.....
+.....
+.....
+.....
+
+WallCoverDownLeftCorner
+#9bba50 #2c757d
+.....
+.....
+.....
+.....
+0....
+
 
 FillMarker
 black
@@ -97,6 +188,8 @@ Q = Player and Platform
 BlocksPlayer = Crate or Wall
 BlocksCrate = Crate or Wall or Platform
 
+WallCover = WallCoverUp or WallCoverDown or WallCoverRight or WallCoverLeft or WallCoverUpRightCorner or WallCoverDownRightCorner or WallCoverUpLeftCorner or WallCoverDownLeftCorner
+
 =======
 SOUNDS
 =======
@@ -113,6 +206,15 @@ COLLISIONLAYERS
 Background
 Platform
 Player, Wall, Crate
+WallCoversDone,
+WallCoverUp,
+WallCoverDown,
+WallCoverRight,
+WallCoverLeft,   
+WallCoverUpRightCorner,   
+WallCoverDownRightCorner,   
+WallCoverUpLeftCorner,   
+WallCoverDownLeftCorner,
 FillMarker
 WinMarker
 
@@ -132,11 +234,39 @@ late [ WinMarker ] -> win
 late [ FillMarker ] -> []
 
 
+(----------graphics----------)
+
+(create side borders)
+late up [ Wall no WallCoversDone | no Wall ] -> [ Wall WallCoverUp | ]
+late down [ Wall no WallCoversDone | no Wall ] -> [ Wall WallCoverDown | ]
+late right [ Wall no WallCoversDone | no Wall ] -> [ Wall WallCoverRight | ]
+late left [ Wall no WallCoversDone | no Wall ] -> [ Wall WallCoverLeft | ]
+
+
+(create corners)
+late down [ Wall no WallCoversDone | ] -> [ Wall WallCoverDownRightCorner WallCoverDownLeftCorner | ] 
+late up [ Wall no WallCoversDone | ] -> [ Wall WallCoverUpRightCorner WallCoverUpLeftCorner | ]
+
+(remove extra corners)
+late up [ Wall WallCoverUpRightCorner no WallCoversDone | no WallCoverRight ] -> [ Wall | ] 
+late right [ Wall WallCoverUpRightCorner no WallCoversDone | no WallCoverUp ] -> [ Wall | ] 
+late down [ Wall WallCoverDownRightCorner no WallCoversDone | no WallCoverRight ] -> [ Wall | ] 
+late right [ Wall WallCoverDownRightCorner no WallCoversDone | no WallCoverDown ] -> [ Wall | ] 
+late up [ Wall WallCoverUpLeftCorner no WallCoversDone | no WallCoverLeft ] -> [ Wall | ]
+late left [ Wall WallCoverUpLeftCorner no WallCoversDone | no WallCoverUp ] -> [ Wall | ] 
+late down [ Wall WallCoverDownLeftCorner no WallCoversDone | no WallCoverLeft ] -> [ Wall | ] 
+late left [ Wall WallCoverDownLeftCorner no WallCoversDone | no WallCoverDown ] -> [ Wall | ] 
+
+(finish covering walls)
+late [ Wall no WallCoversDone ] -> [ Wall WallCoversDone] 
+
+(--------------------)
 
 (animation where crates solidify at end of level)
 (visual feedback for crates which can't move)
 (plant themed?)
-(idea: holes which can destroy crates but which fill and open up new possibilities for crates to be moved?)
+(idea: holes which can destroy crates but which fill and open up new possibilities for crates to be moved?
+       blocks connected at a distance? (like snakebird blocks))
 (flame -> region of effect highlighted)
 
 ==============
@@ -156,6 +286,13 @@ LEVELS
 #..p..#
 #######
 
+#########
+#....*.##
+#...#####
+#....*.p#
+#...#####
+#.*...###
+#########
 
 #######
 #.....#
@@ -181,7 +318,7 @@ LEVELS
 #%.....%%
 %%.*.p.%#
 %%.....%%
-%%%##%%#%
+%%%##%%%%
 
 %%%%%%%
 %.....%
@@ -191,9 +328,29 @@ LEVELS
 %.....%
 %%%%%%%
 
+
+
+
+
+
+
+
+
+%%%%###
+%.*.%%#
+%*..%q#
+%.*.%%#
+%%%%###
+
 %%#%%#####
 %....#%%%%
 #.*...%*.%
+#.*.p.%*.%
+%....#%%%%
+%%#%%#####
+
+%%#%%#####
+%....#%%%%
 #.*.p.%*.%
 %....#%%%%
 %%#%%#####
@@ -213,7 +370,7 @@ LEVELS
 ##%.*.p%
 %...#..%
 %.*.%..%
-%%%%%#%%
+%%%%%#%% (bit broken - can make 2by2 with crates and wall)
 
 
 
