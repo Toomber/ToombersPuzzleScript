@@ -23,6 +23,8 @@ background_color #132a13 (#1f2041)
 
 run_rules_on_level_start
 
+again_interval 0.4
+
 (verbose_logging)
 
 ========
@@ -91,7 +93,7 @@ Crate
 00000
 
 CrateCannotBePushed
-orange
+#d5e352 #cde352 #c8e352 orange
 00000
 0...0
 0...0
@@ -186,6 +188,13 @@ black
 WinMarker
 transparent
 
+WonCrateCover
+#c1cf4a #cbd94e #d5e352 #b1cc4e #d5e352 #9bba50 #90a955
+(00000
+01110
+01110
+01110
+00000)
 
 =======
 LEGEND
@@ -210,6 +219,8 @@ SOUNDS
 Crate MOVE 36772507
 Player MOVE 54585507
 
+Wall create 66651704
+
 endlevel 81161508
 
 ================
@@ -219,6 +230,7 @@ COLLISIONLAYERS
 Background
 Platform
 Player, Wall, Crate
+WonCrateCover
 CrateCannotBePushed
 WallCoversDone,
 WallCoverUp,
@@ -251,7 +263,12 @@ late [ FillMarker ] -> []
 
 late [ Player ] -> [ Player WinMarker ]
 late [ WinMarker ][ Crate no CrateCannotBePushed ] -> [][ Crate ]
-late [ WinMarker ] -> win
+late [ WinMarker ] -> [ WinMarker ] again
+
+
+random [ WinMarker ][ Crate ] -> [ WinMarker ][ Wall WonCrateCover]
+[ WinMarker ][ WallCoversDone ] -> [ WinMarker ][]
+([ WinMarker ][ WallCover ] -> [ WinMarker ][])
 
 
 (----------graphics----------)
@@ -298,6 +315,7 @@ late [ Wall no WallCoversDone ] -> [ Wall WallCoversDone]
 WINCONDITIONS
 ==============
 
+no Crate
 
 =======
 LEVELS
@@ -328,6 +346,13 @@ LEVELS
 #.....#
 #######
 
+#######
+#p*.###
+#**...#
+#....*#
+#..#..#
+#######
+
 
 
 
@@ -335,7 +360,7 @@ LEVELS
 (level requiring pushing crate out of the way - to avoid fail state)
 ########
 #.%...%#
-#.%....#ee
+#.%....#
 #p%..*.#
 #.%....#
 #.%%%%%#
@@ -347,7 +372,7 @@ LEVELS
 #....#..#
 #..p.*..#
 #....#.%#
-#########r
+#########
 
 ########
 #..%%.%#
@@ -369,11 +394,19 @@ LEVELS
 #%..*..##
 #%..*..%#
 #%p....%#
-#########)
+#########
+)
 
-
-
-
+(
+#######
+#%*...#
+#.....#
+#%....#
+#..p.*#
+#%...%#
+#######
+)
+(
 ###%#%##
 ###%.%%%
 #%%%...#
@@ -381,6 +414,26 @@ LEVELS
 #%%%%%%#
 ###...%#
 ###.p.%#
+)
+
+(
+#########
+#%.%#%%%#
+#%..#..%#
+#%p.*..%#
+#%..*..%#
+#%%%#.%%#
+#########)
+
+#########
+#%%..%%%#
+#%%%..p%#
+#%*..%.%#
+#%%%.%#%#
+#%#....%#
+#%..%%#%#
+#########
+
 
 
 %##%%%#%%
@@ -466,7 +519,7 @@ LEVELS
 
 
 
-
+(
 
 
 
@@ -481,5 +534,5 @@ LEVELS
 %*..*%%
 %%###%%
 %%%%%%%
-
+)
 
