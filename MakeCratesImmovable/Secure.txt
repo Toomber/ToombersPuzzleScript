@@ -181,13 +181,13 @@ black
 WinMarker
 transparent
 
-WonCrateCover
-#c1cf4a #cbd94e #d5e352 #b1cc4e #d5e352 #9bba50 #90a955
-(00000
+WonCrate
+#d5e352 #132a13 (#c1cf4a #cbd94e #d5e352 #b1cc4e #d5e352 #9bba50 #90a955)
+00000
 01110
 01110
 01110
-00000)
+00000
 
 WinTimer0
 transparent
@@ -204,6 +204,14 @@ transparent
 WinTimer4
 transparent
 
+LastLevelMarker
+transparent
+
+LastLevelMarker2
+transparent
+
+MessageMarker
+transparent
 
 person60
 black
@@ -786,8 +794,10 @@ P = person0
 Q = person0 and Platform
 * = Crate
 
-BlocksPlayer = Crate or Wall
-BlocksCrate = Crate or Wall or Platform
+L = LastLevelMarker
+
+BlocksPlayer = Crate or WonCrate or Wall 
+BlocksCrate = Crate or WonCrate or Wall or Platform  
 
 WallCover = WallCoverUp or WallCoverDown or WallCoverRight or WallCoverLeft or WallCoverUpRightCorner or WallCoverDownRightCorner or WallCoverUpLeftCorner or WallCoverDownLeftCorner
 
@@ -810,7 +820,8 @@ SOUNDS
 Crate MOVE  5983507 (21792307) (36772507)
 Player MOVE 98574507 (54585507)
 
-Wall create 66651704
+WonCrate create 66651704
+LastLevelMarker2 create 37882503
 
 endlevel 37882503 (81161508)
 
@@ -821,8 +832,7 @@ COLLISIONLAYERS
 Background
 Platform
 trail
-Person, Wall, Crate
-WonCrateCover
+Person, Wall, Crate, WonCrate
 CrateCannotBePushed
 WallCoversDone,
 WallCoverUp,
@@ -835,13 +845,17 @@ WallCoverUpLeftCorner,
 WallCoverDownLeftCorner,
 FillMarker
 WinMarker
+LastLevelMarker, LastLevelMarker2
+MessageMarker
 WinTimer
 
 ======
 RULES
 ======
 
+[ LastLevelMarker2 ][ WinMarker ] -> [ LastLevelMarker2 ][]
 [ Player ][ WinMarker ] -> [ stationary player ][ WinMarker ]
+
 
 [ >  Player | Crate ] -> [  >  Player | > Crate  ]
 [ > Crate | Platform ] -> [ Crate | Platform ]  
@@ -861,9 +875,10 @@ late [ WinMarker ] -> [ WinMarker ]
 late [ WinMarker no WinTimer ] -> [ WinMarker WinTimer0 ]
 
 
-random [ WinTimer4 ][ Crate ] -> [ WinTimer4 ][ Wall ]
+random [ WinTimer4 ][ Crate ] -> [ WinTimer4 ][ WonCrate ]
+(
 [ WinTimer4 ][ WallCoversDone ] -> [ WinTimer4 ][]
-[ WinTimer4 ][ WallCover ] -> [ WinTimer4 ][]
+[ WinTimer4 ][ WallCover ] -> [ WinTimer4 ][])
 
 [ stationary player ][ WinTimer4 ] -> [ stationary player ][ WinTimer0 ]
 [ stationary player ][ WinTimer3 ] -> [ stationary player ][ WinTimer4 ]
@@ -871,6 +886,10 @@ random [ WinTimer4 ][ Crate ] -> [ WinTimer4 ][ Wall ]
 [ stationary player ][ WinTimer1 ] -> [ stationary player ][ WinTimer2 ]
 [ stationary player ][ WinTimer0 ] -> [ stationary player ][ WinTimer1 ]
 
+
+[ LastLevelMarker ] -> [ LastLevelMarker MessageMarker ]
+[ Crate ][ MessageMarker ] -> [ Crate ][]
+[ LastLevelMarker ][ MessageMarker ] -> [ LastLevelMarker2 ][] message Thanks for playing! 
 
 
 (----------graphics----------)
@@ -952,10 +971,10 @@ random [ WinTimer4 ][ Crate ] -> [ WinTimer4 ][ Wall ]
 [ stationary player ][ 2Trail0 ] -> [ stationary player ][ 2Trail1 ]
 
 
-
+(
 (trail spawning)
 [ moving person ] -> [ moving person random trail0 ]
-late [ trail person ] -> [ person ]
+late [ trail person ] -> [ person ])
 
 
 
@@ -1001,6 +1020,8 @@ WINCONDITIONS
 ==============
 
 no Crate
+no LastLevelMarker
+no LastLevelMarker2
 
 =======
 LEVELS
@@ -1132,15 +1153,18 @@ LEVELS
 %%.....%%
 %%%##%%%%)
 
-.........
-.##%%%#%.
-.#.....%.
-.%.*...#.
-.%...*.%.
-.%.p...%.
-.%.....%.
-.%%##%%%.
-.........
+###########
+#.........#
+#.##%%%#%.#
+#.#.....%.#
+#.%.*...#.#
+#.%...*.%.#
+#.%.p...%.#
+#.%.....%.#
+#.%%##%%%.#
+#.........#
+###########
+
 
 
 #########
@@ -1194,7 +1218,7 @@ LEVELS
 #%%%.*.%..%##
 #%#....#...%#
 #%#*%%.*.p.%#
-#%#....#...%#
+#%#L...#...%#
 #%%%.*.%..%##
 ###%%%%%#%%##
 #############
