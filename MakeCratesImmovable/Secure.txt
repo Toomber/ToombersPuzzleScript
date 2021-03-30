@@ -1,21 +1,8 @@
-title Secure
-(opportunity cost
- Funnel
- Cornered
- Reduction
- Depletion
- Static
- Stabilise
- Optionless 
- Pin
- Stillness Reigns
- Principle of least actions
- Loose Cargo
- 
- Exhaustion
- Secure
- Harden
-)
+#31572C #3B6932 #447B39 #4E8D3F #589F45 #61B04B #6BC252 #74D458 #7EE65E
+#31572C #3B6932 #447B39 #4E8D3F #589F45 #61B04B #6BC252 #74D458 #7EE65E
+
+title Secure	
+
 author Toombler
 homepage https://toombler.itch.io/
 
@@ -24,6 +11,10 @@ background_color #132a13 (#1f2041)
 run_rules_on_level_start
 
 again_interval 0.4
+
+realtime_interval 0.1
+
+noaction
 
 (verbose_logging)
 
@@ -76,6 +67,7 @@ Platform
 21122)
 (#119da4)
 
+(
 Player
 grey grey grey grey grey (Black Orange White Blue)
 .000.
@@ -83,6 +75,7 @@ grey grey grey grey grey (Black Orange White Blue)
 22222
 .333.
 .3.3.
+)
 
 Crate
 #ffc857 (Orange Yellow)
@@ -101,7 +94,7 @@ CrateCannotBePushed
 00000
 
 Wall
-#90a955 (
+#132a13 #90a955 (
 #8ea35b #95b056 #90a955 
 10220
 02212
@@ -196,6 +189,592 @@ WonCrateCover
 01110
 00000)
 
+WinTimer0
+transparent
+
+WinTimer1
+transparent
+
+WinTimer2
+transparent
+
+WinTimer3
+transparent
+
+WinTimer4
+transparent
+
+
+person60
+black
+
+Person0
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.544. 
+.213. 
+31255 
+.356. 
+.5.5. 
+ 
+Person1
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.434. 
+.213. 
+21356 
+.456. 
+.5.5. 
+ 
+Person2
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.433. 
+.113. 
+22356 
+.466. 
+.5.5. 
+ 
+Person3
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.433. 
+.113. 
+32356 
+.566. 
+.5.5. 
+ 
+Person4
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.333. 
+.112. 
+33455 
+.566. 
+.4.5. 
+ 
+Person5
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.323. 
+.112. 
+44455 
+.666. 
+.4.4. 
+ 
+Person6
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.322. 
+.212. 
+44555 
+.666. 
+.4.4. 
+ 
+Person7
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.222. 
+.222. 
+55555 
+.566. 
+.4.4. 
+ 
+Person8
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.212. 
+.322. 
+55555 
+.566. 
+.4.4. 
+ 
+Person9
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.212. 
+.432. 
+46655 
+.566. 
+.4.3. 
+ 
+Person10
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.321. 
+.432. 
+46655 
+.566. 
+.4.3. 
+ 
+Person11
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.321. 
+.542. 
+36664 
+.466. 
+.4.3. 
+ 
+Person12
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.421. 
+.553. 
+35764 
+.456. 
+.4.3. 
+ 
+Person13
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.431. 
+.553. 
+35764 
+.456. 
+.4.3. 
+ 
+Person14
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.442. 
+.564. 
+35764 
+.456. 
+.4.3. 
+ 
+Person15
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.442. 
+.464. 
+34664 
+.456. 
+.4.3. 
+ 
+Person16
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.453. 
+.465. 
+44674 
+.456. 
+.4.3. 
+ 
+Person17
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.354. 
+.365. 
+44674 
+.346. 
+.4.4. 
+ 
+Person18
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.254. 
+.366. 
+44575 
+.346. 
+.4.4. 
+ 
+Person19
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.245. 
+.356. 
+43575 
+.346. 
+.4.4. 
+ 
+Person20
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.335. 
+.356. 
+43575 
+.346. 
+.3.4. 
+ 
+Person21
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.335. 
+.346. 
+43476 
+.346. 
+.3.5. 
+ 
+Person22
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.434. 
+.446. 
+43476 
+.346. 
+.3.5. 
+ 
+Person23
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.534. 
+.435. 
+43466 
+.336. 
+.3.5. 
+ 
+Person24
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.533. 
+.435. 
+43367 
+.336. 
+.3.5. 
+ 
+Person25
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.543. 
+.434. 
+43367 
+.336. 
+.3.6. 
+ 
+Person26
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.443. 
+.334. 
+43357 
+.336. 
+.2.6. 
+ 
+Person27
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.443. 
+.333. 
+53357 
+.336. 
+.2.6. 
+ 
+Person28
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.344. 
+.333. 
+53246 
+.336. 
+.2.6. 
+ 
+Person29
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.344. 
+.433. 
+53246 
+.336. 
+.2.6. 
+ 
+Person30
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.345. 
+.433. 
+63235 
+.336. 
+.3.7. 
+ 
+Person31
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.345. 
+.433. 
+64234 
+.235. 
+.3.7. 
+ 
+Person32
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.334. 
+.433. 
+64224 
+.235. 
+.3.7. 
+ 
+Person33
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.334. 
+.533. 
+64223 
+.235. 
+.4.7. 
+ 
+Person34
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.434. 
+.533. 
+53223 
+.334. 
+.4.7. 
+ 
+Person35
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.443. 
+.543. 
+53222 
+.334. 
+.4.7. 
+ 
+Person36
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.443. 
+.543. 
+53222 
+.333. 
+.5.7. 
+ 
+Person37
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.543. 
+.643. 
+43223 
+.333. 
+.5.6. 
+ 
+Person38
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.544. 
+.644. 
+43223 
+.333. 
+.5.6. 
+ 
+Person39
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.654. 
+.654. 
+33223 
+.332. 
+.6.5. 
+ 
+Person40
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.654. 
+.554. 
+33223 
+.332. 
+.6.5. 
+ 
+Person41
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.754. 
+.554. 
+33224 
+.422. 
+.6.4. 
+ 
+Person42
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.764. 
+.554. 
+33234 
+.421. 
+.6.3. 
+ 
+Person43
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.764. 
+.455. 
+43234 
+.421. 
+.6.3. 
+ 
+Person44
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.664. 
+.455. 
+43234 
+.421. 
+.6.2. 
+ 
+Person45
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.665. 
+.455. 
+43234 
+.422. 
+.6.2. 
+ 
+Person46
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.565. 
+.455. 
+43234 
+.412. 
+.6.2. 
+ 
+Person47
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.565. 
+.345. 
+53245 
+.412. 
+.6.2. 
+ 
+Person48
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.466. 
+.345. 
+53245 
+.313. 
+.5.2. 
+ 
+Person49
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.466. 
+.345. 
+53245 
+.313. 
+.4.3. 
+ 
+Person50
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.456. 
+.345. 
+53245 
+.313. 
+.4.3. 
+ 
+Person51
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.456. 
+.335. 
+52245 
+.214. 
+.3.4. 
+ 
+Person52
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.446. 
+.335. 
+52245 
+.214. 
+.3.4. 
+ 
+Person53
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.446. 
+.335. 
+52255 
+.224. 
+.2.5. 
+ 
+Person54
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.545. 
+.335. 
+52255 
+.125. 
+.2.5. 
+ 
+Person55
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.545. 
+.325. 
+52255 
+.125. 
+.2.5. 
+ 
+Person56
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.545. 
+.325. 
+41255 
+.135. 
+.3.5. 
+ 
+Person57
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.544. 
+.324. 
+41255 
+.135. 
+.3.5. 
+ 
+Person58
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.544. 
+.324. 
+31255 
+.246. 
+.4.5. 
+ 
+Person59
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.544. 
+.224. 
+31255 
+.246. 
+.5.5. 
+
+
+
+
+1Trail0
+#31572C #39602E #416931 #497133 #517A36 #588338 #608C3A #68943D #709D3F 
+..... 
+.135. 
+.256. 
+.566. 
+..... 
+ 
+1Trail1
+#31572C #39602E #416931 #497133 #517A36 #588338 #608C3A #68943D #709D3F 
+..... 
+.35.. 
+.5.5. 
+.664. 
+..... 
+ 
+1Trail2
+#31572C #39602E #416931 #497133 #517A36 #588338 #608C3A #68943D #709D3F  
+..... 
+.66.. 
+...3. 
+..42. 
+..... 
+ 
+1Trail3
+#31572C #39602E #416931 #497133 #517A36 #588338 #608C3A #68943D #709D3F
+..... 
+..5.. 
+..... 
+..22. 
+..... 
+ 
+1Trail4
+#31572C #39602E #416931 #497133 #517A36 #588338 #608C3A #68943D #709D3F  
+..... 
+..3.. 
+..... 
+..... 
+..... 
+
+2Trail0
+#31572C #39602E #416931 #497133 #517A36 #588338 #608C3A #68943D #709D3F  
+..... 
+.135. 
+.256. 
+.566. 
+..... 
+ 
+2Trail1
+#31572C #39602E #416931 #497133 #517A36 #588338 #608C3A #68943D #709D3F  
+..... 
+...5. 
+.575. 
+.664. 
+..... 
+ 
+2Trail2
+#31572C #39602E #416931 #497133 #517A36 #588338 #608C3A #68943D #709D3F  
+..... 
+...4. 
+.763. 
+..4.. 
+..... 
+ 
+2Trail3
+#31572C #39602E #416931 #497133 #517A36 #588338 #608C3A #68943D #709D3F  
+..... 
+...3. 
+..3.. 
+..2.. 
+..... 
+ 
+2Trail4
+#31572C #39602E #416931 #497133 #517A36 #588338 #608C3A #68943D #709D3F  
+..... 
+..... 
+..... 
+..2.. 
+..... 
+
+
+
+
+
 =======
 LEGEND
 =======
@@ -203,8 +782,8 @@ LEGEND
 . = Background
 % = Platform
 # = Wall
-P = Player
-Q = Player and Platform
+P = person0
+Q = person0 and Platform
 * = Crate
 
 BlocksPlayer = Crate or Wall
@@ -212,16 +791,28 @@ BlocksCrate = Crate or Wall or Platform
 
 WallCover = WallCoverUp or WallCoverDown or WallCoverRight or WallCoverLeft or WallCoverUpRightCorner or WallCoverDownRightCorner or WallCoverUpLeftCorner or WallCoverDownLeftCorner
 
+WinTimer = WinTimer0 or WinTimer1 or WinTimer2 or WinTimer3 or WinTimer4
+
+Person = Person0 or Person1 or Person2 or Person3 or Person4 or Person5 or Person6 or Person7 or Person8 or Person9 or Person10 or Person11 or Person12 or Person13 or Person14 or Person15 or Person16 or Person17 or Person18 or Person19 or Person20 or Person21 or Person22 or Person23 or Person24 or Person25 or Person26 or Person27 or Person28 or Person29 or Person30 or Person31 or Person32 or Person33 or Person34 or Person35 or Person36 or Person37 or Person38 or Person39 or Person40 or Person41 or Person42 or Person43 or Person44 or Person45 or Person46 or Person47 or Person48 or Person49 or Person50 or Person51 or Person52 or Person53 or Person54 or Person55 or Person56 or Person57 or Person58 or Person59 or Person60
+
+
+Player = Person
+
+1Trail = 1Trail0 or 1Trail1 or 1Trail2 or 1Trail3 or 1Trail4
+2Trail = 2Trail0 or 2Trail1 or 2Trail2 or 2Trail3 or 2Trail4
+trail0 = 1Trail0 or 2Trail0
+trail = 1Trail or 2Trail
+
 =======
 SOUNDS
 =======
 
-Crate MOVE 36772507
-Player MOVE 54585507
+Crate MOVE  5983507 (21792307) (36772507)
+Player MOVE 98574507 (54585507)
 
 Wall create 66651704
 
-endlevel 81161508
+endlevel 37882503 (81161508)
 
 ================
 COLLISIONLAYERS
@@ -229,7 +820,8 @@ COLLISIONLAYERS
 
 Background
 Platform
-Player, Wall, Crate
+trail
+Person, Wall, Crate
 WonCrateCover
 CrateCannotBePushed
 WallCoversDone,
@@ -243,11 +835,13 @@ WallCoverUpLeftCorner,
 WallCoverDownLeftCorner,
 FillMarker
 WinMarker
+WinTimer
 
 ======
 RULES
 ======
 
+[ Player ][ WinMarker ] -> [ stationary player ][ WinMarker ]
 
 [ >  Player | Crate ] -> [  >  Player | > Crate  ]
 [ > Crate | Platform ] -> [ Crate | Platform ]  
@@ -263,15 +857,105 @@ late [ FillMarker ] -> []
 
 late [ Player ] -> [ Player WinMarker ]
 late [ WinMarker ][ Crate no CrateCannotBePushed ] -> [][ Crate ]
-late [ WinMarker ] -> [ WinMarker ] again
+late [ WinMarker ] -> [ WinMarker ]
+late [ WinMarker no WinTimer ] -> [ WinMarker WinTimer0 ]
 
 
-random [ WinMarker ][ Crate ] -> [ WinMarker ][ Wall WonCrateCover]
-[ WinMarker ][ WallCoversDone ] -> [ WinMarker ][]
-([ WinMarker ][ WallCover ] -> [ WinMarker ][])
+random [ WinTimer4 ][ Crate ] -> [ WinTimer4 ][ Wall ]
+[ WinTimer4 ][ WallCoversDone ] -> [ WinTimer4 ][]
+[ WinTimer4 ][ WallCover ] -> [ WinTimer4 ][]
+
+[ stationary player ][ WinTimer4 ] -> [ stationary player ][ WinTimer0 ]
+[ stationary player ][ WinTimer3 ] -> [ stationary player ][ WinTimer4 ]
+[ stationary player ][ WinTimer2 ] -> [ stationary player ][ WinTimer3 ]
+[ stationary player ][ WinTimer1 ] -> [ stationary player ][ WinTimer2 ]
+[ stationary player ][ WinTimer0 ] -> [ stationary player ][ WinTimer1 ]
+
 
 
 (----------graphics----------)
+
+(player animations)
+[ stationary player ][ Person59 ] -> [ stationary player ][ Person60 ]
+[ stationary player ][ Person58 ] -> [ stationary player ][ Person59 ]
+[ stationary player ][ Person57 ] -> [ stationary player ][ Person58 ]
+[ stationary player ][ Person56 ] -> [ stationary player ][ Person57 ]
+[ stationary player ][ Person55 ] -> [ stationary player ][ Person56 ]
+[ stationary player ][ Person54 ] -> [ stationary player ][ Person55 ]
+[ stationary player ][ Person53 ] -> [ stationary player ][ Person54 ]
+[ stationary player ][ Person52 ] -> [ stationary player ][ Person53 ]
+[ stationary player ][ Person51 ] -> [ stationary player ][ Person52 ]
+[ stationary player ][ Person50 ] -> [ stationary player ][ Person51 ]
+[ stationary player ][ Person49 ] -> [ stationary player ][ Person50 ]
+[ stationary player ][ Person48 ] -> [ stationary player ][ Person49 ]
+[ stationary player ][ Person47 ] -> [ stationary player ][ Person48 ]
+[ stationary player ][ Person46 ] -> [ stationary player ][ Person47 ]
+[ stationary player ][ Person45 ] -> [ stationary player ][ Person46 ]
+[ stationary player ][ Person44 ] -> [ stationary player ][ Person45 ]
+[ stationary player ][ Person43 ] -> [ stationary player ][ Person44 ]
+[ stationary player ][ Person42 ] -> [ stationary player ][ Person43 ]
+[ stationary player ][ Person41 ] -> [ stationary player ][ Person42 ]
+[ stationary player ][ Person40 ] -> [ stationary player ][ Person41 ]
+[ stationary player ][ Person39 ] -> [ stationary player ][ Person40 ]
+[ stationary player ][ Person38 ] -> [ stationary player ][ Person39 ]
+[ stationary player ][ Person37 ] -> [ stationary player ][ Person38 ]
+[ stationary player ][ Person36 ] -> [ stationary player ][ Person37 ]
+[ stationary player ][ Person35 ] -> [ stationary player ][ Person36 ]
+[ stationary player ][ Person34 ] -> [ stationary player ][ Person35 ]
+[ stationary player ][ Person33 ] -> [ stationary player ][ Person34 ]
+[ stationary player ][ Person32 ] -> [ stationary player ][ Person33 ]
+[ stationary player ][ Person31 ] -> [ stationary player ][ Person32 ]
+[ stationary player ][ Person30 ] -> [ stationary player ][ Person31 ]
+[ stationary player ][ Person29 ] -> [ stationary player ][ Person30 ]
+[ stationary player ][ Person28 ] -> [ stationary player ][ Person29 ]
+[ stationary player ][ Person27 ] -> [ stationary player ][ Person28 ]
+[ stationary player ][ Person26 ] -> [ stationary player ][ Person27 ]
+[ stationary player ][ Person25 ] -> [ stationary player ][ Person26 ]
+[ stationary player ][ Person24 ] -> [ stationary player ][ Person25 ]
+[ stationary player ][ Person23 ] -> [ stationary player ][ Person24 ]
+[ stationary player ][ Person22 ] -> [ stationary player ][ Person23 ]
+[ stationary player ][ Person21 ] -> [ stationary player ][ Person22 ]
+[ stationary player ][ Person20 ] -> [ stationary player ][ Person21 ]
+[ stationary player ][ Person19 ] -> [ stationary player ][ Person20 ]
+[ stationary player ][ Person18 ] -> [ stationary player ][ Person19 ]
+[ stationary player ][ Person17 ] -> [ stationary player ][ Person18 ]
+[ stationary player ][ Person16 ] -> [ stationary player ][ Person17 ]
+[ stationary player ][ Person15 ] -> [ stationary player ][ Person16 ]
+[ stationary player ][ Person14 ] -> [ stationary player ][ Person15 ]
+[ stationary player ][ Person13 ] -> [ stationary player ][ Person14 ]
+[ stationary player ][ Person12 ] -> [ stationary player ][ Person13 ]
+[ stationary player ][ Person11 ] -> [ stationary player ][ Person12 ]
+[ stationary player ][ Person10 ] -> [ stationary player ][ Person11 ]
+[ stationary player ][ Person9 ] -> [ stationary player ][ Person10 ]
+[ stationary player ][ Person8 ] -> [ stationary player ][ Person9 ]
+[ stationary player ][ Person7 ] -> [ stationary player ][ Person8 ]
+[ stationary player ][ Person6 ] -> [ stationary player ][ Person7 ]
+[ stationary player ][ Person5 ] -> [ stationary player ][ Person6 ]
+[ stationary player ][ Person4 ] -> [ stationary player ][ Person5 ]
+[ stationary player ][ Person3 ] -> [ stationary player ][ Person4 ]
+[ stationary player ][ Person2 ] -> [ stationary player ][ Person3 ]
+[ stationary player ][ Person1 ] -> [ stationary player ][ Person2 ]
+[ stationary player ][ Person0 ] -> [ stationary player ][ Person1 ]
+[ stationary player ][ person60 ] -> [ stationary player ][ person0 ] (person60 is never shown)
+
+(trail animations)
+[ stationary player ][ 1Trail4 ] -> [ stationary player ][ ]
+[ stationary player ][ 1Trail3 ] -> [ stationary player ][ 1Trail4 ]
+[ stationary player ][ 1Trail2 ] -> [ stationary player ][ 1Trail3 ]
+[ stationary player ][ 1Trail1 ] -> [ stationary player ][ 1Trail2 ]
+[ stationary player ][ 1Trail0 ] -> [ stationary player ][ 1Trail1 ]
+
+[ stationary player ][ 2Trail4 ] -> [ stationary player ][  ]
+[ stationary player ][ 2Trail3 ] -> [ stationary player ][ 2Trail4 ]
+[ stationary player ][ 2Trail2 ] -> [ stationary player ][ 2Trail3 ]
+[ stationary player ][ 2Trail1 ] -> [ stationary player ][ 2Trail2 ]
+[ stationary player ][ 2Trail0 ] -> [ stationary player ][ 2Trail1 ]
+
+
+
+(trail spawning)
+[ moving person ] -> [ moving person random trail0 ]
+late [ trail person ] -> [ person ]
 
 
 
@@ -310,6 +994,7 @@ late [ Wall no WallCoversDone ] -> [ Wall WallCoversDone]
        Balloon thing that is pushed off wall if you walk into it, but is destroyed by crate? 
 )        
 (flame -> region of effect highlighted)
+(maybe don't like the player animation - prefer solid colour?)
 
 ==============
 WINCONDITIONS
@@ -329,13 +1014,12 @@ LEVELS
 #..p..#
 #######
 
-
 ##########
-#....*.###
+#....*.#.#
 #...######
 #....*.p.#
 #...######
-#.*...####
+#.*...#..#
 ##########
 
 
@@ -347,12 +1031,15 @@ LEVELS
 #.....#
 #######
 
-#######
-#p*.###
-#**...#
-#....*#
-#..#..#
-#######
+#########
+#.#p*.###
+###**...#
+#......*#
+#...##..#
+#########
+
+
+
 
 
 
@@ -436,30 +1123,55 @@ LEVELS
 #########
 
 
-
+(
 %##%%%#%%
 %#.....%%
 %%...*.#%
 #%.....%%
 %%.*.p.%#
 %%.....%%
-%%%##%%%%
+%%%##%%%%)
 
+.........
+.##%%%#%.
+.#.....%.
+.%.*...#.
+.%...*.%.
+.%.p...%.
+.%.....%.
+.%%##%%%.
+.........
+
+
+#########
 #%%%%%%%#
 #%*...*%#
 #%.....%#
-#...p...#
+#...*...#
 #%.....%#
-#%*...*%#
+#%*.p.*%#
 #%%%%%%%#
+#########
 
+
+(
 %%%%%%%
 %.....#
 #.*.*.#
 #.....%
 %.p.*.%
 %.....%
-%%%#%%%
+%%%#%%%)
+
+#############
+#..%%%%%%%..#
+#..%.....##.#
+####.*.*.##.#
+####.....%..#
+#..%.p.*.%..#
+#..%.....%..#
+#..%%%##%%..#
+#############
 
 ###########
 #.p%.*.%###
@@ -467,13 +1179,26 @@ LEVELS
 #.*%.*.%###
 ########### (iconic 3 block puzzle twist)
 
+(
 #%%%%%%#%%
 %%%.*.%..%
 %#....#..%
 %#*%%.*.p%
 %#....#..%
 %%%.*.%..%
-#%%%%%%#%%
+#%%%%%%#%%)
+
+
+#############
+###%%%%%#%%##
+#%%%.*.%..%##
+#%#....#...%#
+#%#*%%.*.p.%#
+#%#....#...%#
+#%%%.*.%..%##
+###%%%%%#%%##
+#############
+
 
 (
 %%%%%#%%
