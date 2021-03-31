@@ -204,6 +204,33 @@ transparent
 WinTimer4
 transparent
 
+AnimTimer0
+transparent
+
+AnimTimer1
+transparent
+
+AnimTimer2
+transparent
+
+AnimTimer3
+transparent
+
+AnimTimer4
+transparent
+
+AnimTimer5
+transparent
+
+AnimTimer6
+transparent
+
+AnimTimer7
+transparent
+
+AnimTimer8
+transparent
+
 LastLevelMarker
 transparent
 
@@ -790,8 +817,8 @@ LEGEND
 . = Background
 % = Platform
 # = Wall
-P = person0
-Q = person0 and Platform
+P = person0 and AnimTimer8
+Q = person0 and Platform and AnimTimer8
 * = Crate
 
 L = LastLevelMarker
@@ -802,6 +829,9 @@ BlocksCrate = Crate or WonCrate or Wall or Platform
 WallCover = WallCoverUp or WallCoverDown or WallCoverRight or WallCoverLeft or WallCoverUpRightCorner or WallCoverDownRightCorner or WallCoverUpLeftCorner or WallCoverDownLeftCorner
 
 WinTimer = WinTimer0 or WinTimer1 or WinTimer2 or WinTimer3 or WinTimer4
+
+AnimTimer = AnimTimer0 or AnimTimer1 or AnimTimer2 or AnimTimer3 or AnimTimer4 or AnimTimer5 or AnimTimer6 or AnimTimer7 or AnimTimer8
+AnimTimerNot8 = AnimTimer0 or AnimTimer1 or AnimTimer2 or AnimTimer3 or AnimTimer4 or AnimTimer5 or AnimTimer6 or AnimTimer7
 
 Person = Person0 or Person1 or Person2 or Person3 or Person4 or Person5 or Person6 or Person7 or Person8 or Person9 or Person10 or Person11 or Person12 or Person13 or Person14 or Person15 or Person16 or Person17 or Person18 or Person19 or Person20 or Person21 or Person22 or Person23 or Person24 or Person25 or Person26 or Person27 or Person28 or Person29 or Person30 or Person31 or Person32 or Person33 or Person34 or Person35 or Person36 or Person37 or Person38 or Person39 or Person40 or Person41 or Person42 or Person43 or Person44 or Person45 or Person46 or Person47 or Person48 or Person49 or Person50 or Person51 or Person52 or Person53 or Person54 or Person55 or Person56 or Person57 or Person58 or Person59 or Person60
 
@@ -848,6 +878,7 @@ WinMarker
 LastLevelMarker, LastLevelMarker2
 MessageMarker
 WinTimer
+AnimTimer
 
 ======
 RULES
@@ -895,67 +926,78 @@ random [ WinTimer4 ][ Crate ] -> [ WinTimer4 ][ WonCrate ]
 (----------graphics----------)
 
 (player animations)
-[ stationary player ][ Person59 ] -> [ stationary player ][ Person60 ]
-[ stationary player ][ Person58 ] -> [ stationary player ][ Person59 ]
-[ stationary player ][ Person57 ] -> [ stationary player ][ Person58 ]
-[ stationary player ][ Person56 ] -> [ stationary player ][ Person57 ]
-[ stationary player ][ Person55 ] -> [ stationary player ][ Person56 ]
-[ stationary player ][ Person54 ] -> [ stationary player ][ Person55 ]
-[ stationary player ][ Person53 ] -> [ stationary player ][ Person54 ]
-[ stationary player ][ Person52 ] -> [ stationary player ][ Person53 ]
-[ stationary player ][ Person51 ] -> [ stationary player ][ Person52 ]
-[ stationary player ][ Person50 ] -> [ stationary player ][ Person51 ]
-[ stationary player ][ Person49 ] -> [ stationary player ][ Person50 ]
-[ stationary player ][ Person48 ] -> [ stationary player ][ Person49 ]
-[ stationary player ][ Person47 ] -> [ stationary player ][ Person48 ]
-[ stationary player ][ Person46 ] -> [ stationary player ][ Person47 ]
-[ stationary player ][ Person45 ] -> [ stationary player ][ Person46 ]
-[ stationary player ][ Person44 ] -> [ stationary player ][ Person45 ]
-[ stationary player ][ Person43 ] -> [ stationary player ][ Person44 ]
-[ stationary player ][ Person42 ] -> [ stationary player ][ Person43 ]
-[ stationary player ][ Person41 ] -> [ stationary player ][ Person42 ]
-[ stationary player ][ Person40 ] -> [ stationary player ][ Person41 ]
-[ stationary player ][ Person39 ] -> [ stationary player ][ Person40 ]
-[ stationary player ][ Person38 ] -> [ stationary player ][ Person39 ]
-[ stationary player ][ Person37 ] -> [ stationary player ][ Person38 ]
-[ stationary player ][ Person36 ] -> [ stationary player ][ Person37 ]
-[ stationary player ][ Person35 ] -> [ stationary player ][ Person36 ]
-[ stationary player ][ Person34 ] -> [ stationary player ][ Person35 ]
-[ stationary player ][ Person33 ] -> [ stationary player ][ Person34 ]
-[ stationary player ][ Person32 ] -> [ stationary player ][ Person33 ]
-[ stationary player ][ Person31 ] -> [ stationary player ][ Person32 ]
-[ stationary player ][ Person30 ] -> [ stationary player ][ Person31 ]
-[ stationary player ][ Person29 ] -> [ stationary player ][ Person30 ]
-[ stationary player ][ Person28 ] -> [ stationary player ][ Person29 ]
-[ stationary player ][ Person27 ] -> [ stationary player ][ Person28 ]
-[ stationary player ][ Person26 ] -> [ stationary player ][ Person27 ]
-[ stationary player ][ Person25 ] -> [ stationary player ][ Person26 ]
-[ stationary player ][ Person24 ] -> [ stationary player ][ Person25 ]
-[ stationary player ][ Person23 ] -> [ stationary player ][ Person24 ]
-[ stationary player ][ Person22 ] -> [ stationary player ][ Person23 ]
-[ stationary player ][ Person21 ] -> [ stationary player ][ Person22 ]
-[ stationary player ][ Person20 ] -> [ stationary player ][ Person21 ]
-[ stationary player ][ Person19 ] -> [ stationary player ][ Person20 ]
-[ stationary player ][ Person18 ] -> [ stationary player ][ Person19 ]
-[ stationary player ][ Person17 ] -> [ stationary player ][ Person18 ]
-[ stationary player ][ Person16 ] -> [ stationary player ][ Person17 ]
-[ stationary player ][ Person15 ] -> [ stationary player ][ Person16 ]
-[ stationary player ][ Person14 ] -> [ stationary player ][ Person15 ]
-[ stationary player ][ Person13 ] -> [ stationary player ][ Person14 ]
-[ stationary player ][ Person12 ] -> [ stationary player ][ Person13 ]
-[ stationary player ][ Person11 ] -> [ stationary player ][ Person12 ]
-[ stationary player ][ Person10 ] -> [ stationary player ][ Person11 ]
-[ stationary player ][ Person9 ] -> [ stationary player ][ Person10 ]
-[ stationary player ][ Person8 ] -> [ stationary player ][ Person9 ]
-[ stationary player ][ Person7 ] -> [ stationary player ][ Person8 ]
-[ stationary player ][ Person6 ] -> [ stationary player ][ Person7 ]
-[ stationary player ][ Person5 ] -> [ stationary player ][ Person6 ]
-[ stationary player ][ Person4 ] -> [ stationary player ][ Person5 ]
-[ stationary player ][ Person3 ] -> [ stationary player ][ Person4 ]
-[ stationary player ][ Person2 ] -> [ stationary player ][ Person3 ]
-[ stationary player ][ Person1 ] -> [ stationary player ][ Person2 ]
-[ stationary player ][ Person0 ] -> [ stationary player ][ Person1 ]
-[ stationary player ][ person60 ] -> [ stationary player ][ person0 ] (person60 is never shown)
+[ AnimTimerNot8 ][ stationary player ][ Person59 ] -> [ AnimTimerNot8 ][ stationary player ][ Person60 ]
+[ AnimTimerNot8 ][ stationary player ][ Person58 ] -> [ AnimTimerNot8 ][ stationary player ][ Person59 ]
+[ AnimTimerNot8 ][ stationary player ][ Person57 ] -> [ AnimTimerNot8 ][ stationary player ][ Person58 ]
+[ AnimTimerNot8 ][ stationary player ][ Person56 ] -> [ AnimTimerNot8 ][ stationary player ][ Person57 ]
+[ AnimTimerNot8 ][ stationary player ][ Person55 ] -> [ AnimTimerNot8 ][ stationary player ][ Person56 ]
+[ AnimTimerNot8 ][ stationary player ][ Person54 ] -> [ AnimTimerNot8 ][ stationary player ][ Person55 ]
+[ AnimTimerNot8 ][ stationary player ][ Person53 ] -> [ AnimTimerNot8 ][ stationary player ][ Person54 ]
+[ AnimTimerNot8 ][ stationary player ][ Person52 ] -> [ AnimTimerNot8 ][ stationary player ][ Person53 ]
+[ AnimTimerNot8 ][ stationary player ][ Person51 ] -> [ AnimTimerNot8 ][ stationary player ][ Person52 ]
+[ AnimTimerNot8 ][ stationary player ][ Person50 ] -> [ AnimTimerNot8 ][ stationary player ][ Person51 ]
+[ AnimTimerNot8 ][ stationary player ][ Person49 ] -> [ AnimTimerNot8 ][ stationary player ][ Person50 ]
+[ AnimTimerNot8 ][ stationary player ][ Person48 ] -> [ AnimTimerNot8 ][ stationary player ][ Person49 ]
+[ AnimTimerNot8 ][ stationary player ][ Person47 ] -> [ AnimTimerNot8 ][ stationary player ][ Person48 ]
+[ AnimTimerNot8 ][ stationary player ][ Person46 ] -> [ AnimTimerNot8 ][ stationary player ][ Person47 ]
+[ AnimTimerNot8 ][ stationary player ][ Person45 ] -> [ AnimTimerNot8 ][ stationary player ][ Person46 ]
+[ AnimTimerNot8 ][ stationary player ][ Person44 ] -> [ AnimTimerNot8 ][ stationary player ][ Person45 ]
+[ AnimTimerNot8 ][ stationary player ][ Person43 ] -> [ AnimTimerNot8 ][ stationary player ][ Person44 ]
+[ AnimTimerNot8 ][ stationary player ][ Person42 ] -> [ AnimTimerNot8 ][ stationary player ][ Person43 ]
+[ AnimTimerNot8 ][ stationary player ][ Person41 ] -> [ AnimTimerNot8 ][ stationary player ][ Person42 ]
+[ AnimTimerNot8 ][ stationary player ][ Person40 ] -> [ AnimTimerNot8 ][ stationary player ][ Person41 ]
+[ AnimTimerNot8 ][ stationary player ][ Person39 ] -> [ AnimTimerNot8 ][ stationary player ][ Person40 ]
+[ AnimTimerNot8 ][ stationary player ][ Person38 ] -> [ AnimTimerNot8 ][ stationary player ][ Person39 ]
+[ AnimTimerNot8 ][ stationary player ][ Person37 ] -> [ AnimTimerNot8 ][ stationary player ][ Person38 ]
+[ AnimTimerNot8 ][ stationary player ][ Person36 ] -> [ AnimTimerNot8 ][ stationary player ][ Person37 ]
+[ AnimTimerNot8 ][ stationary player ][ Person35 ] -> [ AnimTimerNot8 ][ stationary player ][ Person36 ]
+[ AnimTimerNot8 ][ stationary player ][ Person34 ] -> [ AnimTimerNot8 ][ stationary player ][ Person35 ]
+[ AnimTimerNot8 ][ stationary player ][ Person33 ] -> [ AnimTimerNot8 ][ stationary player ][ Person34 ]
+[ AnimTimerNot8 ][ stationary player ][ Person32 ] -> [ AnimTimerNot8 ][ stationary player ][ Person33 ]
+[ AnimTimerNot8 ][ stationary player ][ Person31 ] -> [ AnimTimerNot8 ][ stationary player ][ Person32 ]
+[ AnimTimerNot8 ][ stationary player ][ Person30 ] -> [ AnimTimerNot8 ][ stationary player ][ Person31 ]
+[ AnimTimerNot8 ][ stationary player ][ Person29 ] -> [ AnimTimerNot8 ][ stationary player ][ Person30 ]
+[ AnimTimerNot8 ][ stationary player ][ Person28 ] -> [ AnimTimerNot8 ][ stationary player ][ Person29 ]
+[ AnimTimerNot8 ][ stationary player ][ Person27 ] -> [ AnimTimerNot8 ][ stationary player ][ Person28 ]
+[ AnimTimerNot8 ][ stationary player ][ Person26 ] -> [ AnimTimerNot8 ][ stationary player ][ Person27 ]
+[ AnimTimerNot8 ][ stationary player ][ Person25 ] -> [ AnimTimerNot8 ][ stationary player ][ Person26 ]
+[ AnimTimerNot8 ][ stationary player ][ Person24 ] -> [ AnimTimerNot8 ][ stationary player ][ Person25 ]
+[ AnimTimerNot8 ][ stationary player ][ Person23 ] -> [ AnimTimerNot8 ][ stationary player ][ Person24 ]
+[ AnimTimerNot8 ][ stationary player ][ Person22 ] -> [ AnimTimerNot8 ][ stationary player ][ Person23 ]
+[ AnimTimerNot8 ][ stationary player ][ Person21 ] -> [ AnimTimerNot8 ][ stationary player ][ Person22 ]
+[ AnimTimerNot8 ][ stationary player ][ Person20 ] -> [ AnimTimerNot8 ][ stationary player ][ Person21 ]
+[ AnimTimerNot8 ][ stationary player ][ Person19 ] -> [ AnimTimerNot8 ][ stationary player ][ Person20 ]
+[ AnimTimerNot8 ][ stationary player ][ Person18 ] -> [ AnimTimerNot8 ][ stationary player ][ Person19 ]
+[ AnimTimerNot8 ][ stationary player ][ Person17 ] -> [ AnimTimerNot8 ][ stationary player ][ Person18 ]
+[ AnimTimerNot8 ][ stationary player ][ Person16 ] -> [ AnimTimerNot8 ][ stationary player ][ Person17 ]
+[ AnimTimerNot8 ][ stationary player ][ Person15 ] -> [ AnimTimerNot8 ][ stationary player ][ Person16 ]
+[ AnimTimerNot8 ][ stationary player ][ Person14 ] -> [ AnimTimerNot8 ][ stationary player ][ Person15 ]
+[ AnimTimerNot8 ][ stationary player ][ Person13 ] -> [ AnimTimerNot8 ][ stationary player ][ Person14 ]
+[ AnimTimerNot8 ][ stationary player ][ Person12 ] -> [ AnimTimerNot8 ][ stationary player ][ Person13 ]
+[ AnimTimerNot8 ][ stationary player ][ Person11 ] -> [ AnimTimerNot8 ][ stationary player ][ Person12 ]
+[ AnimTimerNot8 ][ stationary player ][ Person10 ] -> [ AnimTimerNot8 ][ stationary player ][ Person11 ]
+[ AnimTimerNot8 ][ stationary player ][ Person9 ] ->  [ AnimTimerNot8 ][ stationary player ][ Person10 ]
+[ AnimTimerNot8 ][ stationary player ][ Person8 ] ->  [ AnimTimerNot8 ][ stationary player ][ Person9 ]
+[ AnimTimerNot8 ][ stationary player ][ Person7 ] ->  [ AnimTimerNot8 ][ stationary player ][ Person8 ]
+[ AnimTimerNot8 ][ stationary player ][ Person6 ] ->  [ AnimTimerNot8 ][ stationary player ][ Person7 ]
+[ AnimTimerNot8 ][ stationary player ][ Person5 ] ->  [ AnimTimerNot8 ][ stationary player ][ Person6 ]
+[ AnimTimerNot8 ][ stationary player ][ Person4 ] ->  [ AnimTimerNot8 ][ stationary player ][ Person5 ]
+[ AnimTimerNot8 ][ stationary player ][ Person3 ] ->  [ AnimTimerNot8 ][ stationary player ][ Person4 ]
+[ AnimTimerNot8 ][ stationary player ][ Person2 ] ->  [ AnimTimerNot8 ][ stationary player ][ Person3 ]
+[ AnimTimerNot8 ][ stationary player ][ Person1 ] ->  [ AnimTimerNot8 ][ stationary player ][ Person2 ]
+[ AnimTimerNot8 ][ stationary player ][ Person0 ] ->  [ AnimTimerNot8 ][ stationary player ][ Person1 ]
+[ AnimTimerNot8 ][ stationary player ][ person60 ] -> [ AnimTimerNot8 ][ stationary player ][ person0 ] (person60 is never shown)
+
+(animation stopping when idle)
+[ stationary player ][ animtimer7 ] -> [ stationary player ][ animtimer8 ]
+[ stationary player ][ animtimer6 ] -> [ stationary player ][ animtimer7 ]
+[ stationary player ][ animtimer5 ] -> [ stationary player ][ animtimer6 ]
+[ stationary player ][ animtimer4 ] -> [ stationary player ][ animtimer5 ]
+[ stationary player ][ animtimer3 ] -> [ stationary player ][ animtimer4 ]
+[ stationary player ][ animtimer2 ] -> [ stationary player ][ animtimer3 ]
+[ stationary player ][ animtimer1 ] -> [ stationary player ][ animtimer2 ]
+[ stationary player ][ animtimer0 ] -> [ stationary player ][ animtimer1 ]
+[ moving Player ][ AnimTimer ] -> [ moving Player ][ AnimTimer0 ]
 
 (trail animations)
 [ stationary player ][ 1Trail4 ] -> [ stationary player ][ ]
