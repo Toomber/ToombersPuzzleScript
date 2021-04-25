@@ -1,5 +1,3 @@
-#31572C #3B6932 #447B39 #4E8D3F #589F45 #61B04B #6BC252 #74D458 #7EE65E
-#31572C #3B6932 #447B39 #4E8D3F #589F45 #61B04B #6BC252 #74D458 #7EE65E
 
 title Secure	
 
@@ -57,6 +55,14 @@ Platform
 00000
 01010
 00000
+
+DestructibleWall
+#90a955
+.....
+.000.
+.0.0.
+.000.
+.....
 
 
 
@@ -816,6 +822,7 @@ LEGEND
 
 . = Background
 % = Platform
+D = DestructibleWall
 # = Wall
 P = person0 and AnimTimer8
 Q = person0 and Platform and AnimTimer8
@@ -823,7 +830,7 @@ Q = person0 and Platform and AnimTimer8
 
 L = LastLevelMarker
 
-BlocksPlayer = Crate or WonCrate or Wall 
+BlocksPlayer = Crate or WonCrate or Wall or DestructibleWall
 BlocksCrate = Crate or WonCrate or Wall or Platform  
 
 WallCover = WallCoverUp or WallCoverDown or WallCoverRight or WallCoverLeft or WallCoverUpRightCorner or WallCoverDownRightCorner or WallCoverUpLeftCorner or WallCoverDownLeftCorner
@@ -850,6 +857,8 @@ SOUNDS
 Crate MOVE  5983507 (21792307) (36772507)
 Player MOVE 98574507 (54585507)
 
+DestructibleWall destroy 92328503
+
 WonCrate create 66651704
 LastLevelMarker2 create 37882503
 
@@ -860,9 +869,9 @@ COLLISIONLAYERS
 ================
 
 Background
-Platform
+Platform, 
 trail
-Person, Wall, Crate, WonCrate
+Person, Wall, DestructibleWall, Crate, WonCrate
 CrateCannotBePushed
 WallCoversDone,
 WallCoverUp,
@@ -890,7 +899,7 @@ RULES
 
 [ >  Player | Crate ] -> [  >  Player | > Crate  ]
 [ > Crate | Platform ] -> [ Crate | Platform ]  
-
+[ > Crate | DestructibleWall ] -> [ | ]
 
 late [ Player ] -> [ Player FillMarker ]
 late [ FillMarker | no BlocksPlayer ] -> [ FillMarker | FillMarker ]
@@ -1056,6 +1065,7 @@ late [ Wall no WallCoversDone ] -> [ Wall WallCoversDone]
 )        
 (flame -> region of effect highlighted)
 (maybe don't like the player animation - prefer solid colour?)
+(make blockers yellow when you can push stuff into them?)
 
 ==============
 WINCONDITIONS
@@ -1148,6 +1158,8 @@ LEVELS
 #########
 )
 
+(level requiring you to avoid getting crates stuck in the beginning, so that you can get a different crate stuck?)
+
 (
 #######
 #%*...#
@@ -1183,17 +1195,45 @@ LEVELS
 #%%%.%#%#
 #%#....%#
 #%..%%#%#
+######### (need level which tests knowledge of this level?)
+
+(
 #########
+####%..%#
+##.....%#
+##.###.##
+##.....##
+##*###*##
+#%..%..%#
+#%..q..%#
+#########
+)
+
+############
+#%..%#######
+#........###
+#.#*#..#.###
+#.*.*..#*###
+###.##.#.###
+###p##....%#
+#######%..%#
+############
+
+
+
 
 
 (
-%##%%%#%%
-%#.....%%
-%%...*.#%
-#%.....%%
-%%.*.p.%#
-%%.....%%
-%%%##%%%%)
+###########
+#%##%%%#%%#
+#%#.....%%#
+#%%...*.#%#
+##%.....%%#
+#%%.*.p.%##
+#%%.....%%#
+#%%%##%%%%#
+###########)
+
 
 ###########
 #.........#
@@ -1201,13 +1241,11 @@ LEVELS
 #.#.....%.#
 #.%.*...#.#
 #.%...*.%.#
-#.%.p...%.#
+#.#.p...%.#
 #.%.....%.#
-#.%%##%%%.#
+#.%%%###%.#
 #.........#
 ###########
-
-
 
 #########
 #%%%%%%%#
@@ -1219,6 +1257,58 @@ LEVELS
 #%%%%%%%#
 #########
 
+(
+#########
+#%%%%%%%#
+#%*%.*.%#
+#%.%.%.%#
+#%.%.%p%#
+#%*%.%.%#
+#%.%.*.%#
+#%%%%%%%#
+#########
+
+##############
+#%%%%%%%%%%%%#
+#%*%...%...*%#
+#%.%.%.%*%.%%#
+#%p%.*.%....%#
+#%.%.*.%%.%*%#
+#%*%.*.%*...%#
+#%%%%%%%%%%%%#
+##############)
+
+#########
+#%%%%%%%#
+#%*%...%#
+#%.%.%.%#
+#%p%.*.%#
+#%.%.*.%#
+#%*%.*.%#
+#%%%%%%%#
+#########
+
+#########
+#%%%%%%%#
+#%%*.%q%#
+#%%%.%%%#
+#%*....%#
+#%%.%%*%#
+#%%.*%%%#
+#%%%%%%%#
+#########
+
+(
+##########
+#%%%%%%%%#
+#%*%..%.%#
+#%.%**%*%#
+#%.%..%.%#
+#%*%..%.%#
+#%.%.p..%#
+#%%%%%%%%#
+##########
+)
 
 (
 %%%%%%%
@@ -1229,6 +1319,12 @@ LEVELS
 %.....%
 %%%#%%%)
 
+###########
+#.p%.*.%###
+###%.*.%*.#
+#.*%.*.%###
+########### (iconic 3 block puzzle twist)
+
 #############
 #..%%%%%%%..#
 #..%.....##.#
@@ -1237,13 +1333,10 @@ LEVELS
 #..%.p.*.%..#
 #..%.....%..#
 #..%%%##%%..#
-#############
+############# (not sure on order of this)
 
-###########
-#.p%.*.%###
-###%.*.%*.#
-#.*%.*.%###
-########### (iconic 3 block puzzle twist)
+
+
 
 (
 #%%%%%%#%%
@@ -1260,10 +1353,52 @@ LEVELS
 #%%%.*.%..%##
 #%#....#...%#
 #%#*%%.*.p.%#
-#%#L...#...%#
+#%#....#...%#
 #%%%.*.%..%##
 ###%%%%%#%%##
 #############
+
+
+
+
+(
+######## 
+#%%%%%%# 
+#%....%# 
+#%.**.%# 
+#%....%# 
+###dd### 
+#%....%# 
+#%p..*%# 
+#%....%# 
+######## 
+
+
+#######
+#...d.#
+#..*d.#
+#p..d.#
+#..*d.#
+#...d.#
+#######
+
+
+
+#########
+#.......#
+#.......#
+#p......#
+#.......#
+#.......#
+#.......#
+#.......#
+#########
+
+
+
+
+
+
 
 
 (
@@ -1328,3 +1463,4 @@ LEVELS
 %%%%%%%
 )
 
+)
