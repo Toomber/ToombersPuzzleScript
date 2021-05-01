@@ -1057,6 +1057,7 @@ late [ Wall no WallCoversDone ] -> [ Wall WallCoversDone]
 
 (animation where crates solidify at end of level)
 (visual feedback for crates which can't move - is this a good idea in terms of surprise?)
+(have animation effect on crates which can be pushed - extinguish it for stuck ones)
 (plant themed?)
 (idea: holes which can destroy crates but which fill and open up new possibilities for crates to be moved?
        More things you can interract with and make inert:
@@ -1066,6 +1067,7 @@ late [ Wall no WallCoversDone ] -> [ Wall WallCoversDone]
 (flame -> region of effect highlighted)
 (maybe don't like the player animation - prefer solid colour?)
 (make blockers yellow when you can push stuff into them?)
+
 
 ==============
 WINCONDITIONS
@@ -1210,14 +1212,17 @@ LEVELS
 )
 
 ############
-#%..%#######
-#........###
-#.#*#..#.###
-#.*.*..#*###
-###.##.#.###
-###p##....%#
+#%%#########
+#%....######
+#%.##....###
+##*##..#.###
+##.%*..#.###
+##.###.#*###
+##p###.%..%#
 #######%..%#
-############
+############ (not totally happy with this)
+
+
 
 
 
@@ -1256,6 +1261,17 @@ LEVELS
 #%*.p.*%#
 #%%%%%%%#
 #########
+
+#########
+#%%%%%.%#
+#.*...*%#
+#%.....%#
+#%..*..%#
+#%.....%#
+#%*.p.*.#
+#%.%%%%%#
+#########
+
 
 (
 #########
