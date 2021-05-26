@@ -150,6 +150,8 @@ Use symbols from menu in puzzle - "key" is last unlock, and you must switch plac
 
 telekinetically move crate in menu to rearrange it and make something possible? (ie if the order is different) - another level of breaking outside the box before freeing the cursor.
 
+some ability tiles can be destroyed?
+
 abilities:
 	blank space = 
     crate 		=
