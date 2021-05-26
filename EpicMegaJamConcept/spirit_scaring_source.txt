@@ -54,6 +54,41 @@ NormalPlayer
 02220
 .0.0.
 
+TempStartHighlight
+transparent
+
+StartHighlightD
+#5094cc
+.....
+0.0.0
+.....
+.....
+.....
+
+StartHighlightU
+#5094cc
+.....
+.....
+.....
+0.0.0
+.....
+
+StartHighlightR
+#5094cc
+.0...
+.....
+.0...
+.....
+.0...
+
+StartHighlightL
+#5094cc
+...0.
+.....
+...0.
+.....
+...0.
+
 StoneCrate
 #a05f75 #a35c68 #b14e6d #94555c 
 02322
@@ -491,7 +526,7 @@ LEGEND
 . = Background
 # = Wall
 
-P = NormalPlayer
+P = NormalPlayer and TempStartHighlight
 F = Water and CinematicPlayer
 I = Water and CinematicPlayerSwap
 Player = NormalPlayer or CinematicPlayer
@@ -510,11 +545,12 @@ J = Bush1A and Target
 ' = DestroyedBush2
 X = NormalPlayer and Bush1A
 
+StartHighlight = StartHighlightU or StartHighlightD or StartHighlightR or StartHighlightL
+
 C = Water and CinematicWin
 U = CinematicWall
 { = CinematicPlayerPushed
 & = CinematicPlayerPushed and Water
-
 
 L = water and ManualWaterDepth0
 D = water and ManualWaterDepth4
@@ -596,10 +632,14 @@ WaterDepth
 WaterCoverUp
 StoneCrateSink, StoneCrateSinkCover
 
+
 Target
 DestroyedBush
 Player, Wall, CinematicWall, Crate, Spirit,
 Bush
+
+TempStartHighlight
+StartHighlight
 
 Blocking
 SpiritScaredMarker
@@ -619,6 +659,12 @@ BushHasBeenRandomised
 RULES
 ======
 
+up 		[ TempStartHighlight | ] -> [ TempStartHighlight | StartHighlightU ]
+down 	[ TempStartHighlight | ] -> [ TempStartHighlight | StartHighlightD ]
+right 	[ TempStartHighlight | ] -> [ TempStartHighlight | StartHighlightR ]
+left 	[ TempStartHighlight | ] -> [ TempStartHighlight | StartHighlightL ]
+[ TempStartHighlight ] -> []
+[ moving Player ][ StartHighlight ] -> [ moving Player ][]
 
 [ > Player | Water ] -> [ Player | Water ] (don't let player enter water)
 ([ >  Player | Bush Crate ] -> [  Player | Bush TempVacatedBush > Crate ] sfx1 (push crate that's inside a bush, Akurra style))
