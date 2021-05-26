@@ -592,6 +592,8 @@ sfx2 9086109 (71499902) (17662302) (39212302) (sound for when spirit has left sc
 
 Player move 78892307 (23662107) (16418907) (74291507)
 
+StartHighlightU destroy 45316100 
+
 sfx0  15065104      (kick spirit out of bush)
 (
 7389303
@@ -889,10 +891,10 @@ messages can be about the strange behaviours/properties of the species.
 
 name idea: Re-homing Pigeons. Lore is that [after solar flares], species of pigeon has 
 lost their sense of direction and you are there to guide them to their nests (by frightening them) 
+Aurora Ballealis - ball of northern light
 
 todo: make bushes more satisfying?
 make top edges look nicer?
-make player more distinct?
 
 introduce bushes before crates?
 )
@@ -1003,7 +1005,7 @@ introduce bushes before crates?
 ~.......~~~~~
 ~~~~~~~~~~~~~)
 
-
+(
 ~~~~~~~~~~~~~~~
 ~~...~~~~~..#~~
 ~~.s.~~~~~..#~~
@@ -1012,18 +1014,8 @@ introduce bushes before crates?
 ~~...#...#..#~~
 ~~.o.*.p.*..#~~
 ~~..........#~~
-~~~~~~~~~~~~~~~ (send back the way it came with crate)
-
-.b...~~~~~~~~
-##.######~~~~
-#.......#.~~~
-#.*lll.o....~
-#..~~~....#.~
-#..~~~..s...~
-#..~~~.....#~
-#.*ddd.p#...~
-#.......#b.~~
-#########.~~~
+~~~~~~~~~~~~~~~ 
+)
 
 
 ~~~~~~~~~~~~~
@@ -1172,6 +1164,31 @@ introduce bushes before crates?
 ~...~###.~.~
 ~~~~~....~~~
 ~~~~~~~~~~~~)
+
+
+
+~~~~~~~~~~~~~
+~...~#~~~...~
+~.s.~~~~~...~
+~...~~#~~...~
+~...~#~~~.p.~
+~...~~~~#...~
+~.o..*.*....~
+~...........~
+~~~~~~~~~~~~~ (send back the way it came with crate)
+
+
+.b...~~~~~~~~
+##.######~~~~
+#.......#.~~~
+#.*lll.o....~
+#..~~~....#.~
+#..~~~..s...~
+#..~~~.....#~
+#.*ddd.p#...~
+#.......#b.~~
+#########.~~~
+
 
 
 (intentionally break bushes)
@@ -1452,13 +1469,16 @@ L.....L.LL~~~~~~~~~
 
 
 ~~~~~~~~~~~~~~~~~~
-~.....#...~~dd.d#~
-~.ub......d#o.bd.~
+~~~~~~#~~~~#~~#~~~
+~.....#...~#dd.d#~
+~.#b......d#o.bd.~
 ~..bb~ddd.d#..b#.~
 ~.%hb~#...d.b....~
 ~..b.~#b.b..b%.##~
 ~.p..~#~#~~....##~
 ~~~~~~~~~~~~~~~~~~ (Push crate in bush to get it past spirit in bush)
+
+
 
 
 (crate and double bushes)
