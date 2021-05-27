@@ -261,7 +261,7 @@ StoneCrateSink9
 33331
 
 SpiritStationary
-Purple
+Purple red
 .....
 .000.
 .000.
@@ -885,18 +885,42 @@ WINCONDITIONS
 LEVELS
 =======
 (
-message Every year, biologists ___ the rare ____ . But they have to catch them first.
-
-messages can be about the strange behaviours/properties of the species.
-
-name idea: Re-homing Pigeons. Lore is that [after solar flares], species of pigeon has 
-lost their sense of direction and you are there to guide them to their nests (by frightening them) 
-Aurora Ballealis - ball of northern light
 
 todo: make bushes more satisfying?
 make top edges look nicer?
 
-introduce bushes before crates?
+name idea: Re-homing Pigeons. Lore is that [after solar flares], species of pigeon has 
+lost their sense of direction and you are there to guide them to their nests (by frightening them) 
+Aurora Ballealis - ball of northern light
+Cold Corrale 
+Chill of the Chase
+
+
+message Every year, biologists make the frigid journey to survey a population of rare and highly unique animals. But they have to catch them first.
+
+
+messages: can be about the strange behaviours/properties of the species.
+
+****Easily spooked by perceived threats, they are bullish in their attempted escape, but are quick to give up if their way is blocked. 
+
+Examination of some specimens shows tissue hardening, apparently adapted in response to frequent headlong collisions with rocky surfaces. 
+
+The explorers who first documented the animals were shocked to discover their great affinity for the ocean. No one has yet managed to catch one overwater, even with a speedboat. 
+
+Strange, square crystals are also found on some of the islands. They don't appear to be alive though so no one's really interested in them.
+
+****Higly skilled trackers often employ stealth, utilising their surroundings to avoid detection. 
+
+Many claim the animals display a kind of bioluminescence, most noticeable when over dark water. Critics say it's "just a trick of the light", since such a feature would have no obvious evolutionary advantage.
+
+Also of scientific interest are the endangered species of shrub which sparsely populate the region. No one can quite work out why, but islands visited by researchers in previous years tend to fare worst of all. 
+
+When push comes to shove, it's not unheard of for impatient field biologists to give their unenthusuastic specimens a nudge in the right direction.
+
+****Scientists speculate that although seemingly docile, the creatures are actually highly territorial, which may explain why their population per island rarely surpasses 1.
+
+QUESTION: How much of a hint do I want to give? probably not much, mainly just for entertainment.
+
 )
 
 ~~~~~~~~~~
@@ -994,58 +1018,19 @@ introduce bushes before crates?
 #.......#..~~
 #########.~~~
 
-(
-~~~~~~~~~~~~~
-~~~~~.......~
-~...~..p...o~
-~.*.~...~...~
-~...~.*.~..s~
-~...~...~...~
-~.......~...~
-~.......~~~~~
-~~~~~~~~~~~~~)
-
-(
-~~~~~~~~~~~~~~~
-~~...~~~~~..#~~
-~~.s.~~~~~..#~~
-~~...~~~~~..#~~
-~~...~~~~~..#~~
-~~...#...#..#~~
-~~.o.*.p.*..#~~
-~~..........#~~
-~~~~~~~~~~~~~~~ 
-)
-
 
 ~~~~~~~~~~~~~
 ~~~~~....~~~~
 ~~.......~~~~
-~#*##*#...b~~
+~#*##*#....~~
 ~..*..#~...#~
 ~p.#..#~~..#~
-~b.#.~~~w*..~
+~..#.~~~w*..~
 ~~.#~~~#DD..~
 ~~~#~~~#*...~
-~~~~~#~bo.#~~
+~~~~~#~.o.#~~
 ~~~~~~~~#~~~~
 ~~~~~~~~~~~~~  (level introducing destroying crates)
-
-(
-~~~~~~~~~~~~~
-~~~~~....~~~~
-~~.......~~~~
-~#*##*#...b~~
-~..*..#~...#~
-~p.#..#~~..#~
-~b.#.~~~w*.#~
-~~.#~~~#dd..~
-~~~#~#o.*...~
-~~~~~~~~..#~~
-~~~~~~#~~b~~~
-~~~~~~~~~~~~~)
-
-
 
 
 
@@ -1347,18 +1332,29 @@ L.....L.LL~~~~~~~~~
 
 
 ~~~~~~~~~~~~~~~
+~##~..........~
+~.....bb...~~.~
+~..p.....~.bb.~
+~.....~~......~
+~.~.*.......s.~
+L.o........~..~
+~~~~~~~~~~#~~~~
+~#~~##~~#~~~#~~
+~~~~~~~~~~~~~~~ (crate and double bushes)
+
+
+~~~~~~~~~~~~~~~
 ~~~~.b..~#~~~~~
 ~~#~......~#~~~
 ~~~..~~..~~~~~~
 ~#~b~w~b.~#~~~~
-~~~.~~~..~~~#~~
-~~~*~.....~#~~~
-~~....*..o~~#~~
-~.p.~b..~.~~~~~
+~~..~~~..~~~#~~
+~.~*~.....~#~~~
+~.....*..o~~#~~
+~~p.~b..~.~~~~~
 ~#~~~....b...~~
 ~~~#~~~~~.....~
-~~~~~~~~~~~~~~~ (introduces pushing crates through bushes)
-
+~~~~~~~~~~~~~~~(introduces pushing crates through bushes)
 
 ~~~~~~~~~~~~~~
 ~~~~~~~####L~~
@@ -1370,7 +1366,6 @@ L.....L.LL~~~~~~~~~
 ~~b.*.p....##~
 ~#####~~#..~~~
 ~~~~~~~~~~~~~~ (forces push crate forward then go back) 
-
 
 
 
@@ -1409,63 +1404,15 @@ L.....L.LL~~~~~~~~~
 ~#.~...b.##~
 ~~~~~~~~~~~~ (push crate in bush so that spirit can hit it)
 
-
-
-(
-~~~~~~~~~~~
-~.....b..~~
-~........~~
-~...s..*o~~
-~...~....~~
-~b..b..b.~~
-~........~~
-~.p......#~
-~.....b..~~
-~...~~~~~~~
-~~~~~~~~~~~ (shows possible move)(needs work)
-
-~~~~~~~~~~~~~
-~..#........~
-~.h#..p.....~
-~...........~
-~...b...b...~
-~...........~
-~..*...b..o.~
-~...........~
-~~~~~~~~~~~~~
-
-~~~~~~~~~~~~~~~
-~....~~~~~~~~~~
-~.h..~~......~~
-~~~.......#...~
-~...b.p.b...#.~
-~........o....~
-~..*...b..b..~~
-~~.......b...~~
-~~~~~~~~~~~~~~~ (almost something)(make retrieving crate a challenge?)
-
 ~~~~~~~~~~~~~~~~~
-~~~~~......~~~~~~
-~#~~.b...b.b.~#~~
-~~~....b...p.~~~~
-~~..h.........~#~
-~~.......bo...~#~
-#~~.*..b...b..~~~
-~~#~~.....b...~~#
-~#~#~#~~~~~##~~#~
-~~~~~~~~~~~~~~~~~
-)
-
-~~~~~~~~~~~~~~~~~
-~~~..~~....~~#~~~
-~~......#.*.~~~.~
-~~.s..b...#.~~~~~
-~~.....o....~~.~~
-~....b..b..~#~..~
-~..b...b..p~~~~.~
-~~##..###~~~~#~~~
-~~~~~~~~~~~~~~~~~
-(hit crate in bush twice)
+~~~..~~....~~~~~~
+~~......#.*..~~~~
+~~.s..b...##.~~~~
+~~.....o.....~~~~
+~....b..b..~##~~~
+~..b...b..p~~~~~~
+~~##..###~~~~###~
+~~~~~~~~~~~~~~~~~ (hit crate in bush twice)(probably hard)
 
 
 ~~~~~~~~~~~~~~~~~~
@@ -1477,22 +1424,6 @@ L.....L.LL~~~~~~~~~
 ~..b.~#b.b..b%.##~
 ~.p..~#~#~~....##~
 ~~~~~~~~~~~~~~~~~~ (Push crate in bush to get it past spirit in bush)
-
-
-
-
-(crate and double bushes)
-
-~~~~~~~~~~~~~~~
-~##~..........~
-~.....bb...~~.~
-~..p.....~.bb.~
-~.....~~......~
-~.~.*.......s.~
-L.o........~..~
-~~~~~~~~~~#~~~~
-~#~~##~~#~~~#~~
-~~~~~~~~~~~~~~~
 
 
 (
