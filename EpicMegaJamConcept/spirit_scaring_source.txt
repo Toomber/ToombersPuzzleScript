@@ -261,76 +261,76 @@ StoneCrateSink9
 33331
 
 SpiritStationary
-Purple red
+#4d2ca8 red white black #a82c8f
 .....
+.202.
+.303.
 .000.
-.000.
-.000.
-.....
+.4.4.
 
 SpiritHitsU
-Purple
-00000
-00000
+#4d2ca8 red white black #a82c8f
+02020
+43034
 .....
 .....
 .....
 
 SpiritHitsD
-Purple
+#4d2ca8 red white black #a82c8f
 .....
 .....
 .....
-00000
-00000
+42024
+03030
 
 SpiritHitsR
-Purple
+#4d2ca8 red white black #a82c8f
 ...00
+...02
+...03
 ...00
-...00
-...00
-...00
+...40
 
 SpiritHitsL
-Purple
+#4d2ca8 red white black #a82c8f
 00...
+20...
+30...
 00...
-00...
-00...
-00...
+04...
 
 SpiritMovesU
-Purple
+#4d2ca8 red white black #a82c8f
+.202.
+.303.
 .000.
 .000.
-.000.
-.000.
-.....
+.4.4.
 
 SpiritMovesD
-Purple
-.....
+#4d2ca8 red white black #a82c8f
+.4.4.
 .000.
 .000.
-.000.
-.000.
+.202.
+.303.
 
 
 SpiritMovesR
-Purple
+#4d2ca8 red white black #a82c8f
 .....
-.0000
-.0000
-.0000
+.0202
+.0303
+40000
 .....
 
 SpiritMovesL
-Purple
+#4d2ca8 red white black #a82c8f
 .....
-0000.
-0000.
-0000.
+2020.
+3030.
+00004
 .....
 
 Bush0A
@@ -369,7 +369,7 @@ Bush2A
 #4b916c #3e785a #579a65
 .....
 .0...
-.020.
+.02..
 1210.
 11210
 
@@ -377,7 +377,7 @@ Bush2B
 #4b916c #3e785a #579a65
 .....
 ...0.
-.020.
+..20.
 .0121
 01211
 
@@ -869,7 +869,6 @@ left 	[ > Spirit no bush | no wall no Crate ] -> [ > SpiritMovesL | ]
 [ stationary spirit no TempSpiritAlreadyCollided ] -> [ stationary SpiritStationary ]
 late [ SpiritMoves Bush ] -> [ SpiritStationary Bush ] sfx6
 
-
 (--------------------------------------)
 
 
@@ -911,7 +910,7 @@ Strange, square crystals are also found on some of the islands. They don't appea
 
 ****Higly skilled trackers often employ stealth, utilising their surroundings to avoid detection. 
 
-Many claim the animals display a kind of bioluminescence, most noticeable when over dark water. Critics say it's "just a trick of the light", since such a feature would have no obvious evolutionary advantage.
+Many claim the animal displays a kind of bioluminescence, most noticeable when over dark water. Critics say it's "just a trick of the light", since such a feature would have no obvious evolutionary advantage.
 
 Also of scientific interest are the endangered species of shrub which sparsely populate the region. No one can quite work out why, but islands visited by researchers in previous years tend to fare worst of all. 
 
