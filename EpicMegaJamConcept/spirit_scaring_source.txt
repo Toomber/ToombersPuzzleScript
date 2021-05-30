@@ -1,4 +1,4 @@
-title EpicJamGame
+title Headlong Hunt
 author Toombler
 homepage www.puzzlescript.net
 
@@ -333,6 +333,12 @@ SpiritMovesL
 00004
 .....
 
+BushSpawner
+transparent
+
+TempBushAlreadyRandomised
+transparent
+
 Bush0A
 #4b916c #3e785a #579a65
 .....
@@ -406,9 +412,6 @@ DestroyedBush2
 .....
 01.1.
 
-BushHasBeenRandomised
-transparent
-
 TempVacatedBush
 black
 
@@ -436,6 +439,14 @@ CinematicPlayerSwap
 transparent
 
 CinematicPlayerPushed
+#383430 #A09D95 #6D6C69 #574236
+.000.
+.111.
+33333
+02220
+.0.0.
+
+CinematicPlayerAirBorne
 #383430 #A09D95 #6D6C69 #574236
 .000.
 .111.
@@ -482,6 +493,21 @@ transparent
 Timer5
 transparent
 
+WinTimer0
+transparent
+
+WinTimer1
+transparent
+
+WinTimer2
+transparent
+
+WinTimer3
+transparent
+
+WinTimer4
+transparent
+
 
 WaterDepthneg1
 #397cb3
@@ -519,6 +545,10 @@ WaterDepth7
 WaterDepth8
 #0f2230
 
+
+PlayerHitSoundEmitter
+transparent
+
 =======
 LEGEND
 =======
@@ -527,30 +557,37 @@ LEGEND
 # = Wall
 
 P = NormalPlayer and TempStartHighlight
-F = Water and CinematicPlayer
-I = Water and CinematicPlayerSwap
 Player = NormalPlayer or CinematicPlayer
 * = StoneCrate
 @ = StoneCrate and Target
-% = StoneCrate and Bush1A
+% = StoneCrate and BushSpawner
 O = Target
 S = SpiritStationary and TempSpiritAlreadyCollided
 ~ = Water
 W = SpiritStationary and Water and TempSpiritAlreadyCollided
-B = Bush1A
-H = Bush1A and SpiritStationary and TempSpiritAlreadyCollided
-J = Bush1A and Target
+B = BushSpawner
+5 = BushSpawner and Bush0A
+H = BushSpawner and SpiritStationary and TempSpiritAlreadyCollided
+J = BushSpawner and Target
 ; = DestroyedBush0
 + = DestroyedBush1
 ' = DestroyedBush2
-X = NormalPlayer and Bush1A
+X = NormalPlayer and BushSpawner
 
 StartHighlight = StartHighlightU or StartHighlightD or StartHighlightR or StartHighlightL
 
 C = Water and CinematicWin
 U = CinematicWall
+G = CinematicPlayer
 { = CinematicPlayerPushed
 & = CinematicPlayerPushed and Water
+z = CinematicPlayerAirBorne and water
+
+F = Water and CinematicPlayer
+I = Water and CinematicPlayerSwap
+y = PlayerHitSoundEmitter
+
+
 
 L = water and ManualWaterDepth0
 D = water and ManualWaterDepth4
@@ -567,6 +604,7 @@ DestroyedBush = DestroyedBush0 or DestroyedBush1 or DestroyedBush2
 Opaque = StoneCrate or Wall or Bush
 
 Timer = Timer0 or Timer1 or Timer2 or Timer3 or Timer4 or Timer5 
+WinTimer = WinTimer0 or WinTimer1 or WinTimer2 or WinTimer3 or WinTimer4
 
 StoneCrateSink = StoneCrateSink0 or StoneCrateSink1 or StoneCrateSink2 or StoneCrateSink3 or StoneCrateSink4 or StoneCrateSink5 or StoneCrateSink6 or StoneCrateSink7 or StoneCrateSink8 or StoneCrateSink9
 StoneCrateSinkCover = StoneCrateSinkCover0 or StoneCrateSinkCover1 or StoneCrateSinkCover2 or StoneCrateSinkCover3 or StoneCrateSinkCover4 or StoneCrateSinkCover5 or StoneCrateSinkCover6 or StoneCrateSinkCover7 or StoneCrateSinkCover8 or StoneCrateSinkCover9  
@@ -617,6 +655,10 @@ sfx5 13888100 (63113700) (spirit collides with crate 2)
 
 sfx6 60883704 (51866502) (49962304) (spirit enter bush sound)
 
+(cinematic sounds)
+PlayerHitSoundEmitter destroy 62596502 (spirit first hits player)
+sfx8 86314902 (player collides at end)
+
 
 ================
 COLLISIONLAYERS
@@ -637,7 +679,10 @@ StoneCrateSink, StoneCrateSinkCover
 
 Target
 DestroyedBush
-Player, Wall, CinematicWall, Crate, Spirit,
+Player, Wall, CinematicWall, Crate, Spirit, CinematicPlayerAirBorne
+
+BushSpawner
+TempBushAlreadyRandomised
 Bush
 
 TempStartHighlight
@@ -651,9 +696,10 @@ SpiritLeftScreen
 CinematicWin
 CinematicPlayerSwap
 CinematicPlayerPushed
+PlayerHitSoundEmitter
 SpiritLightMarker
 Timer
-BushHasBeenRandomised
+WinTimer
 
 
 
@@ -721,24 +767,30 @@ late [SpiritScaredMarker] -> again
 
 
 
-
-
-
 (-----------------cinematics---------------)
 
 (cinematic win - needs to be before edge of screen detection)
-[ Spirit CinematicWin ] -> [] win
+[ Spirit CinematicWin ] -> [ CinematicWin WinTimer0 ]
+[ CinematicPlayerPushed Target no WinTimer ] -> [ CinematicPlayerPushed Target WinTimer0 ] 
 
-(bounce spirit cinematic)
-right [ CinematicPlayer ][ CinematicPlayerSwap ][ spirit | CinematicWall ] -> [  ][ CinematicPlayer ][ left spirit | CinematicWall ] 
+(bounce spirit cinematic)(
+right [ CinematicPlayer ][ CinematicPlayerSwap ][ spirit | CinematicWall ] -> [  ][ CinematicPlayer ][ left spirit | CinematicWall ] )
+
+right [ CinematicPlayer ][ CinematicPlayerSwap ][ SpiritStationary | Wall ] -> [  ][ CinematicPlayer ][ left SpiritStationary | CinematicWall ]
 
 (cinematic detroy wall)
 [ > Spirit | CinematicWall ] -> [ > Spirit | water ]
 down [ Spirit | WaterCoverUp ] -> [ Spirit | ]
 
 (Push player)
+
 [ CinematicPlayerPushed | Spirit ] -> [ < CinematicPlayerPushed | Spirit ]
+[ Spirit PlayerHitSoundEmitter ] -> [ Spirit ]
 [ CinematicPlayerPushed CinematicWin ] -> [ CinematicWin ]
+
+[ CinematicPlayerAirBorne ] -> [ left CinematicPlayerAirBorne ] again
+[ CinematicPlayerAirBorne CinematicWin no WinTimer ] -> [ CinematicWin WinTimer0]
+[ CinematicPlayerAirBorne target no WinTimer ] -> [ CinematicPlayerAirBorne target WinTimer0] sfx8
 
 [ > CinematicPlayerPushed | Crate ] -> [ > CinematicPlayerPushed | > Crate ]  
 
@@ -749,12 +801,12 @@ down [ Spirit | WaterCoverUp ] -> [ Spirit | ]
 (----------------- Aesthetics ---------------------)
 
 (bush randomisation)
-[ Bush no BushHasBeenRandomised ] -> [ random Bush BushHasBeenRandomised] checkpoint
+[ BushSpawner Bush no TempBushAlreadyRandomised no DestroyedBush ] -> [ random Bush BushSpawner TempBushAlreadyRandomised ] checkpoint
+[ BushSpawner no TempBushAlreadyRandomised no DestroyedBush ] -> [ random Bush BushSpawner TempBushAlreadyRandomised ] checkpoint
 
 
 (create side borders)
 up [ Water | no Water ] -> [ Water WaterCoverUp | ]
-
 
 
 (water depth effect)
@@ -787,11 +839,6 @@ up [ Water no WaterDepth | no Water ] -> [ Water WaterDepth4 | ]
 [ Water no WaterDepth | no Wall WaterDepth5 ] -> [ Water WaterDepth6 | WaterDepth5 ]
 [ Water no WaterDepth | no Wall WaterDepth6 ] -> [ Water WaterDepth7 | WaterDepth6 ]
 [ Water no WaterDepth ] -> [ Water WaterDepth8 ]
-
-
-
-
-
 
 
 
@@ -873,8 +920,18 @@ late [ SpiritMoves Bush ] -> [ SpiritStationary Bush ] sfx6
 
 
 
+(-------winning------)
+
 [stationary Spirit Target][ moving Player ] -> [stationary Spirit Target][ stationary Player ] (don't let player move during bounce if they're going to win)
-[stationary SpiritStationary Target] -> win sfx7
+[stationary SpiritStationary Target no WinTimer ] -> [stationary SpiritStationary Target WinTimer0]
+
+([ WinTimer4 ] -> win )
+[ CinematicWin WinTimer3 ] -> win
+[ no CinematicWin WinTimer3 ] -> win sfx7
+[ WinTimer2 ] -> [ WinTimer3 ] 
+[ WinTimer1 ] -> [ WinTimer2 ]
+[ WinTimer0 ] -> [ WinTimer1 ]
+
 
 ==============
 WINCONDITIONS
@@ -902,36 +959,45 @@ messages: can be about the strange behaviours/properties of the species.
 
 ****Easily spooked by perceived threats, they are bullish in their attempted escape, but are quick to give up if their way is blocked. 
 
-Examination of some specimens shows tissue hardening, apparently adapted in response to frequent headlong collisions with rocky surfaces. 
+Some specimens exhibit hardened anterior tissue, apparently adapted in response to frequent  collisions with rocky surfaces. Their obstacle avoidance on the other hand does not seems to have improved.
+
+
 
 The explorers who first documented the animals were shocked to discover their great affinity for the ocean. No one has yet managed to catch one overwater, even with a speedboat. 
 
 Strange, square crystals are also found on some of the islands. They don't appear to be alive though so no one's really interested in them.
 
-****Higly skilled trackers often employ stealth, utilising their surroundings to avoid detection. 
-
 Many claim the animal displays a kind of bioluminescence, most noticeable when over dark water. Critics say it's "just a trick of the light", since such a feature would have no obvious evolutionary advantage.
+
+Higly skilled trackers often employ stealth, utilising their surroundings to avoid detection. Those with even higher skill simply choose a more convenient capture location.
+
+The biologists train themselves to notice subtle signs of the elusive animal. Thankfully, their big eyes, used to detect potential threats at long distances (in cardinal directions) are more of a hindrance when in hiding. 
 
 Also of scientific interest are the endangered species of shrub which sparsely populate the region. No one can quite work out why, but islands visited by researchers in previous years tend to fare worst of all. 
 
-When push comes to shove, it's not unheard of for impatient field biologists to give their unenthusuastic specimens a nudge in the right direction.
+When push comes to shove, it's not unheard of for impatient field biologists to give their unenthusuastic specimens a nudge in the right direction. The effects of human contact on the creatures will be subject of further studies.
 
-****Scientists speculate that although seemingly docile, the creatures are actually highly territorial, which may explain why their population per island rarely surpasses 1.
+It has been proposed that their rich purple colour is due to a chemical present in their diet. No one has witnessed one so much as move unprompted though, so what that diet may be is unknown.
+
+Never have researchers observed the seemingly docile creatures display any kind of aggression. Regardless, it is speculated that they are actually a highly territorial species, which may explain why their population per island rarely surpasses 1.
 
 QUESTION: How much of a hint do I want to give? probably not much, mainly just for entertainment.
 
 )
 
-~~~~~~~~~~
-~~~#...#.~
-~~.#o....~
-~........~
-~........~
-~~#.s...~~
-~~......#~
-~.....p.#~
-~~.###...~
-~~~~~~~~~~
+
+message Every year, biologists make the frigid journey to survey a population of rare and highly unique animals. But they have to catch them first.
+
+~~~~~~~~~~~
+~~~#...#.~~
+~~.#o.....~
+~.........~
+~.........~
+~~#.s....~~
+~~......#~~
+~.....p.#~~
+~~.###....~
+~~~~~~~~~~~
 
 ~~~~~~~~~~~
 ~~~~~~~..~~
@@ -945,6 +1011,7 @@ QUESTION: How much of a hint do I want to give? probably not much, mainly just f
 ~~~.....~~~
 ~~~~~~~~~~~
 
+message Specimens exhibit hardened anterior tissue, apparently adapted in response to frequent  collisions with rocky surfaces. Their obstacle avoidance on the other hand does not seems to have improved.
 
 ~~~~~~~~~~~~
 ~~~~####~#~~
@@ -970,6 +1037,7 @@ QUESTION: How much of a hint do I want to give? probably not much, mainly just f
 ~~~~~~#~~~~~
 ~~~~~~~~~~~~
 
+message The explorers who first documented the animals were shocked to discover their great affinity for the ocean. No one has yet managed to catch one overwater, even with a speedboat.
 
 ~~~~~~~~~~~~~~~
 ~~~#~..~..~~~~~
@@ -994,6 +1062,8 @@ QUESTION: How much of a hint do I want to give? probably not much, mainly just f
 ~~.p.~~....~~
 ~~~~~~~~~~~~~
 
+message Strange, square crystals are also found on some of the islands. They don't appear to be alive though so no one's really interested in them.
+
 ~~~~~~~~~~#~~~
 ~#~~~~~~~~~#~~
 ~~~~~....~~~~~
@@ -1006,6 +1076,8 @@ QUESTION: How much of a hint do I want to give? probably not much, mainly just f
 ~#~~~~..~~~~#~
 ~#~~~~~~~~#~~~
 
+
+
 .....~~~~~~~~
 #########~~~~
 #.......#.~~~
@@ -1017,6 +1089,8 @@ QUESTION: How much of a hint do I want to give? probably not much, mainly just f
 #.......#..~~
 #########.~~~
 
+message Many claim the animal displays a kind of bioluminescence, most noticeable when over dark water. Critics say it's "just a trick of the light", since such a feature would have no obvious evolutionary advantage.
+(message maybe a bit misleading since colour of water not relevant?)
 
 ~~~~~~~~~~~~~
 ~~~~~....~~~~
@@ -1030,7 +1104,6 @@ QUESTION: How much of a hint do I want to give? probably not much, mainly just f
 ~~~~~#~.o.#~~
 ~~~~~~~~#~~~~
 ~~~~~~~~~~~~~  (level introducing destroying crates)
-
 
 
 ####~~~######
@@ -1072,9 +1145,9 @@ QUESTION: How much of a hint do I want to give? probably not much, mainly just f
 ~~~...~~~~~~~~~
 ~~~~~~~~~~~~~~~
 
+message Higly skilled trackers often employ stealth, utilising their surroundings to avoid detection. Those with even higher skill simply choose a more convenient capture location.
 
 (levels introducing bushes as catching spirit)
-
 
 ~~~~~~~~~~~~~~
 ~~~~~...~~~~~~
@@ -1115,41 +1188,7 @@ QUESTION: How much of a hint do I want to give? probably not much, mainly just f
 ~~.....#....~~~~~
 ~~~~~~~~~~~~~~~~~ (can't walk adjacent to bush w/ spirit (must be on correct side of it). Use Bush as Cover.)
 
-(
-~~~~~~~~~
-~~.....~~
-~.b.b#h.~
-~..b.j..~
-~.#.b.b.~
-~..b.b..~
-~.b.b.b.~
-~~...p.~~
-~~~~~~~~~
-)
-
-(level where you must leave at least one bush per col as cover?)
-
-(
-~~~~~~~~~
-~.#.....~
-~...~bo#~
-~.s.~...~
-~#..~...~
-~..p~#..~
-~...~..#~
-~.#.~...~
-~~~~~~~~~ (new path opens because bush is used?)
-
-~~~~~~~~~~~~
-~.#......~.~
-~...~b..*~o#
-~.s.~....~.~
-~#.p~....~.~
-~...~###.~.~
-~~~~~....~~~
-~~~~~~~~~~~~)
-
-
+message Also of scientific interest are the endangered species of shrub which sparsely populate the region. No one can quite work out why, but islands visited by researchers in previous years tend to fare worst of all. 
 
 ~~~~~~~~~~~~~
 ~...~#~~~...~
@@ -1173,8 +1212,6 @@ QUESTION: How much of a hint do I want to give? probably not much, mainly just f
 #.......#b.~~
 #########.~~~
 
-
-
 (intentionally break bushes)
 
 ~~~~~~~~~~~~
@@ -1197,6 +1234,7 @@ L.....L.LL~~~~~~~~~
 #..b...##.L.p...L..
 #####..##.#........  (intentionally breaking bushes, and progress gated by bushes that must be used constructively)
 
+message The biologists train themselves to notice subtle signs of the elusive animal. Thankfully, their big eyes, used to detect potential threats at long distances (in cardinal directions) are more of a hindrance when in hiding.
 
 ~~~~~~~~DDD~~
 ~####~#~...#~
@@ -1210,27 +1248,7 @@ L.....L.LL~~~~~~~~~
 ~~~~~~~~~~~~~ (intentionally break so it won't block line of sight)(break when in view of spirit / break and go back)
 
 
-(
-~~~~~~~~~~~~~~~
-~~~~#~~~~~~~~~~
-~~#~##~~~~~.~~~
-~~#~..~~~b~o#~~
-~~~~.bb.~b...~~
-~#~~...~~..p..~
-~~~~~..~......~
-~.#~.#b..s.#.~~
-~..###...b...~~
-~~.##~~..#...~~
-~~#.#~~#~~#.~~~
-~~~~~~#~~~~~~~~
-~~~~~~~~~~~~~~~ (breaking bushes)(focus on double bushes) (two bushes are red herrings. Is this bad?)
-)
-
-
-
-
 (hiding in bush adjacent to spirit in bush, and pushing spirit free)
-
 
 ~~~~~~~~~~~~~~~~~~~
 ~~~~~~~..#.~~~###~~
@@ -1252,6 +1270,7 @@ L.....L.LL~~~~~~~~~
 ~~~~~#~~~~~~~#~
 ~~~~~~~~~~~~~~~ (shows how you can win from pushing spirits)
 
+message When push comes to shove, it's not unheard of for impatient field biologists to give their unenthusuastic specimens a nudge in the right direction. The effects of human contact on the creatures will be subject of further studies.
 
 ~~~~~~~~~~~~~~
 ~~~##~......~~
@@ -1277,18 +1296,6 @@ L.....L.LL~~~~~~~~~
 ~~~~~~~~~~~~~~~ (double bushes and pushing spirit free)
 
 
-
-(pushing spirit in field of bushes)
-(
-~~~~~~~~~
-~.bbbbb.~
-~p~hjbb.~
-~~bb~b~~~
-~.bbbbb.~
-~...~...~
-~~~~~~~~~)
-
-
 (intentionally breaking + hiding in bush next to spirit)
 ~~~~~~~~~~~
 ~~~.b.~...~
@@ -1302,8 +1309,7 @@ L.....L.LL~~~~~~~~~
 ~...p.....~
 ~~~~~~~~~~~
 
-
-
+message It has been proposed that the species' rich purple colour is due to a chemical present in their diet. No one has witnessed one so much as move unprompted though, so what that diet may be is unknown.
 
 (crates and bushes)
 
@@ -1327,7 +1333,6 @@ L.....L.LL~~~~~~~~~
 ~~~.p.~~bo#~~
 ~#~...~~~~~#~
 ~~~~~~~~~~~~~
-
 
 
 ~~~~~~~~~~~~~~~
@@ -1355,18 +1360,28 @@ L.o........~..~
 ~~~#~~~~~.....~
 ~~~~~~~~~~~~~~~(introduces pushing crates through bushes)
 
-~~~~~~~~~~~~~~
-~~~~~~~####L~~
-~~...~~o..L~~~
-~~........~~~~
-~##b..s..b##~~
-~~...##~#..~~~
-~~.........~~~
-~~b.*.p....##~
-~#####~~#..~~~
-~~~~~~~~~~~~~~ (forces push crate forward then go back) 
+~~~~~~~~~~~~~
+~~~~~~~##~~~~
+~....~~o..~~~
+~.........~~~
+~~#b..s..b##~
+~~~..##~~.~~~
+~~..........~
+~~b.*.p....#~
+~~~~~~~##..~~
+~~~~~~~~~~~~~ (forces push crate forward then go back) 
 
-
+~~~~~~~~~~~~
+~~~~~.....~~
+~~......*.~~
+~~...s....~~
+~~...~....~~
+~~...b.*...~
+~~~..~~~.p.~
+~~~.ob.~~~~~
+~#~~.#.~#~#~
+~~~~...~~~~~
+~~~~~~~~~~~~ (two crates and bushes)
 
 ~~~~~~~~~~~~~~~~~
 ~~~~~~#~~~#~~~~~~
@@ -1377,7 +1392,6 @@ L.o........~..~
 ~.......#.#.o...~
 ~~#~~~#~#~#~#~~~~
 ~~~~~~~~~~~~~~~~~ (place crate next to spirit in bush so you can walk past without breaking it)
-
 
 ~~~~~~~~~~~~~
 ~~#~~~.....#~
@@ -1390,7 +1404,15 @@ L.o........~..~
 ~~#~~..~~..~~
 ~~~~~~~~~~~~~ (combination of things: pushing and going back, crate next to spirit in bush, conserving bushes) (pretty good, probably hard)
 
-
+~~~~~~~~~~~~~~~~~~
+~~~~~~#~~~~~~~#~~~
+~.....#...~#dd.d#~
+~.#b......d#o.bd.~
+~..bb~ddd.d#..b#.~
+~.%hb~#...d.b....~
+~..b.~#b.b..b%.##~
+~.p..~#~#~~....##~
+~~~~~~~~~~~~~~~~~~ (Push crate in bush to get it past spirit in bush)
 
 ~~~~~~~~~~~~
 ~~~#b......~
@@ -1403,93 +1425,37 @@ L.o........~..~
 ~#.~...b.##~
 ~~~~~~~~~~~~ (push crate in bush so that spirit can hit it)
 
-~~~~~~~~~~~~~~~~~
-~~~..~~....~~~~~~
-~~......#.*..~~~~
-~~.s..b...##.~~~~
-~~.....o.....~~~~
-~....b..b..~##~~~
-~..b...b..p~~~~~~
-~~##..###~~~~###~
-~~~~~~~~~~~~~~~~~ (hit crate in bush twice)(probably hard)
-
-
-~~~~~~~~~~~~~~~~~~
-~~~~~~#~~~~#~~#~~~
-~.....#...~#dd.d#~
-~.#b......d#o.bd.~
-~..bb~ddd.d#..b#.~
-~.%hb~#...d.b....~
-~..b.~#b.b..b%.##~
-~.p..~#~#~~....##~
-~~~~~~~~~~~~~~~~~~ (Push crate in bush to get it past spirit in bush)
+~~~~~~~~~~~~~~~
+~~~~~~~....~~~~
+~~......#.*..~~
+~~.s..b...##.~~
+~~.....o.....~~
+~....b..b...##~
+~..b...b..p~~~~
+~~##..###~~~#~~
+~~~~~~~~~~~~~~~ (hit crate in bush twice)
 
 
 (
-~~~~~~~~~~~~~
-~....~~~~~~~~
-~....b......~
-~...........~
-~b...s....b~~
-~....~......~
-~.*..b...*..~
-~....~.p....~
-~~~~~~~~~~~~~ (create permanent pathway with crate?)
+(end level, using passing spirit between 2 crates, and bushes)
 
-~~~~~~~~~~~
-~~~...~~~~~
-~~..#.....~
-~~..b..*..~
-~~........~
-~~..s.....~
-~~..~.p...~
-~~..b...*.~
-~~..~~~...~
-~~.ob.~~~~~
-~~~.#.~~~~~
-~~~...~~~~~
-~~~~~~~~~~~ (doesn't work)
-
-
-~~~~~~~~~~~~~
-~~.........~~
-~~.*.~~~...~~
-~~.........~~
-~~...~~~...~~
-~~.o.~w~...~~
-~~...~~~...~~
-~~.........~~
-~~.....p.*.~~
-~~.........~~
-~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
+~...........~~
+~........*..~~
+~...~~~~~...~~
+~...~~~~~...~~
+~...~~b....o#~
+~...~~~~~...~~
+~...~~~~~...~~
+~..*s.....p.~~
+~...........~~
+~~~~~~~~~~~~~~)
 
 
 
-~~~~~~~~~~~~~
-~~~.......~~~
-~~.o.....p.~~
-~~....#....~~
-~~..b.s.b..~~
-~~.........~~
-~~..*...*..~~
-~~~.......~~~
-~~~~~~~~~~~~~
-~~~~~~~~~~~~~
-)
-
-~~~~~~~~~~~~~~~
-~~~....b....~~~
-~#~...~~~.o.~~~
-~~~....b...~~~~
-~#~...~~~...~~~
-~~~...~w~b~b~#~
-~~~...~~~...~~~
-~...*.~...*.~#~
-~.....~.p...~~~
-~~~~~~~~~~~~~~~ (difficult to see, not that interesting? - hit crate in bush)(like the shape)
 
 
-(level where you must get both crates to the same place?)
+
 
 
 
@@ -1497,14 +1463,67 @@ L.o........~..~
 
 (End Last level with a cinematic)
 
-~~~~~~~~~~~~
-~~~....###~~
-~~~.#.p..#~~
-~~#.....ou~c
-~~~..#.s.#~~
-~~~~.....#~~
-~~~~~...##~~
-~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+~~....*.~~~~~...~~~
+~........~~#.....~~
+~..~~#..*~~.....#~~
+~...~~~..~~..~#...~
+~.b.~~~..~..*~~.ouc
+~....~..~~...~~~..~
+~.s.#~...~....~...~
+~~..~~......#~~#.p~
+~~...~~...*.~~...~~
+~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~
+~~....*..~~~~~..~~~
+~.........~~.....~~
+~..~~#...~~b....#~~
+~...~~~.*~~..~#...~
+~.b.~~~..~..*~~.ouc
+~....~..~~...~~~..~
+~.s.#~...~....~...~
+~~..~~......#~~#.p~
+~~...~.*.b..~~...~~
+~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~
+~~....*..~~~~~..~~~
+~.........~~.....~~
+~..~~#..*~~b....#~~
+~...~~.~..~..~#...~
+~.b.~~.~~...*~~.ouc
+~...~~..~~...~~~..~
+~.s.#...~~....~...~
+~~..~b......#~~#.p~
+~~.~~..*.b..~~...~~
+~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~
+~~.*......~~~...~~~
+~........~~~#....~~
+~..~~#..*~~b....#~~
+~...~~...~~...#...~
+~.b.~~...b*...~.ouc
+~....~.~~~~..*~~..~
+~.s.#....~....~..p~
+~~..~b......#~~#..~
+~~..~..*....~~...~~
+~~~~~~~~~~~~~~~~~~~
+
+
+(
+~~~~~~~~~~~~~~~~~~~
+~~.#....~~~~~~~~~~~
+~.....p.#~~#....~~~
+~..~~~...~~.....#~~
+~...~~~..~~..~#...~
+~.b.~~~.~~...~~.ouc
+~....~..~~...~~...~
+~.s.#~...~..~#~...~
+~~..~~......#~~#..~
+~~...~~#....~~...~~
+~~~~~~~~~~~~~~~~~~~ )
 
 
 ~~~~~~~~~~~~~~~~~~
@@ -1514,6 +1533,7 @@ Fw~~~~~~~u~~~~~~~C
 ~~~~#~~~~~~~~~~~~~
 ~~~~~~#~~~#~~~#~~~
 ~~~~~~~~~~~~~~~~~~
+
 
 .b...~~~~~~~~
 ##.##.###~~~~
@@ -1526,14 +1546,38 @@ fs.~~~......c
 #.....b.#b~~~
 ##.b#####.~~~
 
+(
+~~~~~~~~~~~~~
+~~#~~~.....#~
+~.o........#~
+~.~'~'~'...#~
+~.~......~~~~
+~.'...*..'.#~
+fs.~~....~.uc
+~~~~~....'.#~
+~~#~~..~~..~~
+~~~~~~~~~~~~~ 
+)
 ~~~~~~~~~~~~~~##~~
 ~#~~~~~~~~#~~###~#
 ~~~~~#~~~~~~##~##~
-cfw~~~~~~~~~uuuuI~
+cfw~~~~~~~~~#uuuI~
 ~~~~~~~~~~~~######
 ~~~~#~~~~~~#~#~##~
 ~~~~~~~~~~~~~~~~~~
 
+(
+~~~~~~~~~~~~~
+~~#~~~.....#~
+~.o........#~
+~.~'~'~'...#~
+~.~......~~~~
+~.'...*..'.#~
+c..~~....~.wf
+~~~~~....'.#~
+~~#~~..~~..~~
+~~~~~~~~~~~~~ 
+)
 .b...~~~~~~~~
 ##.##.###~~~~
 #.....b.#.~~~
@@ -1553,30 +1597,51 @@ C~~~~~~~~~~~~~~~wF
 ~~~~~~#~~~#~~~#~~~
 ~~~~~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~
-~~~....###~~
-~~~.#....#~~
-c~u.{...o~wf
-~~~..#...#~~
-~~~~.....#~~
-~~~~~...##~~
-~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~
+~~.*....~~~~~...~~~
+~.......*~~#.....~~
+~..~~#...~~'....#~~
+~...~~~..~~..~#...~
+c{'y~~~..~...~~.owf
+~....~..~~...~~~..~
+~...#~...~..'*~...~
+~~..~~......#~~#..~
+~~...~~*....~~...~~
+~~~~~~~~~~~~~~~~~~~
+
+(
+~~~~~~~~~~~~~~~~~~~
+~~.#....~~~~~~~~~~~
+~.......#~~#....~~~
+~..~~~...~~.....#~~
+~...~~~..~~..~#...~
+c{'.~~~.~~...~~.owf
+~....~..~~...~~...~
+~...#~...~..~#~...~
+~~..~~......#~~#..~
+~~...~~#....~~...~~
+~~~~~~~~~~~~~~~~~~~ 
+)
+
+~~~~~~~~~~~u~~~~~~
+~~~~~u~~~u~~~~u~~~
+~~~~~~~~~~~~~~~~~~
+c~u~~~u~~~u~~u~&wf
+~~~~u~~~~~~~~~~~~~
+~~~u~~~u~~~u~~~~~~
+~~~~~~~~~~~~u~~~~~
+
 
 ~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~
-c~u~~~u~~~u~~~~&wf
-~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~
+~~~~~~u~~~~~~~~~~~
+~~~~~~~~~~~~~~u~~~
+c~~u~~~~u~~~u~~&wf
+~~~~~~~u~~~~~~~~~~
+~~~~~~~~~~u~~~~~~~
 ~~~~~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~
-c~~~u~~~~~~u~~~&wf
-~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~
+
 
 (
 ~~~~~~~~~~~~~~~~~~~
@@ -1589,15 +1654,161 @@ c~~~u~~~~~~u~~~&wf
 ~~~#~~~#~#~#~#~~~~~
 ~~~~~~~~~~~~~~~~~~~ (get caught in bush? or propel along with crate?))
 
+(
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~..#.~~~###~~~~
+~~...'...#..'..o#~~~~
+~'...'.~'...b.~.~~~~~
+~##..b....#.'.....~~~
+cu..~~~..~u.....u.&wf
+~~#~~~~~#~#~~##...~~~
+~~~~~~~~~~~~~~~~~~~~~ 
+
+~~~~~~~~~~~~~~~~~~
+~~~~~~u~~~~~~~~~~~
+~~~~~~~~~~~~~~u~~~
+c~~u~~~~u~~~u~~&wf
+~~~~~~~u~~~~~~~~~~
+~~~~~~~~~~u~~~~~~~
+~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~..#.~~~###~~~~
+c~...'...u..'..ou~&wf
+~'...'.~'...b.~.~~~~~
+~##..b....#.'.....~~~
+~~..~~~..~~.....~.~~~
+~~#~~~~~#~#~~##...~~~
+~~~~~~~~~~~~~~~~~~~~~ )
+
+~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
+~~~~~~....~~~~~~
+~~~.......~~~~#~
+~~#*##*#....~~~~
+~~..*..#~...#~~~
+~~..#..#~~..#~~~
+c~..u.~~~~*..&wf
+~~~.#~~~#DD..~~~
+~~~~#~~~#*...~~~
+~#~~~~#~...#~~~~
+~~#~~~~~~#~~~~#~
+~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
+
+~~~c~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
+~~~~~~....~~~~~~
+~~~.......~~~~#~
+~~#*##*#....~~~~
+~~..*..#~...#~~~
+~~..#..#~~..#~~~
+~~..~.~~~~...~~~
+~~~.#~~~#DD..~~~
+~~~~#~~~#*...~~~
+~#~&~~#~...#~~~~
+~~#w~~~~~#~~~~#~
+~~~f~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
+
+~~~~~~f~~~~~~~~~
+~~~~~~w~~~~~~~~~
+~~~~~~{...~~~~~~
+~~~.......~~~~#~
+~~#.##*#....~~~~
+~~..*..#~...#~~~
+~~..#..#~~..#~~~
+~~..~.~~~~...~~~
+~~~.#~~~#DD..~~~
+~~~~#~~~#*...~~~
+~#~~~~u~...#~~~~
+~~#~~~~~~#~~~~#~
+~~~~~~~~~~~~~~~~
+~~~~~~c~~~~~~~~~
+
+~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
+~~~~~~....~~~~~~
+~~~.......~~~~#~
+~~#.##.#....~~~~
+c~..*..u~...u&wf
+~~..#..#~~..#~~~
+~~..~.~~~~...~~~
+~~~.#~~~#DD..~~~
+~~~~#~~~#*...~~~
+~#~~~~~~...#~~~~
+~~#~~~~~~#~~~~#~
+~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
+
 ~~~~~~~~~~~~~~~~~~~
 ~~~~~~~#~~~#~~~~~~~
 ~~~#~~~~~#~~~#~~~~~
 ~~~~~~~~~~~~~~~~~~~
 ~~...............~~
 c~.'...'.+.*..';{wf
-~~.......#.#.o...~~
+~~.......#.#.....~~
 ~~~#~~~#~#~#~#~~~~~
 ~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~
+~~~~~~u~~~~u~~~~~~
+~~~~~~~~~uu~~~u~~~
+c~~u~~u~u~u~u~u&wf
+~~~~~u~u~~~~~~~~~~
+~~~~uu~~u~u~~~~~~~
+~~~~~~~~~~~~~~~~~~
+
+
+
+(
+~~~~~~~~~~~~~
+~~~~~....~~~~
+~~.......~~~~
+~#*##*#....~~
+~..*..#~...#~
+~p.#..#~~..#~
+~..#.~~~w*..~
+~~.#~~~#DD..~
+~~~#~~~#*...~
+~~~~~#~.o.#~~
+~~~~~~~~#~~~~
+~~~~~~~~~~~~~)
+(
+~~~~c~~~~~~~~~~~~~~
+~~~~~~~....~~~~#~~~
+~~~~.......~~~~~~#~
+~~~#*##*#....~~.~~~
+~~~..*..#~...#~~~~~
+~~~..#..#~~..#~~.~~
+~~~..u.~~~~...~~~~~
+~~~~.#~~~#DD..~~~~~
+~~~~~#~~~#*...~~~~~
+~#~~&~~#~.o.#~~#~~~
+~~~#w~~~~~#~~~~~~#~
+~~~~f~~~~~~~~~~~~~~)
+
+~~~~~~~~~DDD~~~~
+~~####~#~...#~~~
+~~#...~'~~~b#~~~
+~~#.~...L~~.#~~~
+c~~.~~~~Lb...zwf
+~~~.~~~~~~~L.~~~
+~~#.#b.'..bL.~~~
+~~#.~~.~.#~~.~~~
+~~#..........~~~
+~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~
+~~~#...#.~~
+~~.#o.....z
+~.........~
+~.........~
+~~#......~~
+~~......#~~
+~.......#~~
+~~.###....~
+~~~~~~~~~~~
 
 
 message The End. Thanks for playing!
@@ -1607,23 +1818,21 @@ message The End. Thanks for playing!
 
 
 
-
 (
+
 (misclevels)
 
-
-~~~~~~~~~~~~~~~
-~~~...~~~....~~
-~~..b...~b.b..~
-~~.b..b......b~
-~#..#o....s..#~
-~#.........#~~~
-~....p.b.b..~~~
-~~b#.........~~
-~~~#..b...b.#~~
-~~~##.......~~~
-~~~~~~~#...~~~~
-~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~
+~~~~~~...~~~
+~~~......~.~
+~#~*##*#.~~~
+~~..*..#..~~
+~#p.#..#..~~
+~#..#~~.s..~
+~~#~~......~
+~#o.~~....~~
+~####~~#...~
+~~~~~~~~~~~~
 
 
 ~~~~~~~~~
@@ -1649,29 +1858,52 @@ message The End. Thanks for playing!
 ~~~.#~~~~~~
 ~~~~~~~~~~~ (meh?) (fill gaps)
 
-~~~~~~~~~~~~~~~~~~~
-~~.#....~~~~~~~~~~~
-~.....p.#~~#....~~~
-~..~~~...~~.....#~~
-~...~~~..~~..~#...~
-~.b.~~~.~~...~~.o#~
-~....~..~~...~~...~
-~.s.#~...~..~#~...~
-~~..~~......#~~#..~
-~~...~~#....~~...~~
-~~~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~
+~~~...~~~....~~
+~~..b...~b.b..~
+~~.b..b......b~
+~#..#o....s..#~
+~#.........#~~~
+~....p.b.b..~~~
+~~b#.........~~
+~~~#..b...b.#~~
+~~~##.......~~~
+~~~~~~~#...~~~~
+~~~~~~~~~~~~~~~ 
 
+~~~~~~~~~
+~.#.....~
+~...~bo#~
+~.s.~...~
+~#..~...~
+~..p~#..~
+~...~..#~
+~.#.~...~
+~~~~~~~~~ (new path opens because bush is used?)
+
+(
 ~~~~~~~~~~~~
-~~~~~~...~~~
-~~~......~.~
-~#~*##*#.~~~
-~~..*..#..~~
-~#p.#..#..~~
-~#..#~~.s..~
-~~#~~......~
-~#o.~~....~~
-~####~~#...~
-~~~~~~~~~~~~
+~.#......~.~
+~...~b..*~o#
+~.s.~....~.~
+~#.p~....~.~
+~...~###.~.~
+~~~~~....~~~
+~~~~~~~~~~~~)
+
+~~~~~~~~~~~~~~~
+~~~~#~~~~~~~~~~
+~~#~##~~~~~.~~~
+~~#~..~~~b~o#~~
+~~~~.bb.~b...~~
+~#~~...~~..p..~
+~~~~~..~......~
+~.#~.#b..s.#.~~
+~..###...b...~~
+~~.##~~..#...~~
+~~#.#~~#~~#.~~~
+~~~~~~#~~~~~~~~
+~~~~~~~~~~~~~~~
 
 ~~~~~~~~~~~~~
 ~~~##~~~~###~
@@ -1682,6 +1914,16 @@ message The End. Thanks for playing!
 ~##~~~~~~~~~~
 ~~~~~~~~~~~~~
 
+~~~~~~~~~
+~~.....~~
+~.b.b#h.~
+~..b.j..~
+~.#.b.b.~
+~..b.b..~
+~.b.b.b.~
+~~...p.~~
+~~~~~~~~~
+
 #########
 ~o~~~~~p~
 ~.bbbbb.~
@@ -1690,6 +1932,8 @@ message The End. Thanks for playing!
 ~.bbbbb.~
 ~.~~~~~.~
 #########
+
+
 
 ~~~~~~~~~~~~~
 ~~~...###~~~~
@@ -1712,7 +1956,16 @@ message The End. Thanks for playing!
 ~~~~~.p....~~~
 ~~~~~~~~~~~~~~
 
-
+~~~~~~~~~~~~~~~
+~~~....b....~~~
+~#~...~~~.o.~~~
+~~~....b...~~~~
+~#~...~~~...~~~
+~~~...~w~b~b~#~
+~~~...~~~...~~~
+~...*.~...*.~#~
+~.....~.p...~~~
+~~~~~~~~~~~~~~~ (like the shape)
 
 
 ~~~~~~~~~~~~~~~~~
@@ -1728,87 +1981,6 @@ message The End. Thanks for playing!
 ~~~~~~~~..~..~~~~
 ~~~~~~~~....~~~~~
 ~~~~~~~~~~~~~~~~~
-
-
-
-
-
-(misc non-levels)
-
-
-~~~~~~~~~~~
-~~~~~~####~
-~~~~~~#...~
-~####~#*..~
-~...#~#...~
-~....s....~
-~.........~
-~..*.#....~
-~.........~
-~.p.......~
-~~~~~~~~~~~
-~~~~~~~~~~~ (level where you recover box)
-
-
-
-
-
-~~~~~~~~~~~~~
-~~~~~~###~~~~
-~~~~~#.o.~~~~
-~~~.......~~~
-~~~.#...s.~~~
-~~........#~~
-~~.#.......~~
-~~......#..~~
-~~#.p......~~
-~~~......#.~~
-~~~~~~~~~~~~~
-~~~~~~~~~~~~~
-
-~~~~~~~~~~~~~~~
-~~~~~.#....~~~~
-~~~.....#.....~
-~~........#...~
-~..b........#.~
-~.....s....b..~
-~.b.p......#..~
-~......b.#.~~~~
-~~..b..#...~~~~
-~~~...~~~~~~~~~
-~~~~~~~~~~~~~~~
-
-
-~~~~~~~~~~~~~~~
-~b.b.b~#~b.b.b~
-~.~.~.~o~.~.~.~
-~b.b.h.b.b.b.b~
-~.~.~.~~~.~.~.~
-~b.b.b.b.b.b.p~
-~.~.~.~~~.~.~.~
-~b.b.b~~~b.b.b~
-~~~~~~~~~~~~~~~
-
-
-...............
-.~.b.~.b.~.b.~.
-b.b~b.b~b.b~b.b
-~.~~~.~~~.~~~.~
-~b.b.b~w~b.b.b~
-~~~.~~~~~~~.~~~
-~~~p...b....~~~
-~~~~~~~~~~~~~~~
-
-~~~~~~~~~~~~~
-~...........~
-~...b....b..~
-~.b....b....~
-~....b....b.~
-~..b....b...~
-~.....b.....~
-~.p.b....b..~
-~...........~
-~~~~~~~~~~~~~
 
 
 )
