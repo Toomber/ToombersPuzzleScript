@@ -333,6 +333,91 @@ SpiritMovesL
 00004
 .....
 
+
+
+
+
+
+
+SpiritStationaryRedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+.....
+.101.
+.303.
+.000.
+.4.4.
+
+SpiritHitsURedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+01010
+43034
+.....
+.....
+.....
+
+SpiritHitsDRedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+.....
+.....
+.....
+41014
+03030
+
+SpiritHitsRRedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+...00
+...01
+...03
+...00
+...40
+
+SpiritHitsLRedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+00...
+10...
+30...
+00...
+04...
+
+SpiritMovesURedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+.101.
+.303.
+.000.
+.000.
+.4.4.
+
+SpiritMovesDRedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+.4.4.
+.000.
+.000.
+.101.
+.303.
+
+
+SpiritMovesRRedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+.....
+.0101
+.0303
+40000
+.....
+
+SpiritMovesLRedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+.....
+1010.
+3030.
+00004
+.....
+
+SpiritHasRedEyes
+transparent
+
+SpiritGetsRedEyes
+transparent
+
 BushSpawner
 transparent
 
@@ -588,8 +673,12 @@ z = CinematicPlayerAirBorne and water
 
 F = Water and CinematicPlayer
 I = Water and CinematicPlayerSwap
-y = PlayerHitSoundEmitter
+y = PlayerHitSoundEmitter and water
 r = PlayerFlyingSoundEmitter and water
+q = SpiritGetsRedEyes and water
+k = SpiritHasRedEyes and water
+
+
 
 
 
@@ -599,9 +688,15 @@ WaterDepth = WaterDepthneg1 or WaterDepth0 or WaterDepth1 or WaterDepth2 or Wate
 
 
 Blocking = BlockingU or BlockingD or BlockingR or BlockingL
+
 SpiritHits = SpiritHitsU or SpiritHitsD or SpiritHitsR or SpiritHitsL
 SpiritMoves = SpiritMovesU or SpiritMovesD or SpiritMovesR or SpiritMovesL
 Spirit = SpiritStationary or SpiritHits or SpiritMoves
+
+SpiritHitsRedEyes = SpiritHitsURedEyes or SpiritHitsDRedEyes or SpiritHitsRRedEyes or SpiritHitsLRedEyes
+SpiritMovesRedEyes = SpiritMovesURedEyes or SpiritMovesDRedEyes or SpiritMovesRRedEyes or SpiritMovesLRedEyes
+SpiritRedEyes = SpiritStationaryRedEyes or SpiritHitsRedEyes or SpiritMovesRedEyes
+
 Crate = StoneCrate
 Bush = Bush0A or Bush1A or Bush2A or Bush0B or Bush1B or Bush2B
 DestroyedBush = DestroyedBush0 or DestroyedBush1 or DestroyedBush2
@@ -660,6 +755,7 @@ sfx5 13888100 (63113700) (spirit collides with crate 2)
 sfx6 60883704 (51866502) (49962304) (spirit enter bush sound)
 
 (---cinematic sounds---)
+SpiritGetsRedEyes destroy 13289708 (7476908) (39658702) (18246902)
 PlayerHitSoundEmitter destroy 62596502 (spirit first hits player)
 PlayerFlyingSoundEmitter destroy 40575908
 
@@ -687,6 +783,7 @@ StoneCrateSink, StoneCrateSinkCover
 Target
 DestroyedBush
 Player, Wall, CinematicWall, Crate, Spirit, CinematicPlayerAirBorne
+SpiritRedEyes
 
 BushSpawner
 TempBushAlreadyRandomised
@@ -705,6 +802,8 @@ CinematicPlayerSwap
 CinematicPlayerPushed
 PlayerHitSoundEmitter
 PlayerFlyingSoundEmitter
+SpiritGetsRedEyes
+SpiritHasRedEyes
 SpiritLightMarker
 Timer
 WinTimer
@@ -777,13 +876,29 @@ late [SpiritScaredMarker] -> again
 
 (-----------------cinematics---------------)
 
+(spirit red eyes)
+late [ SpiritGetsRedEyes Spirit ] -> [ SpiritHasRedEyes Spirit ]
+
+late [ SpiritRedEyes ] -> []
+
+late [ SpiritHasRedEyes ][ SpiritStationary ] -> [ SpiritHasRedEyes ][ SpiritStationary SpiritStationaryRedEyes ]
+
+late [ SpiritHasRedEyes ][ SpiritMovesU ] -> [ SpiritHasRedEyes ][ SpiritMovesU SpiritMovesURedEyes ]
+late [ SpiritHasRedEyes ][ SpiritMovesD ] -> [ SpiritHasRedEyes ][ SpiritMovesD SpiritMovesDRedEyes ]
+late [ SpiritHasRedEyes ][ SpiritMovesR ] -> [ SpiritHasRedEyes ][ SpiritMovesR SpiritMovesRRedEyes ]
+late [ SpiritHasRedEyes ][ SpiritMovesL ] -> [ SpiritHasRedEyes ][ SpiritMovesL SpiritMovesLRedEyes ]
+
+late [ SpiritHasRedEyes ][ SpiritHitsU ] -> [ SpiritHasRedEyes ][ SpiritHitsU SpiritHitsURedEyes ]
+late [ SpiritHasRedEyes ][ SpiritHitsD ] -> [ SpiritHasRedEyes ][ SpiritHitsD SpiritHitsDRedEyes ]
+late [ SpiritHasRedEyes ][ SpiritHitsR ] -> [ SpiritHasRedEyes ][ SpiritHitsR SpiritHitsRRedEyes ]
+late [ SpiritHasRedEyes ][ SpiritHitsL ] -> [ SpiritHasRedEyes ][ SpiritHitsL SpiritHitsLRedEyes ]
+
+
 (cinematic win - needs to be before edge of screen detection)
 [ Spirit CinematicWin ] -> [ CinematicWin WinTimer0 ]
 [ CinematicPlayerPushed Target no WinTimer ] -> [ CinematicPlayerPushed Target WinTimer0 ] 
 
-(bounce spirit cinematic)(
-right [ CinematicPlayer ][ CinematicPlayerSwap ][ spirit | CinematicWall ] -> [  ][ CinematicPlayer ][ left spirit | CinematicWall ] )
-
+(bounce spirit cinematic)
 right [ CinematicPlayer ][ CinematicPlayerSwap ][ SpiritStationary | Wall ] -> [  ][ CinematicPlayer ][ left SpiritStationary | CinematicWall ]
 
 (cinematic detroy wall)
@@ -1588,17 +1703,25 @@ L.o........~..~
 ~~.......*~~#.......~~
 ~~..b#~...~5.....b5b.~
 ~..~~~~~.#~~..~#....~~
-~~.b~~~~.~~.*~~~..ou~c
+~~.b~~~~.~~.*~~~..~ouc
 ~#...~~~..~..~~~~*~~~~
-~~.s.#~...b...#~~..~#~
+~~.s.#~...b...#~~..#~~
 ~~~..~~......~~~.p.~~~
-~.~~..~~...*..~..~~#~~
+~.~~..~~...*..~..~~~#~
 ~~~~~~~~~~~~~~~~~~~~~~
 
-
-
-
-
+(
+~~~~~~~~~~~~~~~~~~~~~~
+~~~....*...~~~..b.~~~~
+~~.......*~~#.......~~
+~~..b#~...~5.....b5b.~
+~..~~~~~.#~~..~#....~~
+~~.b~q~~s~~.*~~~..~ouc
+~#...~~~..~p.~~~~*~~~~
+~~...#~...b...#~~..#~~
+~~~..~~......~~~...~~~
+~.~~..~~...*..~..~~~#~
+~~~~~~~~~~~~~~~~~~~~~~)
 
 
 (
@@ -1613,8 +1736,6 @@ L.o........~..~
 ~~..~~......#~~#..~
 ~~...~~#....~~...~~
 ~~~~~~~~~~~~~~~~~~~ )
-
-
 
 
 ~~~~~~~~~~~~~~~~~~
@@ -1660,12 +1781,25 @@ c..~~~.....wf
 ~~~~~~~~~~~~~~~~~~
 ~~~#~~~~#~~~~~~#~~
 ~~~~~~~~~~~~#~~~~~
-C~~~~~~~~~~~~~~~wF
+C~~~~~~~~~~~~q~~wF
 ~~~~#~~~~~~~~~~~~~
 ~~~~~~#~~~#~~~#~~~
 ~~~~~~~~~~~~~~~~~~
 
 
+~~~~~~~~~~~~~~~~~~~~~k
+~~~.*......~~~..'.~~~~
+~~........~~#.......~~
+~~..'#~...~;.....;''.~
+~..~~~~~.#~~..~#....~~
+c~{'y~~~.~~..~~~..~owf
+~#...~~~..~..~~~~.~~~~
+~~...#~...;..*#~~..#~~
+~~~..~~......~~~...~~~
+~.~~..~~*.....~..~~~#~
+~~~~~~~~~~~~~~~~~~~~~~
+
+(
 ~~~~~~~~~~~~~~~~~~~
 ~~.*....~~~~~...~~~
 ~.......*~~#.....~~
@@ -1677,7 +1811,7 @@ c{'y~~~..~...~~.owf
 ~~..~~......#~~#..~
 ~~...~~*....~~...~~
 ~~~~~~~~~~~~~~~~~~~
-
+)
 (
 ~~~~~~~~~~~~~~~~~~~
 ~~.#....~~~~~~~~~~~
@@ -1692,7 +1826,7 @@ c{'.~~~.~~...~~.owf
 ~~~~~~~~~~~~~~~~~~~ 
 )
 
-~~~~~~~~~~~u~~~~~~
+~~~~~~~~~~~u~~~~~k
 ~~~~~u~~~u~~~~u~~~
 ~~~~~~~~~~~~~~~~~~
 c~u~~~u~~~u~~u~&wf
@@ -1701,7 +1835,7 @@ c~u~~~u~~~u~~u~&wf
 ~~~~~~~~~~~~u~~~~~
 
 
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~k
 ~~~~~~u~~~~~~~~~~~
 ~~~~~~~~~~~~~~u~~~
 c~~u~~~~u~~~u~~&wf
@@ -1710,7 +1844,7 @@ c~~u~~~~u~~~u~~&wf
 ~~~~~~~~~~~~~~~~~~
 
 
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~k
 ~~~~~~~~~~~~~~~~
 ~~~~~~....~~~~~~
 ~~~.......~~~~#~
@@ -1725,7 +1859,7 @@ c~..u.~~~~*..&wf
 ~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~
 
-~~~c~~~~~~~~~~~~
+~~~c~~~~~~~~~~~k
 ~~~~~~~~~~~~~~~~
 ~~~~~~....~~~~~~
 ~~~.......~~~~#~
@@ -1740,7 +1874,7 @@ c~..u.~~~~*..&wf
 ~~~f~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~
 
-~~~~~~f~~~~~~~~~
+~~~~~~f~~~~~~~~k
 ~~~~~~w~~~~~~~~~
 ~~~~~~{...~~~~~~
 ~~~.......~~~~#~
@@ -1755,7 +1889,7 @@ c~..u.~~~~*..&wf
 ~~~~~~~~~~~~~~~~
 ~~~~~~c~~~~~~~~~
 
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~k
 ~~~~~~~~~~~~~~~~
 ~~~~~~....~~~~~~
 ~~~.......~~~~#~
@@ -1770,7 +1904,7 @@ c~..*..u~...u&wf
 ~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~k
 ~~~~~~~#~~~#~~~~~~~
 ~~~#~~~~~#~~~#~~~~~
 ~~~~~~~~~~~~~~~~~~~
@@ -1780,7 +1914,7 @@ c~.'...'.+.*..';{wf
 ~~~#~~~#~#~#~#~~~~~
 ~~~~~~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~k
 ~~u~~~~~~~~~u~~~u~
 ~~~~~~~~~uu~~~u~~~
 c~~u~~u~u~u~u~u&wf
