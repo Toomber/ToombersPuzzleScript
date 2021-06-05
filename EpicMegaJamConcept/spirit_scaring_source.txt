@@ -1,6 +1,6 @@
 title Headlong Hunt
 author Toombler
-homepage www.puzzlescript.net
+homepage https://toombler.itch.io/
 
 again_interval 0.05
 realtime_interval 0.1
@@ -732,6 +732,7 @@ Player move 78892307 (23662107) (16418907) (74291507)
 StartHighlightU destroy 45316100 
 
 sfx0  15065104      (kick spirit out of bush)
+sfx9 99373907 (30520905) (69043305) (70479907) (19606904) (push spirit)
 (
 7389303
 96059500
@@ -826,7 +827,7 @@ left 	[ TempStartHighlight | ] -> [ TempStartHighlight | StartHighlightL ]
 [ >  Player | Crate ] -> [  >  Player | > Crate ] (push crate)
 
 
-[ > Player Bush | Spirit ] -> [ > Player Bush | > Spirit] (kick spirit from bush - this is only useful with one spirit if the spirit is also in a bush)
+[ > Player Bush | Spirit ] -> [ > Player Bush | > Spirit] sfx9 (kick spirit from bush - this is only useful with one spirit if the spirit is also in a bush)
 
 late [ Player no Bush | Spirit Bush | no Crate no Wall ] -> [ Player no Bush | Spirit random DestroyedBush | no Crate no Wall ]  sfx0 sfx1 (kick spirit out of bush)
 
@@ -1065,12 +1066,8 @@ WINCONDITIONS
 LEVELS
 =======
 (
-
-todo: make bushes more satisfying?
-make top edges look nicer?
-
 name idea: Re-homing Pigeons. Lore is that [after solar flares], species of pigeon has 
-lost their sense of direction and you are there to guide them to their nests (by frightening them) 
+lost their sense of direction and you are there to guide them to their nests (by frightening them) problem: don't know how to draw a pigeon in PS.
 Aurora Ballealis - ball of northern light
 Cold Corrale 
 Chill of the Chase
@@ -1078,14 +1075,11 @@ Chill of the Chase
 
 message Every year, biologists make the frigid journey to survey a population of rare and highly unique animals. But they have to catch them first.
 
-
 messages: can be about the strange behaviours/properties of the species.
 
 ****Easily spooked by perceived threats, they are bullish in their attempted escape, but are quick to give up if their way is blocked. 
 
 Some specimens exhibit hardened anterior tissue, apparently adapted in response to frequent  collisions with rocky surfaces. Their obstacle avoidance on the other hand does not seems to have improved.
-
-
 
 The explorers who first documented the animals were shocked to discover their great affinity for the ocean. No one has yet managed to catch one overwater, even with a speedboat. 
 
@@ -1106,7 +1100,6 @@ It has been proposed that their rich purple colour is due to a chemical present 
 Never have researchers observed the seemingly docile creatures display any kind of aggression. Regardless, it is speculated that they are actually a highly territorial species, which may explain why their population per island rarely surpasses 1.
 
 QUESTION: How much of a hint do I want to give? probably not much, mainly just for entertainment.
-
 )
 
 
@@ -1135,7 +1128,7 @@ message Every year, biologists make the frigid journey to survey a population of
 ~~~.....~~~
 ~~~~~~~~~~~
 
-message Specimens exhibit hardened anterior tissue, apparently adapted in response to frequent  collisions with rocky surfaces. Their obstacle avoidance on the other hand does not seems to have improved.
+message Specimens exhibit hardened anterior tissue, apparently adapted in response to frequent collisions with rocky surfaces. Their obstacle avoidance on the other hand does not seems to have improved.
 
 ~~~~~~~~~~~~
 ~~~~####~#~~
@@ -1161,7 +1154,7 @@ message Specimens exhibit hardened anterior tissue, apparently adapted in respon
 ~~~~~~#~~~~~
 ~~~~~~~~~~~~
 
-message The explorers who first documented the animals were shocked to discover their great affinity for the ocean. No one has yet managed to catch one overwater, even with a speedboat.
+message The explorers who first documented the animals were shocked to discover their great affinity for the ocean. Nobody has yet managed to catch one overwater, even with a speedboat.
 
 ~~~~~~~~~~~~~~~
 ~~~#~..~..~~~~~
@@ -1213,9 +1206,6 @@ message Strange, square crystals are also found on some of the islands. They don
 #.......#..~~
 #########.~~~
 
-message Many claim the animal displays a kind of bioluminescence, most noticeable when over dark water. Critics say it's "just a trick of the light", since such a feature would have no obvious evolutionary advantage.
-(message maybe a bit misleading since colour of water not relevant?)
-
 ~~~~~~~~~~~~~
 ~~~~~....~~~~
 ~~.......~~~~
@@ -1229,6 +1219,8 @@ message Many claim the animal displays a kind of bioluminescence, most noticeabl
 ~~~~~~~~#~~~~
 ~~~~~~~~~~~~~  (level introducing destroying crates)
 
+message Many claim the animal displays a kind of bioluminescence, most noticeable when over dark water. Critics say it's "just a trick of the light", since such a feature would have no obvious evolutionary advantage.
+(message maybe a bit misleading since colour of water not relevant?)
 
 ####~~~######
 ##~~~~~~~...#
@@ -1255,6 +1247,8 @@ message Many claim the animal displays a kind of bioluminescence, most noticeabl
 ~~~~~#~~~~~~~~~~
 ~~~~~~~~~~~~~~~~
 
+message Highly skilled trackers often employ stealth, utilising their surroundings to avoid detection. Those with even higher skill simply choose a more convenient capture location.
+
 ~~~~~~~~~~~~~~~
 ~~~~#~~#~~~~~~~
 ~~~...~#~~~~~~~
@@ -1268,8 +1262,6 @@ message Many claim the animal displays a kind of bioluminescence, most noticeabl
 ~~b..####b.~~~~
 ~~~...~~~~~~~~~
 ~~~~~~~~~~~~~~~
-
-message Higly skilled trackers often employ stealth, utilising their surroundings to avoid detection. Those with even higher skill simply choose a more convenient capture location.
 
 (levels introducing bushes as catching spirit)
 
@@ -1349,6 +1341,7 @@ message Also of scientific interest are the endangered species of shrub which sp
 ~~~.b...#~~~
 ~~~~~~~~~~~~ (bush you can't break and run until moving the spirit)(forces you to do a circuit)
 
+message The biologists train themselves to notice subtle signs of the elusive animal. Thankfully, their big eyes, used to detect potential threats at long distances (in cardinal directions) are more of a hindrance when in hiding.
 
 LLLLLLLLL~~~~~~~~~~
 #o~b~.b.LL~~~~~~~~~
@@ -1357,8 +1350,6 @@ L.....L.LL~~~~~~~~~
 #.#~......L...L.L..
 #..b...##.L.p...L..
 #####..##.#........  (intentionally breaking bushes, and progress gated by bushes that must be used constructively)
-
-message The biologists train themselves to notice subtle signs of the elusive animal. Thankfully, their big eyes, used to detect potential threats at long distances (in cardinal directions) are more of a hindrance when in hiding.
 
 ~~~~~~~~DDD~~
 ~####~#~...#~
@@ -1394,7 +1385,7 @@ message The biologists train themselves to notice subtle signs of the elusive an
 ~~~~~#~~~~~~~#~
 ~~~~~~~~~~~~~~~ (shows how you can win from pushing spirits)
 
-message When push comes to shove, it's not unheard of for impatient field biologists to give their unenthusuastic specimens a nudge in the right direction. The effects of human contact on the creatures will be subject of further studies.
+message When push comes to shove, it's not unheard of for impatient field biologists to give their unenthusiastic specimens a nudge in the right direction. The effects of human contact on the creatures will be subject of further studies.
 
 ~~~~~~~~~~~~~~
 ~~~##~......~~
@@ -1783,9 +1774,6 @@ c~~~~~~~~~~~~~~~~z
 
 
 message The End. Thanks for playing!
-
-
-
 
 
 
