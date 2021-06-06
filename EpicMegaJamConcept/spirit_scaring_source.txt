@@ -637,6 +637,50 @@ transparent
 PlayerFlyingSoundEmitter
 transparent
 
+NoteSprite
+#d1c097 #ccbb93 #c4b291 #b39d68 #ab875e #0c1330 #1c49ff #1e3654
+.....
+.0...
+3200.
+.310.
+..321
+
+Note1
+transparent
+
+Note2
+transparent
+
+Note3
+transparent
+
+Note4
+transparent
+
+Note5
+transparent
+
+Note6
+transparent
+
+Note7
+transparent
+
+Note8
+transparent
+
+Note9
+transparent
+
+Note10
+transparent
+
+Note11
+transparent
+
+Note12
+transparent
+
 =======
 LEGEND
 =======
@@ -708,6 +752,23 @@ WinTimer = WinTimer0 or WinTimer1 or WinTimer2 or WinTimer3 or WinTimer4
 StoneCrateSink = StoneCrateSink0 or StoneCrateSink1 or StoneCrateSink2 or StoneCrateSink3 or StoneCrateSink4 or StoneCrateSink5 or StoneCrateSink6 or StoneCrateSink7 or StoneCrateSink8 or StoneCrateSink9
 StoneCrateSinkCover = StoneCrateSinkCover0 or StoneCrateSinkCover1 or StoneCrateSinkCover2 or StoneCrateSinkCover3 or StoneCrateSinkCover4 or StoneCrateSinkCover5 or StoneCrateSinkCover6 or StoneCrateSinkCover7 or StoneCrateSinkCover8 or StoneCrateSinkCover9  
 
+
+① = Note1 and notesprite
+② = Note2 and notesprite
+③ = Note3 and notesprite
+④ = Note4 and notesprite
+⑤ = Note5 and notesprite
+⑥ = Note6 and notesprite
+⑦ = Note7 and notesprite
+⑧ = Note8 and notesprite
+⑨ = Note9 and notesprite
+⑩ = Note10 and notesprite
+⑪ = Note11 and notesprite
+⑫ = Note12 and notesprite
+
+Note = Note1 or Note2 or Note3 or Note4 or Note5 or Note6 or Note7 or Note8 or Note9 or Note10 or Note11 or Note12
+
+
 =======
 SOUNDS
 =======
@@ -732,7 +793,7 @@ Player move 78892307 (23662107) (16418907) (74291507)
 StartHighlightU destroy 45316100 
 
 sfx0  15065104      (kick spirit out of bush)
-sfx9 99373907 (30520905) (69043305) (70479907) (19606904) (push spirit)
+sfx9 64602707 (99373907) (30520905) (69043305) (70479907) (19606904) (push spirit)
 (
 7389303
 96059500
@@ -754,6 +815,10 @@ sfx5 13888100 (63113700) (spirit collides with crate 2)
 
 
 sfx6 60883704 (51866502) (49962304) (spirit enter bush sound)
+
+
+note destroy 781703 (11591503)
+closemessage 21300103 (8159703) (17966903) (10729903)
 
 (---cinematic sounds---)
 SpiritGetsRedEyes destroy 13289708 (7476908) (39658702) (18246902)
@@ -779,7 +844,8 @@ ManualWaterDepth4
 WaterDepth
 WaterCoverUp
 StoneCrateSink, StoneCrateSinkCover
-
+Note
+NoteSprite
 
 Target
 DestroyedBush
@@ -823,7 +889,7 @@ left 	[ TempStartHighlight | ] -> [ TempStartHighlight | StartHighlightL ]
 [ moving Player ][ StartHighlight ] -> [ moving Player ][]
 
 [ > Player | Water ] -> [ Player | Water ] (don't let player enter water)
-([ >  Player | Bush Crate ] -> [  Player | Bush TempVacatedBush > Crate ] sfx1 (push crate that's inside a bush, Akurra style))
+
 [ >  Player | Crate ] -> [  >  Player | > Crate ] (push crate)
 
 
@@ -872,7 +938,36 @@ late [SpiritScaredMarker] -> again
 
 
 
+(------------Story--------------)
+[ Player Note1 notesprite ] -> [ Player ] message Specimens exhibit toughened anterior tissue, apparently adapted in response to frequent  collisions with rocky surfaces. Their obstacle avoidance on the other hand does not seem to have improved.
 
+[ Player Note2 notesprite ] -> [ Player ] message The explorers who first documented the animal were shocked to discover its great affinity for the ocean. Nobody has yet managed to catch one over water, even with a speedboat.
+
+[ Player Note3 notesprite ] -> [ Player ] message Strange, square crystals are also found on some of the islands. They don't appear to be alive though so no one's really interested in them.
+
+[ Player Note4 notesprite ] -> [ Player ] message Many claim the animal displays a kind of bioluminescence, most noticeable when over dark water. Sceptics say it's "just a trick of the light", since such a feature would have no obvious evolutionary advantage.
+(message maybe a bit misleading since colour of water not relevant?)
+
+[ Player Note5 notesprite ] -> [ Player ] message Highly skilled trackers often employ stealth, utilising their surroundings to avoid detection. Those with even higher skill simply choose a more convenient capture location.
+
+[ Player Note6 notesprite ] -> [ Player ] message Also of scientific interest are the endangered species of shrub which sparsely populate the region. No one can quite work out why, but islands visited by researchers in previous years tend to fare worst of all.
+
+[ Player Note7 notesprite ] -> [ Player ] message The biologists train themselves to notice subtle signs of the elusive animal. Thankfully, their big eyes, used to detect potential threats at long distances (in cardinal directions) are more of a hindrance when in hiding.
+
+[ Player Note8 notesprite ] -> [ Player ] message When push comes to shove, it's not unheard of for impatient field biologists to give their unenthusiastic specimens a nudge in the right direction. The effects of human contact on the creatures will be subject of further studies.
+
+[ Player Note9 notesprite ] -> [ Player ] message It has been proposed that the species' rich purple colour is due to a chemical present in their diet. The desolate landscape presents very few candidates however so what that diet may be is unknown.
+
+[ Player Note10 notesprite ] -> [ Player ] message In the days before synthetic rubber, enterprising hunters thought to make all manner of goods from the animals’ springy hides. A reputation for cowardice among wearers of the material soon brought this tradition to an end.
+
+(
+[ Player Note11 notesprite ] -> [ Player ] message Although some of the region’s rock formations are of utility to the scientists (be it as a way to block the creatures’ line of sight, or for them to collide with) the purpose of many walls seems purely aethetic.)
+
+[ Player Note11 notesprite ] -> [ Player ] message Never have researchers observed the apparently docile creatures display any kind of aggression. Regardless, it is speculated that the species is actually highly territorial, which may explain why their population per island rarely surpasses 1. 
+
+[ Player Note12 notesprite ] -> [ Player ] message Some biologists grow to regard the creatures as respected adversaries. A true test of patience would pit the scientists’ navigation and planning ability against the animal’s remarkable tolerance to flinging itself around and colliding with stuff.
+
+(---------------------)
 
 
 (-----------------cinematics---------------)
@@ -1023,10 +1118,6 @@ down 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Crate ] -> 
 right 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Crate ] -> [ Player | ... | SpiritHitsR TempSpiritAlreadyCollided | Crate ] sfx4 sfx5
 left 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Crate ] -> [ Player | ... | SpiritHitsL TempSpiritAlreadyCollided | Crate ] sfx4 sfx5
 
-([ stationary Player ][ SpiritHitsU Timer5 ] -> [ stationary Player ][ SpiritStationary ]
-[ stationary Player ][ SpiritHitsU Timer4 ] -> [ stationary Player ][ SpiritHitsU Timer5 ]
-[ stationary Player ][ SpiritHitsU Timer3 ] -> [ stationary Player ][ SpiritHitsU Timer4 ]
-[ stationary Player ][ SpiritHits Timer2 ] -> [ stationary Player ][ SpiritStationary ])
 [ stationary Player ][ SpiritHits Timer1 ] -> [ stationary Player ][ SpiritStationary ]
 [ stationary Player ][ SpiritHits Timer0 ] -> [ stationary Player ][ SpiritHits Timer1 ]
 [ stationary Player ][ SpiritHits no Timer] -> [ stationary Player ][ SpiritHits Timer0 ]
@@ -1065,43 +1156,6 @@ WINCONDITIONS
 =======
 LEVELS
 =======
-(
-name idea: Re-homing Pigeons. Lore is that [after solar flares], species of pigeon has 
-lost their sense of direction and you are there to guide them to their nests (by frightening them) problem: don't know how to draw a pigeon in PS.
-Aurora Ballealis - ball of northern light
-Cold Corrale 
-Chill of the Chase
-
-
-message Every year, biologists make the frigid journey to survey a population of rare and highly unique animals. But they have to catch them first.
-
-messages: can be about the strange behaviours/properties of the species.
-
-****Easily spooked by perceived threats, they are bullish in their attempted escape, but are quick to give up if their way is blocked. 
-
-Some specimens exhibit hardened anterior tissue, apparently adapted in response to frequent  collisions with rocky surfaces. Their obstacle avoidance on the other hand does not seems to have improved.
-
-The explorers who first documented the animals were shocked to discover their great affinity for the ocean. No one has yet managed to catch one overwater, even with a speedboat. 
-
-Strange, square crystals are also found on some of the islands. They don't appear to be alive though so no one's really interested in them.
-
-Many claim the animal displays a kind of bioluminescence, most noticeable when over dark water. Critics say it's "just a trick of the light", since such a feature would have no obvious evolutionary advantage.
-
-Higly skilled trackers often employ stealth, utilising their surroundings to avoid detection. Those with even higher skill simply choose a more convenient capture location.
-
-The biologists train themselves to notice subtle signs of the elusive animal. Thankfully, their big eyes, used to detect potential threats at long distances (in cardinal directions) are more of a hindrance when in hiding. 
-
-Also of scientific interest are the endangered species of shrub which sparsely populate the region. No one can quite work out why, but islands visited by researchers in previous years tend to fare worst of all. 
-
-When push comes to shove, it's not unheard of for impatient field biologists to give their unenthusuastic specimens a nudge in the right direction. The effects of human contact on the creatures will be subject of further studies.
-
-It has been proposed that their rich purple colour is due to a chemical present in their diet. No one has witnessed one so much as move unprompted though, so what that diet may be is unknown.
-
-Never have researchers observed the seemingly docile creatures display any kind of aggression. Regardless, it is speculated that they are actually a highly territorial species, which may explain why their population per island rarely surpasses 1.
-
-QUESTION: How much of a hint do I want to give? probably not much, mainly just for entertainment.
-)
-
 
 message Every year, biologists make the frigid journey to survey a population of rare and highly unique animals. But they have to catch them first.
 
@@ -1121,14 +1175,13 @@ message Every year, biologists make the frigid journey to survey a population of
 ~~~###...~~
 ~~~....#.~~
 ~~...p....~
-~~........~
+~~.......①~
 ~~..s.o#..~
 ~##...##.~~
 ~~.......~~
 ~~~.....~~~
-~~~~~~~~~~~
-
-message Specimens exhibit hardened anterior tissue, apparently adapted in response to frequent collisions with rocky surfaces. Their obstacle avoidance on the other hand does not seems to have improved.
+~~~~~~~~~~~ 
+(message 1)
 
 ~~~~~~~~~~~~
 ~~~~####~#~~
@@ -1141,20 +1194,18 @@ message Specimens exhibit hardened anterior tissue, apparently adapted in respon
 ~~#~~...~~~~
 ~~~~~~~~~~~~
 
-
 ~~~~~~~~~~~~
 ~~~....##~~~
 ~~#.#.....~~
-~#...~.#...~
+~#...~.#..②~
 ~#.#.~~.s..~
 ~~..~~~..p.~
 ~~~..~~~.##~
 ~~~~.~~~o#~~
 ~~~~#~#~~#~~
 ~~~~~~#~~~~~
-~~~~~~~~~~~~
-
-message The explorers who first documented the animals were shocked to discover their great affinity for the ocean. Nobody has yet managed to catch one overwater, even with a speedboat.
+~~~~~~~~~~~~ 
+(message 2)
 
 ~~~~~~~~~~~~~~~
 ~~~#~..~..~~~~~
@@ -1169,7 +1220,7 @@ message The explorers who first documented the animals were shocked to discover 
 
 ~~~~~~~~~~~~~
 ~~~~~..~~~~~~
-~~~~.....###~
+~~~~③....###~
 ~~###.....o#~
 ~~#........#~
 ~.#..s......~
@@ -1177,9 +1228,9 @@ message The explorers who first documented the animals were shocked to discover 
 ~..*....##.~~
 ~~....~.##.~~
 ~~.p.~~....~~
-~~~~~~~~~~~~~
+~~~~~~~~~~~~~ 
+(message 3)
 
-message Strange, square crystals are also found on some of the islands. They don't appear to be alive though so no one's really interested in them.
 
 ~~~~~~~~~~#~~~
 ~#~~~~~~~~~#~~
@@ -1193,8 +1244,6 @@ message Strange, square crystals are also found on some of the islands. They don
 ~#~~~~..~~~~#~
 ~#~~~~~~~~#~~~
 
-
-
 .....~~~~~~~~
 #########~~~~
 #.......#.~~~
@@ -1203,8 +1252,17 @@ message Strange, square crystals are also found on some of the islands. They don
 #..~~~..s...~
 #..~~~......~
 #.*ddd.p#...~
-#.......#..~~
-#########.~~~
+#.......#④.~~
+#########.~~~ 
+(message 4)
+
+
+
+
+
+
+
+(destroying crates)
 
 ~~~~~~~~~~~~~
 ~~~~~....~~~~
@@ -1217,10 +1275,8 @@ message Strange, square crystals are also found on some of the islands. They don
 ~~~#~~~#*...~
 ~~~~~#~.o.#~~
 ~~~~~~~~#~~~~
-~~~~~~~~~~~~~  (level introducing destroying crates)
+~~~~~~~~~~~~~  (levels introducing destroying crates)
 
-message Many claim the animal displays a kind of bioluminescence, most noticeable when over dark water. Critics say it's "just a trick of the light", since such a feature would have no obvious evolutionary advantage.
-(message maybe a bit misleading since colour of water not relevant?)
 
 ####~~~######
 ##~~~~~~~...#
@@ -1229,6 +1285,10 @@ message Many claim the animal displays a kind of bioluminescence, most noticeabl
 #..*..*.*...#
 ##~~~~~~~...#
 ####~~~######  (destroy crates that are in the way)
+
+
+
+
 
 
 
@@ -1247,8 +1307,6 @@ message Many claim the animal displays a kind of bioluminescence, most noticeabl
 ~~~~~#~~~~~~~~~~
 ~~~~~~~~~~~~~~~~
 
-message Highly skilled trackers often employ stealth, utilising their surroundings to avoid detection. Those with even higher skill simply choose a more convenient capture location.
-
 ~~~~~~~~~~~~~~~
 ~~~~#~~#~~~~~~~
 ~~~...~#~~~~~~~
@@ -1260,10 +1318,18 @@ message Highly skilled trackers often employ stealth, utilising their surroundin
 ~..........#..~
 ~..p.bo###...~~
 ~~b..####b.~~~~
-~~~...~~~~~~~~~
+~~~..⑤~~~~~~~~~
 ~~~~~~~~~~~~~~~
+(message 5)
 
-(levels introducing bushes as catching spirit)
+
+
+
+
+
+
+
+(bushes catching spirit)
 
 ~~~~~~~~~~~~~~
 ~~~~~...~~~~~~
@@ -1276,8 +1342,6 @@ message Highly skilled trackers often employ stealth, utilising their surroundin
 ~~.p.#~~~...~~
 ~~~~##~~#~~~~~
 ~~~~~~~~~~~~~~ (makes it look like bushes will stop spirit like walls) (maybe add an animation for entering bush for the first time?)
-(level ends too soon (graphics bug))
-
 
 ~~~~~~~~~~~
 ~#~...~...~
@@ -1294,7 +1358,7 @@ message Highly skilled trackers often employ stealth, utilising their surroundin
 ~~~~~~~~~~~~~~~~~
 ~~~~~~~~~......~~
 ~~....~....~~...~
-~...b.~~.b..~b..~
+~.⑥.b.~~.b..~b..~
 ~~~....~~~~.~~~~~
 ~~........~.~..~~
 ~~~.b..b.w~..b..~
@@ -1303,8 +1367,13 @@ message Highly skilled trackers often employ stealth, utilising their surroundin
 ~...b..o.b.p.b~~~
 ~~.....#....~~~~~
 ~~~~~~~~~~~~~~~~~ (can't walk adjacent to bush w/ spirit (must be on correct side of it). Use Bush as Cover.)
+(message 6)
 
-message Also of scientific interest are the endangered species of shrub which sparsely populate the region. No one can quite work out why, but islands visited by researchers in previous years tend to fare worst of all. 
+
+
+
+
+(crate interlude)
 
 ~~~~~~~~~~~~~
 ~...~#~~~...~
@@ -1328,6 +1397,12 @@ message Also of scientific interest are the endangered species of shrub which sp
 #.......#b.~~
 #########.~~~
 
+
+
+
+
+
+
 (intentionally break bushes)
 
 ~~~~~~~~~~~~
@@ -1341,15 +1416,15 @@ message Also of scientific interest are the endangered species of shrub which sp
 ~~~.b...#~~~
 ~~~~~~~~~~~~ (bush you can't break and run until moving the spirit)(forces you to do a circuit)
 
-message The biologists train themselves to notice subtle signs of the elusive animal. Thankfully, their big eyes, used to detect potential threats at long distances (in cardinal directions) are more of a hindrance when in hiding.
-
 LLLLLLLLL~~~~~~~~~~
 #o~b~.b.LL~~~~~~~~~
 L.....L.LL~~~~~~~~~
 #.#L~~~b~.b.h.LbLb.
 #.#~......L...L.L..
 #..b...##.L.p...L..
-#####..##.#........  (intentionally breaking bushes, and progress gated by bushes that must be used constructively)
+#####..##⑦#........  (intentionally breaking bushes, and progress gated by bushes that must be used constructively)
+(message 7)
+
 
 ~~~~~~~~DDD~~
 ~####~#~...#~
@@ -1363,6 +1438,10 @@ L.....L.LL~~~~~~~~~
 ~~~~~~~~~~~~~ (intentionally break so it won't block line of sight)(break when in view of spirit / break and go back)
 
 
+
+
+
+
 (hiding in bush adjacent to spirit in bush, and pushing spirit free)
 
 ~~~~~~~~~~~~~~~~~~~
@@ -1374,18 +1453,17 @@ L.....L.LL~~~~~~~~~
 ~~#~~~~~#~#~~##...~
 ~~~~~~~~~~~~~~~~~~~ 
 
-
 ~~~~~~~~~~~~~~~
 ~~~~~~~.#....~~
 ~~~#.....p.#..~
 ~.bhb..bbbbbbo~
 ~~.....#......~
-~~~~#.....#...~
+~~~~#.....#..⑧~
 ~#~~~~~.#...~~~
 ~~~~~#~~~~~~~#~
 ~~~~~~~~~~~~~~~ (shows how you can win from pushing spirits)
+(message 8)
 
-message When push comes to shove, it's not unheard of for impatient field biologists to give their unenthusiastic specimens a nudge in the right direction. The effects of human contact on the creatures will be subject of further studies.
 
 ~~~~~~~~~~~~~~
 ~~~##~......~~
@@ -1424,12 +1502,17 @@ message When push comes to shove, it's not unheard of for impatient field biolog
 ~...p.....~
 ~~~~~~~~~~~
 
-message It has been proposed that the species' rich purple colour is due to a chemical present in their diet. No one has witnessed one so much as move unprompted though, so what that diet may be is unknown.
+
+
+
+
+
 
 (crates and bushes)
 
+
 ~~~~~~~~~~~~~
-~~~b..~~~~~~~
+~~~⑨..~~~~~~~
 ~###.p.~~#~#~
 ~~........o#~
 ~~.*.b~~b..~~
@@ -1437,6 +1520,7 @@ message It has been proposed that the species' rich purple colour is due to a ch
 ~#~.....s.~~~
 ~~~....#~##~~
 ~~~~~~~~~~~~~
+(message 9)
 
 
 ~~~~~~~~~~~~~
@@ -1481,10 +1565,11 @@ L.o........~..~
 ~.........~~~
 ~~#b..s..b##~
 ~~~..##~~.~~~
-~~..........~
+~~.........⑩~
 ~~b.*.p....#~
 ~~~~~~~##..~~
 ~~~~~~~~~~~~~ (forces push crate forward then go back) 
+(message 10)
 
 ~~~~~~~~~~~~
 ~~~~~.....~~
@@ -1521,13 +1606,14 @@ L.o........~..~
 
 ~~~~~~~~~~~~~~~~~~
 ~~~~~~#~~~~~~~#~~~
-~.....#...~#dd.d#~
+~.....#⑪..~#dd.d#~
 ~.#b......d#o.bd.~
 ~..bb~ddd.d#..b#.~
 ~.%hb~#...d.b....~
 ~..b.~#b.b..b%.##~
 ~.p..~#~#~~....##~
 ~~~~~~~~~~~~~~~~~~ (Push crate in bush to get it past spirit in bush)
+(message 11)
 
 ~~~~~~~~~~~~
 ~~~#b......~
@@ -1555,11 +1641,6 @@ L.o........~..~
 
 
 
-
-
-
-(End Last level with a cinematic)
-
 ~~~~~~~~~~~~~~~~~~~~~~
 ~~~....*...~~~..b.~~~~
 ~~.......*~~#.......~~
@@ -1568,22 +1649,16 @@ L.o........~..~
 ~~.b~~~~.~~.*~~~..~ouc
 ~#...~~~..~..~~~~*~~~~
 ~~.s.#~...b...#~~..#~~
-~~~..~~......~~~.p.~~~
+~~~..~~......~~~.p..⑫~
 ~.~~..~~...*..~..~~~#~
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~ (End Last level with a cinematic)
+(messsage 12)
 
-(
-~~~~~~~~~~~~~~~~~~~
-~~.#....~~~~~~~~~~~
-~.....p.#~~#....~~~
-~..~~~...~~.....#~~
-~...~~~..~~..~#...~
-~.b.~~~.~~...~~.ouc
-~....~..~~...~~...~
-~.s.#~...~..~#~...~
-~~..~~......#~~#..~
-~~...~~#....~~...~~
-~~~~~~~~~~~~~~~~~~~ )
+
+
+
+
+(cinematic)
 
 ~~~~~~~~~~~~~~~~~~
 ~~~#~~~~#~~~~~~#~~
@@ -1642,7 +1717,7 @@ C~~~~~~~~~~~~q~~wF
 c~{'y~~~.~~..~~~..~owf
 ~#...~~~..~..~~~~.~~~~
 ~~...#~...;..*#~~..#~~
-~~~..~~......~~~...~~~
+~~~..~~......~~~.....~
 ~.~~..~~*.....~..~~~#~
 ~~~~~~~~~~~~~~~~~~~~~~
 
