@@ -1,0 +1,2049 @@
+
+
+title Headlong Hunt
+author Toombler
+homepage https://toombler.itch.io/
+
+again_interval 0.05
+realtime_interval 0.1
+noaction
+run_rules_on_level_start
+level_select
+
+custom_font data:font/ttf;base64,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
+
+(verbose_logging)
+
+========
+OBJECTS
+========
+
+Background
+#CCDCEA #99C6E2  #ffaf47 #ffbf69
+11011
+01110
+11001
+11100
+00111
+
+WaterCoverUp
+#7fb0d7 #4089c4 (#96bede #67a1d0) (#95e6de #2ec2b4)
+00000
+11111
+.....
+.....
+.....
+
+Target
+#445c75 #1b2632 darkblue (#ba6eac)
+.....
+.000.
+.000.
+.000.
+.....
+
+Wall
+#3a3c3a #505451 #6a6e6b #8c908c
+20203
+22302
+02312
+03010
+20010
+
+NormalPlayer
+#383430 #A09D95 #6D6C69 #574236
+.000.
+.111.
+33333
+02220
+.0.0.
+
+TempStartHighlight
+transparent
+
+StartHighlightD
+#5094cc
+.....
+0.0.0
+.....
+.....
+.....
+
+StartHighlightU
+#5094cc
+.....
+.....
+.....
+0.0.0
+.....
+
+StartHighlightR
+#5094cc
+.0...
+.....
+.0...
+.....
+.0...
+
+StartHighlightL
+#5094cc
+...0.
+.....
+...0.
+.....
+...0.
+
+StoneCrate
+#a05f75 #a35c68 #b14e6d #94555c 
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSinkCover0
+#966179 #995E6E #A65172 #8B5863 #9D667E #AC5777 #925D67 #A75375 #8C5A65
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover1
+#8C637E #8F6073 #9A5577 #835A69 #9A6E87 #A86080 #906672 #9C597D #855E6F
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover2
+#836482 #856279 #8F587D #7A5D70 #977590 #A3698A #8E6E7E #925E85 #7D6378
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover3
+#796687 #7B647F #845B82 #716077 #947C99 #9F7294 #8C7689 #88638D #756882
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover4   
+#6F688B #716684 #785F87 #68637E #9184A2 #9A7B9D #8A7E94 #7E6995 #6E6D8B
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover5
+#656A90 #66698A #6D628C #606584 #8E8BAA #9683A7 #89879F #736E9C #667195
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover6
+#5B6C94 #5C6B8F #616691 #57688B #8B93B3 #918CB0 #878FAA #6974A4 #5F769E
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover7
+#516E99 #526D95 #566996 #4E6B92 #889ABC #8D95BA #8597B5 #5F79AC #577BA8
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover8
+#486F9D #486F9B #4B6C9C #456E99 #85A1C5 #889EC4 #839FC1 #557EB4 #4F80B1
+45655
+8...7
+3...2
+3...1
+33331
+
+StoneCrateSinkCover9
+#3E71A2 #3E71A0 #3F70A1 #3D709F #82A9CE #84A7CD #81A8CC #4A84BC #4884BB
+45655
+8...7
+3...2
+3...1
+33331
+
+
+
+
+StoneCrateSink0
+#966179 #995E6E #A65172 #8B5863
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink1
+#8C637E #8F6073 #9A5577 #835A69
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink2
+#836482 #856279 #8F587D #7A5D70
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink3
+#796687 #7B647F #845B82 #716077
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink4
+#6F688B #716684 #785F87 #68637E
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink5
+#656A90 #66698A #6D628C #606584
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink6
+#5B6C94 #5C6B8F #616691 #57688B
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink7
+#516E99 #526D95 #566996 #4E6B92
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink8
+#486F9D #486F9B #4B6C9C #456E99
+02322
+3...2
+3...2
+3...1
+33331
+
+StoneCrateSink9
+#3E71A2 #3E71A0 #3F70A1 #3D709F
+02322
+3...2
+3...2
+3...1
+33331
+
+SpiritStationary
+#4d2ca8 red white black #a82c8f
+.....
+.202.
+.303.
+.000.
+.4.4.
+
+SpiritHitsU
+#4d2ca8 red white black #a82c8f
+02020
+43034
+.....
+.....
+.....
+
+SpiritHitsD
+#4d2ca8 red white black #a82c8f
+.....
+.....
+.....
+42024
+03030
+
+SpiritHitsR
+#4d2ca8 red white black #a82c8f
+...00
+...02
+...03
+...00
+...40
+
+SpiritHitsL
+#4d2ca8 red white black #a82c8f
+00...
+20...
+30...
+00...
+04...
+
+SpiritMovesU
+#4d2ca8 red white black #a82c8f
+.202.
+.303.
+.000.
+.000.
+.4.4.
+
+SpiritMovesD
+#4d2ca8 red white black #a82c8f
+.4.4.
+.000.
+.000.
+.202.
+.303.
+
+
+SpiritMovesR
+#4d2ca8 red white black #a82c8f
+.....
+.0202
+.0303
+40000
+.....
+
+SpiritMovesL
+#4d2ca8 red white black #a82c8f
+.....
+2020.
+3030.
+00004
+.....
+
+
+
+
+
+
+
+SpiritStationaryRedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+.....
+.101.
+.303.
+.000.
+.4.4.
+
+SpiritHitsURedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+01010
+43034
+.....
+.....
+.....
+
+SpiritHitsDRedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+.....
+.....
+.....
+41014
+03030
+
+SpiritHitsRRedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+...00
+...01
+...03
+...00
+...40
+
+SpiritHitsLRedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+00...
+10...
+30...
+00...
+04...
+
+SpiritMovesURedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+.101.
+.303.
+.000.
+.000.
+.4.4.
+
+SpiritMovesDRedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+.4.4.
+.000.
+.000.
+.101.
+.303.
+
+
+SpiritMovesRRedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+.....
+.0101
+.0303
+40000
+.....
+
+SpiritMovesLRedEyes
+#4d2ca8 #ad0505 white black #a82c8f
+.....
+1010.
+3030.
+00004
+.....
+
+SpiritHasRedEyes
+transparent
+
+SpiritGetsRedEyes
+transparent
+
+BushSpawner
+transparent
+
+TempBushAlreadyRandomised
+transparent
+
+Bush0A
+#4b916c #3e785a #579a65
+.....
+.....
+.0...
+021.0
+10212
+
+Bush0B
+#4b916c #3e785a #579a65
+.....
+.....
+...0.
+0.120
+21201
+
+Bush1A
+#4b916c #3e785a #579a65
+.....
+.....
+..22.
+.1012
+12110
+
+Bush1B
+#4b916c #3e785a #579a65
+.....
+.....
+.22..
+2101.
+01121
+
+Bush2A
+#4b916c #3e785a #579a65
+.....
+.0...
+.02..
+1210.
+11210
+
+Bush2B
+#4b916c #3e785a #579a65
+.....
+...0.
+..20.
+.0121
+01211
+
+
+DestroyedBush0
+#54a199 #4f9c99 #4f633b #325c4e #4b916c #3e785a
+.....
+.....
+.....
+.....
+0.01.
+
+DestroyedBush1
+#54a199 #4f9c99 #4f633b #325c4e #4b916c #3e785a
+.....
+.....
+.....
+.....
+1..0.
+
+DestroyedBush2
+#54a199 #4f9c99 #4f633b #325c4e #4b916c #3e785a
+.....
+.....
+.....
+.....
+01.1.
+
+TempVacatedBush
+black
+
+TempSpiritAlreadyCollided
+transparent
+
+SpiritLeftScreen
+transparent
+
+CinematicWin
+transparent
+
+CinematicWall
+#3a3c3a #505451 #6a6e6b #8c908c
+20203
+22302
+02312
+03010
+20010
+
+CinematicPlayer
+transparent
+
+CinematicPlayerSwap
+transparent
+
+CinematicPlayerPushed
+#383430 #A09D95 #6D6C69 #574236
+.000.
+.111.
+33333
+02220
+.0.0.
+
+CinematicPlayerAirBorne
+#383430 #A09D95 #6D6C69 #574236
+.000.
+.111.
+33333
+02220
+.0.0.
+
+SpiritLightMarker
+transparent
+
+Water 
+#3473a6 (#3B83BD) (#27A599)
+
+SpiritScaredMarker
+transparent
+
+BlockingU
+transparent
+
+BlockingD
+transparent
+
+BlockingR
+transparent
+
+BlockingL
+transparent
+
+Timer0
+transparent
+
+Timer1
+transparent
+
+Timer2
+transparent
+
+Timer3
+transparent
+
+Timer4
+transparent
+
+Timer5
+transparent
+
+WinTimer0
+transparent
+
+WinTimer1
+transparent
+
+WinTimer2
+transparent
+
+WinTimer3
+transparent
+
+WinTimer4
+transparent
+
+
+WaterDepthneg1
+#397cb3
+
+WaterDepth0
+#3473a6 
+
+ManualWaterDepth0
+#3473a6 
+
+WaterDepth1
+#2d6491
+
+WaterDepth2
+#285a82
+
+WaterDepth3
+#25547a
+
+WaterDepth4
+#204a6b
+
+ManualWaterDepth4
+#204a6b
+
+WaterDepth5
+#1c405c
+
+WaterDepth6
+#17354d
+
+WaterDepth7
+#112738
+
+WaterDepth8
+#0f2230
+
+
+PlayerHitSoundEmitter
+transparent
+
+PlayerFlyingSoundEmitter
+transparent
+
+NoteSprite
+#d1c097 #ccbb93 #c4b291 #b39d68 #ab875e #0c1330 #1c49ff #1e3654
+.....
+.0...
+3200.
+.310.
+..321
+
+Note1
+transparent
+
+Note2
+transparent
+
+Note3
+transparent
+
+Note4
+transparent
+
+Note5
+transparent
+
+Note6
+transparent
+
+Note7
+transparent
+
+Note8
+transparent
+
+Note9
+transparent
+
+Note10
+transparent
+
+Note11
+transparent
+
+Note12
+transparent
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+
+P = NormalPlayer and TempStartHighlight
+Player = NormalPlayer or CinematicPlayer
+* = StoneCrate
+@ = StoneCrate and Target
+% = StoneCrate and BushSpawner
+O = Target
+S = SpiritStationary and TempSpiritAlreadyCollided
+~ = Water
+W = SpiritStationary and Water and TempSpiritAlreadyCollided
+B = BushSpawner
+5 = BushSpawner and Bush0A
+H = BushSpawner and SpiritStationary and TempSpiritAlreadyCollided
+J = BushSpawner and Target
+; = DestroyedBush0
++ = DestroyedBush1
+' = DestroyedBush2
+X = NormalPlayer and BushSpawner
+
+StartHighlight = StartHighlightU or StartHighlightD or StartHighlightR or StartHighlightL
+
+C = Water and CinematicWin
+U = CinematicWall
+G = CinematicPlayer
+{ = CinematicPlayerPushed
+& = CinematicPlayerPushed and Water
+z = CinematicPlayerAirBorne and water
+
+F = Water and CinematicPlayer
+I = Water and CinematicPlayerSwap
+y = PlayerHitSoundEmitter and water
+r = PlayerFlyingSoundEmitter and water
+q = SpiritGetsRedEyes and water
+k = SpiritHasRedEyes and water
+
+
+
+
+
+L = water and ManualWaterDepth0
+D = water and ManualWaterDepth4
+WaterDepth = WaterDepthneg1 or WaterDepth0 or WaterDepth1 or WaterDepth2 or WaterDepth3 or WaterDepth4 or WaterDepth5 or WaterDepth6 or WaterDepth7 or WaterDepth8 
+
+
+Blocking = BlockingU or BlockingD or BlockingR or BlockingL
+
+SpiritHits = SpiritHitsU or SpiritHitsD or SpiritHitsR or SpiritHitsL
+SpiritMoves = SpiritMovesU or SpiritMovesD or SpiritMovesR or SpiritMovesL
+Spirit = SpiritStationary or SpiritHits or SpiritMoves
+
+SpiritHitsRedEyes = SpiritHitsURedEyes or SpiritHitsDRedEyes or SpiritHitsRRedEyes or SpiritHitsLRedEyes
+SpiritMovesRedEyes = SpiritMovesURedEyes or SpiritMovesDRedEyes or SpiritMovesRRedEyes or SpiritMovesLRedEyes
+SpiritRedEyes = SpiritStationaryRedEyes or SpiritHitsRedEyes or SpiritMovesRedEyes
+
+Crate = StoneCrate
+Bush = Bush0A or Bush1A or Bush2A or Bush0B or Bush1B or Bush2B
+DestroyedBush = DestroyedBush0 or DestroyedBush1 or DestroyedBush2
+Opaque = StoneCrate or Wall or Bush
+
+Timer = Timer0 or Timer1 or Timer2 or Timer3 or Timer4 or Timer5 
+WinTimer = WinTimer0 or WinTimer1 or WinTimer2 or WinTimer3 or WinTimer4
+
+StoneCrateSink = StoneCrateSink0 or StoneCrateSink1 or StoneCrateSink2 or StoneCrateSink3 or StoneCrateSink4 or StoneCrateSink5 or StoneCrateSink6 or StoneCrateSink7 or StoneCrateSink8 or StoneCrateSink9
+StoneCrateSinkCover = StoneCrateSinkCover0 or StoneCrateSinkCover1 or StoneCrateSinkCover2 or StoneCrateSinkCover3 or StoneCrateSinkCover4 or StoneCrateSinkCover5 or StoneCrateSinkCover6 or StoneCrateSinkCover7 or StoneCrateSinkCover8 or StoneCrateSinkCover9  
+
+
+① = Note1 and notesprite
+② = Note2 and notesprite
+③ = Note3 and notesprite
+④ = Note4 and notesprite
+⑤ = Note5 and notesprite
+⑥ = Note6 and notesprite
+⑦ = Note7 and notesprite
+⑧ = Note8 and notesprite
+⑨ = Note9 and notesprite
+⑩ = Note10 and notesprite
+⑪ = Note11 and notesprite
+⑫ = Note12 and notesprite
+
+Note = Note1 or Note2 or Note3 or Note4 or Note5 or Note6 or Note7 or Note8 or Note9 or Note10 or Note11 or Note12
+
+
+=======
+SOUNDS
+=======
+
+Crate MOVE 36772507
+
+Crate destroy 45416100 (33195900) (58667903)
+
+CinematicWall destroy 73561902 (11850702)
+
+(Endlevel 96976903)
+sfx7 96976903
+
+(Spirit move 50223502 (39212302))
+
+SpiritMoves create 66783707 (31766707) (13235302) (8021307) (spirit scared)
+
+sfx2 9086109 (71499902) (17662302) (39212302) (sound for when spirit has left screen)
+
+Player move 78892307 (23662107) (16418907) (74291507)
+
+StartHighlightU destroy 45316100 
+
+sfx0  15065104      (kick spirit out of bush)
+sfx9 64602707 (99373907) (30520905) (69043305) (70479907) (19606904) (push spirit)
+(
+7389303
+96059500
+49635507
+31288108)
+
+
+sfx1 49801907 (26041300) (64859107)  () (destroy bush)
+(
+9249708
+62997108
+86294708)
+
+sfx3 2447107 (spirit collides with wall)
+
+sfx4 33912304 (71683100) (76311307) (spirit collides with crate)
+sfx5 13888100 (63113700) (spirit collides with crate 2)
+
+
+
+sfx6 60883704 (51866502) (49962304) (spirit enter bush sound)
+
+
+note destroy 781703 (11591503)
+closemessage 21300103 (8159703) (17966903) (10729903)
+
+(---cinematic sounds---)
+SpiritGetsRedEyes destroy 13289708 (7476908) (39658702) (18246902)
+PlayerHitSoundEmitter destroy 62596502 (spirit first hits player)
+PlayerFlyingSoundEmitter destroy 40575908
+
+sfx8 86314902 (player collides at end)
+
+(91531508 - cool sound)
+
+================
+COLLISIONLAYERS
+================
+
+Background
+
+Water
+
+
+
+ManualWaterDepth0
+ManualWaterDepth4
+WaterDepth
+WaterCoverUp
+StoneCrateSink, StoneCrateSinkCover
+Note
+NoteSprite
+
+Target
+DestroyedBush
+Player, Wall, CinematicWall, Crate, Spirit, CinematicPlayerAirBorne
+SpiritRedEyes
+
+BushSpawner
+TempBushAlreadyRandomised
+Bush
+
+TempStartHighlight
+StartHighlight
+
+Blocking
+SpiritScaredMarker
+TempVacatedBush
+TempSpiritAlreadyCollided
+SpiritLeftScreen
+CinematicWin
+CinematicPlayerSwap
+CinematicPlayerPushed
+PlayerHitSoundEmitter
+PlayerFlyingSoundEmitter
+SpiritGetsRedEyes
+SpiritHasRedEyes
+SpiritLightMarker
+Timer
+WinTimer
+
+
+
+======
+RULES
+======
+
+up 		[ TempStartHighlight | ] -> [ TempStartHighlight | StartHighlightU ]
+down 	[ TempStartHighlight | ] -> [ TempStartHighlight | StartHighlightD ]
+right 	[ TempStartHighlight | ] -> [ TempStartHighlight | StartHighlightR ]
+left 	[ TempStartHighlight | ] -> [ TempStartHighlight | StartHighlightL ]
+[ TempStartHighlight ] -> []
+[ moving Player ][ StartHighlight ] -> [ moving Player ][]
+
+[ > Player | Water ] -> [ Player | Water ] (don't let player enter water)
+
+[ >  Player | Crate ] -> [  >  Player | > Crate ] (push crate)
+
+
+[ > Player Bush | Spirit ] -> [ > Player Bush | > Spirit] sfx9 (kick spirit from bush - this is only useful with one spirit if the spirit is also in a bush)
+
+late [ Player no Bush | Spirit Bush | no Crate no Wall ] -> [ Player no Bush | Spirit random DestroyedBush | no Crate no Wall ]  sfx0 sfx1 (kick spirit out of bush)
+
+
+[ > Player Bush ] -> [ > Player Bush TempVacatedBush] (kill bush that you walked through)
+
+late [TempVacatedBush Bush no Player no Spirit no Crate ] -> [ random DestroyedBush ] sfx1 (destroy marked bushes if there is nothing occupying them)
+late [TempVacatedBush] -> []
+
+(destroy crates in water)
+late [Crate Water WaterCoverUp] -> [StoneCrateSinkCover0 Water WaterCoverUp]
+late [Crate Water] -> [StoneCrateSink0 Water]
+
+
+(move spirit away from player if marked to do so)
+[ Player | ... | Spirit SpiritScaredMarker ] -> [ Player | ... | > Spirit ] 
+[SpiritScaredMarker] -> [] 
+
+(check lines of sight from spirit)
+late [Blocking] -> []
+late up [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingU]
+late down [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingD]
+late right [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingR]
+late left [ Spirit | ... | Opaque ] -> [ Spirit | ... | Opaque BlockingL]
+
+
+(make spirit move away)
+
+late [ Player no Bush | ... | Spirit no Bush | no wall no crate ] -> [ Player | ... | Spirit SpiritScaredMarker | ] 
+
+
+(cancel spirit movement if line of sight blocked) 
+
+late up 	[ Player no Bush | ... | Spirit SpiritScaredMarker no Bush ][ Player | ... | BlockingD ]  ->  [ Player | ... | Spirit ][ Player | ... | BlockingD ]
+late down 	[ Player no Bush | ... | Spirit SpiritScaredMarker no Bush ][ Player | ... | BlockingU ]  ->  [ Player | ... | Spirit ][ Player | ... | BlockingU ]
+late right 	[ Player no Bush | ... | Spirit SpiritScaredMarker no Bush ][ Player | ... | BlockingL ]  ->  [ Player | ... | Spirit ][ Player | ... | BlockingL ]
+late left	[ Player no Bush | ... | Spirit SpiritScaredMarker no Bush ][ Player | ... | BlockingR ]  ->  [ Player | ... | Spirit ][ Player | ... | BlockingR ]
+
+
+(if spirit dues to move next turn, play it immediately)
+late [SpiritScaredMarker] -> again
+
+
+
+(------------Story--------------)
+[ Player Note1 notesprite ] -> [ Player ] message Specimens exhibit toughened anterior tissue, apparently adapted in response to frequent  collisions with rocky surfaces. Their obstacle avoidance on the other hand does not seem to have improved.
+
+[ Player Note2 notesprite ] -> [ Player ] message The explorers who first documented the animal were shocked to discover its great affinity for the ocean. Nobody has yet managed to catch one over water, even with a speedboat.
+
+[ Player Note3 notesprite ] -> [ Player ] message Strange, square crystals are also found on some of the islands. They don't appear to be alive though so no one's really interested in them.
+
+[ Player Note4 notesprite ] -> [ Player ] message Many claim the animal displays a kind of bioluminescence, most noticeable when over dark water. Sceptics say it's "just a trick of the light", since such a feature would have no obvious evolutionary advantage.
+(message maybe a bit misleading since colour of water not relevant?)
+
+[ Player Note5 notesprite ] -> [ Player ] message Highly skilled trackers often employ stealth, utilising their surroundings to avoid detection. Those with even higher skill simply choose a more convenient capture location.
+
+[ Player Note6 notesprite ] -> [ Player ] message Also of scientific interest are the endangered species of shrub which sparsely populate the region. No one can quite work out why, but islands visited by researchers in previous years tend to fare worst of all.
+
+[ Player Note7 notesprite ] -> [ Player ] message The biologists train themselves to notice subtle signs of the elusive animal. Thankfully, their big eyes, used to detect potential threats at long distances (in cardinal directions) are more of a hindrance when in hiding.
+
+[ Player Note8 notesprite ] -> [ Player ] message When push comes to shove, it's not unheard of for impatient field biologists to give their unenthusiastic specimens a nudge in the right direction. The effects of human contact on the creatures will be subject of further studies.
+
+[ Player Note9 notesprite ] -> [ Player ] message It has been proposed that the species' rich purple colour is due to a chemical present in their diet. The desolate landscape presents very few candidates however so what that diet may be is unknown.
+
+[ Player Note10 notesprite ] -> [ Player ] message In the days before synthetic rubber, enterprising hunters thought to make all manner of goods from the animals’ springy hides. A reputation for cowardice among wearers of the material soon brought this tradition to an end.
+
+(
+[ Player Note11 notesprite ] -> [ Player ] message Although some of the region’s rock formations are of utility to the scientists (be it as a way to block the creatures’ line of sight, or for them to collide with) the purpose of many walls seems purely aethetic.)
+
+[ Player Note11 notesprite ] -> [ Player ] message Never have researchers observed the apparently docile creatures display any kind of aggression. Regardless, it is speculated that the species is actually highly territorial, which may explain why their population per island rarely surpasses 1. 
+
+[ Player Note12 notesprite ] -> [ Player ] message Some biologists grow to regard the creatures as respected adversaries. A true test of patience would pit the scientists’ navigation and planning ability against the animal’s remarkable tolerance to flinging itself around and colliding with stuff.
+
+(---------------------)
+
+
+(-----------------cinematics---------------)
+
+(spirit red eyes)
+late [ SpiritGetsRedEyes Spirit ] -> [ SpiritHasRedEyes Spirit ]
+
+late [ SpiritRedEyes ] -> []
+
+late [ SpiritHasRedEyes ][ SpiritStationary ] -> [ SpiritHasRedEyes ][ SpiritStationary SpiritStationaryRedEyes ]
+
+late [ SpiritHasRedEyes ][ SpiritMovesU ] -> [ SpiritHasRedEyes ][ SpiritMovesU SpiritMovesURedEyes ]
+late [ SpiritHasRedEyes ][ SpiritMovesD ] -> [ SpiritHasRedEyes ][ SpiritMovesD SpiritMovesDRedEyes ]
+late [ SpiritHasRedEyes ][ SpiritMovesR ] -> [ SpiritHasRedEyes ][ SpiritMovesR SpiritMovesRRedEyes ]
+late [ SpiritHasRedEyes ][ SpiritMovesL ] -> [ SpiritHasRedEyes ][ SpiritMovesL SpiritMovesLRedEyes ]
+
+late [ SpiritHasRedEyes ][ SpiritHitsU ] -> [ SpiritHasRedEyes ][ SpiritHitsU SpiritHitsURedEyes ]
+late [ SpiritHasRedEyes ][ SpiritHitsD ] -> [ SpiritHasRedEyes ][ SpiritHitsD SpiritHitsDRedEyes ]
+late [ SpiritHasRedEyes ][ SpiritHitsR ] -> [ SpiritHasRedEyes ][ SpiritHitsR SpiritHitsRRedEyes ]
+late [ SpiritHasRedEyes ][ SpiritHitsL ] -> [ SpiritHasRedEyes ][ SpiritHitsL SpiritHitsLRedEyes ]
+
+
+(cinematic win - needs to be before edge of screen detection)
+[ Spirit CinematicWin ] -> [ CinematicWin WinTimer0 ]
+[ CinematicPlayerPushed Target no WinTimer ] -> [ CinematicPlayerPushed Target WinTimer0 ] 
+
+(bounce spirit cinematic)
+right [ CinematicPlayer ][ CinematicPlayerSwap ][ SpiritStationary | Wall ] -> [  ][ CinematicPlayer ][ left SpiritStationary | CinematicWall ]
+
+(cinematic detroy wall)
+[ > Spirit | CinematicWall ] -> [ > Spirit | water ]
+down [ Spirit | WaterCoverUp ] -> [ Spirit | ]
+
+(Push player)
+
+[ CinematicPlayerPushed | Spirit ] -> [ < CinematicPlayerPushed | Spirit ]
+[ Spirit PlayerHitSoundEmitter ] -> [ Spirit ]
+[ CinematicPlayerPushed CinematicWin ] -> [ CinematicWin ]
+
+[ CinematicPlayerAirBorne ] -> [ left CinematicPlayerAirBorne ] again
+[ CinematicPlayerAirBorne CinematicWin no WinTimer ] -> [ CinematicWin WinTimer0]
+[ PlayerFlyingSoundEmitter ] -> [] 
+[ CinematicPlayerAirBorne target no WinTimer ] -> [ CinematicPlayerAirBorne target WinTimer0] sfx8
+
+[ > CinematicPlayerPushed | Crate ] -> [ > CinematicPlayerPushed | > Crate ]  
+
+
+(------------------------------------------)
+
+
+(----------------- Aesthetics ---------------------)
+
+(bush randomisation)
+[ BushSpawner Bush no TempBushAlreadyRandomised no DestroyedBush ] -> [ random Bush BushSpawner TempBushAlreadyRandomised ] checkpoint
+[ BushSpawner no TempBushAlreadyRandomised no DestroyedBush ] -> [ random Bush BushSpawner TempBushAlreadyRandomised ] checkpoint
+
+
+(create side borders)
+up [ Water | no Water ] -> [ Water WaterCoverUp | ]
+
+
+(water depth effect)
+[ WaterDepth ] -> []
+
+
+[ Spirit Water ] -> [ Spirit Water WaterDepthneg1 ]
+[ Spirit | Water ] -> [Spirit | Water WaterDepthneg1 ]
+
+[ SpiritLightMarker Water ] -> [ Water WaterDepthneg1 ] (lighten spot the spirit was previously)
+[ SpiritLightMarker | Water ] -> [ SpiritLightMarker | Water WaterDepthneg1]
+[ SpiritLightMarker ] -> []
+[ Spirit ] -> [ Spirit SpiritLightMarker ] 
+
+[ Water no WaterDepth | no Wall WaterDepthneg1 ] -> [ Water WaterDepth0 | WaterDepthneg1 ]
+
+
+[ManualWaterDepth0 no WaterDepth] -> [ManualWaterDepth0 WaterDepth0]
+
+(like it with dark at bottom, light at top) (manually place some water tiles)
+down [ Water no WaterDepth no ManualWaterDepth4 | no Water no wall] -> [ Water WaterDepth0 | ]
+[ Water no WaterDepth | no Wall WaterDepth0 ] -> [ Water WaterDepth1 | WaterDepth0 ]
+[ Water no WaterDepth | no Wall WaterDepth1 ] -> [ Water WaterDepth2 | WaterDepth1 ]
+(down [ Water no WaterDepth | no Water] -> [ Water WaterDepth2 | ])
+[ Water no WaterDepth | no Wall WaterDepth2 ] -> [ Water WaterDepth3 | WaterDepth2 ]
+[ Water no WaterDepth | no Wall WaterDepth3 ] -> [ Water WaterDepth4 | WaterDepth3 ]
+up [ Water no WaterDepth | no Water ] -> [ Water WaterDepth4 | ]
+[ManualWaterDepth4 no WaterDepth] -> [ManualWaterDepth4 WaterDepth4]
+[ Water no WaterDepth | no Wall WaterDepth4 ] -> [ Water WaterDepth5 | WaterDepth4 ]
+[ Water no WaterDepth | no Wall WaterDepth5 ] -> [ Water WaterDepth6 | WaterDepth5 ]
+[ Water no WaterDepth | no Wall WaterDepth6 ] -> [ Water WaterDepth7 | WaterDepth6 ]
+[ Water no WaterDepth ] -> [ Water WaterDepth8 ]
+
+
+
+
+(crate sinking animation)
+[ StoneCrateSink9 ] -> []
+[ StoneCrateSink8 ] -> [ StoneCrateSink9 ] 
+[ StoneCrateSink7 ] -> [ StoneCrateSink8 ] 
+[ StoneCrateSink6 ] -> [ StoneCrateSink7 ] 
+[ StoneCrateSink5 ] -> [ StoneCrateSink6 ] 
+[ StoneCrateSink4 ] -> [ StoneCrateSink5 ] 
+[ StoneCrateSink3 ] -> [ StoneCrateSink4 ] 
+[ StoneCrateSink2 ] -> [ StoneCrateSink3 ] 
+[ StoneCrateSink1 ] -> [ StoneCrateSink2 ]
+[ StoneCrateSink0 ] -> [ StoneCrateSink1 ]
+
+[ StoneCrateSinkCover9 ] -> []
+[ StoneCrateSinkCover8 ] -> [ StoneCrateSinkCover9 ] 
+[ StoneCrateSinkCover7 ] -> [ StoneCrateSinkCover8 ] 
+[ StoneCrateSinkCover6 ] -> [ StoneCrateSinkCover7 ] 
+[ StoneCrateSinkCover5 ] -> [ StoneCrateSinkCover6 ] 
+[ StoneCrateSinkCover4 ] -> [ StoneCrateSinkCover5 ] 
+[ StoneCrateSinkCover3 ] -> [ StoneCrateSinkCover4 ] 
+[ StoneCrateSinkCover2 ] -> [ StoneCrateSinkCover3 ] 
+[ StoneCrateSinkCover1 ] -> [ StoneCrateSinkCover2 ]
+[ StoneCrateSinkCover0 ] -> [ StoneCrateSinkCover1 ]
+
+
+
+(delete the spirit if it gets to the edge of the screen)
+
+[ Spirit ] -> [ Spirit SpiritLeftScreen ]
+up [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
+[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ] sfx2
+
+[ Spirit ] -> [ Spirit SpiritLeftScreen ]
+down [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
+[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ] sfx2
+
+[ Spirit ] -> [ Spirit SpiritLeftScreen ]
+right [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
+[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ] sfx2
+
+[ Spirit ] -> [ Spirit SpiritLeftScreen ]
+left [ Spirit SpiritLeftScreen | ] -> [ Spirit | ]
+[ SpiritLeftScreen Spirit ] -> [ SpiritLeftScreen ] sfx2
+ 
+(collision effects)
+[TempSpiritAlreadyCollided no Spirit] -> []
+up 		[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Wall ] -> [ Player | ... | SpiritHitsU TempSpiritAlreadyCollided | Wall ] sfx3
+down 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Wall ] -> [ Player | ... | SpiritHitsD TempSpiritAlreadyCollided | Wall ] sfx3
+right 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Wall ] -> [ Player | ... | SpiritHitsR TempSpiritAlreadyCollided | Wall ] sfx3
+left 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Wall ] -> [ Player | ... | SpiritHitsL TempSpiritAlreadyCollided | Wall ] sfx3
+
+up 		[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Crate ] -> [ Player | ... | SpiritHitsU TempSpiritAlreadyCollided | Crate ] sfx4 sfx5
+down 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Crate ] -> [ Player | ... | SpiritHitsD TempSpiritAlreadyCollided | Crate ] sfx4 sfx5
+right 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Crate ] -> [ Player | ... | SpiritHitsR TempSpiritAlreadyCollided | Crate ] sfx4 sfx5
+left 	[ Player | ... | Spirit no TempSpiritAlreadyCollided no bush | Crate ] -> [ Player | ... | SpiritHitsL TempSpiritAlreadyCollided | Crate ] sfx4 sfx5
+
+[ stationary Player ][ SpiritHits Timer1 ] -> [ stationary Player ][ SpiritStationary ]
+[ stationary Player ][ SpiritHits Timer0 ] -> [ stationary Player ][ SpiritHits Timer1 ]
+[ stationary Player ][ SpiritHits no Timer] -> [ stationary Player ][ SpiritHits Timer0 ]
+
+
+(movement sprites)
+up 		[ > Spirit no bush | no wall no Crate ] -> [ > SpiritMovesU | ]
+down 	[ > Spirit no bush | no wall no Crate ] -> [ > SpiritMovesD | ]
+right 	[ > Spirit no bush | no wall no Crate ] -> [ > SpiritMovesR | ]
+left 	[ > Spirit no bush | no wall no Crate ] -> [ > SpiritMovesL | ]
+
+[ stationary spirit no TempSpiritAlreadyCollided ] -> [ stationary SpiritStationary ]
+late [ SpiritMoves Bush ] -> [ SpiritStationary Bush ] sfx6
+
+(--------------------------------------)
+
+
+
+(-------winning------)
+
+[stationary Spirit Target][ moving Player ] -> [stationary Spirit Target][ stationary Player ] (don't let player move during bounce if they're going to win)
+[stationary SpiritStationary Target no WinTimer ] -> [stationary SpiritStationary Target WinTimer0]
+
+([ WinTimer4 ] -> win )
+[ CinematicWin WinTimer3 ] -> win
+[ no CinematicWin WinTimer3 ] -> win sfx7
+[ WinTimer2 ] -> [ WinTimer3 ] 
+[ WinTimer1 ] -> [ WinTimer2 ]
+[ WinTimer0 ] -> [ WinTimer1 ]
+
+
+==============
+WINCONDITIONS
+==============
+
+=======
+LEVELS
+=======
+
+section 1/37
+
+message Every year, biologists make the frigid journey to survey a population of rare and highly unique animals. But they have to catch them first.
+
+~~~~~~~~~~~
+~~~#...#.~~
+~~.#o.....~
+~.........~
+~.........~
+~~#.s....~~
+~~......#~~
+~.....p.#~~
+~~.###....~
+~~~~~~~~~~~
+
+section 2/37
+~~~~~~~~~~~
+~~~~~~~..~~
+~~~###...~~
+~~~....#.~~
+~~...p....~
+~~.......①~
+~~..s.o#..~
+~##...##.~~
+~~.......~~
+~~~.....~~~
+~~~~~~~~~~~ 
+(message 1)
+
+section 3/37
+~~~~~~~~~~~~
+~~~~####~#~~
+~####..o~~~~
+~L........~~
+~~.#..s...~~
+~~......p.~~
+~~~##...###~
+~~~~#.#.#~~~
+~~#~~...~~~~
+~~~~~~~~~~~~
+
+section 4/37
+~~~~~~~~~~~~
+~~~....##~~~
+~~#.#.....~~
+~#...~.#..②~
+~#.#.~~.s..~
+~~..~~~..p.~
+~~~..~~~.##~
+~~~~.~~~o#~~
+~~~~#~#~~#~~
+~~~~~~#~~~~~
+~~~~~~~~~~~~ 
+(message 2)
+
+section 5/37
+~~~~~~~~~~~~~~~
+~~~#~..~..~~~~~
+~.~#.......~~~~
+~~~#........~~~
+~~.#o.*s..#.~~~
+~~~.......#..~~
+~.~#.p.......~~
+~.~~~......~~~~
+~~~~~~#.~~~~#~~
+~~~~~~~~~~~~~~~
+
+section 6/37
+~~~~~~~~~~~~~
+~~~~~..~~~~~~
+~~~~③....###~
+~~###.....o#~
+~~#........#~
+~.#..s......~
+~...........~
+~..*....##.~~
+~~....~.##.~~
+~~.p.~~....~~
+~~~~~~~~~~~~~ 
+(message 3)
+
+section 7/37
+~~~~~~~~~~#~~~
+~#~~~~~~~~~#~~
+~~~~~....~~~~~
+~~~...*..~~#~~
+~~....o...~~#~
+~~..p.*...~~#~
+~~.......~~~#~
+#~....s..~~#~~
+~~~......~~#~~
+~#~~~~..~~~~#~
+~#~~~~~~~~#~~~
+
+section 8/37
+.....~~~~~~~~
+#########~~~~
+#.......#.~~~
+#.*lll.o#...~
+#..~~~......~
+#..~~~..s...~
+#..~~~......~
+#.*ddd.p#...~
+#.......#④.~~
+#########.~~~ 
+(message 4)
+
+
+
+
+
+
+
+(destroying crates)
+
+section 9/37
+~~~~~~~~~~~~~
+~~~~~....~~~~
+~~.......~~~~
+~#*##*#....~~
+~..*..#~...#~
+~p.#..#~~..#~
+~..#.~~~w*..~
+~~.#~~~#DD..~
+~~~#~~~#*...~
+~~~~~#~.o.#~~
+~~~~~~~~#~~~~
+~~~~~~~~~~~~~  (levels introducing destroying crates)
+
+section 10/37
+####~~~######
+##~~~~~~~...#
+#...**.*....#
+#po*.**...s.#
+#..*..*.*...#
+##~~~~~~~...#
+####~~~######  (destroy crates that are in the way)
+
+
+
+
+
+
+
+(levels introducing bushes as limited use cover)
+
+section 11/37
+~~~~~~~~~~~~~~~~
+~~~~#~~~~~~~~~~~
+~~#~~~.b..~~~~~~
+~~~~#...b.b~#~~~
+~~~~##b##....~~~
+~~~......~.#b.~~
+~~#.#os.b~~D..~~
+~~#.....b~~.#.~~
+~~##.....~~..b~~
+~~~~..##~~~p.~~~
+~~~~~#~~~~~~~~~~
+~~~~~~~~~~~~~~~~
+
+section 12/37
+~~~~~~~~~~~~~~~
+~~~~#~~#~~~~~~~
+~~~...~#~~~~~~~
+~~..#~~~~~~b~~~
+~~b.#~#~~##.#~~
+~~....#~..b..~~
+~b.#..........~
+~..b....s.....~
+~..........#..~
+~..p.bo###...~~
+~~b..####b.~~~~
+~~~..⑤~~~~~~~~~
+~~~~~~~~~~~~~~~
+(message 5)
+
+
+
+
+
+
+
+
+(bushes catching spirit)
+
+section 13/37
+~~~~~~~~~~~~~~
+~~~~~...~~~~~~
+~~....b.#~##~~
+~~.b.........~
+~............~
+~#b...s...#..~
+~#.bo#.......~
+~#..b~~b...b~~
+~~.p.#~~~...~~
+~~~~##~~#~~~~~
+~~~~~~~~~~~~~~ (makes it look like bushes will stop spirit like walls) (maybe add an animation for entering bush for the first time?)
+
+section 14/37
+~~~~~~~~~~~
+~#~...~...~
+~~~.L.~.~.~
+~..b#b.h..~
+~.~.~.~.~.~
+~p.b.b.b..~
+~.~.~.L.~.~
+~..j.b#b..~
+~.~.~.~.~~~
+~...~...~#~
+~~~~~~~~~~~
+
+section 15/37
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~......~~
+~~....~....~~...~
+~.⑥.b.~~.b..~b..~
+~~~....~~~~.~~~~~
+~~........~.~..~~
+~~~.b..b.w~..b..~
+~~~~~~....~~...~~
+~~~..~.........~~
+~...b..o.b.p.b~~~
+~~.....#....~~~~~
+~~~~~~~~~~~~~~~~~ (can't walk adjacent to bush w/ spirit (must be on correct side of it). Use Bush as Cover.)
+(message 6)
+
+
+
+
+
+(crate interlude)
+section 16/37
+~~~~~~~~~~~~~
+~...~#~~~...~
+~.s.~~~~~...~
+~...~~#~~...~
+~...~#~~~.p.~
+~...~~~~#...~
+~.o..*.*....~
+~...........~
+~~~~~~~~~~~~~ (send back the way it came with crate)
+
+
+section 17/37
+.b...~~~~~~~~
+##.######~~~~
+#.......#.~~~
+#.*lll.o....~
+#..~~~....#.~
+#..~~~..s...~
+#..~~~.....#~
+#.*ddd.p#...~
+#.......#b.~~
+#########.~~~
+
+
+
+
+
+
+
+(intentionally break bushes)
+section 18/37
+~~~~~~~~~~~~
+~~~.#.~~~~~~
+~~......o#~~
+~~.#b~.....~
+~#.~~~~....~
+~...~~~~...~
+~~..s.~~b.#~
+~~p.......~~
+~~~.b...#~~~
+~~~~~~~~~~~~ (bush you can't break and run until moving the spirit)(forces you to do a circuit)
+
+section 19/37
+LLLLLLLLL~~~~~~~~~~
+#o~b~.b.LL~~~~~~~~~
+L.....L.LL~~~~~~~~~
+#.#L~~~b~.b.h.LbLb.
+#.#~......L...L.L..
+#..b...##.L.p...L..
+#####..##⑦#........  (intentionally breaking bushes, and progress gated by bushes that must be used constructively)
+(message 7)
+
+section 20/37
+~~~~~~~~DDD~~
+~####~#~...#~
+~#o..~b~w~b#~
+~#.~...L~~.#~
+~~.~~~~Lb...~
+~~.~~~~~~~L.~
+~#.#b.b..bL.~
+~#.~~.~.#~~.~
+~#...p......~
+~~~~~~~~~~~~~ (intentionally break so it won't block line of sight)(break when in view of spirit / break and go back)
+
+
+
+
+
+
+(hiding in bush adjacent to spirit in bush, and pushing spirit free)
+
+section 21/37
+~~~~~~~~~~~~~~~~~~~
+~~~~~~~..#.~~~###~~
+~~...b...#..b..o#~~
+~xs..b.~b...b.~.~~~
+~##..b....#.b.....~
+~#..~~~..~#.....#.~
+~~#~~~~~#~#~~##...~
+~~~~~~~~~~~~~~~~~~~ 
+
+section 22/37
+~~~~~~~~~~~~~~~
+~~~~~~~.#....~~
+~~~#.....p.#..~
+~.bhb..bbbbbbo~
+~~.....#......~
+~~~~#.....#..⑧~
+~#~~~~~.#...~~~
+~~~~~#~~~~~~~#~
+~~~~~~~~~~~~~~~ (shows how you can win from pushing spirits)
+(message 8)
+
+section 23/37
+~~~~~~~~~~~~~~
+~~~##~......~~
+~#~.....~~#.~~
+~~~.~b.#~~~..~
+~~..~b.bbh~..~
+~#...b..~...~~
+~~...b~....~~~
+~##o.....p.~#~
+~~###.~#~##~~~
+~~~~~~~~~~~~~~
+
+section 24/37
+~~~~~~~~~~~~~~~
+~~#~~~..~~~~#~~
+~~~~.bb.~..~#~~
+~~.......b.~~~~
+~#.b.b...b..b.~
+~..b.b.p....h.~
+~.............~
+~~##..obb..#~~~
+~~~~~~####~~~~~
+~~~~~~~~~~~~~~~ (double bushes and pushing spirit free)
+
+
+section 25/37
+~~~~~~~~~~~
+~~~.b.~...~
+~.bb~b..j.~
+~.~.b.~...~
+~...~~~~~~~
+~~~b....b.~
+~..b.b~bs.~
+~b~b.~~.L.~
+~.~~~~~.#.~
+~...p.....~ 
+~~~~~~~~~~~ (intentionally breaking + hiding in bush next to spirit)
+
+
+
+
+
+
+
+(crates and bushes)
+
+section 26/37
+~~~~~~~~~~~~~
+~~~⑨..~~~~~~~
+~###.p.~~#~#~
+~~........o#~
+~~.*.b~~b..~~
+~#........##~
+~#~.....s.~~~
+~~~....#~##~~
+~~~~~~~~~~~~~
+(message 9)
+
+section 27/37
+~~~~~~~~~~~~~
+~~.....~~~#~~
+~.h.*.b..~~~~
+~.........~#~
+~.....b.b.~~~
+~.....~~..~~~
+~~~.p.~~bo#~~
+~#~...~~~~~#~
+~~~~~~~~~~~~~
+
+section 28/37
+~~~~~~~~~~~~~~~
+~##~..........~
+~.....bb...~~.~
+~..p.....~.bb.~
+~.....~~......~
+~.~.*.......s.~
+L.o........~..~
+~~~~~~~~~~#~~~~
+~#~~##~~#~~~#~~
+~~~~~~~~~~~~~~~ (crate and double bushes)
+
+section 29/37
+~~~~~~~~~~~~~~~
+~~~~.b..~#~~~~~
+~~#~......~#~~~
+~~~..~~..~~~~~~
+~#~b~w~b.~#~~~~
+~~..~~~..~~~#~~
+~.~*~.....~#~~~
+~.....*..o~~#~~
+~~p.~b..~.~~~~~
+~#~~~....b...~~
+~~~#~~~~~.....~
+~~~~~~~~~~~~~~~(introduces pushing crates through bushes)
+
+section 30/37
+~~~~~~~~~~~~~
+~~~~~~~##~~~~
+~....~~o..~~~
+~.........~~~
+~~#b..s..b##~
+~~~..##~~.~~~
+~~.........⑩~
+~~b.*.p....#~
+~~~~~~~##..~~
+~~~~~~~~~~~~~ (forces push crate forward then go back) 
+(message 10)
+
+section 31/37
+~~~~~~~~~~~~
+~~~~~.....~~
+~~......*.~~
+~~...s....~~
+~~...~....~~
+~~...b.*...~
+~~~..~~~.p.~
+~~~.ob.~~~~~
+~#~~.#.~#~#~
+~~~~...~~~~~
+~~~~~~~~~~~~ (two crates and bushes)
+
+section 32/37
+~~~~~~~~~~~~~~~~~
+~~~~~~#~~~#~~~~~~
+~~#~~~~~#~~~#~~~~
+~~~~~~~~~~~~~~~~~
+~...............~
+~.b.p.h.b.*..bb.~
+~.......#.#.o...~
+~~#~~~#~#~#~#~~~~
+~~~~~~~~~~~~~~~~~ (place crate next to spirit in bush so you can walk past without breaking it)
+
+section 33/37
+~~~~~~~~~~~~~
+~~#~~~.....#~
+~.o....p...#~
+~.~b~b~b.s.#~
+~.~......~~~~
+~.b......b.#~
+~..~~....~.#~
+~~~~~....%.#~
+~~#~~..~~..~~
+~~~~~~~~~~~~~ (combination of things: pushing and going back, crate next to spirit in bush, conserving bushes) (pretty good, probably hard)
+
+section 34/37
+~~~~~~~~~~~~~~~~~~
+~~~~~~#~~~~~~~#~~~
+~.....#⑪..~#dd.d#~
+~.#b......d#o.bd.~
+~..bb~ddd.d#..b#.~
+~.%hb~#...d.b....~
+~..b.~#b.b..b%.##~
+~.p..~#~#~~....##~
+~~~~~~~~~~~~~~~~~~ (Push crate in bush to get it past spirit in bush)
+(message 11)
+
+section 35/37
+~~~~~~~~~~~~
+~~~#b......~
+~~~#.....#.~
+~#~#.p...%.~
+~~~#...~~w.~
+~~~~~l.~...~
+~#o.blbl...~
+~#.~.l.l.##~
+~#.~...b.##~
+~~~~~~~~~~~~ (push crate in bush so that spirit can hit it)
+
+section 36/37
+~~~~~~~~~~~~~~~
+~~~~~~~....~~~~
+~~......#.*..~~
+~~.s..b...##.~~
+~~.....o.....~~
+~....b..b...##~
+~..b...b..p~~~~
+~~##..###~~~#~~
+~~~~~~~~~~~~~~~ (hit crate in bush twice)
+
+
+
+
+
+section 37/37
+~~~~~~~~~~~~~~~~~~~~~~
+~~~....*...~~~..b.~~~~
+~~.......*~~#.......~~
+~~..b#~...~5.....b5b.~
+~..~~~~~.#~~..~#....~~
+~~.b~~~~.~~.*~~~..~ouc
+~#...~~~..~..~~~~*~~~~
+~~.s.#~...b...#~~..#~~
+~~~..~~......~~~.p..⑫~
+~.~~..~~...*..~..~~~#~
+~~~~~~~~~~~~~~~~~~~~~~ (End Last level with a cinematic)
+(messsage 12)
+
+
+
+
+
+(cinematic)
+
+~~~~~~~~~~~~~~~~~~
+~~~#~~~~#~~~~~~#~~
+~~~~~~~~~~~~#~~~~~
+Fw~~~~~~~u~~~~~~~C
+~~~~#~~~~~~~~~~~~~
+~~~~~~#~~~#~~~#~~~
+~~~~~~~~~~~~~~~~~~
+
+
+.b...~~~~~~~~
+##.##.###~~~~
+#.....b.#.~~~
+#.*lll..b.b.~
+fs.~~~......c
+#..~~~b...b.~
+.b.~~~.b..~#~
+#.*ddd..#...~
+#.....b.#b~~~
+##.b#####.~~~
+
+
+~~~~~~~~~~~~~~##~~
+~#~~~~~~~~#~~###~#
+~~~~~#~~~~~~##~##~
+cfw~~~~~~~~~#uuuI~
+~~~~~~~~~~~~######
+~~~~#~~~~~~#~#~##~
+~~~~~~~~~~~~~~~~~~
+
+.b...~~~~~~~~
+##.##.###~~~~
+#.....b.#.~~~
+#.*lll..b.b.~
+c..~~~.....wf
+#..~~~b...b.~
+.b.~~~.b..~#~
+#.*ddd..#...~
+#.....b.#b~~~
+##.b#####.~~~
+
+~~~~~~~~~~~~~~~~~~
+~~~#~~~~#~~~~~~#~~
+~~~~~~~~~~~~#~~~~~
+C~~~~~~~~~~~~q~~wF
+~~~~#~~~~~~~~~~~~~
+~~~~~~#~~~#~~~#~~~
+~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~k
+~~~.*......~~~..'.~~~~
+~~........~~#.......~~
+~~..'#~...~;.....;''.~
+~..~~~~~.#~~..~#....~~
+c~{'y~~~.~~..~~~..~owf
+~#...~~~..~..~~~~.~~~~
+~~...#~...;..*#~~..#~~
+~~~..~~......~~~.....~
+~.~~..~~*.....~..~~~#~
+~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~u~~~~~k
+~~~~~u~~~u~~~~u~~~
+~~~~~~~~~~~~~~~~~~
+c~u~~~u~~~u~~u~&wf
+~~~~~u~~~~~~~~~~~~
+~~~~~~~u~~~u~~~~u~
+~~~~~~~~~~~~u~~~~~
+
+
+~~~~~~~~~~~~~~~~~k
+~~~~~~u~~~~~~~~~~~
+~~~~~~~~~~~~~~u~~~
+c~~u~~~~u~~~u~~&wf
+~~~~~~~u~~~~~~~~~~
+~~~~~~~~~~u~~~~~~~
+~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~k
+~~~~~~~~~~~~~~~~
+~~~~~~....~~~~~~
+~~~.......~~~~#~
+~~#*##*#....~~~~
+~~..*..#~...#~~~
+~~..#..#~~..#~~~
+c~..u.~~~~*..&wf
+~~~.#~~~#DD..~~~
+~~~~#~~~#*...~~~
+~#~~~~#~...#~~~~
+~~#~~~~~~#~~~~#~
+~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
+
+~~~c~~~~~~~~~~~k
+~~~~~~~~~~~~~~~~
+~~~~~~....~~~~~~
+~~~.......~~~~#~
+~~#*##*#....~~~~
+~~..*..#~...#~~~
+~~..#..#~~..#~~~
+~~..~.~~~~...~~~
+~~~.#~~~#DD..~~~
+~~~~#~~~#*...~~~
+~#~&~~#~...#~~~~
+~~#w~~~~~#~~~~#~
+~~~f~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
+
+~~~~~~f~~~~~~~~k
+~~~~~~w~~~~~~~~~
+~~~~~~{...~~~~~~
+~~~.......~~~~#~
+~~#.##*#....~~~~
+~~..*..#~...#~~~
+~~..#..#~~..#~~~
+~~..~.~~~~...~~~
+~~~.#~~~#DD..~~~
+~~~~#~~~#*...~~~
+~#~~~~u~...#~~~~
+~~#~~~~~~#~~~~#~
+~~~~~~~~~~~~~~~~
+~~~~~~c~~~~~~~~~
+
+~~~~~~~~~~~~~~~k
+~~~~~~~~~~~~~~~~
+~~~~~~....~~~~~~
+~~~.......~~~~#~
+~~#.##.#....~~~~
+c~..*..u~...u&wf
+~~..#..#~~..#~~~
+~~..~.~~~~...~~~
+~~~.#~~~#DD..~~~
+~~~~#~~~#*...~~~
+~#~~~~~~...#~~~~
+~~#~~~~~~#~~~~#~
+~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~k
+~~~~~~~#~~~#~~~~~~~
+~~~#~~~~~#~~~#~~~~~
+~~~~~~~~~~~~~~~~~~~
+~~...............~~
+c~.'...'.+.*..';{wf
+~~.......#.#.....~~
+~~~#~~~#~#~#~#~~~~~
+~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~k
+~~u~~~~~~~~~u~~~u~
+~~~~~~~~~uu~~~u~~~
+c~~u~~u~u~u~u~u&wf
+~~~~~u~uu~~~u~~~~~
+~~~~uu~~u~uu~~~u~~
+~u~~~~u~~~~u~u~~~~
+
+~~~~~~~~~DDD~~~~
+~~####~#~...#~~~
+~~#...~'~~~b#~~~
+~~#.~...L~~.#~~~
+c~~.~~~~Lb...zwf
+~~~.~~~~~~~L.~~~
+~~#.#b.'..bL.~~~
+~~#.~~.~.#~~.~~~
+~~#..........~~~
+~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~r
+~~~~~~u~~~~~u~~~~~
+~~~~~~~~~~u~~~u~~~
+c~~~~~~~~~~~~~~~~z
+~~~~~~~u~~~~~~~~~~
+~~~u~~~~~~~~~u~~~~
+~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~
+~~~#...#.~~
+~~.#o.....z
+~.........~
+~.........~
+~~#......~~
+~~......#~~
+~.......#~~
+~~.###....~
+~~~~~~~~~~~
+
+
+message The End. Thanks for playing!
+
+
+
+(
+
+(misclevels)
+
+~~~~~~~~~~~~
+~~~~~~...~~~
+~~~......~.~
+~#~*##*#.~~~
+~~..*..#..~~
+~#p.#..#..~~
+~#..#~~.s..~
+~~#~~......~
+~#o.~~....~~
+~####~~#...~
+~~~~~~~~~~~~
+
+
+~~~~~~~~~
+~~...*.#~
+~~*..*.#~
+~#*~.#~~~
+~..*so.*~
+~p#.....~
+~.*.~**.~
+~~##~~##~
+~~~~~~~~~
+
+~~~~~~~~~~~
+~~~~#~~~~~~
+~~...~...~~
+~~.......~~
+~~..#..~~~~
+~...#..s~~~
+~....o....~
+~##*#*#.#.~
+~~..#.....~
+~~....p~~~~
+~~~.#~~~~~~
+~~~~~~~~~~~ (meh?) (fill gaps)
+
+~~~~~~~~~~~~~~~
+~~~...~~~....~~
+~~..b...~b.b..~
+~~.b..b......b~
+~#..#o....s..#~
+~#.........#~~~
+~....p.b.b..~~~
+~~b#.........~~
+~~~#..b...b.#~~
+~~~##.......~~~
+~~~~~~~#...~~~~
+~~~~~~~~~~~~~~~ 
+
+~~~~~~~~~
+~.#.....~
+~...~bo#~
+~.s.~...~
+~#..~...~
+~..p~#..~
+~...~..#~
+~.#.~...~
+~~~~~~~~~ (new path opens because bush is used?)
+
+(
+~~~~~~~~~~~~
+~.#......~.~
+~...~b..*~o#
+~.s.~....~.~
+~#.p~....~.~
+~...~###.~.~
+~~~~~....~~~
+~~~~~~~~~~~~)
+
+~~~~~~~~~~~~~~~
+~~~~#~~~~~~~~~~
+~~#~##~~~~~.~~~
+~~#~..~~~b~o#~~
+~~~~.bb.~b...~~
+~#~~...~~..p..~
+~~~~~..~......~
+~.#~.#b..s.#.~~
+~..###...b...~~
+~~.##~~..#...~~
+~~#.#~~#~~#.~~~
+~~~~~~#~~~~~~~~
+~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~
+~~~##~~~~###~
+~###o.b.p..#~
+~#.....~...#~
+~#bb..b.bhb#~
+~#bb...~~~##~
+~##~~~~~~~~~~
+~~~~~~~~~~~~~
+
+~~~~~~~~~
+~~.....~~
+~.b.b#h.~
+~..b.j..~
+~.#.b.b.~
+~..b.b..~
+~.b.b.b.~
+~~...p.~~
+~~~~~~~~~
+
+#########
+~o~~~~~p~
+~.bbbbb.~
+~~.~b~.~~
+~~.~h~.~~
+~.bbbbb.~
+~.~~~~~.~
+#########
+
+
+
+~~~~~~~~~~~~~
+~~~...###~~~~
+~~.p.......#~
+~~..b~*~b..~~
+~#.#..s~..##~
+~~~#o.....~~~
+~~#~~..#~##~~
+~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~
+~~~~~~...~~~~~
+~~.......~#~~~
+~~..~~.b.~~~#~
+~#.........o#~
+~#..bb.s.b##~~
+~#~#..~....~~~
+~~~~~.##...~#~
+~~~#~....*.~~~
+~~~~~.p....~~~
+~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~
+~~~....b....~~~
+~#~...~~~.o.~~~
+~~~....b...~~~~
+~#~...~~~...~~~
+~~~...~w~b~b~#~
+~~~...~~~...~~~
+~...*.~...*.~#~
+~.....~.p...~~~
+~~~~~~~~~~~~~~~ (like the shape)
+
+
+~~~~~~~~~~~~~~~~~
+~~~~~...~~~~~~~~~
+~~~~~....~~~..~~~
+~~~~....s~....~~~
+~~~~.*...~~~~..~~
+~~~~.#.*....~~..~
+~#o.........~~.~~
+~~~~~.~~....~~.~~
+~~~~~p....~~~..~~
+~~~~~~~~.~~...~~~
+~~~~~~~~..~..~~~~
+~~~~~~~~....~~~~~
+~~~~~~~~~~~~~~~~~
+
+
+)
