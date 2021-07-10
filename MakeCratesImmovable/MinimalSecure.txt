@@ -1,0 +1,308 @@
+
+title Secure	
+
+author Toombler
+homepage https://toombler.itch.io/
+
+background_color #132a13 (#1f2041)
+(maybe add some brown?)
+
+run_rules_on_level_start
+
+again_interval 0.4
+
+noaction
+
+(verbose_logging)
+
+========
+OBJECTS
+========
+
+
+Background
+#31572c
+
+
+Platform
+#31572c #3f7338 #3b6935 #396334 #284a23   
+00000
+01010
+00000
+01010
+00000
+
+
+Crate
+#ffc857 (Orange Yellow)
+00000
+0...0
+0...0
+0...0
+00000
+
+CrateCannotBePushed
+#d5e352 #cde352 #c8e352 orange
+00000
+0...0
+0...0
+0...0
+00000
+
+Wall
+#132a13 #90a955 
+
+FillMarker
+black
+
+WinMarker
+transparent
+
+WonCrate
+#d5e352 #132a13 (#c1cf4a #cbd94e #d5e352 #b1cc4e #d5e352 #9bba50 #90a955)
+00000
+01110
+01110
+01110
+00000
+
+Person0
+#31572C #416931 #507A36 #608C3A #709D3F #7FAF44 #8FC049 #9ED24D #AEE352  
+.544. 
+.213. 
+31255 
+.356. 
+.5.5. 
+ 
+
+
+=======
+LEGEND
+=======
+
+. = Background
+% = Platform
+# = Wall
+P = person0
+Q = person0 and Platform
+* = Crate
+
+BlocksPlayer = Crate or WonCrate or Wall
+BlocksCrate = Crate or WonCrate or Wall or Platform  
+
+Person = Person0
+
+Player = Person0
+
+=======
+SOUNDS
+=======
+
+Crate MOVE  5983507 (21792307) (36772507)
+Player MOVE 98574507 (54585507)
+
+WonCrate create 66651704
+endlevel 37882503 (81161508)
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Platform, 
+Person, Wall, Crate, WonCrate
+CrateCannotBePushed
+FillMarker
+WinMarker
+
+======
+RULES
+======
+
+[ Player ][ WinMarker ] -> [ stationary player ][ WinMarker ]
+
+
+[ >  Player | Crate ] -> [  >  Player | > Crate  ]
+[ > Crate | Platform ] -> [ Crate | Platform ]  
+
+late [ Player ] -> [ Player FillMarker ]
+late [ FillMarker | no BlocksPlayer ] -> [ FillMarker | FillMarker ]
+
+late [ CrateCannotBePushed ] -> []
+late [ Crate ] -> [ Crate CrateCannotBePushed ]
+late [ FillMarker | Crate CrateCannotBePushed | no BlocksCrate ] -> [ FillMarker | Crate | no BlocksCrate ]
+late [ FillMarker ] -> []
+
+late [ Player ] -> [ Player WinMarker ]
+late [ WinMarker ][ Crate no CrateCannotBePushed ] -> [][ Crate ]
+
+late [ WinMarker ][ Crate ] -> [ WinMarker ][ WonCrate ]
+
+==============
+WINCONDITIONS
+==============
+
+no Crate
+
+=======
+LEVELS
+=======
+
+#######
+#*#.#.#
+#.#.#*#
+#.#*#.#
+#.#.#.#
+#..p..#
+####### (GOOD)
+
+##########
+#....*..##
+#...######
+#....*.p.#
+#...######
+#.*....###
+########## (GOOD)
+
+#######
+#.....#
+#.....#
+#.p.*.#
+#.....#
+#.....#
+####### (GOOD)
+
+#########
+###p*.###
+###**...#
+#......*#
+#...##..#
+######### (GOOD)
+
+
+
+#########
+#%%..%%%#
+#%%%..p%#
+#%*..%.%#
+#%%%.%#%#
+#%#....%#
+#%..%%#%#
+######### (need level which tests knowledge of this level?) (GOOD)
+
+
+
+
+############
+#%%#########
+#%....######
+#%.##....###
+##*##..#.###
+##.%*..#.###
+##.###.#*###
+##p###.%..%#
+#######%..%#
+############ (not totally happy with this)
+(level like this, where: put crate in corner of passage way)
+
+
+
+(
+###########
+#.........#
+#.##%%%#%.#
+#.#.....%.#
+#.%.*...#.#
+#.%...*.%.#
+#.#.p...%.#
+#.%.....%.#
+#.%%%###%.#
+#.........#
+########### (GOOD) (but maybe not good enough to introduce trick))
+
+(
+###########
+#####%%#.##
+#####..#.##
+#####..#.##
+#.*.*.*#p##
+#.....%#.##
+##.#####*##
+#%.......%#
+#%.......%#
+###########
+
+#############
+######..#...#
+#.*.*...#.p.#
+#.......#...#
+##.#######*##
+#%.........%#
+#%.........%#
+#############)
+
+###########
+###%.....%#
+#%.....%..#
+#..###*####
+#*.#...####
+#..*.p%####
+#..########
+########### (GOOD)
+
+#########
+#%%%%%.%#
+#.*...*%#
+#%.....%#
+#%..*..%#
+#%.....%#
+#%*.p.*.#
+#%.%%%%%#
+######### (GOOD)
+
+#########
+#*.*.*.*#
+#.*.*.*.#
+#*.*p*.*#
+#.*.*.*.#
+#*.*.*.*#
+#.*.*.*.#
+#*.*.*.*#
+######### (kinda fun) (GOOD)
+
+
+
+
+
+
+
+
+###########
+#.p%.*.%###
+###%.*.%*.#
+#.*%.*.%###
+########### (iconic 3 block puzzle twist) (GOOD)
+
+#############
+#..%%##%%%..#
+#..%.....##.#
+#.##.*.*.##.#
+#.##.....%..#
+#..%.p.*.%..#
+#..%.....%..#
+#..##%%%%##.#
+############# (not sure on order of this) (GOOD)
+
+
+#############
+###%%%%%#%%##
+#%%%.*.%..%##
+#%#....#...%#
+#%#*%%.*.p.%#
+#%#....#...%#
+#%%%.*.%..%##
+###%%%%%#%%##
+#############
+
+
+

@@ -1,6 +1,8 @@
 
 title Secure	
 
+(a pushable rock gathers no moss)
+
 author Toombler
 homepage https://toombler.itch.io/
 
@@ -1373,6 +1375,21 @@ LEVELS
 #%%%.*.%..%##
 ###%%%%%#%%##
 #############
+
+
+
+
+
+
+#########
+#*.*.*.*#
+#.*.*.*.#
+#*.*.*.*#
+#.*.*.*.#
+#*.*p*.*#
+#.*.*.*.#
+#*.*.*.*#
+######### (kinda fun)
 
 
 
