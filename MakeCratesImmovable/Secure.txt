@@ -14,7 +14,6 @@ again_interval 0.4
 
 realtime_interval 0.1
 
-noaction
 
 (verbose_logging)
 
@@ -861,10 +860,16 @@ Player MOVE 98574507 (54585507)
 
 DestructibleWall destroy 92328503
 
-WonCrate create 66651704
-LastLevelMarker2 create 37882503
 
-endlevel 37882503 (81161508)
+
+WonCrate create 91410908 
+
+endlevel 34417108 (39825900) (30978708) (18575908) (17763700) (57685702) (37882503) (81161508)
+(LastLevelMarker2 create 34417108)
+
+
+
+
 
 ================
 COLLISIONLAYERS
@@ -895,8 +900,8 @@ AnimTimer
 RULES
 ======
 
-[ LastLevelMarker2 ][ WinMarker ] -> [ LastLevelMarker2 ][]
-[ Player ][ WinMarker ] -> [ stationary player ][ WinMarker ]
+([ LastLevelMarker2 ][ WinMarker ] -> [ LastLevelMarker2 ][])
+([ Player ][ WinMarker ] -> [ stationary player ][ WinMarker ])
 
 
 [ >  Player | Crate ] -> [  >  Player | > Crate  ]
@@ -913,27 +918,38 @@ late [ FillMarker ] -> []
 
 late [ Player ] -> [ Player WinMarker ]
 late [ WinMarker ][ Crate no CrateCannotBePushed ] -> [][ Crate ]
-late [ WinMarker ] -> [ WinMarker ]
-late [ WinMarker no WinTimer ] -> [ WinMarker WinTimer0 ]
+
+late [ WinMarker ][ Crate ] -> [ WinMarker ][ WonCrate ]
 
 
-random [ WinTimer4 ][ Crate ] -> [ WinTimer4 ][ WonCrate ]
+[ LastLevelMarker ][ action player ][ WinMarker ] -> [ LastLevelMarker2 ][ action player ][] message Thanks for playing! 
+[ LastLevelMarker2 ][ WinMarker ] -> [ LastLevelMarker2 ][]
+
+[ action Player ][ WinMarker ] -> win
+
+
+(late [ WinMarker no WinTimer ] -> [ WinMarker WinTimer0 ])
+
+
+(random [ WinTimer4 ][ Crate ] -> [ WinTimer4 ][ WonCrate ])
 (
 [ WinTimer4 ][ WallCoversDone ] -> [ WinTimer4 ][]
 [ WinTimer4 ][ WallCover ] -> [ WinTimer4 ][])
-
+(
 [ stationary player ][ WinTimer4 ] -> [ stationary player ][ WinTimer0 ]
 [ stationary player ][ WinTimer3 ] -> [ stationary player ][ WinTimer4 ]
 [ stationary player ][ WinTimer2 ] -> [ stationary player ][ WinTimer3 ]
 [ stationary player ][ WinTimer1 ] -> [ stationary player ][ WinTimer2 ]
 [ stationary player ][ WinTimer0 ] -> [ stationary player ][ WinTimer1 ]
+)
 
+(
 
 [ LastLevelMarker ] -> [ LastLevelMarker MessageMarker ]
 [ Crate ][ MessageMarker ] -> [ Crate ][]
 [ LastLevelMarker ][ MessageMarker ] -> [ LastLevelMarker2 ][] message Thanks for playing! 
 
-
+)
 (----------graphics----------)
 
 (player animations)
@@ -1075,13 +1091,18 @@ late [ Wall no WallCoversDone ] -> [ Wall WallCoversDone]
 WINCONDITIONS
 ==============
 
-no Crate
+(
 no LastLevelMarker
 no LastLevelMarker2
-
+)
 =======
 LEVELS
 =======
+
+
+message Press X to proceed to the next level after solving
+
+(introduction levels)
 
 #######
 #*#.#.#
@@ -1089,15 +1110,16 @@ LEVELS
 #.#*#.#
 #.#.#.#
 #..p..#
-#######
+####### (GOOD)(hints at rule being "all in a line")
 
 ##########
-#....*.#.#
+#....*..##
 #...######
 #....*.p.#
 #...######
-#.*...#..#
-##########
+#.*...####
+########## (GOOD)(maybe just one of these)
+
 
 
 #######
@@ -1106,142 +1128,71 @@ LEVELS
 #.p.*.#
 #.....#
 #.....#
-#######
+####### (GOOD)
 
-#########
-#.#p*.###
-###**...#
-#......*#
-#...##..#
-#########
-
-
-
-
+##########
+###p*..###
+###**....#
+#........#
+#.......*#
+#........#
+######...#
+########## (level about freely dumping crates in corners)
 
 
 
-(
-(level requiring pushing crate out of the way - to avoid fail state)
-########
-#.%...%#
-#.%....#
-#p%..*.#
-#.%....#
-#.%%%%%#
-########
+(levels involving platforms)
 
-#########
-#....#.%#
-#....%..#
-#....#..#
-#..p.*..#
-#....#.%#
-#########
+##########
+###.....%#
+###...*.%#
+###%####%#
+#.%......#
+#.#......#
+#.#..*%..#
+#%%%######
+#.p.######
+########## (introduction to platforms, no fail states) (GOOD) 
 
-########
-#..%%.%#
-#..##..#
-#..%*..#
-#..##..#
-#p.##.%#
-########
+###########
+###.....###
+###.###.###
+###*###%###
+#%...%.*.%#
+#%.%.....%#
+#%...p...%#
+########### (crate wins in corner but need corner open to traverse) (possible to chain this?) (GOOD)
 
-#########
-#....%.%#
-#.**##..#
-#...%*.p#
-#...%#.%#
-#%%%%####
-######### (go in and out?)
+##############
+#%%%##########
+#......#######
+#...##.#######
+###*##.....###
+###.%*..##.###
+###.###.##*###
+###p###..%..%#
+#########%..%#
+##############
 
-#########
-#%..*..##
-#%..*..%#
-#%p....%#
-#########
-)
 
-(level requiring you to avoid getting crates stuck in the beginning, so that you can get a different crate stuck?)
 
-(
-#######
-#%*...#
-#.....#
-#%....#
-#..p.*#
-#%...%#
-#######
-)
-(
-###%#%##
-###%.%%%
-#%%%...#
-#%*....#
-#%%%%%%#
-###...%#
-###.p.%#
-)
+
+
+
 
 (
 #########
-#%.%#%%%#
-#%..#..%#
-#%p.*..%#
-#%..*..%#
-#%%%#.%%#
+#####%%##
+#%...p.##
+#%.###.##
+##.#.#*##
+##.###.%#
+##.....%#
+##%%#####
 #########)
 
-#########
-#%%..%%%#
-#%%%..p%#
-#%*..%.%#
-#%%%.%#%#
-#%#....%#
-#%..%%#%#
-######### (need level which tests knowledge of this level?)
 
-(
-#########
-####%..%#
-##.....%#
-##.###.##
-##.....##
-##*###*##
-#%..%..%#
-#%..q..%#
-#########
-)
-
-############
-#%%#########
-#%....######
-#%.##....###
-##*##..#.###
-##.%*..#.###
-##.###.#*###
-##p###.%..%#
-#######%..%#
-############ (not totally happy with this)
-
-
-
-
-
-
-
-(
-###########
-#%##%%%#%%#
-#%#.....%%#
-#%%...*.#%#
-##%.....%%#
-#%%.*.p.%##
-#%%.....%%#
-#%%%##%%%%#
-###########)
-
-
+(two crates on wall = stuck)
 ###########
 #.........#
 #.##%%%#%.#
@@ -1252,17 +1203,31 @@ LEVELS
 #.%.....%.#
 #.%%%###%.#
 #.........#
+########### (redundant or useful?)
+
 ###########
+###%.....%#
+#%.....%..#
+#..###*####
+#*.#...####
+#..*.p%####
+#..########
+########### (GOOD)
+
+
+
+
+
+
 
 #########
-#%%%%%%%#
-#%*...*%#
-#%.....%#
-#...*...#
-#%.....%#
-#%*.p.*%#
-#%%%%%%%#
-#########
+#%%..%%%#
+#%%%..p%#
+#%*..%.%#
+#%%%.%#%#
+#%#....%#
+#%..%%#%#
+######### (GOOD)
 
 #########
 #%%%%%.%#
@@ -1272,29 +1237,32 @@ LEVELS
 #%.....%#
 #%*.p.*.#
 #%.%%%%%#
+######### (GOOD)
+
 #########
+#*.*.*.*#
+#.*.*.*.#
+#*.*p*.*#
+#.*.*.*.#
+#*.*.*.*#
+#.*.*.*.#
+#*.*.*.*#
+######### (kinda fun) (GOOD)
+
+(#.#.#.#.#.#
+.#.#.#.#.#.
+#.*.*.*.*.#
+.#.*.*.*.#.
+#.*.*p*.*.#
+.#.*.*.*.#.
+#.*.*.*.*.#
+.#.*.*.*.#.
+#.*.*.*.*.#
+.#.#.#.#.#.
+#.#.#.#.#.#)
 
 
-(
-#########
-#%%%%%%%#
-#%*%.*.%#
-#%.%.%.%#
-#%.%.%p%#
-#%*%.%.%#
-#%.%.*.%#
-#%%%%%%%#
-#########
-
-##############
-#%%%%%%%%%%%%#
-#%*%...%...*%#
-#%.%.%.%*%.%%#
-#%p%.*.%....%#
-#%.%.*.%%.%*%#
-#%*%.*.%*...%#
-#%%%%%%%%%%%%#
-##############)
+(levels about getting blocks stuck inside platform maze)
 
 #########
 #%%%%%%%#
@@ -1306,6 +1274,28 @@ LEVELS
 #%%%%%%%#
 #########
 
+(
+##############
+#%%%%%%%%%%%%#
+#%*%...%...*%#
+#%.%.%.%*%.%%#
+#%p%.*.%....%#
+#%.%.*.%%.%*%#
+#%*%.*.%*...%#
+#%%%%%%%%%%%%#
+##############)
+
+###########
+#%%%%%%%%%#
+#%%..*..%%#
+#%..%%%..%#
+#%.......%#
+#%**...**%#
+#%%%.p.%%%#
+#%...%...%#
+#%%%%%%%%%#
+###########
+
 #########
 #%%%%%%%#
 #%%*.%q%#
@@ -1316,32 +1306,11 @@ LEVELS
 #%%%%%%%#
 #########
 
-(
-##########
-#%%%%%%%%#
-#%*%..%.%#
-#%.%**%*%#
-#%.%..%.%#
-#%*%..%.%#
-#%.%.p..%#
-#%%%%%%%%#
-##########
-)
 
-(
-%%%%%%%
-%.....#
-#.*.*.#
-#.....%
-%.p.*.%
-%.....%
-%%%#%%%)
 
-###########
-#.p%.*.%###
-###%.*.%*.#
-#.*%.*.%###
-########### (iconic 3 block puzzle twist)
+
+
+(levels about crates being stuck due to inaccessability)
 
 #############
 #..%%%%%%%..#
@@ -1351,21 +1320,32 @@ LEVELS
 #..%.p.*.%..#
 #..%.....%..#
 #..%%%##%%..#
-############# (not sure on order of this)
+#############
+
+(
+#############
+#..%%##%%%..#
+#..%.....##.#
+#.##.*.*.##.#
+#.##.....%..#
+#..%.p.*.%..#
+#..%.....%..#
+#..##%%%%##.#
+############# (not sure on order of this) (GOOD)
+)
+
+###########
+#.*%#######
+###%.*.%###
+#.p%.*.%*.#
+###%.*.%###
+#.*%#######
+########### (iconic 3 block puzzle twist) (GOOD)
 
 
 
 
 (
-#%%%%%%#%%
-%%%.*.%..%
-%#....#..%
-%#*%%.*.p%
-%#....#..%
-%%%.*.%..%
-#%%%%%%#%%)
-
-
 #############
 ###%%%%%#%%##
 #%%%.*.%..%##
@@ -1374,6 +1354,18 @@ LEVELS
 #%#....#...%#
 #%%%.*.%..%##
 ###%%%%%#%%##
+#############)
+
+#############
+#%........L%#
+#%.%%%%%%%.%#
+#%.%**.**%.%#
+#%.%*...*%.%#
+#%p%..*..%*%#
+#%.%*...*%.%#
+#%.%**.**%.%#
+#%.%%%%%%%.%#
+#%.........%#
 #############
 
 
@@ -1381,15 +1373,7 @@ LEVELS
 
 
 
-#########
-#*.*.*.*#
-#.*.*.*.#
-#*.*.*.*#
-#.*.*.*.#
-#*.*p*.*#
-#.*.*.*.#
-#*.*.*.*#
-######### (kinda fun)
+
 
 
 
@@ -1427,73 +1411,22 @@ LEVELS
 #.......#
 #########
 
-
-
-
-
-
-
-
-(
-%%%%%#%%
-%.*.%..%
-%...#..%
-##%.*.p%
-%...#..%
-%.*.%..%
-%%%%%#%% (bit broken - can make 2by2 with crates and wall)
-
-(
-%%%%###
-%.*.%%#
-%*..%q#
-%.*.%%#
-%%%%###)
-
-(
-%%#%%#####
-%....#%%%%
-#.*...%*.%
-#.*.p.%*.%
-%....#%%%%
-%%#%%#####
-
-%%#%%#####
-%....#%%%%
-#.*.p.%*.%
-%....#%%%%
-%%#%%#####)
-
-(%%#%%#%#%%
-%....#%..%
-%.*%.....%
-%..%#%.p.% 
-%##%#%%%#%)
-
-
-
-
 )
 
 
 
-
-
 (
-
-
+%%#%%#%#%%
+%....#%..%
+%.*%.....%
+%..%#%.p.% 
+%##%#%%%#%
 
 %%%#%%%%%%
 %..#..%.*%
 %p.**.%..%
 %..#..%%%%
 %%%#%%%%%%
-
-%%%%#%%
-#.p.*%%
-%*..*%%
-%%###%%
-%%%%%%%
 )
 
-)
+
