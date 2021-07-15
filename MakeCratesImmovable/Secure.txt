@@ -1114,11 +1114,20 @@ message Press X to proceed to the next level after solving
 
 ##########
 #....*..##
+#.*.######
+#......p.#
+#...######
+#.*...####
+########## (GOOD)(maybe just one of these)
+
+(
+##########
+#....*..##
 #...######
 #....*.p.#
 #...######
 #.*...####
-########## (GOOD)(maybe just one of these)
+########## )
 
 
 
@@ -1138,6 +1147,15 @@ message Press X to proceed to the next level after solving
 #........#
 ######...#
 ########## (level about freely dumping crates in corners)
+
+##########
+###....###
+###..*...#
+#.*.....*#
+#....p...#
+#..*.....#
+######...#
+##########
 
 
 
@@ -1218,8 +1236,6 @@ message Press X to proceed to the next level after solving
 
 
 
-
-
 #########
 #%%..%%%#
 #%%%..p%#
@@ -1248,6 +1264,7 @@ message Press X to proceed to the next level after solving
 #.*.*.*.#
 #*.*.*.*#
 ######### (kinda fun) (GOOD)
+
 
 (#.#.#.#.#.#
 .#.#.#.#.#.
@@ -1293,6 +1310,7 @@ message Press X to proceed to the next level after solving
 #%**...**%#
 #%%%.p.%%%#
 #%...%...%#
+#%%%%%%%%%#
 #%%%%%%%%%#
 ###########
 
@@ -1341,8 +1359,6 @@ message Press X to proceed to the next level after solving
 ###%.*.%###
 #.*%#######
 ########### (iconic 3 block puzzle twist) (GOOD)
-
-
 
 
 (
