@@ -922,10 +922,12 @@ late [ WinMarker ][ Crate no CrateCannotBePushed ] -> [][ Crate ]
 late [ WinMarker ][ Crate ] -> [ WinMarker ][ WonCrate ]
 
 
-[ LastLevelMarker ][ action player ][ WinMarker ] -> [ LastLevelMarker2 ][ action player ][] message Thanks for playing! 
+[ LastLevelMarker2 ][ action player ][ WinMarker ] -> [ LastLevelMarker2 ][ action player ][] message ...
+[ LastLevelMarker ][ action player ][ WinMarker ] -> [ LastLevelMarker2 ][ action player ][] checkpoint message The End. Thanks for playing! 
 [ LastLevelMarker2 ][ WinMarker ] -> [ LastLevelMarker2 ][]
 
 [ action Player ][ WinMarker ] -> win
+
 
 
 (late [ WinMarker no WinTimer ] -> [ WinMarker WinTimer0 ])
@@ -1139,6 +1141,17 @@ message Press X to proceed to the next level after solving
 #.....#
 ####### (GOOD)
 
+
+
+##########
+###....###
+###.*....#
+#.*.....*#
+#....p...#
+#..*.....#
+######...#
+########## (level about freely dumping crates in corners)
+(
 ##########
 ###p*..###
 ###**....#
@@ -1146,18 +1159,7 @@ message Press X to proceed to the next level after solving
 #.......*#
 #........#
 ######...#
-########## (level about freely dumping crates in corners)
-
-##########
-###....###
-###..*...#
-#.*.....*#
-#....p...#
-#..*.....#
-######...#
-##########
-
-
+##########) 
 
 (levels involving platforms)
 
@@ -1310,7 +1312,6 @@ message Press X to proceed to the next level after solving
 #%**...**%#
 #%%%.p.%%%#
 #%...%...%#
-#%%%%%%%%%#
 #%%%%%%%%%#
 ###########
 
